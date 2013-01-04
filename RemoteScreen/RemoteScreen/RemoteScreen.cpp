@@ -20,6 +20,19 @@ void OutOfMemoryHandler()
    throw WindowsException("Out of memory");
 }
 
+bool RestoreExistingWindow(WindowClass& windowClass)
+{
+   HWND hwndOther = windowClass.GetRunningWindow ();
+   if (hwndOther != 0) {
+      ::SetForegroundWindow (hwndOther);
+      if (::IsIconic (hwndOther))
+         ::ShowWindow (hwndOther, SW_RESTORE);
+      return true;
+   }
+
+   return false;
+}
+
 int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
    std::set_new_handler(OutOfMemoryHandler);
@@ -30,13 +43,8 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
       StringResource mainWindowTitle(hInstance, IDS_APP_TITLE);
 
       MainWindowClass mainWndClass(WindowController::WndProc<MainWindowController>, mainWndClassName, hInstance, IDI_REMOTESCREEN, IDI_SMALL, IDC_REMOTESCREEN);
-      HWND hwndOther = mainWndClass.GetRunningWindow ();
-      if (hwndOther != 0) {
-         ::SetForegroundWindow (hwndOther);
-         if (::IsIconic (hwndOther))
-            ::ShowWindow (hwndOther, SW_RESTORE);
+      if (RestoreExistingWindow(mainWndClass))
          return 0;
-      }
       mainWndClass.Register();
 
       MainWindow mainWindow(mainWndClass, mainWindowTitle);

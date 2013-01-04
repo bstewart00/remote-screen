@@ -69,6 +69,9 @@
     <ClInclude Include="UI\Dialogs\Controls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UI\Windows\WindowHandle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RemoteScreen.cpp">

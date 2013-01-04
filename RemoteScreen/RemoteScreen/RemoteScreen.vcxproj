@@ -97,6 +97,7 @@
     <ClInclude Include="UI\Windows\Window.h" />
     <ClInclude Include="UI\Windows\WindowClass.h" />
     <ClInclude Include="UI\Windows\WindowController.h" />
+    <ClInclude Include="UI\Windows\WindowHandle.h" />
     <ClInclude Include="WindowsException.h" />
   </ItemGroup>
   <ItemGroup>
