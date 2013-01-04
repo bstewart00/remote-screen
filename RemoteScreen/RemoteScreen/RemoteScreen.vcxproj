@@ -80,8 +80,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="UI\Dialogs\Controls.h" />
+    <ClInclude Include="UI\Dialogs\Edit\EditDialogViewModel.h" />
+    <ClInclude Include="UI\Dialogs\About\AboutDialogController.h" />
+    <ClInclude Include="UI\Dialogs\Edit\EditDialogController.h" />
+    <ClInclude Include="UI\Dialogs\ModalDialogController.h" />
+    <ClInclude Include="UI\Dialogs\DialogControllerFactory.h" />
     <ClInclude Include="LocalFreeDeleter.h" />
-    <ClInclude Include="ModalDialog.h" />
+    <ClInclude Include="UI\Dialogs\ModalDialog.h" />
     <ClInclude Include="UI\Windows\Main\MainWindow.h" />
     <ClInclude Include="UI\Windows\Main\MainWindowClass.h" />
     <ClInclude Include="UI\Windows\Main\MainWindowController.h" />
@@ -94,7 +100,8 @@
     <ClInclude Include="WindowsException.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ModalDialog.cpp" />
+    <ClCompile Include="UI\Dialogs\About\AboutDialogController.cpp" />
+    <ClCompile Include="UI\Dialogs\Edit\EditDialogController.cpp" />
     <ClCompile Include="UI\Windows\Main\MainWindow.cpp" />
     <ClCompile Include="UI\Windows\Main\MainWindowClass.cpp" />
     <ClCompile Include="UI\Windows\Main\MainWindowController.cpp" />

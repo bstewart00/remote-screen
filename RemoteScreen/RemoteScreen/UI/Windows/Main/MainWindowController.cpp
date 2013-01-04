@@ -1,4 +1,8 @@
 #include "MainWindowController.h"
+#include "../../Dialogs/ModalDialog.h"
+#include "../../Dialogs/DialogControllerFactory.h"
+#include "../../Dialogs/About/AboutDialogController.h"
+#include "../../Dialogs/Edit/EditDialogController.h"
 #include "../../../Resource.h"
 
 MainWindowController::MainWindowController(Window* window)
@@ -6,38 +10,22 @@ MainWindowController::MainWindowController(Window* window)
 {
 }
 
-INT_PTR CALLBACK MainWindowController::AboutDialogProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-   switch (message) {
-   case WM_INITDIALOG:
-      return static_cast<INT_PTR>(TRUE);
-
-   case WM_COMMAND:
-      if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL) {
-         ::EndDialog(hDlg, LOWORD(wParam));
-         return  static_cast<INT_PTR>(TRUE);
-      }
-      break;
-   }
-   return static_cast<INT_PTR>(FALSE);
-}
-
 LRESULT MainWindowController::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
 {
    int wmId, wmEvent;
    PAINTSTRUCT ps;
    HDC hdc;
-   HINSTANCE hInst;
 
    switch (message) {
    case WM_COMMAND:
       wmId = LOWORD(wParam);
       wmEvent = HIWORD(wParam);
-      switch (wmId)
-      {
-      case IDM_ABOUT:
-         hInst = window->GetLongPtr<HINSTANCE>(GWLP_HINSTANCE);
-         ::DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), *window, AboutDialogProc);
+      switch (wmId) {
+      case IDM_ABOUT: 
+         ShowAboutDialog();
+         break;
+      case IDM_EDIT:
+         ShowEditDialog();
          break;
       case IDM_EXIT:
          window->Destroy();
@@ -59,4 +47,19 @@ LRESULT MainWindowController::ProcessMessage(UINT message, WPARAM wParam, LPARAM
    }
 
    return 0;
+}
+
+void MainWindowController::ShowAboutDialog()
+{
+   HINSTANCE hInst = window->GetLongPtr<HINSTANCE>(GWLP_HINSTANCE);
+   DialogControllerFactory<AboutDialogController, nullptr_t> factory(nullptr);
+   ModalDialog dialog(hInst, *window, IDD_ABOUTBOX, ModalDialogController::DialogProc, &factory);
+}
+
+void MainWindowController::ShowEditDialog()
+{
+   HINSTANCE hInst = window->GetLongPtr<HINSTANCE>(GWLP_HINSTANCE);
+   EditDialogViewModel viewModel("TEST");
+   DialogControllerFactory<EditDialogController, EditDialogViewModel> factory(&viewModel);
+   ModalDialog dialog(hInst, *window, IDD_EDIT, ModalDialogController::DialogProc, &factory);
 }

@@ -39,9 +39,6 @@
     <ClInclude Include="UI\Windows\Main\MainWindowController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ModalDialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Windows\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -49,6 +46,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UI\Windows\WindowController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialogs\ModalDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialogs\DialogControllerFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialogs\ModalDialogController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialogs\Edit\EditDialogController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialogs\About\AboutDialogController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialogs\Edit\EditDialogViewModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dialogs\Controls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,9 +89,6 @@
     <ClCompile Include="UI\Windows\Main\MainWindowController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ModalDialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UI\Windows\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -81,6 +96,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Windows\WindowController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialogs\Edit\EditDialogController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dialogs\About\AboutDialogController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
