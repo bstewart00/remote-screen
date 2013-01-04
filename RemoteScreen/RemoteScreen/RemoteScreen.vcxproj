@@ -81,26 +81,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="LocalFreeDeleter.h" />
+    <ClInclude Include="ModalDialog.h" />
     <ClInclude Include="UI\Windows\Main\MainWindow.h" />
     <ClInclude Include="UI\Windows\Main\MainWindowClass.h" />
     <ClInclude Include="UI\Windows\Main\MainWindowController.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="StringResource.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="UI\Window.h" />
-    <ClInclude Include="UI\WindowClass.h" />
-    <ClInclude Include="UI\WindowController.h" />
+    <ClInclude Include="UI\Windows\Window.h" />
+    <ClInclude Include="UI\Windows\WindowClass.h" />
+    <ClInclude Include="UI\Windows\WindowController.h" />
     <ClInclude Include="WindowsException.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ModalDialog.cpp" />
     <ClCompile Include="UI\Windows\Main\MainWindow.cpp" />
     <ClCompile Include="UI\Windows\Main\MainWindowClass.cpp" />
     <ClCompile Include="UI\Windows\Main\MainWindowController.cpp" />
     <ClCompile Include="RemoteScreen.cpp" />
     <ClCompile Include="StringResource.cpp" />
-    <ClCompile Include="UI\Window.cpp" />
-    <ClCompile Include="UI\WindowClass.cpp" />
-    <ClCompile Include="UI\WindowController.cpp" />
+    <ClCompile Include="UI\Windows\Window.cpp" />
+    <ClCompile Include="UI\Windows\WindowClass.cpp" />
+    <ClCompile Include="UI\Windows\WindowController.cpp" />
     <ClCompile Include="WindowsException.cpp" />
   </ItemGroup>
   <ItemGroup>

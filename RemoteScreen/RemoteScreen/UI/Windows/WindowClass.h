@@ -2,7 +2,7 @@
 #ifndef WINDOWCLASS_H
 #define WINDOWCLASS_H
 
-#include "../WindowsException.h"
+#include "../../WindowsException.h"
 #include <Windows.h>
 
 class WindowClass

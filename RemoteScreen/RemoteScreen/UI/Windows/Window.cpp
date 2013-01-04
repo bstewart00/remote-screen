@@ -1,5 +1,5 @@
 #include "Window.h"
-#include "../WindowsException.h"
+#include "../../WindowsException.h"
 #include <string>
 #include <boost/nowide/convert.hpp>
 #include <Windows.h>

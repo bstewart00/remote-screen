@@ -2,7 +2,7 @@
 #ifndef MAINWINDOWCONTROLLER_H
 #define MAINWINDOWCONTROLLER_H
 
-#include "../../WindowController.h"
+#include "../WindowController.h"
 
 class MainWindowController : public WindowController
 {

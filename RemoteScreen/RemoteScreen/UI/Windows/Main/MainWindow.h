@@ -2,8 +2,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "../../Window.h"
-#include "../../WindowClass.h"
+#include "../Window.h"
+#include "../WindowClass.h"
 
 class MainWindow : public Window
 {

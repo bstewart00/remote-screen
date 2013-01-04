@@ -3,7 +3,7 @@
 #define MAINWINDOWCLASS_H
 
 #include "../../../WindowsException.h"
-#include "../../WindowClass.h"
+#include "../WindowClass.h"
 #include <Windows.h>
 #include <string>
 
