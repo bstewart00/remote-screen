@@ -1,4 +1,6 @@
 #pragma once
+#ifndef ABOUTDIALOGCONTROLLER_H
+#define ABOUTDIALOGCONTROLLER_H
 
 #include "../ModalDialogController.h"
 #include <Windows.h>
@@ -12,3 +14,5 @@ public:
    bool OnCommand(HWND hwnd, int ctrlID, int notifyCode);
    bool OnNotify(HWND hwnd, int idCtrl, NMHDR *hdr);
 };
+
+#endif

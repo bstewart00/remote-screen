@@ -15,8 +15,6 @@
 #include <boost/format.hpp>
 #include <boost/nowide/convert.hpp>
 
-HINSTANCE hInst;
-
 void OutOfMemoryHandler()
 {
    throw WindowsException("Out of memory");
@@ -40,8 +38,6 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
          return 0;
       }
       mainWndClass.Register();
-
-      hInst = hInstance;
 
       MainWindow mainWindow(mainWndClass, mainWindowTitle);
       mainWindow.Create();

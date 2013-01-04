@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef EDITDIALOGCONTROLLER_H
+#define EDITDIALOGCONTROLLER_H
+
 #include "../ModalDialogController.h"
 #include "EditDialogViewModel.h"
 #include "../Controls.h"
@@ -22,3 +25,4 @@ private:
    EditDialogViewModel* viewModel;
 };
 
+#endif
