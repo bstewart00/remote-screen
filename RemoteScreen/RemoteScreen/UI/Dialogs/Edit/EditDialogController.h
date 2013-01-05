@@ -1,5 +1,4 @@
 #pragma once
-
 #ifndef EDITDIALOGCONTROLLER_H
 #define EDITDIALOGCONTROLLER_H
 

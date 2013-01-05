@@ -1,107 +1,108 @@
 #pragma once
-#if !defined (CANVTOOLS_H)
-#define CANVTOOLS_H
+#ifndef CANVASTOOLS_H
+#define CANVASTOOLS_H
+
 #include <Windows.h>
 
 class StockObject
 {
 public:
-   StockObject (HDC hdc, int type)
-      : _hdc (hdc)
+   StockObject(HDC hdc, int type)
+      : hdc(hdc)
    {
-      _hObjOld = ::SelectObject (_hdc, GetStockObject (type));
+      hObjOld = ::SelectObject(hdc, GetStockObject (type));
    }
 
-   ~StockObject ()
+   ~StockObject()
    {
-      ::SelectObject (_hdc, _hObjOld);
+      ::SelectObject(hdc, hObjOld);
    }
 private:
-   HGDIOBJ  _hObjOld;
-   HDC      _hdc;
+   HGDIOBJ  hObjOld;
+   HDC      hdc;
 };
 
 class WhitePen : public StockObject
 {
 public:
-   WhitePen (HDC hdc): StockObject (hdc, WHITE_PEN) {}
+   WhitePen(HDC hdc): StockObject (hdc, WHITE_PEN) {}
 };
 
 class BlackPen : public StockObject
 {
 public:
-   BlackPen (HDC hdc): StockObject (hdc, BLACK_PEN) {}
+   BlackPen(HDC hdc): StockObject (hdc, BLACK_PEN) {}
 };
 
 class Pen
 {
 public:
-   Pen (COLORREF color, int style = PS_SOLID)
+   Pen(COLORREF color, int style = PS_SOLID)
    {
-      _hPen = ::CreatePen (style, 0, color);
+      hPen = ::CreatePen(style, 0, color);
    }
-   ~Pen ()
+   ~Pen()
    {
-      ::DeleteObject (_hPen);
+      ::DeleteObject(hPen);
    }
-   operator HPEN () const { return _hPen; }
+   operator HPEN() const { return hPen; }
 private:
-   HPEN    _hPen;
+   HPEN hPen;
 };
 
 class PenContext
 {
 public:
-   PenContext (HDC hdc, HPEN hPen)
-      : _hdc (hdc)
+   PenContext(HDC hdc, HPEN hPen)
+      : hdc(hdc)
    {
-      _hPenOld = (HPEN) ::SelectObject (_hdc, hPen); 
+      hPenOld = reinterpret_cast<HPEN>(::SelectObject(hdc, hPen));
    }
-   ~PenContext ()
+   ~PenContext()
    {
-      ::SelectObject (_hdc, _hPenOld);
+      ::SelectObject(hdc, hPenOld);
    }
 private:
-   HDC     _hdc;
-   HPEN    _hPenOld;
+   HDC hdc;
+   HPEN hPenOld;
 };
 
 class ModeSetter
 {
 public:
-   ModeSetter (HDC hdc, int mode = R2_COPYPEN)
-      : _hdc (hdc)
+   ModeSetter(HDC hdc, int mode = R2_COPYPEN)
+      : hdc(hdc)
    {
-      _modeOld = ::GetROP2 (_hdc);
-      ::SetROP2 (_hdc, mode);
+      modeOld = ::GetROP2(hdc);
+      ::SetROP2(hdc, mode);
    }
-   ~ModeSetter ()
+   ~ModeSetter()
    {
-      ::SetROP2 (_hdc, _modeOld);
+      ::SetROP2(hdc, modeOld);
    }
 private:
-   HDC _hdc;
-   int _modeOld;
+   HDC hdc;
+   int modeOld;
 };
-
-#endif
 
 class Pens3d
 {
 public:
-   Pens3d ()
-      : _penLight (GetSysColor (COLOR_3DLIGHT)),
-      _penHilight (GetSysColor (COLOR_3DHILIGHT)),
-      _penShadow (GetSysColor (COLOR_3DSHADOW)),
-      _penDkShadow (GetSysColor (COLOR_3DDKSHADOW))
+   Pens3d()
+      : penLight(GetSysColor (COLOR_3DLIGHT)),
+      penHilight(GetSysColor (COLOR_3DHILIGHT)),
+      penShadow(GetSysColor (COLOR_3DSHADOW)),
+      penDkShadow(GetSysColor (COLOR_3DDKSHADOW))
    {}
-   const Pen & Hilight () const { return _penHilight; }
-   const Pen & Light () const { return _penLight; }
-   const Pen & Shadow () const { return _penShadow; }
-   const Pen & DkShadow () const { return _penDkShadow; }
+   const Pen & Hilight() const { return penHilight; }
+   const Pen & Light() const { return penLight; }
+   const Pen & Shadow() const { return penShadow; }
+   const Pen & DkShadow() const { return penDkShadow; }
 private:
-   Pen		_penHilight;
-   Pen		_penLight;
-   Pen		_penShadow;
-   Pen		_penDkShadow;
+   Pen penHilight;
+   Pen penLight;
+   Pen penShadow;
+   Pen penDkShadow;
 };
+
+#endif

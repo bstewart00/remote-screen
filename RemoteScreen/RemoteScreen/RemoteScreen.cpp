@@ -1,6 +1,3 @@
-// RemoteScreen.cpp : Defines the entry point for the application.
-//
-
 #include "resource.h"
 #include "UI/Windows/WindowClass.h"
 #include "UI/Windows/WindowFactory.h"

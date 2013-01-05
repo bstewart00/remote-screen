@@ -71,8 +71,6 @@ void SplitterController::LButtonDown(POINTS pt)
    dragX = dragStart + pt.x;
 
    // Draw a divider using XOR mode
-   printf("LButtonDown::%d %d %d %d\n", dragX, 0, dragX, cy - 1); 
-
    UpdateCanvas canvas(parent);
    ModeSetter mode(canvas, R2_NOTXORPEN);
    canvas.Line(dragX, 0, dragX, cy - 1);
@@ -87,8 +85,6 @@ void SplitterController::LButtonDrag(POINTS pt)
       canvas.Line(dragX, 0, dragX, cy - 1);
       dragX = dragStart + pt.x;
       canvas.Line(dragX, 0, dragX, cy - 1);
-
-      printf("LButtonDrag\n");
    }
 }
 
@@ -99,15 +95,11 @@ void SplitterController::LButtonUp(POINTS pt)
 
       window.ReleaseMouse();
       parent.SendMessage(MSG_MOVESPLITTER, dragStart + pt.x);
-
-      printf("LButtonUp\n");
    }
 }
 
 void SplitterController::CaptureChanged()
 {
-   printf("CaptureChanged\n");
-
    // We are losing capture
    // End drag selection -- for whatever reason
    // Erase previous divider
