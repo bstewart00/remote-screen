@@ -80,6 +80,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Application.h" />
     <ClInclude Include="CustomMessages.h" />
     <ClInclude Include="UI\Canvas.h" />
     <ClInclude Include="UI\CanvasTools.h" />
@@ -105,6 +106,7 @@
     <ClInclude Include="WindowsException.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Application.cpp" />
     <ClCompile Include="UI\Windows\Splitter\SplitterController.cpp" />
     <ClCompile Include="UI\Windows\Splitter\SplitterClass.cpp" />
     <ClCompile Include="UI\Dialogs\About\AboutDialogController.cpp" />

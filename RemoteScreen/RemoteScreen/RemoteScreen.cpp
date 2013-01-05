@@ -1,14 +1,7 @@
-#include "resource.h"
-#include "UI/Windows/WindowClass.h"
-#include "UI/Windows/WindowFactory.h"
-#include "UI/Windows/Main/MainWindowClass.h"
-#include "UI/Windows/Main/MainWindowController.h"
-#include "StringResource.h"
 #include "WindowsException.h"
-
+#include "Application.h"
 #include <Windows.h>
 #include <sstream>
-#include <array>
 #include <string>
 #include <boost/format.hpp>
 #include <boost/nowide/convert.hpp>
@@ -19,19 +12,6 @@
 void OutOfMemoryHandler()
 {
    throw WindowsException("Out of memory");
-}
-
-bool RestoreExistingWindow(const WindowClass& windowClass)
-{
-   HWND hwndOther = windowClass.GetRunningWindow ();
-   if (hwndOther != 0) {
-      ::SetForegroundWindow (hwndOther);
-      if (::IsIconic (hwndOther))
-         ::ShowWindow (hwndOther, SW_RESTORE);
-      return true;
-   }
-
-   return false;
 }
 
 #ifdef _DEBUG
@@ -55,31 +35,10 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 #endif
 
    try {
-      StringResource mainWndClassName(hInstance, IDC_REMOTESCREEN);
-      StringResource mainWindowTitle(hInstance, IDS_APP_TITLE);
-
-      MainWindowClass mainWndClass(WindowController::WndProc<MainWindowController>, mainWndClassName, hInstance, IDI_REMOTESCREEN, IDC_REMOTESCREEN);
-      if (RestoreExistingWindow(mainWndClass))
+      Application app(hInstance, nCmdShow);
+      if (!app.Initialize())
          return 0;
-      mainWndClass.Register();
-
-      MainWindowFactory mainWindowFactory(mainWndClass, mainWindowTitle);
-      Window mainWindow(mainWindowFactory.Create());
-      mainWindow.Show(nCmdShow);
-
-      HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_REMOTESCREEN));
-      MSG msg;
-      BOOL bRet;
-      while ((bRet = GetMessage(&msg, NULL, 0, 0)) != 0) {
-         if (bRet == -1) {
-            return -1;
-         } else if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-         }
-      }
-
-      return (int) msg.wParam;
+      return app.Run();
    } catch (WindowsException e) {
       boost::format test = boost::format("Error: %1 Win32 Error %2: %3") % e.GetMessage() % e.GetErrorCode() % e.GetFormattedMessage();
       std::wstring message(boost::nowide::widen(test.str()));
