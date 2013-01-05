@@ -5,7 +5,7 @@
 #include "../../Dialogs/Edit/EditDialogController.h"
 #include "../../../Resource.h"
 
-MainWindowController::MainWindowController(Window* window)
+MainWindowController::MainWindowController(Window window)
    : WindowController(window)
 {
 }
@@ -28,16 +28,16 @@ LRESULT MainWindowController::ProcessMessage(UINT message, WPARAM wParam, LPARAM
          ShowEditDialog();
          break;
       case IDM_EXIT:
-         window->Destroy();
+         window.Destroy();
          break;
       default:
          return WindowController::ProcessMessage(message, wParam, lParam);
       }
       break;
    case WM_PAINT:
-      hdc = ::BeginPaint(*window, &ps);
+      hdc = ::BeginPaint(window, &ps);
       TextOut(hdc, 0, 0, L"Test", 4);
-      ::EndPaint(*window, &ps);
+      ::EndPaint(window, &ps);
       break;
    case WM_DESTROY:
       ::PostQuitMessage(0);
@@ -51,15 +51,15 @@ LRESULT MainWindowController::ProcessMessage(UINT message, WPARAM wParam, LPARAM
 
 void MainWindowController::ShowAboutDialog()
 {
-   HINSTANCE hInst = window->GetLongPtr<HINSTANCE>(GWLP_HINSTANCE);
+   HINSTANCE hInst = window.GetLongPtr<HINSTANCE>(GWLP_HINSTANCE);
    DialogControllerFactory<AboutDialogController, nullptr_t> factory(nullptr);
-   ModalDialog dialog(hInst, *window, IDD_ABOUTBOX, ModalDialogController::DialogProc, &factory);
+   ModalDialog dialog(hInst, window, IDD_ABOUTBOX, ModalDialogController::DialogProc, &factory);
 }
 
 void MainWindowController::ShowEditDialog()
 {
-   HINSTANCE hInst = window->GetLongPtr<HINSTANCE>(GWLP_HINSTANCE);
+   HINSTANCE hInst = window.GetLongPtr<HINSTANCE>(GWLP_HINSTANCE);
    EditDialogViewModel viewModel("TEST");
    DialogControllerFactory<EditDialogController, EditDialogViewModel> factory(&viewModel);
-   ModalDialog dialog(hInst, *window, IDD_EDIT, ModalDialogController::DialogProc, &factory);
+   ModalDialog dialog(hInst, window, IDD_EDIT, ModalDialogController::DialogProc, &factory);
 }

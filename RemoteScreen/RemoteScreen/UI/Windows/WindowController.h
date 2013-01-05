@@ -8,7 +8,7 @@
 class WindowController
 {
 public:
-   WindowController(Window* window);
+   WindowController(Window window);
 
    template<class Controller>
    static LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -16,10 +16,9 @@ public:
       Controller* controller = nullptr;
 
       if (message == WM_NCCREATE) {
-         Window* window = reinterpret_cast<Window*>(reinterpret_cast<LPCREATESTRUCT>(lParam)->lpCreateParams);
-         window->SetHWND(hwnd);
+         Window window(hwnd);
          controller = new Controller(window);
-         window->SetLongPtr(controller, GWLP_USERDATA);
+         window.SetLongPtr(controller, GWLP_USERDATA);
       } else {
          controller = Window::GetLongPtr<Controller*>(hwnd, GWLP_USERDATA);
       }
@@ -36,9 +35,14 @@ public:
       return result;
    }
 
+   static LRESULT CALLBACK DefaultWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+   {
+      return ::DefWindowProc(hwnd, message, wParam, lParam);
+   }
+
 protected:
    virtual LRESULT ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
-   Window* window;
+   Window window;
 };
 
 #endif

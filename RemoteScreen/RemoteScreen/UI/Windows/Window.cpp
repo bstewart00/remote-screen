@@ -5,36 +5,8 @@
 #include <Windows.h>
 #include <functional>
 
-Window::Window(const WindowClass& wndClass)
-    : wndClass(wndClass),
-      hWnd(nullptr),
-      exStyle(0),
-      style(WS_OVERLAPPED),
-      x(CW_USEDEFAULT),
-      y(0),
-      width(CW_USEDEFAULT),
-      height(0),
-      hWndParent(nullptr),
-      hMenu(nullptr)
+Window::Window(HWND hwnd) : hWnd(hwnd)
 {
-}
-
-void Window::Create()
-{
-   std::wstring className = boost::nowide::widen(wndClass.GetName());
-   std::wstring windowName = boost::nowide::widen(name);
-
-   hWnd = ::CreateWindowEx(
-      0,
-      className.c_str(),
-      windowName.c_str(),
-      style,
-      x, y, width, height,
-      hWndParent, hMenu, wndClass.GetInstance(),
-      this);
-
-   if (!hWnd)
-      throw WindowsException("Window creation failed");
 }
 
 void Window::Destroy()

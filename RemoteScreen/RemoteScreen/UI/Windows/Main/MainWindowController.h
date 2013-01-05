@@ -7,7 +7,7 @@
 class MainWindowController : public WindowController
 {
 public:
-   MainWindowController(Window* window);
+   MainWindowController(Window window);
 
    friend LRESULT WindowController::WndProc<MainWindowController>(HWND, UINT, WPARAM, LPARAM);
 private:

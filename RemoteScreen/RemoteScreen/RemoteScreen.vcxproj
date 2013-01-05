@@ -80,6 +80,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CustomMessages.h" />
+    <ClInclude Include="UI\Windows\Splitter\SplitterController.h" />
+    <ClInclude Include="UI\Windows\Splitter\SplitterClass.h" />
     <ClInclude Include="UI\Dialogs\Controls.h" />
     <ClInclude Include="UI\Dialogs\Edit\EditDialogViewModel.h" />
     <ClInclude Include="UI\Dialogs\About\AboutDialogController.h" />
@@ -88,7 +91,6 @@
     <ClInclude Include="UI\Dialogs\DialogControllerFactory.h" />
     <ClInclude Include="LocalFreeDeleter.h" />
     <ClInclude Include="UI\Dialogs\ModalDialog.h" />
-    <ClInclude Include="UI\Windows\Main\MainWindow.h" />
     <ClInclude Include="UI\Windows\Main\MainWindowClass.h" />
     <ClInclude Include="UI\Windows\Main\MainWindowController.h" />
     <ClInclude Include="Resource.h" />
@@ -97,13 +99,14 @@
     <ClInclude Include="UI\Windows\Window.h" />
     <ClInclude Include="UI\Windows\WindowClass.h" />
     <ClInclude Include="UI\Windows\WindowController.h" />
-    <ClInclude Include="UI\Windows\WindowHandle.h" />
+    <ClInclude Include="UI\Windows\WindowFactory.h" />
     <ClInclude Include="WindowsException.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="UI\Windows\Splitter\SplitterController.cpp" />
+    <ClCompile Include="UI\Windows\Splitter\SplitterClass.cpp" />
     <ClCompile Include="UI\Dialogs\About\AboutDialogController.cpp" />
     <ClCompile Include="UI\Dialogs\Edit\EditDialogController.cpp" />
-    <ClCompile Include="UI\Windows\Main\MainWindow.cpp" />
     <ClCompile Include="UI\Windows\Main\MainWindowClass.cpp" />
     <ClCompile Include="UI\Windows\Main\MainWindowController.cpp" />
     <ClCompile Include="RemoteScreen.cpp" />
@@ -111,6 +114,7 @@
     <ClCompile Include="UI\Windows\Window.cpp" />
     <ClCompile Include="UI\Windows\WindowClass.cpp" />
     <ClCompile Include="UI\Windows\WindowController.cpp" />
+    <ClCompile Include="UI\Windows\WindowFactory.cpp" />
     <ClCompile Include="WindowsException.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -118,7 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="RemoteScreen.ico" />
-    <Image Include="small.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

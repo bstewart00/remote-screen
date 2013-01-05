@@ -10,7 +10,7 @@
 class MainWindowClass : public WindowClass
 {
 public:
-   MainWindowClass(WNDPROC wndProc, std::string name, HINSTANCE hInst, int icon, int iconSmall, int menu);
+   MainWindowClass(WNDPROC wndProc, std::string name, HINSTANCE hInst, int icon, int menu);
 };
 
 #endif

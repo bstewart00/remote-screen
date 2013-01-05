@@ -1,10 +1,9 @@
 #include "MainWindowClass.h"
 
-MainWindowClass::MainWindowClass(WNDPROC wndProc, std::string className, HINSTANCE hInst, int icon, int iconSmall, int menu)
+MainWindowClass::MainWindowClass(WNDPROC wndProc, std::string className, HINSTANCE hInst, int icon, int menu)
    : WindowClass(wndProc, className, hInst)
 {
-   wndClass.style = CS_HREDRAW | CS_VREDRAW;
-   wndClass.hIcon = ::LoadIcon(hInst, MAKEINTRESOURCE(icon));
+   SetSizeRedraw();
+   SetResIcons(icon);
    wndClass.lpszMenuName = MAKEINTRESOURCE(menu);
-   wndClass.hIconSm	= ::LoadIcon(hInst, MAKEINTRESOURCE(iconSmall));
 }

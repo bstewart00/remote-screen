@@ -2,7 +2,8 @@
 //
 
 #include "resource.h"
-#include "UI/Windows/Main/MainWindow.h"
+#include "UI/Windows/WindowClass.h"
+#include "UI/Windows/WindowFactory.h"
 #include "UI/Windows/Main/MainWindowClass.h"
 #include "UI/Windows/Main/MainWindowController.h"
 #include "StringResource.h"
@@ -42,13 +43,18 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
       StringResource mainWndClassName(hInstance, IDC_REMOTESCREEN);
       StringResource mainWindowTitle(hInstance, IDS_APP_TITLE);
 
-      MainWindowClass mainWndClass(WindowController::WndProc<MainWindowController>, mainWndClassName, hInstance, IDI_REMOTESCREEN, IDI_SMALL, IDC_REMOTESCREEN);
+      MainWindowClass mainWndClass(WindowController::WndProc<MainWindowController>, mainWndClassName, hInstance, IDI_REMOTESCREEN, IDC_REMOTESCREEN);
       if (RestoreExistingWindow(mainWndClass))
          return 0;
       mainWndClass.Register();
+      
+      StringResource childWndClassName(hInstance, IDC_PANE);
+      WindowClass childWndClass(WindowController::DefaultWndProc, childWndClassName, hInstance);
+      childWndClass.SetSysCursor(IDC_IBEAM);
+      childWndClass.Register();
 
-      MainWindow mainWindow(mainWndClass, mainWindowTitle);
-      mainWindow.Create();
+      MainWindowFactory mainWindowFactory(mainWndClass, mainWindowTitle);
+      Window mainWindow(mainWindowFactory.Create());
       mainWindow.Show(nCmdShow);
 
       HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_REMOTESCREEN));

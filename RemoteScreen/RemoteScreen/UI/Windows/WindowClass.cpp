@@ -10,8 +10,8 @@ WindowClass::WindowClass(WNDPROC wndProc, std::string className, HINSTANCE hInst
    wndClass.cbClsExtra = 0;
    wndClass.cbWndExtra = 0;
    wndClass.hInstance = hInst;
-   wndClass.hCursor	= ::LoadCursor(NULL, IDC_ARROW);
-   wndClass.hbrBackground = reinterpret_cast<HBRUSH>(COLOR_WINDOW + 1);
+   SetSysCursor(IDC_ARROW);
+   SetBgSysColor(COLOR_WINDOW);
    wndClass.hIcon = nullptr;
    wndClass.lpszMenuName = nullptr;
    wndClass.hIconSm	= nullptr;
@@ -22,17 +22,17 @@ void WindowClass::Register()
    std::wstring wideClassName = boost::nowide::widen(name);
    wndClass.lpszClassName = wideClassName.c_str();
    ATOM result = ::RegisterClassEx(&wndClass);
-   if (result == 0) {
+   if(result == 0) {
       throw WindowsException("Window class registration failure.");
    }
 }
 
-HWND WindowClass::GetRunningWindow ()
+HWND WindowClass::GetRunningWindow()
 {
-   HWND hwnd = ::FindWindow (boost::nowide::widen(name).c_str(), 0);
-   if (::IsWindow (hwnd)) {
+   HWND hwnd = ::FindWindow(boost::nowide::widen(name).c_str(), 0);
+   if(::IsWindow (hwnd)) {
       HWND hwndPopup = ::GetLastActivePopup(hwnd);
-      if (::IsWindow (hwndPopup))
+      if(::IsWindow (hwndPopup))
          hwnd = hwndPopup;
    }
    else {
@@ -40,4 +40,16 @@ HWND WindowClass::GetRunningWindow ()
    }
 
    return hwnd;
+}
+
+void WindowClass::SetResIcons(int resId)
+{
+   wndClass.hIcon = ::LoadIcon(hInstance, MAKEINTRESOURCE (resId));
+   wndClass.hIconSm =(HICON)::LoadImage(
+      hInstance, 
+      MAKEINTRESOURCE(resId), 
+      IMAGE_ICON, 
+      ::GetSystemMetrics(SM_CXSMICON),
+      ::GetSystemMetrics(SM_CYSMICON),
+      LR_SHARED);
 }

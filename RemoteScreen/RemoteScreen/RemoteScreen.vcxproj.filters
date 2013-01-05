@@ -30,9 +30,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Windows\Main\MainWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Windows\Main\MainWindowClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -69,7 +66,16 @@
     <ClInclude Include="UI\Dialogs\Controls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Windows\WindowHandle.h">
+    <ClInclude Include="CustomMessages.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Windows\Splitter\SplitterClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Windows\Splitter\SplitterController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Windows\WindowFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -81,9 +87,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StringResource.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\Windows\Main\MainWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Windows\Main\MainWindowClass.cpp">
@@ -107,6 +110,15 @@
     <ClCompile Include="UI\Dialogs\About\AboutDialogController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UI\Windows\Splitter\SplitterClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Windows\Splitter\SplitterController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Windows\WindowFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RemoteScreen.rc">
@@ -114,9 +126,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="small.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="RemoteScreen.ico">
       <Filter>Resource Files</Filter>
     </Image>
