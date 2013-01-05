@@ -81,6 +81,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CustomMessages.h" />
+    <ClInclude Include="UI\Canvas.h" />
+    <ClInclude Include="UI\CanvasTools.h" />
     <ClInclude Include="UI\Windows\Splitter\SplitterController.h" />
     <ClInclude Include="UI\Windows\Splitter\SplitterClass.h" />
     <ClInclude Include="UI\Dialogs\Controls.h" />

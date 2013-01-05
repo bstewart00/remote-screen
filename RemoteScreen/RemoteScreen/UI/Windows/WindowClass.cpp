@@ -27,7 +27,7 @@ void WindowClass::Register()
    }
 }
 
-HWND WindowClass::GetRunningWindow()
+HWND WindowClass::GetRunningWindow() const
 {
    HWND hwnd = ::FindWindow(boost::nowide::widen(name).c_str(), 0);
    if(::IsWindow (hwnd)) {

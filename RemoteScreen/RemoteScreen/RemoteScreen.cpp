@@ -21,7 +21,7 @@ void OutOfMemoryHandler()
    throw WindowsException("Out of memory");
 }
 
-bool RestoreExistingWindow(WindowClass& windowClass)
+bool RestoreExistingWindow(const WindowClass& windowClass)
 {
    HWND hwndOther = windowClass.GetRunningWindow ();
    if (hwndOther != 0) {
@@ -48,11 +48,6 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
          return 0;
       mainWndClass.Register();
       
-      StringResource childWndClassName(hInstance, IDC_PANE);
-      WindowClass childWndClass(WindowController::DefaultWndProc, childWndClassName, hInstance);
-      childWndClass.SetSysCursor(IDC_IBEAM);
-      childWndClass.Register();
-
       MainWindowFactory mainWindowFactory(mainWndClass, mainWindowTitle);
       Window mainWindow(mainWindowFactory.Create());
       mainWindow.Show(nCmdShow);

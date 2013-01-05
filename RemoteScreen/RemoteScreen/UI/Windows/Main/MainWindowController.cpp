@@ -1,20 +1,47 @@
 #include "MainWindowController.h"
+#include "../WindowFactory.h"
 #include "../../Dialogs/ModalDialog.h"
 #include "../../Dialogs/DialogControllerFactory.h"
 #include "../../Dialogs/About/AboutDialogController.h"
 #include "../../Dialogs/Edit/EditDialogController.h"
+#include "../Splitter/SplitterClass.h"
+#include "../Splitter/SplitterController.h"
 #include "../../../Resource.h"
+#include "../../../CustomMessages.h"
+#include "../../../StringResource.h"
 
-MainWindowController::MainWindowController(Window window)
-   : WindowController(window)
+MainWindowController::MainWindowController(Window window, CREATESTRUCT* createStruct)
+   : WindowController(window, createStruct),
+   leftWin(nullptr),
+   rightWin(nullptr),
+   splitter(nullptr),
+   splitRatioPercentage(50)
 {
+   HINSTANCE hInstance = window.GetInstance();
+
+   StringResource childWndClassName(hInstance, IDC_PANE);
+   WindowClass childWndClass(WindowController::DefaultWndProc, childWndClassName, hInstance);
+   childWndClass.SetSysCursor(IDC_IBEAM);
+   childWndClass.Register();
+
+   SplitterClass splitterClass(WindowController::WndProc<SplitterController>, "Splitter", hInstance);
+   splitterClass.Register();
+
+   ChildWindowFactory childWindowFactory(childWndClass, window);
+   leftWin = childWindowFactory.Create();
+   leftWin.Show();
+
+   rightWin = childWindowFactory.Create();
+   rightWin.Show();
+
+   ChildWindowFactory splitterFactory(splitterClass, window);
+   splitter = splitterFactory.Create();
+   splitter.Show();
 }
 
 LRESULT MainWindowController::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
 {
    int wmId, wmEvent;
-   PAINTSTRUCT ps;
-   HDC hdc;
 
    switch (message) {
    case WM_COMMAND:
@@ -34,11 +61,12 @@ LRESULT MainWindowController::ProcessMessage(UINT message, WPARAM wParam, LPARAM
          return WindowController::ProcessMessage(message, wParam, lParam);
       }
       break;
-   case WM_PAINT:
-      hdc = ::BeginPaint(window, &ps);
-      TextOut(hdc, 0, 0, L"Test", 4);
-      ::EndPaint(window, &ps);
-      break;
+   case WM_SIZE:
+      Size (LOWORD(lParam), HIWORD(lParam));
+      return 0;
+   case MSG_MOVESPLITTER:
+      MoveSplitter (wParam);
+      return 0;
    case WM_DESTROY:
       ::PostQuitMessage(0);
       break;
@@ -62,4 +90,29 @@ void MainWindowController::ShowEditDialog()
    EditDialogViewModel viewModel("TEST");
    DialogControllerFactory<EditDialogController, EditDialogViewModel> factory(&viewModel);
    ModalDialog dialog(hInst, window, IDD_EDIT, ModalDialogController::DialogProc, &factory);
+}
+
+void MainWindowController::Size (int cx, int cy) 
+{
+   this->cx = cx;
+   this->cy = cy;
+   int xSplit = (this->cx * splitRatioPercentage) / 100;
+   if (xSplit < 0)
+      xSplit = 0;
+   splitter.MoveDelayPaint (xSplit, 0, splitterWidth, this->cy);
+   leftWin.Move (0, 0, xSplit, this->cy);
+   rightWin.Move (xSplit + splitterWidth, 0, this->cx - xSplit - splitterWidth, this->cy);
+
+   splitter.ForceRepaint ();
+}
+
+
+void MainWindowController::MoveSplitter (int x)
+{
+   splitRatioPercentage = x * 100 / cx;
+   if (splitRatioPercentage < 0)
+      splitRatioPercentage = 0;
+   else if (splitRatioPercentage > 100)
+      splitRatioPercentage = 100;
+   Size (cx, cy);
 }

@@ -13,7 +13,7 @@ public:
    WindowClass(WNDPROC wndProc, std::string name, HINSTANCE hInst);
 
    void Register();
-   HWND GetRunningWindow();
+   HWND GetRunningWindow() const;
    std::string GetName() const { return name; }
    HINSTANCE GetInstance() const { return hInstance; }
 

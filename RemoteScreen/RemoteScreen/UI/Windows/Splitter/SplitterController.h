@@ -3,30 +3,31 @@
 #define SPLITTERCONTROLLER_H
 
 #include "../WindowController.h"
+#include "../../CanvasTools.h"
 #include <Windows.h>
 
 class SplitterController : public WindowController
 {
 public:
-   SplitterController(Window window);
-
-    void Size (int cx, int cy) { cx = cx; cy = cy; }
-    void Paint ();
-
-    void LButtonDown (POINTS pt);
-    void LButtonUp (POINTS pt);
-    void LButtonDrag (POINTS pt);
-    void CaptureChanged ();
-
-   friend LRESULT WindowController::WndProc<SplitterController>(HWND, UINT, WPARAM, LPARAM);
-private:
+   SplitterController(Window window, CREATESTRUCT* createStruct);
    LRESULT SplitterController::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
+private:
+   void Size (int cx, int cy);
+   void Paint ();
 
-    int cx;
-    int cy;
+   void LButtonDown (POINTS pt);
+   void LButtonUp (POINTS pt);
+   void LButtonDrag (POINTS pt);
+   void CaptureChanged ();
 
-    int dragStart;
-    int dragX;
+   Window parent;
+
+   int cx;
+   int cy;
+
+   int dragStart;
+   int dragX;
+   Pens3d pens;
 };
 
 #endif

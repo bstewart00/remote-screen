@@ -1,7 +1,7 @@
 #include "WindowController.h"
 #include "Window.h"
 
-WindowController::WindowController(Window window)
+WindowController::WindowController(Window window, CREATESTRUCT* createStruct)
    :window(window)
 {
 }

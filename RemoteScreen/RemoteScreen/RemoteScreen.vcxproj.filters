@@ -78,6 +78,12 @@
     <ClInclude Include="UI\Windows\WindowFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UI\Canvas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\CanvasTools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RemoteScreen.cpp">
