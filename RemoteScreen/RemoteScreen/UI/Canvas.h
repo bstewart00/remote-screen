@@ -3,6 +3,8 @@
 #define CANVAS_H
 
 #include <Windows.h>
+#include "CanvasTools.h"
+
 class Canvas
 {
 public:
@@ -28,10 +30,22 @@ public:
       ::LineTo (_hdc, x, y);
    }
 
+   void LineTo (int x, int y, const Pen& pen)
+   {
+      PenContext context(_hdc, pen);
+      LineTo (x, y);
+   }
+
    void Line (int x1, int y1, int x2, int y2)
    {
       ::MoveToEx (_hdc, x1, y1, 0);
-      ::LineTo (_hdc, x2, y2);
+      LineTo (x2, y2);
+   }
+
+   void Line (int x1, int y1, int x2, int y2, const Pen& pen)
+   {
+      PenContext context(_hdc, pen);
+      Line(x1, y1, x2, y2);
    }
 
    // Object

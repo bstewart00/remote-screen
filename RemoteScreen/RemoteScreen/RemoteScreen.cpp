@@ -15,6 +15,9 @@
 #include <string>
 #include <boost/format.hpp>
 #include <boost/nowide/convert.hpp>
+#include <stdio.h>
+#include <io.h>
+#include <fcntl.h>
 
 void OutOfMemoryHandler()
 {
@@ -34,12 +37,27 @@ bool RestoreExistingWindow(const WindowClass& windowClass)
    return false;
 }
 
+#ifdef _DEBUG
+void OpenDebugConsole()
+{
+   AllocConsole();
+
+   HANDLE handle_out = GetStdHandle(STD_OUTPUT_HANDLE);
+   int hCrt = _open_osfhandle((long) handle_out, _O_TEXT);
+   FILE* hf_out = _fdopen(hCrt, "w");
+   setvbuf(hf_out, NULL, _IONBF, 1);
+   *stdout = *hf_out;
+}
+#endif
+
 int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
    std::set_new_handler(OutOfMemoryHandler);
+#ifdef _DEBUG
+   OpenDebugConsole();
+#endif
 
    try {
-
       StringResource mainWndClassName(hInstance, IDC_REMOTESCREEN);
       StringResource mainWindowTitle(hInstance, IDS_APP_TITLE);
 
@@ -47,7 +65,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
       if (RestoreExistingWindow(mainWndClass))
          return 0;
       mainWndClass.Register();
-      
+
       MainWindowFactory mainWindowFactory(mainWndClass, mainWindowTitle);
       Window mainWindow(mainWindowFactory.Create());
       mainWindow.Show(nCmdShow);

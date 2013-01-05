@@ -28,6 +28,8 @@ private:
    int dragStart;
    int dragX;
    Pens3d pens;
+
+   bool dragStarted;
 };
 
 #endif

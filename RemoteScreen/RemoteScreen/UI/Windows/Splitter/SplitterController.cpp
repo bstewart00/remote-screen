@@ -1,6 +1,7 @@
 #include "SplitterController.h"
 #include "../../Canvas.h"
 #include "../../../CustomMessages.h"
+#include <cstdlib>
 
 SplitterController::SplitterController(Window window, CREATESTRUCT* createStruct)
    : WindowController(window, createStruct), parent(createStruct->hwndParent)
@@ -9,25 +10,25 @@ SplitterController::SplitterController(Window window, CREATESTRUCT* createStruct
 
 LRESULT SplitterController::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
 {
-   switch (message) {
+   switch(message) {
    case WM_SIZE:
-      Size (LOWORD(lParam), HIWORD(lParam));
+      Size(LOWORD(lParam), HIWORD(lParam));
       return 0;
    case WM_PAINT:
-      Paint ();
+      Paint();
       return 0;
    case WM_LBUTTONDOWN:
-      LButtonDown (MAKEPOINTS (lParam));
+      LButtonDown(MAKEPOINTS(lParam));
       return 0;
    case WM_LBUTTONUP:
-      LButtonUp (MAKEPOINTS (lParam));
+      LButtonUp(MAKEPOINTS(lParam));
       return 0;
    case WM_MOUSEMOVE:
-      if (wParam & MK_LBUTTON)
-         LButtonDrag (MAKEPOINTS (lParam));
+      if(wParam & MK_LBUTTON)
+         LButtonDrag(MAKEPOINTS(lParam));
       return 0;
    case WM_CAPTURECHANGED:
-      CaptureChanged ();
+      CaptureChanged();
       return 0;
    default:
       return WindowController::ProcessMessage(message, wParam, lParam);
@@ -36,43 +37,33 @@ LRESULT SplitterController::ProcessMessage(UINT message, WPARAM wParam, LPARAM l
    return 0;
 }
 
-void SplitterController::Size (int cx, int cy)
+void SplitterController::Size(int cx, int cy)
 {
    this->cx = cx;
    this->cy = cy;
 }
 
-void SplitterController::Paint ()
+void SplitterController::Paint()
 {
-   PaintCanvas canvas (window);
-   {
-      PenHolder pen (canvas, pens.Light ());
-      canvas.Line (0, 0, 0, cy - 1);
-   }
-   {
-      PenHolder pen (canvas, pens.Hilight ());
-      canvas.Line (1, 0, 1, cy - 1);
-   }
-   {
-      PenHolder pen (canvas, pens.Shadow ());
-      canvas.Line (cx - 2, 0, cx - 2, cy - 1);
-   }
-   {
-      PenHolder pen (canvas, pens.DkShadow ());
-      canvas.Line (cx - 1, 0, cx - 1, cy - 1);
-   }
+   PaintCanvas canvas(window);
+   canvas.Line(0, 0, 0, cy - 1, pens.Light());
+   canvas.Line(1, 0, 1, cy - 1, pens.Hilight());
+   canvas.Line(cx - 2, 0, cx - 2, cy - 1, pens.Shadow());
+   canvas.Line(cx - 1, 0, cx - 1, cy - 1, pens.DkShadow());
 }
 
-void SplitterController::LButtonDown (POINTS pt)
+void SplitterController::LButtonDown(POINTS pt)
 {
-   window.CaptureMouse ();
+   dragStarted = true;
+
+   window.CaptureMouse();
    // Find x offset of splitter
    // with respect to parent client area
    POINT ptOrg = {0, 0 };
-   parent.ClientToScreen (ptOrg);
+   parent.ClientToScreen(ptOrg);
    int xParent = ptOrg.x;
    ptOrg.x = 0;
-   window.ClientToScreen (ptOrg);
+   window.ClientToScreen(ptOrg);
    int xChild = ptOrg.x;
 
    dragStart = xChild - xParent + cx / 2 - pt.x;
@@ -80,35 +71,47 @@ void SplitterController::LButtonDown (POINTS pt)
    dragX = dragStart + pt.x;
 
    // Draw a divider using XOR mode
-   UpdateCanvas canvas (parent);
-   ModeSetter mode (canvas, R2_NOTXORPEN);
-   canvas.Line (dragX, 0, dragX, cy - 1);
+   printf("LButtonDown::%d %d %d %d\n", dragX, 0, dragX, cy - 1); 
 
+   UpdateCanvas canvas(parent);
+   ModeSetter mode(canvas, R2_NOTXORPEN);
+   canvas.Line(dragX, 0, dragX, cy - 1);
 }
 
-void SplitterController::LButtonDrag (POINTS pt)
+void SplitterController::LButtonDrag(POINTS pt)
 {
-   // Erase previous divider and draw new one
-   UpdateCanvas canvas (parent);
-   ModeSetter mode (canvas, R2_NOTXORPEN);
-   canvas.Line (dragX, 0, dragX, cy - 1);
-   dragX = dragStart + pt.x;
-   canvas.Line (dragX, 0, dragX, cy - 1);
+   if (dragStarted) {
+      // Erase previous divider and draw new one
+      UpdateCanvas canvas(parent);
+      ModeSetter mode(canvas, R2_NOTXORPEN);
+      canvas.Line(dragX, 0, dragX, cy - 1);
+      dragX = dragStart + pt.x;
+      canvas.Line(dragX, 0, dragX, cy - 1);
+
+      printf("LButtonDrag\n");
+   }
 }
 
-void SplitterController::LButtonUp (POINTS pt)
+void SplitterController::LButtonUp(POINTS pt)
 {
-   // Calling ReleaseCapture will send us the WM_CAPTURECHANGED
-   window.ReleaseMouse ();
-   parent.SendMessage (MSG_MOVESPLITTER, dragStart + pt.x);
+   if (dragStarted) {
+      dragStarted = false;
+
+      window.ReleaseMouse();
+      parent.SendMessage(MSG_MOVESPLITTER, dragStart + pt.x);
+
+      printf("LButtonUp\n");
+   }
 }
 
-void SplitterController::CaptureChanged ()
+void SplitterController::CaptureChanged()
 {
+   printf("CaptureChanged\n");
+
    // We are losing capture
    // End drag selection -- for whatever reason
    // Erase previous divider
-   UpdateCanvas canvas (parent);
-   ModeSetter mode (canvas, R2_NOTXORPEN);
-   canvas.Line (dragX, 0, dragX, cy - 1);
+   UpdateCanvas canvas(parent);
+   ModeSetter mode(canvas, R2_NOTXORPEN);
+   canvas.Line(dragX, 0, dragX, cy - 1);
 }

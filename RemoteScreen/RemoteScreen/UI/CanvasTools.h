@@ -44,45 +44,25 @@ public:
    {
       ::DeleteObject (_hPen);
    }
-   operator HPEN () { return _hPen; }
+   operator HPEN () const { return _hPen; }
 private:
    HPEN    _hPen;
 };
 
-class PenHolder
+class PenContext
 {
 public:
-   PenHolder (HDC hdc, HPEN hPen)
+   PenContext (HDC hdc, HPEN hPen)
       : _hdc (hdc)
    {
       _hPenOld = (HPEN) ::SelectObject (_hdc, hPen); 
    }
-   ~PenHolder ()
+   ~PenContext ()
    {
       ::SelectObject (_hdc, _hPenOld);
    }
 private:
    HDC     _hdc;
-   HPEN    _hPenOld;
-};
-
-class ColorPen
-{
-public:
-   ColorPen (HDC hdc, COLORREF color)
-      : _hdc (hdc)
-   {
-      _hPen = ::CreatePen (PS_SOLID, 0, color);
-      _hPenOld = (HPEN)::SelectObject (_hdc, _hPen); 
-   }
-   ~ColorPen ()
-   {
-      ::SelectObject (_hdc, _hPenOld);
-      ::DeleteObject (_hPen);
-   }
-private:
-   HDC     _hdc;
-   HPEN    _hPen;
    HPEN    _hPenOld;
 };
 
@@ -115,10 +95,10 @@ public:
       _penShadow (GetSysColor (COLOR_3DSHADOW)),
       _penDkShadow (GetSysColor (COLOR_3DDKSHADOW))
    {}
-   Pen & Hilight () { return _penHilight; }
-   Pen & Light () { return _penLight; }
-   Pen & Shadow () { return _penShadow; }
-   Pen & DkShadow () { return _penDkShadow; }
+   const Pen & Hilight () const { return _penHilight; }
+   const Pen & Light () const { return _penLight; }
+   const Pen & Shadow () const { return _penShadow; }
+   const Pen & DkShadow () const { return _penDkShadow; }
 private:
    Pen		_penHilight;
    Pen		_penLight;
