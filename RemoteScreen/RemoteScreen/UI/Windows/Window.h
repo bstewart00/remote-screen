@@ -42,7 +42,7 @@ public:
       return GetLongPtr<HINSTANCE>(GWLP_HINSTANCE);		
    }
 
-   HWND GetParent() const
+   Window GetParent() const
    {
       return ::GetParent(hWnd);
    }
@@ -174,14 +174,18 @@ public:
       ::ScrollWindow(hWnd, xAmount, yAmount, &rect, 0);
    }
 
-   void GetClientRect(RECT & rect) const
+   RECT GetClientRect() const
    {
+      RECT rect;
       ::GetClientRect(hWnd, &rect);
+      return rect;
    }
 
-   void GetWindowRect(RECT & rect) const
+   RECT GetWindowRect() const
    {
+      RECT rect;
       ::GetWindowRect(hWnd, &rect);
+      return rect;
    }
 
    void AttachMenu(HMENU hMenu) const

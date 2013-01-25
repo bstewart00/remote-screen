@@ -13,13 +13,9 @@ public:
    Window Create();
    void SetTitle(std::string caption) { titleCaption = caption; }
    void SetPosition(int x, int y, int width, int height);
-   void AddSysMenu() { style |= WS_SYSMENU; }
-   void AddVScrollBar() { style |= WS_VSCROLL; }
-   void AddHScrollBar() { style |= WS_HSCROLL; }
-   void AddDlgBorder() { style |= WS_DLGFRAME; }
-   void AddBorder() { style |= WS_BORDER; }
-   void AddTitleBar() { style |= WS_CAPTION; }
-
+   void AddExtendedStyle(int flags) { exStyle |= flags; }
+   void AddStyle(int flags) { style |= flags; }
+   void SetParent(const Window& parent) { hWndParent = parent; }
 protected:
    const WindowClass& wndClass;
    HWND hWnd;
@@ -35,6 +31,7 @@ protected:
    HMENU hMenu;        
 };
 
+//FIXME: I think removing these classes and let the caller define the styles explicitly is more readable rather than hiding the window style definitions here.
 class MainWindowFactory : public WindowFactory
 {
 public:

@@ -18,10 +18,10 @@ WindowFactory::WindowFactory(const WindowClass& wndClass)
 
 void WindowFactory::SetPosition (int x, int y, int width, int height)
 {
-    x = x;
-    y = y;
-    width = width;
-    height = height;
+    this->x = x;
+    this->y = y;
+    this->width = width;
+    this->height = height;
 }
 
 Window WindowFactory::Create()
@@ -54,6 +54,6 @@ MainWindowFactory::MainWindowFactory(const WindowClass& wndClass, std::string ti
 ChildWindowFactory::ChildWindowFactory(const WindowClass& wndClass, Window parent)
    : WindowFactory(wndClass)
 {
-   style = WS_CHILD;
+   style = WS_CHILD | WS_VISIBLE;
    hWndParent = parent;
 }

@@ -1,15 +1,26 @@
 #include "WindowClass.h"
 #include <boost/nowide/convert.hpp>
 
+WindowClass::WindowClass(std::string className, HINSTANCE hInst)
+   : name(className), hInstance(hInst)
+{
+   Construct(nullptr);
+}
+
 WindowClass::WindowClass(WNDPROC wndProc, std::string className, HINSTANCE hInst) 
    : name(className), hInstance(hInst)
+{
+   Construct(wndProc);
+}
+
+void WindowClass::Construct(WNDPROC wndProc)
 {
    wndClass.cbSize = sizeof(WNDCLASSEX);
    wndClass.style = 0;
    wndClass.lpfnWndProc	= wndProc;
    wndClass.cbClsExtra = 0;
    wndClass.cbWndExtra = 0;
-   wndClass.hInstance = hInst;
+   wndClass.hInstance = hInstance;
    SetSysCursor(IDC_ARROW);
    SetBgSysColor(COLOR_WINDOW);
    wndClass.hIcon = nullptr;

@@ -1,3 +1,4 @@
+#include "../../Controls/TreeView.h"
 #include "MainWindowController.h"
 #include "../WindowFactory.h"
 #include "../../Dialogs/ModalDialog.h"
@@ -19,20 +20,28 @@ MainWindowController::MainWindowController(Window window, CREATESTRUCT* createSt
 {
    HINSTANCE hInstance = window.GetInstance();
 
-   StringResource childWndClassName(hInstance, IDC_PANE);
-   WindowClass childWndClass(WindowController::DefaultWndProc, childWndClassName, hInstance);
+   WindowClass childWndClass(WindowController::DefaultWndProc, StringResource(hInstance, IDC_PANE), hInstance);
    childWndClass.SetSysCursor(IDC_IBEAM);
    childWndClass.Register();
-
-   SplitterClass splitterClass(WindowController::WndProc<SplitterController>, "Splitter", hInstance);
-   splitterClass.Register();
 
    ChildWindowFactory childWindowFactory(childWndClass, window);
    leftWin = childWindowFactory.Create();
    leftWin.Show();
+ 
+   WindowClass textClass ("EDIT", hInstance);
+   ChildWindowFactory textFactory(textClass, leftWin);
+   textFactory.SetPosition(50, 50, 100, 30);
+
+   auto text = textFactory.Create();
+   text.SetString("Test");
+   text.Show();
+
 
    rightWin = childWindowFactory.Create();
    rightWin.Show();
+
+   SplitterClass splitterClass(WindowController::WndProc<SplitterController>, "Splitter", hInstance);
+   splitterClass.Register();
 
    ChildWindowFactory splitterFactory(splitterClass, window);
    splitter = splitterFactory.Create();

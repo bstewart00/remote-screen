@@ -17,12 +17,12 @@ private:
 
    static const int splitterWidth = 8;
 
-   Window			leftWin;
-   Window		    rightWin;
-   Window			splitter;
-   int				cx;
-   int				cy;
-   int				splitRatioPercentage;
+   Window leftWin;
+   Window rightWin;
+   Window splitter;
+   int cx;
+   int cy;
+   int splitRatioPercentage;
 };
 
 #endif
