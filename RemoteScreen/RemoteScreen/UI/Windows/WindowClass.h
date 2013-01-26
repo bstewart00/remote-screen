@@ -4,6 +4,7 @@
 
 #include "../../StringResource.h"
 #include "../../WindowsException.h"
+#include "Window.h"
 #include <Windows.h>
 #include <string>
 #include <boost/nowide/convert.hpp>
@@ -15,7 +16,7 @@ public:
    WindowClass(WNDPROC wndProc, std::string name, HINSTANCE hInst);
 
    void Register();
-   HWND GetRunningWindow() const;
+   Window GetRunningWindow() const;
    std::string GetName() const { return name; }
    HINSTANCE GetInstance() const { return hInstance; }
 
@@ -46,6 +47,11 @@ public:
    void SetSizeRedraw()
    {
       wndClass.style |=(CS_HREDRAW | CS_VREDRAW);
+   }
+
+   void SetMenu(int resourceId) 
+   {
+      wndClass.lpszMenuName = MAKEINTRESOURCE(resourceId);
    }
 
 protected:

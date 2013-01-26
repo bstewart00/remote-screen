@@ -56,11 +56,16 @@
       <StringPooling>false</StringPooling>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <PrecompiledHeaderFile />
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -82,10 +87,11 @@
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="CustomMessages.h" />
+    <ClInclude Include="UI\Controls\Splitter\Splitter.h" />
+    <ClInclude Include="UI\Controls\TreeView\TreeView.h" />
     <ClInclude Include="UI\Canvas.h" />
     <ClInclude Include="UI\CanvasTools.h" />
-    <ClInclude Include="UI\Windows\Splitter\SplitterController.h" />
-    <ClInclude Include="UI\Windows\Splitter\SplitterClass.h" />
+    <ClInclude Include="UI\Controls\Splitter\SplitterController.h" />
     <ClInclude Include="UI\Dialogs\Controls.h" />
     <ClInclude Include="UI\Dialogs\Edit\EditDialogViewModel.h" />
     <ClInclude Include="UI\Dialogs\About\AboutDialogController.h" />
@@ -94,7 +100,6 @@
     <ClInclude Include="UI\Dialogs\DialogControllerFactory.h" />
     <ClInclude Include="LocalFreeDeleter.h" />
     <ClInclude Include="UI\Dialogs\ModalDialog.h" />
-    <ClInclude Include="UI\Windows\Main\MainWindowClass.h" />
     <ClInclude Include="UI\Windows\Main\MainWindowController.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="StringResource.h" />
@@ -107,11 +112,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="UI\Windows\Splitter\SplitterController.cpp" />
-    <ClCompile Include="UI\Windows\Splitter\SplitterClass.cpp" />
+    <ClCompile Include="UI\Controls\Splitter\Splitter.cpp" />
+    <ClCompile Include="UI\Controls\TreeView\TreeView.cpp" />
+    <ClCompile Include="UI\Controls\Splitter\SplitterController.cpp" />
     <ClCompile Include="UI\Dialogs\About\AboutDialogController.cpp" />
     <ClCompile Include="UI\Dialogs\Edit\EditDialogController.cpp" />
-    <ClCompile Include="UI\Windows\Main\MainWindowClass.cpp" />
     <ClCompile Include="UI\Windows\Main\MainWindowController.cpp" />
     <ClCompile Include="RemoteScreen.cpp" />
     <ClCompile Include="StringResource.cpp" />

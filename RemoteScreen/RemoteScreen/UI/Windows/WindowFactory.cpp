@@ -2,7 +2,7 @@
 #include "../../WindowsException.h"
 #include <boost/nowide/convert.hpp>
 
-WindowFactory::WindowFactory(const WindowClass& wndClass)
+WindowFactory::WindowFactory(const WindowClass wndClass)
     : wndClass(wndClass),
       hWnd(nullptr),
       exStyle(0),
@@ -39,21 +39,27 @@ Window WindowFactory::Create()
       nullptr);
 
    if (!hWnd)
-      throw WindowsException("WindowFactory creation failed");
+      throw WindowsException("Window creation failed.");
 
    return Window(hWnd);
 }
 
-MainWindowFactory::MainWindowFactory(const WindowClass& wndClass, std::string title)
-   : WindowFactory(wndClass)
+Window WindowFactory::Create(HINSTANCE hInstance)
 {
-   SetTitle(title);
-   style = WS_OVERLAPPEDWINDOW | WS_VISIBLE;
-}
+   std::wstring className = boost::nowide::widen(wndClass.GetName());
+   std::wstring windowTitle = boost::nowide::widen(titleCaption);
+ 
+   hWnd = ::CreateWindowEx(
+      0,
+      className.c_str(),
+      windowTitle.c_str(),
+      style,
+      x, y, width, height,
+      hWndParent, hMenu, hInstance,
+      nullptr);
 
-ChildWindowFactory::ChildWindowFactory(const WindowClass& wndClass, Window parent)
-   : WindowFactory(wndClass)
-{
-   style = WS_CHILD | WS_VISIBLE;
-   hWndParent = parent;
+   if (!hWnd)
+      throw WindowsException("WindowFactory creation failed");
+
+   return Window(hWnd);
 }
