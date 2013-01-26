@@ -6,6 +6,7 @@
 #include "../../Dialogs/About/AboutDialogController.h"
 #include "../../Dialogs/Edit/EditDialogController.h"
 #include "../../Controls/Splitter/SplitterController.h"
+#include "../../Controls/Splitter/Splitter.h"
 #include "../../../Resource.h"
 #include "../../../CustomMessages.h"
 #include "../../../StringResource.h"
@@ -15,7 +16,7 @@ MainWindowController::MainWindowController(Window window, CREATESTRUCT* createSt
    leftWin(nullptr),
    rightWin(nullptr),
    splitter(nullptr),
-   splitRatioPercentage(50)
+   splitRatioPercentage(30)
 {
    HINSTANCE hInstance = window.GetInstance();
 
@@ -28,10 +29,8 @@ MainWindowController::MainWindowController(Window window, CREATESTRUCT* createSt
    paneWndFactory.SetParent(window);
 
    leftWin = paneWndFactory.Create();
-   leftWin.Show();
- 
    rightWin = paneWndFactory.Create();
-   rightWin.Show();
+   splitter = Splitter::RegisterAndCreate(window, hInstance);
 }
 
 LRESULT MainWindowController::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)

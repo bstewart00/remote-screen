@@ -2,10 +2,11 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include "WindowClass.h"
 #include <Windows.h>
 #include <string>
 #include <functional>
+#include <boost/nowide/convert.hpp>
+#include "../../WindowsException.h"
 
 class Window
 {
