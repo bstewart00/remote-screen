@@ -10,6 +10,7 @@ namespace Splitter
 {
    Window RegisterAndCreate(Window parent, HINSTANCE hInstance);
    const std::string WINDOW_CLASS_NAME = "Splitter";
+   class Controller;
 };
 
 #endif

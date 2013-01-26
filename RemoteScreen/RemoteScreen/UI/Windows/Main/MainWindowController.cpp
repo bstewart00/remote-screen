@@ -5,7 +5,7 @@
 #include "../../Dialogs/DialogControllerFactory.h"
 #include "../../Dialogs/About/AboutDialogController.h"
 #include "../../Dialogs/Edit/EditDialogController.h"
-#include "../../Controls/Splitter/SplitterController.h"
+#include "../../Controls/Splitter/Controller.h"
 #include "../../Controls/Splitter/Splitter.h"
 #include "../../../Resource.h"
 #include "../../../CustomMessages.h"

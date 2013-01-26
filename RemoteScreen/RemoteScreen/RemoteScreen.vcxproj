@@ -91,7 +91,7 @@
     <ClInclude Include="UI\Controls\TreeView\TreeView.h" />
     <ClInclude Include="UI\Canvas.h" />
     <ClInclude Include="UI\CanvasTools.h" />
-    <ClInclude Include="UI\Controls\Splitter\SplitterController.h" />
+    <ClInclude Include="UI\Controls\Splitter\Controller.h" />
     <ClInclude Include="UI\Dialogs\Controls.h" />
     <ClInclude Include="UI\Dialogs\Edit\EditDialogViewModel.h" />
     <ClInclude Include="UI\Dialogs\About\AboutDialogController.h" />
@@ -114,7 +114,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="UI\Controls\Splitter\Splitter.cpp" />
     <ClCompile Include="UI\Controls\TreeView\TreeView.cpp" />
-    <ClCompile Include="UI\Controls\Splitter\SplitterController.cpp" />
+    <ClCompile Include="UI\Controls\Splitter\Controller.cpp" />
     <ClCompile Include="UI\Dialogs\About\AboutDialogController.cpp" />
     <ClCompile Include="UI\Dialogs\Edit\EditDialogController.cpp" />
     <ClCompile Include="UI\Windows\Main\MainWindowController.cpp" />
