@@ -13,22 +13,47 @@ void TreeView::Initialize()
    ::InitCommonControlsEx(&params);
 }
 
-TreeView::TreeView(const Window& parent, HINSTANCE hInstance)
-   : parent(parent), treeview(nullptr), hInstance(hInstance)
+TreeView TreeView::Create(const Window& parent, HINSTANCE hInstance)
 {
    if (!TreeView::initialized)
       TreeView::Initialize();
 
-   //RECT parentClientRect = parent.GetClientRect();
+   RECT parentClientRect = parent.GetClientRect();
+   WindowClass wndClass(boost::nowide::narrow(WC_TREEVIEW), hInstance);
+   WindowFactory wndFactory(wndClass);
+   wndFactory.SetPosition(0, 0, parentClientRect.right, parentClientRect.bottom);
+   wndFactory.SetParent(parent);
+   wndFactory.AddStyle(WS_VISIBLE | WS_CHILD | TVS_HASLINES);
 
-   //WindowClass wndClass(boost::nowide::narrow(WC_TREEVIEW), hInstance);
-   //WindowFactory wndFactory(wndClass);
-   //wnd
+   Window window = wndFactory.Create();
+   window.Show();
+   return TreeView(window);
+}
 
-   //wndFactory.SetPosition(0, 0, parentClientRect.right, parentClientRect.bottom);
-   //wndFactory.AddStyle(WS_BORDER | TVS_HASLINES);
+void TreeView::AddItem(std::string item)
+{
+    //TVITEM tvi; 
+    //TVINSERTSTRUCT tvins; 
+    //HTREEITEM hti; 
 
-   //treeview = wndFactory.Create();
+    //tvi.mask = TVIF_TEXT; 
+
+    //boost::nowide::widen(
+
+    //auto test = const_cast<wchar_t*>(boost::nowide::widen(item).c_str());
+    //tvi.pszText = test;
+    //tvi.cchTextMax = 5; 
+
+    //tvins.item = tvi; 
+    //tvins.hInsertAfter = TVI_FIRST; 
+    //tvins.hParent = TVI_ROOT; 
+
+    //(HTREEITEM)SendMessage(TVM_INSERTITEM, 0, (LPARAM)(LPTVINSERTSTRUCT)&tvins); 
+}
+
+TreeView::TreeView(HWND hwnd)
+   : Window(hwnd)
+{
 }
 
 TreeView::~TreeView()

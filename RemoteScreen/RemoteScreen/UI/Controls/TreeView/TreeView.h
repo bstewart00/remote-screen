@@ -3,24 +3,22 @@
 #define TREEVIEW_H
 
 #include "../../Windows/Window.h"
+#include <vector>
 
-class TreeView
+class TreeView : public Window
 {
 public:
-   TreeView(const Window& parent, HINSTANCE hInstance);
+   static TreeView Create(const Window& parent, HINSTANCE hInstance);
    ~TreeView();
 
-   void AddItem();
-   void DeleteItem();
-
-
+   void AddItem(const std::string text);
 private:
+   TreeView(HWND hwnd);
+
    static bool initialized;
    static void Initialize();
-
-   const Window& parent;
-   Window treeview;
-   HINSTANCE hInstance;
+   std::vector<wchar_t*> text_buffer;
+   
 };
 
 #endif

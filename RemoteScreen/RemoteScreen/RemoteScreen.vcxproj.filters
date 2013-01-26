@@ -87,6 +87,12 @@
     <ClInclude Include="UI\Controls\Splitter\Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UI\Windows\ConfigPane\ConfigPane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Windows\ContentPane\ContentPane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RemoteScreen.cpp">
@@ -129,6 +135,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Controls\Splitter\Controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Windows\ConfigPane\ConfigPane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Windows\ContentPane\ContentPane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

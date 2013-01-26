@@ -7,6 +7,9 @@
 #include "../../Dialogs/Edit/EditDialogController.h"
 #include "../../Controls/Splitter/Controller.h"
 #include "../../Controls/Splitter/Splitter.h"
+#include "../../Controls/TreeView/TreeView.h"
+#include "../ContentPane/ContentPane.h"
+#include "../ConfigPane/ConfigPane.h"
 #include "../../../Resource.h"
 #include "../../../CustomMessages.h"
 #include "../../../StringResource.h"
@@ -20,16 +23,8 @@ MainWindowController::MainWindowController(Window window, CREATESTRUCT* createSt
 {
    HINSTANCE hInstance = window.GetInstance();
 
-   WindowClass paneWndClass(WindowController::DefaultWndProc, StringResource(hInstance, IDC_PANE), hInstance);
-   paneWndClass.SetSysCursor(IDC_IBEAM);
-   paneWndClass.Register();
-
-   WindowFactory paneWndFactory(paneWndClass);
-   paneWndFactory.AddStyle(WS_CHILD | WS_VISIBLE);
-   paneWndFactory.SetParent(window);
-
-   leftWin = paneWndFactory.Create();
-   rightWin = paneWndFactory.Create();
+   leftWin = ConfigPane(window, hInstance);
+   rightWin = ContentPane(window, hInstance);
    splitter = Splitter::RegisterAndCreate(window, hInstance);
 }
 
