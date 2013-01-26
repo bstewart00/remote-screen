@@ -18,7 +18,6 @@ ContentPane::~ContentPane()
 Window ContentPane::CreateRootWindow(const Window& parent, HINSTANCE hInstance)
 {
    WindowClass paneWndClass(WindowController::DefaultWndProc, StringResource(hInstance, IDC_CONTENTPANE), hInstance);
-   paneWndClass.SetSysCursor(IDC_IBEAM);
    paneWndClass.Register();
 
    WindowFactory paneWndFactory(paneWndClass);

@@ -11,7 +11,7 @@ public:
    ContentPane(const Window& parent, HINSTANCE hInstance);
    ~ContentPane();
 
-   operator Window() const { return rootWindow; }
+   operator const Window&() const { return rootWindow; }
 
 private:
    Window CreateRootWindow(const Window& parent, HINSTANCE hInstance);
