@@ -1,4 +1,5 @@
 #include "WindowFactory.h"
+#include "WindowController.h"
 #include "../../WindowsException.h"
 #include <boost/nowide/convert.hpp>
 
@@ -62,4 +63,16 @@ Window WindowFactory::Create(HINSTANCE hInstance)
       throw WindowsException("WindowFactory creation failed");
 
    return Window(hWnd);
+}
+
+Window WindowFactory::CreateDefaultChild(const Window& parent, std::string className, HINSTANCE hInstance)
+{
+   WindowClass childClass(WindowController::DefaultWndProc, className, hInstance);
+   childClass.Register();
+
+   WindowFactory factory(childClass);
+   factory.AddStyle(WS_CHILD | WS_VISIBLE);
+   factory.SetParent(parent);
+
+   return factory.Create();
 }

@@ -19,13 +19,7 @@ ConfigPane::~ConfigPane()
 
 Window ConfigPane::CreateRootWindow(const Window& parent, HINSTANCE hInstance)
 {
-   WindowClass paneWndClass(WindowController::DefaultWndProc, StringResource(hInstance, IDC_CONFIGPANE), hInstance);
-   paneWndClass.Register();
-
-   WindowFactory paneWndFactory(paneWndClass);
-   paneWndFactory.AddStyle(WS_CHILD | WS_VISIBLE);
-   paneWndFactory.SetParent(parent);
-   return paneWndFactory.Create(hInstance);
+   return WindowFactory::CreateDefaultChild(parent, StringResource(hInstance, IDC_CONFIGPANE), hInstance);
 }
 
 void ConfigPane::AddTreeViewItems()

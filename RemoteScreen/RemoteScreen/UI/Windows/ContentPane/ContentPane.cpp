@@ -17,12 +17,5 @@ ContentPane::~ContentPane()
 
 Window ContentPane::CreateRootWindow(const Window& parent, HINSTANCE hInstance)
 {
-   WindowClass paneWndClass(WindowController::DefaultWndProc, StringResource(hInstance, IDC_CONTENTPANE), hInstance);
-   paneWndClass.Register();
-
-   WindowFactory paneWndFactory(paneWndClass);
-   paneWndFactory.AddStyle(WS_CHILD | WS_VISIBLE);
-   paneWndFactory.SetParent(parent);
-
-   return paneWndFactory.Create();
+   return WindowFactory::CreateDefaultChild(parent, StringResource(hInstance, IDC_CONTENTPANE), hInstance);
 }

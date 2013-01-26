@@ -12,6 +12,8 @@ public:
    WindowFactory(const WindowClass wndClass);
    Window Create();
    Window Create(HINSTANCE hInstance);
+   static Window CreateDefaultChild(const Window& parent, std::string className, HINSTANCE hInstance);
+
    void SetTitle(std::string caption) { titleCaption = caption; }
    void SetPosition(int x, int y, int width, int height);
    void AddExtendedStyle(int flags) { exStyle |= flags; }
