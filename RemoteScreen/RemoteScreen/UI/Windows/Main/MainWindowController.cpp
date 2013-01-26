@@ -1,11 +1,12 @@
+#include "../../Controls/TreeView/TreeView.h"
 #include "MainWindowController.h"
 #include "../WindowFactory.h"
 #include "../../Dialogs/ModalDialog.h"
 #include "../../Dialogs/DialogControllerFactory.h"
 #include "../../Dialogs/About/AboutDialogController.h"
 #include "../../Dialogs/Edit/EditDialogController.h"
-#include "../Splitter/SplitterClass.h"
-#include "../Splitter/SplitterController.h"
+#include "../../Controls/Splitter/Controller.h"
+#include "../../Controls/Splitter/Splitter.h"
 #include "../../../Resource.h"
 #include "../../../CustomMessages.h"
 #include "../../../StringResource.h"
@@ -15,28 +16,21 @@ MainWindowController::MainWindowController(Window window, CREATESTRUCT* createSt
    leftWin(nullptr),
    rightWin(nullptr),
    splitter(nullptr),
-   splitRatioPercentage(50)
+   splitRatioPercentage(30)
 {
    HINSTANCE hInstance = window.GetInstance();
 
-   StringResource childWndClassName(hInstance, IDC_PANE);
-   WindowClass childWndClass(WindowController::DefaultWndProc, childWndClassName, hInstance);
-   childWndClass.SetSysCursor(IDC_IBEAM);
-   childWndClass.Register();
+   WindowClass paneWndClass(WindowController::DefaultWndProc, StringResource(hInstance, IDC_PANE), hInstance);
+   paneWndClass.SetSysCursor(IDC_IBEAM);
+   paneWndClass.Register();
 
-   SplitterClass splitterClass(WindowController::WndProc<SplitterController>, "Splitter", hInstance);
-   splitterClass.Register();
+   WindowFactory paneWndFactory(paneWndClass);
+   paneWndFactory.AddStyle(WS_CHILD | WS_VISIBLE);
+   paneWndFactory.SetParent(window);
 
-   ChildWindowFactory childWindowFactory(childWndClass, window);
-   leftWin = childWindowFactory.Create();
-   leftWin.Show();
-
-   rightWin = childWindowFactory.Create();
-   rightWin.Show();
-
-   ChildWindowFactory splitterFactory(splitterClass, window);
-   splitter = splitterFactory.Create();
-   splitter.Show();
+   leftWin = paneWndFactory.Create();
+   rightWin = paneWndFactory.Create();
+   splitter = Splitter::RegisterAndCreate(window, hInstance);
 }
 
 LRESULT MainWindowController::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)

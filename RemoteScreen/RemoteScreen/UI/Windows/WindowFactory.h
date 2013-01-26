@@ -9,19 +9,16 @@
 class WindowFactory
 {
 public:
-   WindowFactory(const WindowClass& wndClass);
+   WindowFactory(const WindowClass wndClass);
    Window Create();
+   Window Create(HINSTANCE hInstance);
    void SetTitle(std::string caption) { titleCaption = caption; }
    void SetPosition(int x, int y, int width, int height);
-   void AddSysMenu() { style |= WS_SYSMENU; }
-   void AddVScrollBar() { style |= WS_VSCROLL; }
-   void AddHScrollBar() { style |= WS_HSCROLL; }
-   void AddDlgBorder() { style |= WS_DLGFRAME; }
-   void AddBorder() { style |= WS_BORDER; }
-   void AddTitleBar() { style |= WS_CAPTION; }
-
+   void AddExtendedStyle(int flags) { exStyle |= flags; }
+   void AddStyle(int flags) { style |= flags; }
+   void SetParent(const Window& parent) { hWndParent = parent; }
 protected:
-   const WindowClass& wndClass;
+   const WindowClass wndClass;
    HWND hWnd;
 
    DWORD exStyle;      
@@ -33,18 +30,6 @@ protected:
    int height;       
    HWND hWndParent;   
    HMENU hMenu;        
-};
-
-class MainWindowFactory : public WindowFactory
-{
-public:
-    MainWindowFactory(const WindowClass& wndClass, std::string titleCaption);
-};
-
-class ChildWindowFactory: public WindowFactory
-{
-public:
-    ChildWindowFactory(const WindowClass& wndClass, Window parent);
 };
 
 #endif

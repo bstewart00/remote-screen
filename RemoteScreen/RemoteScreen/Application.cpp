@@ -1,6 +1,5 @@
 #include "Application.h"
 #include "StringResource.h"
-#include "UI/Windows/Main/MainWindowClass.h"
 #include "UI/Windows/Main/MainWindowController.h"
 #include "UI/Windows/WindowFactory.h"
 #include "UI/Windows/WindowController.h"
@@ -16,12 +15,19 @@ bool Application::Initialize()
    StringResource mainWndClassName(hInstance, IDC_REMOTESCREEN);
    StringResource mainWindowTitle(hInstance, IDS_APP_TITLE);
 
-   MainWindowClass mainWndClass(WindowController::WndProc<MainWindowController>, mainWndClassName, hInstance, IDI_REMOTESCREEN, IDC_REMOTESCREEN);
+   WindowClass mainWndClass(WindowController::WndProc<MainWindowController>, mainWndClassName, hInstance);
+   mainWndClass.SetSizeRedraw();
+   mainWndClass.SetMenu(IDC_REMOTESCREEN);
+   mainWndClass.SetResIcons(IDI_REMOTESCREEN);
+
    if (RestoreExistingWindow(mainWndClass))
       return false;
    mainWndClass.Register();
 
-   MainWindowFactory mainWindowFactory(mainWndClass, mainWindowTitle);
+   WindowFactory mainWindowFactory(mainWndClass);
+   mainWindowFactory.AddStyle(WS_OVERLAPPEDWINDOW | WS_VISIBLE);
+   mainWindowFactory.SetTitle(mainWindowTitle);
+
    Window mainWindow(mainWindowFactory.Create());
    mainWindow.Show(nCmdShow);
 

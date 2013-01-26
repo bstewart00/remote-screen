@@ -10,12 +10,8 @@
 class WindowsException
 {
 public:
-   WindowsException (const char* msg) : errorCode(::GetLastError()), message(msg)
-   {
-   }
-   WindowsException (std::string msg) : errorCode(::GetLastError()), message(msg)
-   {
-   }
+   WindowsException (const char* msg) : errorCode(::GetLastError()), message(msg) {}
+   WindowsException (std::string msg) : errorCode(::GetLastError()), message(msg) {}
 
    DWORD GetErrorCode() const { return errorCode; }
    const char* GetMessage () const { return message.c_str(); }

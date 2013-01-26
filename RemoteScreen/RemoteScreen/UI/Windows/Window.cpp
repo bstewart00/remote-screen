@@ -11,7 +11,7 @@ Window::Window(HWND hwnd) : hWnd(hwnd)
 
 void Window::Destroy()
 {
-   InvokeBoolFunc(::DestroyWindow, "UpdateWindow failed");
+   InvokeBoolFunc(::DestroyWindow, "DestroyWindow failed");
 }
 
 void Window::Show(int nCmdShow)
