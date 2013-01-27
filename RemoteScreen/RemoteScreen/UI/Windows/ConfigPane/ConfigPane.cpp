@@ -24,3 +24,9 @@ void ConfigPane::AddTreeViewItems()
    treeview.AddItem("Monitor");
    treeview.AddItem("Test");
 }
+
+void ConfigPane::Move(int x, int y, int width, int height) const
+{
+   Window::Move(x, y, width, height);
+   treeview.Move(x, y, width, height);
+}

@@ -23,7 +23,7 @@ TreeView TreeView::Create(const Window& parent, HINSTANCE hInstance)
    RECT parentClientRect = parent.GetClientRect();
    WindowClass wndClass(boost::nowide::narrow(WC_TREEVIEW), hInstance);
    WindowFactory wndFactory(wndClass);
-   wndFactory.SetPosition(0, 0, 100, 200);//parentClientRect.right, parentClientRect.bottom);
+   wndFactory.SetPosition(0, 0, parentClientRect.right, parentClientRect.bottom);
    wndFactory.SetParent(parent);
    wndFactory.AddStyle(WS_VISIBLE | WS_CHILD | TVS_HASLINES);
 

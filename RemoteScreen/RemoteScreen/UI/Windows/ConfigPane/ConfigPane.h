@@ -11,6 +11,8 @@ class ConfigPane : public Window
 {
 public:
    static std::unique_ptr<ConfigPane> Create(const Window& parent, HINSTANCE hInstance);
+   void Move(int x, int y, int width, int height) const;
+
 private:
    ConfigPane(HWND hwnd, TreeView treeview);
    void AddTreeViewItems();

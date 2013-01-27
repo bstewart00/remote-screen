@@ -140,7 +140,7 @@ public:
       ::UpdateWindow(hWnd); 
    }
 
-   void Move(int x, int y, int width, int height) const
+   virtual void Move(int x, int y, int width, int height) const
    {
       ::MoveWindow(hWnd, x, y, width, height, TRUE);
    }
