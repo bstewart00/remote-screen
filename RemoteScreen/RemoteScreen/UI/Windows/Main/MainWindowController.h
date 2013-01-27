@@ -3,6 +3,7 @@
 #define MAINWINDOWCONTROLLER_H
 
 #include "../WindowController.h"
+#include <memory>
 
 class MainWindowController : public WindowController
 {
@@ -17,8 +18,8 @@ private:
 
    static const int splitterWidth = 8;
 
-   Window leftWin;
-   Window rightWin;
+   std::unique_ptr<Window> leftWin;
+   std::unique_ptr<Window> rightWin;
    Window splitter;
    int cx;
    int cy;

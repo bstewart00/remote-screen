@@ -27,3 +27,7 @@ void Window::InvokeBoolFunc(std::function<BOOL(HWND)> func, std::string errorMes
       throw WindowsException(errorMessage);
    }
 }
+
+Window::~Window()
+{
+}

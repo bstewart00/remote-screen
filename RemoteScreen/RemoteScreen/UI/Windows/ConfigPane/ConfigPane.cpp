@@ -5,23 +5,22 @@
 #include "../WindowFactory.h"
 #include "../../../Resource.h"
 
-ConfigPane::ConfigPane(const Window& parent, HINSTANCE hInstance)
-   : rootWindow(CreateRootWindow(parent, hInstance)), 
-   treeview(TreeView::Create(rootWindow, hInstance))
+std::unique_ptr<ConfigPane> ConfigPane::Create(const Window& parent, HINSTANCE hInstance)
+{   
+   Window root = WindowFactory::CreateDefaultChild(parent, StringResource(hInstance, IDC_CONFIGPANE), hInstance);
+   TreeView treeview(TreeView::Create(root, hInstance));
+
+   return std::unique_ptr<ConfigPane>(new ConfigPane(root, treeview));
+}
+
+ConfigPane::ConfigPane(HWND hwnd, TreeView treeview)
+   : Window(hwnd), treeview(treeview)
 {
    AddTreeViewItems();
-}
-
-ConfigPane::~ConfigPane()
-{
-}
-
-Window ConfigPane::CreateRootWindow(const Window& parent, HINSTANCE hInstance)
-{
-   return WindowFactory::CreateDefaultChild(parent, StringResource(hInstance, IDC_CONFIGPANE), hInstance);
 }
 
 void ConfigPane::AddTreeViewItems()
 {
    treeview.AddItem("Monitor");
+   treeview.AddItem("Test");
 }

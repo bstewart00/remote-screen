@@ -4,20 +4,16 @@
 
 #include "../Window.h"
 #include "../../Controls/TreeView/TreeView.h"
+#include <memory>
 #include <Windows.h>
 
-class ConfigPane
+class ConfigPane : public Window
 {
 public:
-   ConfigPane(const Window& parent, HINSTANCE hInstance);
-   ~ConfigPane();
-   
-   operator const Window&() const { return rootWindow; }
+   static std::unique_ptr<ConfigPane> Create(const Window& parent, HINSTANCE hInstance);
 private:
-   Window CreateRootWindow(const Window& parent, HINSTANCE hInstance);
+   ConfigPane(HWND hwnd, TreeView treeview);
    void AddTreeViewItems();
-
-   Window rootWindow;
    TreeView treeview;
 };
 

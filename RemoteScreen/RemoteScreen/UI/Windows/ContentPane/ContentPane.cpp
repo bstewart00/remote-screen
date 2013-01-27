@@ -7,18 +7,14 @@
 #include "../../../StringResource.h"
 #include "../../Controls/TreeView/TreeView.h"
 
-ContentPane::ContentPane(const Window& parent, HINSTANCE hInstance)
-   : rootWindow(CreateRootWindow(parent, hInstance))
+std::unique_ptr<ContentPane> ContentPane::Create(const Window& parent, HINSTANCE hInstance)
 {
-   TreeView tv(TreeView::Create(rootWindow, hInstance));
-   tv.AddItem("Monitor");
+   Window root = WindowFactory::CreateDefaultChild(parent, StringResource(hInstance, IDC_CONTENTPANE), hInstance);
+   return std::unique_ptr<ContentPane>(new ContentPane(root));
 }
 
-ContentPane::~ContentPane()
+ContentPane::ContentPane(HWND hwnd)
+   : Window(hwnd)
 {
-}
 
-Window ContentPane::CreateRootWindow(const Window& parent, HINSTANCE hInstance)
-{
-   return WindowFactory::CreateDefaultChild(parent, StringResource(hInstance, IDC_CONTENTPANE), hInstance);
 }

@@ -2,21 +2,16 @@
 #ifndef CONTENTPANE_H
 #define CONTENTPANE_H
 
+#include <memory>
 #include <Windows.h>
 #include "../Window.h"
 
-class ContentPane
+class ContentPane : public Window
 {
 public:
-   ContentPane(const Window& parent, HINSTANCE hInstance);
-   ~ContentPane();
-
-   operator const Window&() const { return rootWindow; }
-
+   static std::unique_ptr<ContentPane> Create(const Window& parent, HINSTANCE hInstance);
 private:
-   Window CreateRootWindow(const Window& parent, HINSTANCE hInstance);
-
-   Window rootWindow;
+   ContentPane(HWND hwnd);
 };
 
 #endif

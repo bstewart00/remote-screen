@@ -12,6 +12,7 @@ class Window
 {
 public:
    Window(HWND hwnd);
+   virtual ~Window();
 
    void Show(int nCmdShow);
    void Destroy();

@@ -16,15 +16,13 @@
 
 MainWindowController::MainWindowController(Window window, CREATESTRUCT* createStruct)
    : WindowController(window, createStruct),
-   leftWin(nullptr),
-   rightWin(nullptr),
    splitter(nullptr),
    splitRatioPercentage(30)
 {
    HINSTANCE hInstance = window.GetInstance();
 
-   leftWin = ConfigPane(window, hInstance);
-   rightWin = ContentPane(window, hInstance);
+   leftWin = ConfigPane::Create(window, hInstance);
+   rightWin = ContentPane::Create(window, hInstance);
 
    splitter = Splitter::RegisterAndCreate(window, hInstance);
 }
@@ -90,8 +88,8 @@ void MainWindowController::Size (int cx, int cy)
    if (xSplit < 0)
       xSplit = 0;
    splitter.MoveDelayPaint (xSplit, 0, splitterWidth, this->cy);
-   leftWin.Move (0, 0, xSplit, this->cy);
-   rightWin.Move (xSplit + splitterWidth, 0, this->cx - xSplit - splitterWidth, this->cy);
+   leftWin->Move (0, 0, xSplit, this->cy);
+   rightWin->Move (xSplit + splitterWidth, 0, this->cx - xSplit - splitterWidth, this->cy);
 
    splitter.ForceRepaint ();
 }
