@@ -5,6 +5,7 @@
 #include "../Window.h"
 #include "../../Controls/TreeView/TreeView.h"
 #include <memory>
+#include <vector>
 #include <Windows.h>
 
 class ConfigPane : public Window
@@ -17,6 +18,7 @@ private:
    ConfigPane(HWND hwnd, TreeView treeview);
    void AddTreeViewItems();
    TreeView treeview;
+   std::vector<DISPLAY_DEVICE> display_devices;
 };
 
 #endif

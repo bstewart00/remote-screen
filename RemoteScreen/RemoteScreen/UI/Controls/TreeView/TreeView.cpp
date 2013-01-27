@@ -45,20 +45,13 @@ void TreeView::AddItem(std::string item)
    tvi.cchTextMax = text->length();
 
    tvins.item = tvi; 
-   tvins.hInsertAfter = TVI_FIRST; 
+   tvins.hInsertAfter = TVI_SORT; 
    tvins.hParent = TVI_ROOT; 
 
    HTREEITEM hti = TreeView_InsertItem(hWnd, &tvins);
    if (hti == NULL) {
       throw WindowsException("TreeView insert item failed");
    }
-
-   TVITEM testItem;
-   wchar_t buf[255];
-   testItem.pszText = buf;
-   testItem.cchTextMax = 255;
-   testItem.mask = TVIF_TEXT;
-   BOOL result = TreeView_GetItem(hWnd, &testItem);
 }
 
 TreeView::TreeView(HWND hwnd)
