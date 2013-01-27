@@ -5,7 +5,6 @@
 #include "WindowsException.h"
 #include <Windows.h>
 #include <string>
-#include <boost/nowide/convert.hpp>
 
 class StringResource
 {

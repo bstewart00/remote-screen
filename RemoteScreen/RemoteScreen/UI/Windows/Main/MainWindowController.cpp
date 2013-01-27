@@ -25,6 +25,7 @@ MainWindowController::MainWindowController(Window window, CREATESTRUCT* createSt
 
    leftWin = ConfigPane(window, hInstance);
    rightWin = ContentPane(window, hInstance);
+
    splitter = Splitter::RegisterAndCreate(window, hInstance);
 }
 

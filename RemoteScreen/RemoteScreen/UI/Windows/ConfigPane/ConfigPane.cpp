@@ -12,7 +12,6 @@ ConfigPane::ConfigPane(const Window& parent, HINSTANCE hInstance)
    AddTreeViewItems();
 }
 
-
 ConfigPane::~ConfigPane()
 {
 }
@@ -24,4 +23,5 @@ Window ConfigPane::CreateRootWindow(const Window& parent, HINSTANCE hInstance)
 
 void ConfigPane::AddTreeViewItems()
 {
+   treeview.AddItem("Monitor");
 }

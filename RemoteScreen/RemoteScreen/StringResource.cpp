@@ -1,4 +1,5 @@
 #include "StringResource.h"
+#include <boost/nowide/convert.hpp>
 
 StringResource::StringResource (HINSTANCE hInst, int resId)
 {

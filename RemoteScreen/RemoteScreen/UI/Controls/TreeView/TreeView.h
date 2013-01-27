@@ -9,7 +9,6 @@ class TreeView : public Window
 {
 public:
    static TreeView Create(const Window& parent, HINSTANCE hInstance);
-   ~TreeView();
 
    void AddItem(const std::string text);
 private:

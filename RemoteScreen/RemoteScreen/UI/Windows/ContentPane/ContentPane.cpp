@@ -5,10 +5,13 @@
 #include "../WindowController.h"
 #include "../../../resource.h"
 #include "../../../StringResource.h"
+#include "../../Controls/TreeView/TreeView.h"
 
 ContentPane::ContentPane(const Window& parent, HINSTANCE hInstance)
    : rootWindow(CreateRootWindow(parent, hInstance))
 {
+   TreeView tv(TreeView::Create(rootWindow, hInstance));
+   tv.AddItem("Monitor");
 }
 
 ContentPane::~ContentPane()
