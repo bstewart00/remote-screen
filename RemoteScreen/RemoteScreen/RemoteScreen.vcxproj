@@ -86,9 +86,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="UI\Windows\ConfigPane\ConfigPaneController.h" />
     <ClInclude Include="StringConverter.h" />
     <ClInclude Include="UI\Windows\ContentPane\ContentPane.h" />
-    <ClInclude Include="UI\Windows\ConfigPane\ConfigPane.h" />
+    <ClInclude Include="UI\Windows\ConfigPane.h" />
     <ClInclude Include="CustomMessages.h" />
     <ClInclude Include="UI\Controls\Splitter\Splitter.h" />
     <ClInclude Include="UI\Controls\TreeView\TreeView.h" />
@@ -115,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="UI\Windows\ConfigPane\ConfigPaneController.cpp" />
     <ClCompile Include="StringConverter.cpp" />
     <ClCompile Include="UI\Windows\ContentPane\ContentPane.cpp" />
     <ClCompile Include="UI\Windows\ConfigPane\ConfigPane.cpp" />

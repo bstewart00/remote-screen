@@ -9,8 +9,11 @@ class MainWindowController : public WindowController
 {
 public:
    MainWindowController(Window window, CREATESTRUCT* createStruct);
-   LRESULT MainWindowController::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
+   LRESULT ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 private:
+   void OnCreate();
+   LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
+
    void ShowAboutDialog();
    void ShowEditDialog();
    void Size(int cx, int cy);

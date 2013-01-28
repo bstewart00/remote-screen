@@ -42,6 +42,7 @@ public:
 
    virtual LRESULT ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam) = 0;
 protected:
+   virtual void OnCreate() = 0;
    Window window;
 };
 

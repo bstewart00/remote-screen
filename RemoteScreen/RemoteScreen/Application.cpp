@@ -29,7 +29,6 @@ bool Application::Initialize()
    mainWindowFactory.SetTitle(mainWindowTitle);
 
    Window mainWindow(mainWindowFactory.Create());
-   mainWindow.Show(nCmdShow);
 
    return true;
 }

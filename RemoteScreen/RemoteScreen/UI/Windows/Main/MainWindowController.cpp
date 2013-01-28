@@ -19,36 +19,13 @@ MainWindowController::MainWindowController(Window window, CREATESTRUCT* createSt
    splitter(nullptr),
    splitRatioPercentage(30)
 {
-   HINSTANCE hInstance = window.GetInstance();
-
-   leftWin = ConfigPane::Create(window, hInstance);
-   rightWin = ContentPane::Create(window, hInstance);
-
-   splitter = Splitter::RegisterAndCreate(window, hInstance);
 }
 
 LRESULT MainWindowController::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
 {
-   int wmId, wmEvent;
-
    switch (message) {
    case WM_COMMAND:
-      wmId = LOWORD(wParam);
-      wmEvent = HIWORD(wParam);
-      switch (wmId) {
-      case IDM_ABOUT: 
-         ShowAboutDialog();
-         break;
-      case IDM_EDIT:
-         ShowEditDialog();
-         break;
-      case IDM_EXIT:
-         window.Destroy();
-         break;
-      default:
-         return WindowController::ProcessMessage(message, wParam, lParam);
-      }
-      break;
+      return OnCommand(wParam, lParam);
    case WM_SIZE:
       Size (LOWORD(lParam), HIWORD(lParam));
       return 0;
@@ -60,6 +37,36 @@ LRESULT MainWindowController::ProcessMessage(UINT message, WPARAM wParam, LPARAM
       break;
    default:
       return WindowController::ProcessMessage(message, wParam, lParam);
+   }
+
+   return 0;
+}
+
+void MainWindowController::OnCreate()
+{
+   HINSTANCE hInstance = window.GetInstance();
+
+   leftWin = ConfigPane::Create(window, hInstance);
+   rightWin = ContentPane::Create(window, hInstance);
+   splitter = Splitter::RegisterAndCreate(window, hInstance);
+}
+
+LRESULT MainWindowController::OnCommand(WPARAM wParam, LPARAM lParam)
+{
+   int wmId = LOWORD(wParam);
+   int wmEvent = HIWORD(wParam);
+   switch (wmId) {
+   case IDM_ABOUT: 
+      ShowAboutDialog();
+      break;
+   case IDM_EDIT:
+      ShowEditDialog();
+      break;
+   case IDM_EXIT:
+      window.Destroy();
+      break;
+   default:
+      return WindowController::ProcessMessage(WM_COMMAND, wParam, lParam);
    }
 
    return 0;
@@ -93,7 +100,6 @@ void MainWindowController::Size (int cx, int cy)
 
    splitter.ForceRepaint ();
 }
-
 
 void MainWindowController::MoveSplitter (int x)
 {

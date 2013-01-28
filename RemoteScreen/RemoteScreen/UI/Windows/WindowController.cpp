@@ -4,6 +4,7 @@
 WindowController::WindowController(Window window, CREATESTRUCT* createStruct)
    :window(window)
 {
+   OnCreate();
 }
 
 LRESULT WindowController::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)

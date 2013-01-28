@@ -65,14 +65,18 @@ Window WindowFactory::Create(HINSTANCE hInstance)
    return Window(hWnd);
 }
 
+Window WindowFactory::CreateChild(const Window& parent, const WindowClass wndClass)
+{
+   WindowFactory factory(wndClass);
+   factory.AddStyle(WS_CHILD | WS_VISIBLE);
+   factory.SetParent(parent);
+   return factory.Create();
+}
+
 Window WindowFactory::CreateDefaultChild(const Window& parent, std::string className, HINSTANCE hInstance)
 {
    WindowClass childClass(WindowController::DefaultWndProc, className, hInstance);
    childClass.Register();
 
-   WindowFactory factory(childClass);
-   factory.AddStyle(WS_CHILD | WS_VISIBLE);
-   factory.SetParent(parent);
-
-   return factory.Create();
+   return CreateChild(parent, childClass);
 }

@@ -96,6 +96,9 @@
     <ClInclude Include="StringConverter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UI\Windows\ConfigPane\ConfigPaneController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RemoteScreen.cpp">
@@ -147,6 +150,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StringConverter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Windows\ConfigPane\ConfigPaneController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

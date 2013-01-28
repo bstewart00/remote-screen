@@ -12,6 +12,7 @@ public:
    WindowFactory(const WindowClass wndClass);
    Window Create();
    Window Create(HINSTANCE hInstance);
+   static Window CreateChild(const Window& parent, const WindowClass wndClass);
    static Window CreateDefaultChild(const Window& parent, std::string className, HINSTANCE hInstance);
 
    void SetTitle(std::string caption) { titleCaption = caption; }
