@@ -3,16 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RemoteScreen", "RemoteScreen\RemoteScreen.vcxproj", "{DB74F3F9-5A2F-478C-AE11-F591EFCC0D51}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tests", "Tests\Tests.vcxproj", "{A1C3EE29-99E9-4D0F-880B-0697B52A06EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
+		UnitTest|Win32 = UnitTest|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DB74F3F9-5A2F-478C-AE11-F591EFCC0D51}.Debug|Win32.ActiveCfg = Debug|Win32
 		{DB74F3F9-5A2F-478C-AE11-F591EFCC0D51}.Debug|Win32.Build.0 = Debug|Win32
 		{DB74F3F9-5A2F-478C-AE11-F591EFCC0D51}.Release|Win32.ActiveCfg = Release|Win32
 		{DB74F3F9-5A2F-478C-AE11-F591EFCC0D51}.Release|Win32.Build.0 = Release|Win32
+		{DB74F3F9-5A2F-478C-AE11-F591EFCC0D51}.UnitTest|Win32.ActiveCfg = UnitTest|Win32
+		{DB74F3F9-5A2F-478C-AE11-F591EFCC0D51}.UnitTest|Win32.Build.0 = UnitTest|Win32
+		{A1C3EE29-99E9-4D0F-880B-0697B52A06EF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A1C3EE29-99E9-4D0F-880B-0697B52A06EF}.Debug|Win32.Build.0 = Debug|Win32
+		{A1C3EE29-99E9-4D0F-880B-0697B52A06EF}.Release|Win32.ActiveCfg = Release|Win32
+		{A1C3EE29-99E9-4D0F-880B-0697B52A06EF}.Release|Win32.Build.0 = Release|Win32
+		{A1C3EE29-99E9-4D0F-880B-0697B52A06EF}.UnitTest|Win32.ActiveCfg = UnitTest|Win32
+		{A1C3EE29-99E9-4D0F-880B-0697B52A06EF}.UnitTest|Win32.Build.0 = UnitTest|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
