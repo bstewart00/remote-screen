@@ -1,8 +1,8 @@
+#include "../../stdafx.h"
 #include "Window.h"
 #include "../../WindowsException.h"
 #include <string>
 #include <boost/nowide/convert.hpp>
-#include <Windows.h>
 #include <functional>
 
 Window::Window(HWND hwnd) : hWnd(hwnd)
@@ -26,8 +26,4 @@ void Window::InvokeBoolFunc(std::function<BOOL(HWND)> func, std::string errorMes
    if (result == 0) {
       throw WindowsException(errorMessage);
    }
-}
-
-Window::~Window()
-{
 }

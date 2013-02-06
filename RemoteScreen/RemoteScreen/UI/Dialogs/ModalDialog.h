@@ -5,7 +5,6 @@
 #include "../Windows/Window.h"
 #include "DialogControllerFactory.h"
 #include "ModalDialogController.h"
-#include <Windows.h>
 
 class ModalDialog
 {

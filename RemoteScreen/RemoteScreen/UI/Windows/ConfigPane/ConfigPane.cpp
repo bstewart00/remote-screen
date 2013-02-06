@@ -1,10 +1,12 @@
+#include "../../../stdafx.h"
 #include "ConfigPane.h"
 #include "../../Controls/TreeView/TreeView.h"
 #include "../WindowClass.h"
 #include "../WindowFactory.h"
 #include "ConfigPaneController.h"
 #include "../../../Resource.h"
-#include "../../../StringConverter.h"
+#include "../../../Utils/StringResource.h"
+#include "../../../Utils/StringConverter.h"
 #include <boost/format.hpp>
 
 std::unique_ptr<ConfigPane> ConfigPane::Create(const Window& parent, HINSTANCE hInstance)
@@ -24,7 +26,7 @@ std::unique_ptr<ConfigPane> ConfigPane::Create(const Window& parent, HINSTANCE h
 ConfigPane::ConfigPane(HWND hwnd, TreeView treeview)
    : Window(hwnd), treeview(treeview)
 {
-   AddTreeViewItems();
+   //AddTreeViewItems();
 }
 
 void ConfigPane::AddTreeViewItems()

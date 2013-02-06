@@ -3,7 +3,6 @@
 #define DIALOGCONTROLLERFACTORY_H
 
 class ModalDialogController;
-#include <Windows.h>
 
 class AbstractDialogControllerFactory
 {

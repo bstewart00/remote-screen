@@ -1,3 +1,4 @@
+#include "../../../stdafx.h"
 #include "Splitter.h"
 #include "Controller.h"
 #include "../../Windows/WindowController.h"

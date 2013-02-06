@@ -1,3 +1,4 @@
+#include "../../../stdafx.h"
 #include "EditDialogController.h"
 #include "../../../resource.h"
 #include <array>

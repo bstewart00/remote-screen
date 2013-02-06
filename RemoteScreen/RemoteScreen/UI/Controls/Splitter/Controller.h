@@ -4,7 +4,6 @@
 
 #include "../../Windows/WindowController.h"
 #include "../../CanvasTools.h"
-#include <Windows.h>
 
 namespace Splitter
 {
@@ -12,7 +11,7 @@ namespace Splitter
    {
    public:
       Controller(Window window, CREATESTRUCT* createStruct);
-      LRESULT Controller::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
+      LRESULT ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
    private:
       void Size (int cx, int cy);
       void Paint ();

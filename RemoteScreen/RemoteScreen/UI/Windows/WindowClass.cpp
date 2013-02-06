@@ -1,5 +1,6 @@
+#include "../../stdafx.h"
 #include "WindowClass.h"
-#include <boost/nowide/convert.hpp>
+#include "../../Utils/StringConverter.h"
 
 WindowClass::WindowClass(std::string className, HINSTANCE hInst)
    : name(className), hInstance(hInst)
@@ -30,27 +31,12 @@ void WindowClass::Construct(WNDPROC wndProc)
 
 void WindowClass::Register()
 {
-   std::wstring wideClassName = boost::nowide::widen(name);
-   wndClass.lpszClassName = wideClassName.c_str();
+   std::unique_ptr<std::wstring> wideClassName = StringConverter::ToWide(name);
+   wndClass.lpszClassName = wideClassName.get()->c_str();
    ATOM result = ::RegisterClassEx(&wndClass);
    if(result == 0) {
       throw WindowsException("Window class registration failure.");
    }
-}
-
-Window WindowClass::GetRunningWindow() const
-{
-   HWND hwnd = ::FindWindow(boost::nowide::widen(name).c_str(), 0);
-   if(::IsWindow (hwnd)) {
-      HWND hwndPopup = ::GetLastActivePopup(hwnd);
-      if(::IsWindow (hwndPopup))
-         hwnd = hwndPopup;
-   }
-   else {
-      hwnd = 0;
-   }
-
-   return hwnd;
 }
 
 void WindowClass::SetResIcons(int resId)

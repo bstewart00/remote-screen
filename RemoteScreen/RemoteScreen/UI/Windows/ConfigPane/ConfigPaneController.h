@@ -3,7 +3,6 @@
 #define CONFIGPANECONTROLLER_H
 
 #include "../WindowController.h"
-#include <Windows.h>
 
 class ConfigPaneController : public WindowController
 {

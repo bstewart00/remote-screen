@@ -2,8 +2,7 @@
 #ifndef WINDOWSEXCEPTION_H
 #define WINDOWSEXCEPTION_H
 
-#include "LocalFreeDeleter.h"
-#include <Windows.h>
+#include "Utils/LocalFreeDeleter.h"
 #include <string>
 #include <memory>
 

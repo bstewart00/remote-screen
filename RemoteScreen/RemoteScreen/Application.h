@@ -3,6 +3,7 @@
 #define APPLICATION_H
 
 #include "UI/Windows/WindowClass.h"
+#include "Utils/StringConverter.h"
 #include <Windows.h>
 
 class Application
@@ -12,8 +13,12 @@ public:
    bool Initialize();
    int Run();
 
+   HACCEL LoadAccelerators(std::string tableName) const
+   {
+      return ::LoadAccelerators(hInstance, StringConverter::ToWide(tableName).get()->c_str());
+   }
+
 private:
-   bool RestoreExistingWindow(const WindowClass& windowClass);
    HINSTANCE hInstance;
    int nCmdShow;
 };

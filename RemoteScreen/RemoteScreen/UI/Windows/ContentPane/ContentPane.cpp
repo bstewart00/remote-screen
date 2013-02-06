@@ -1,10 +1,11 @@
+#include "../../../stdafx.h"
 #include "ContentPane.h"
 #include "../Window.h"
 #include "../WindowClass.h"
 #include "../WindowFactory.h"
 #include "../WindowController.h"
 #include "../../../resource.h"
-#include "../../../StringResource.h"
+#include "../../../Utils/StringResource.h"
 #include "../../Controls/TreeView/TreeView.h"
 
 std::unique_ptr<ContentPane> ContentPane::Create(const Window& parent, HINSTANCE hInstance)

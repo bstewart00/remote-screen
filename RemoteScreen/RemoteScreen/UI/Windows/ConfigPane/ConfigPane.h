@@ -6,7 +6,6 @@
 #include "../../Controls/TreeView/TreeView.h"
 #include <memory>
 #include <vector>
-#include <Windows.h>
 
 class ConfigPane : public Window
 {

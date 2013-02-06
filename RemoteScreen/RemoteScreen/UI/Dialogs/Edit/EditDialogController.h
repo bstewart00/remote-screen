@@ -7,7 +7,6 @@
 #include "../Controls.h"
 #include "../../Windows/Window.h"
 #include "../../../resource.h"
-#include <Windows.h>
 
 class EditDialogController : public ModalDialogController
 {

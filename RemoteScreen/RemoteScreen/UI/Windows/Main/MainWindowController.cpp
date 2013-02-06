@@ -1,3 +1,4 @@
+#include "../../../stdafx.h"
 #include "../../Controls/TreeView/TreeView.h"
 #include "MainWindowController.h"
 #include "../WindowFactory.h"
@@ -12,7 +13,7 @@
 #include "../ConfigPane/ConfigPane.h"
 #include "../../../Resource.h"
 #include "../../../CustomMessages.h"
-#include "../../../StringResource.h"
+#include "../../../Utils/StringResource.h"
 
 MainWindowController::MainWindowController(Window window, CREATESTRUCT* createStruct)
    : WindowController(window, createStruct),
@@ -24,14 +25,17 @@ MainWindowController::MainWindowController(Window window, CREATESTRUCT* createSt
 LRESULT MainWindowController::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
 {
    switch (message) {
+   case WM_CREATE:
+      OnCreate();
+      break;
    case WM_COMMAND:
       return OnCommand(wParam, lParam);
    case WM_SIZE:
-      Size (LOWORD(lParam), HIWORD(lParam));
-      return 0;
+      Size(LOWORD(lParam), HIWORD(lParam));
+      break;
    case MSG_MOVESPLITTER:
-      MoveSplitter (wParam);
-      return 0;
+      MoveSplitter(wParam);
+      break;
    case WM_DESTROY:
       ::PostQuitMessage(0);
       break;

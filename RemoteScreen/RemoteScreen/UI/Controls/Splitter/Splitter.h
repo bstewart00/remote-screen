@@ -3,7 +3,6 @@
 #define SPLITTER_H
 
 #include <string>
-#include <Windows.h>
 #include "../../Windows/Window.h"
 
 namespace Splitter

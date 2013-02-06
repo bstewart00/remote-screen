@@ -1,7 +1,8 @@
+#include "../../stdafx.h"
 #include "WindowFactory.h"
 #include "WindowController.h"
 #include "../../WindowsException.h"
-#include <boost/nowide/convert.hpp>
+#include "../../Utils/StringConverter.h"
 
 WindowFactory::WindowFactory(const WindowClass wndClass)
     : wndClass(wndClass),
@@ -27,13 +28,14 @@ void WindowFactory::SetPosition (int x, int y, int width, int height)
 
 Window WindowFactory::Create()
 {
-   std::wstring className = boost::nowide::widen(wndClass.GetName());
-   std::wstring windowTitle = boost::nowide::widen(titleCaption);
+
+   std::unique_ptr<std::wstring> className = StringConverter::ToWide(wndClass.GetName());
+   std::unique_ptr<std::wstring> windowTitle = StringConverter::ToWide(titleCaption);
  
    hWnd = ::CreateWindowEx(
       0,
-      className.c_str(),
-      windowTitle.c_str(),
+      className.get()->c_str(),
+      windowTitle.get()->c_str(),
       style,
       x, y, width, height,
       hWndParent, hMenu, wndClass.GetInstance(),

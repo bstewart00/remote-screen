@@ -12,14 +12,15 @@ class Window
 {
 public:
    Window(HWND hwnd);
-   virtual ~Window();
 
    void Show(int nCmdShow);
    void Destroy();
 
    operator HWND() const { return hWnd; }
    inline void SetHWND(HWND hwnd) { hWnd = hwnd; }
+
    bool operator==(const HWND& hwnd) const { return hWnd == hwnd; }
+   operator bool() const { return hWnd != 0; }
 
    template <typename T>
    static inline T GetLongPtr(HWND hwnd, int index)
@@ -28,7 +29,10 @@ public:
    }
 
    template <typename T>
-   inline T GetLongPtr(int index) const{ return this->GetLongPtr<T>(hWnd, index); }
+   inline T GetLongPtr(int index) const
+   { 
+      return GetLongPtr<T>(hWnd, index); 
+   }
 
    template <typename T>
    static inline void SetLongPtr(HWND hwnd, T value, int index)
@@ -37,7 +41,10 @@ public:
    }
 
    template <typename T>
-   inline void SetLongPtr(T value, int index) const { return this->SetLongPtr<T>(hWnd, value, index); }
+   inline void SetLongPtr(T value, int index) const 
+   {
+      return this->SetLongPtr<T>(hWnd, value, index); 
+   }
 
    HINSTANCE GetInstance() const
    { 
@@ -66,7 +73,7 @@ public:
 
    bool PostMessage(UINT msg, WPARAM wparam = 0, LPARAM lparam = 0) const
    {
-      return ::PostMessage(hWnd, msg, wparam, lparam) != FALSE;
+      return ::PostMessage(hWnd, msg, wparam, lparam) != 0;
    }
 
    long SendChildMessage(int idChild, UINT msg, WPARAM wparam = 0, LPARAM lparam = 0) const
@@ -204,6 +211,16 @@ public:
    void Disable() const
    {
       ::EnableWindow(hWnd, FALSE);
+   }
+
+   void ToForeground() const
+   {
+      ::SetForegroundWindow(hWnd);     
+   }
+
+   bool IsIconic() const 
+   {
+      return ::IsIconic(hWnd) != 0;
    }
 
 protected:

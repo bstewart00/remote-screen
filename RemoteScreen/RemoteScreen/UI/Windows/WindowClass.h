@@ -2,12 +2,10 @@
 #ifndef WINDOWCLASS_H
 #define WINDOWCLASS_H
 
-#include "../../StringResource.h"
+#include "../../Utils/StringResource.h"
 #include "../../WindowsException.h"
 #include "Window.h"
-#include <Windows.h>
 #include <string>
-#include <boost/nowide/convert.hpp>
 
 class WindowClass
 {
@@ -16,7 +14,6 @@ public:
    WindowClass(WNDPROC wndProc, std::string name, HINSTANCE hInst);
 
    void Register();
-   Window GetRunningWindow() const;
    std::string GetName() const { return name; }
    HINSTANCE GetInstance() const { return hInstance; }
 

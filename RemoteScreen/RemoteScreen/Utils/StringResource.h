@@ -2,8 +2,7 @@
 #ifndef STRINGRESOURCE_H
 #define STRINGRESOURCE_H
 
-#include "WindowsException.h"
-#include <Windows.h>
+#include "../WindowsException.h"
 #include <string>
 
 class StringResource

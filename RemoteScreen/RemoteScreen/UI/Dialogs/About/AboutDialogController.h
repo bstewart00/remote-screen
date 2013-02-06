@@ -3,7 +3,6 @@
 #define ABOUTDIALOGCONTROLLER_H
 
 #include "../ModalDialogController.h"
-#include <Windows.h>
 
 class AboutDialogController : public ModalDialogController
 {

@@ -1,3 +1,4 @@
+#include "../../../stdafx.h"
 #include "Controller.h"
 #include "../../Canvas.h"
 #include "../../../CustomMessages.h"

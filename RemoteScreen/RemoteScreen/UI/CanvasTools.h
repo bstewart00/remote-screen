@@ -2,7 +2,6 @@
 #ifndef CANVASTOOLS_H
 #define CANVASTOOLS_H
 
-#include <Windows.h>
 
 class StockObject
 {

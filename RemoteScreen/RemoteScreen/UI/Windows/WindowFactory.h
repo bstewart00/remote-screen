@@ -4,7 +4,6 @@
 
 #include "WindowClass.h"
 #include "Window.h"
-#include <Windows.h>
 
 class WindowFactory
 {

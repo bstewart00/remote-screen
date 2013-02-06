@@ -1,9 +1,9 @@
+#include "../../../stdafx.h"
 #include "TreeView.h"
 #include "../../Windows/WindowFactory.h"
-#include "../../../StringConverter.h"
+#include "../../../Utils/StringConverter.h"
 #include "../../../WindowsException.h"
 
-#include <Windows.h>
 #include <CommCtrl.h>
 
 bool TreeView::initialized = false;

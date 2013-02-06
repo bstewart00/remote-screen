@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "WindowsException.h"
 #include "Application.h"
 #include <Windows.h>
@@ -36,8 +37,6 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
    try {
       Application app(hInstance, nCmdShow);
-      if (!app.Initialize())
-         return 0;
       return app.Run();
    } catch (WindowsException e) {
       boost::format test = boost::format("Error: %1 Win32 Error %2: %3") % e.GetMessage() % e.GetErrorCode() % e.GetFormattedMessage();

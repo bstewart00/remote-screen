@@ -3,7 +3,6 @@
 #define WINDOWCONTROLLER_H
 
 #include "Window.h"
-#include <Windows.h>
 
 class WindowController
 {
@@ -42,7 +41,6 @@ public:
 
    virtual LRESULT ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam) = 0;
 protected:
-   virtual void OnCreate() = 0;
    Window window;
 };
 
