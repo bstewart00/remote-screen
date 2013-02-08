@@ -17,31 +17,31 @@ public:
    void Destroy();
 
    operator HWND() const { return hWnd; }
-   inline void SetHWND(HWND hwnd) { hWnd = hwnd; }
+   void SetHWND(HWND hwnd) { hWnd = hwnd; }
 
    bool operator==(const HWND& hwnd) const { return hWnd == hwnd; }
    operator bool() const { return hWnd != 0; }
 
    template <typename T>
-   static inline T GetLongPtr(HWND hwnd, int index)
+   static T GetLongPtr(HWND hwnd, int index)
    {
       return reinterpret_cast<T>(::GetWindowLongPtr(hwnd, index));
    }
 
    template <typename T>
-   inline T GetLongPtr(int index) const
+    T GetLongPtr(int index) const
    { 
       return GetLongPtr<T>(hWnd, index); 
    }
 
    template <typename T>
-   static inline void SetLongPtr(HWND hwnd, T value, int index)
+   static void SetLongPtr(HWND hwnd, T value, int index)
    {
       ::SetWindowLongPtr(hwnd, index, reinterpret_cast<LONG_PTR>(hwnd, value));
    }
 
    template <typename T>
-   inline void SetLongPtr(T value, int index) const 
+   void SetLongPtr(T value, int index) const 
    {
       return this->SetLongPtr<T>(hWnd, value, index); 
    }
@@ -132,6 +132,7 @@ public:
       BOOL fRedraw = TRUE;
       SendMessage(WM_SETFONT, (WPARAM)hFont, MAKELPARAM(fRedraw, 0));
    }
+
    void Show(int cmdShow = SW_SHOW) const
    { 
       ::ShowWindow(hWnd, cmdShow); 
