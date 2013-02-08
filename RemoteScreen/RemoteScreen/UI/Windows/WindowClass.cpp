@@ -35,7 +35,7 @@ void WindowClass::Register()
    wndClass.lpszClassName = wideClassName.get()->c_str();
    ATOM result = ::RegisterClassEx(&wndClass);
    if(result == 0) {
-      throw WindowsException("Window class registration failure.");
+      throw WindowsException("WindowHandle class registration failure.");
    }
 }
 

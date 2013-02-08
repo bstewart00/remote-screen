@@ -15,7 +15,7 @@ void TreeView::Initialize()
    ::InitCommonControlsEx(&params);
 }
 
-TreeView TreeView::Create(const Window& parent, HINSTANCE hInstance)
+TreeView TreeView::Create(const WindowHandle& parent, HINSTANCE hInstance)
 {
    if (!TreeView::initialized)
       TreeView::Initialize();
@@ -27,7 +27,7 @@ TreeView TreeView::Create(const Window& parent, HINSTANCE hInstance)
    wndFactory.SetParent(parent);
    wndFactory.AddStyle(WS_VISIBLE | WS_CHILD | TVS_HASLINES);
 
-   Window window = wndFactory.Create();
+   WindowHandle window = wndFactory.Create();
    window.Show();
    return TreeView(window);
 }
@@ -55,6 +55,6 @@ void TreeView::AddItem(std::string item)
 }
 
 TreeView::TreeView(HWND hwnd)
-   : Window(hwnd)
+   : WindowHandle(hwnd)
 {
 }

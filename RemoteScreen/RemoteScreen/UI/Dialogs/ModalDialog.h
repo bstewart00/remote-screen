@@ -2,14 +2,14 @@
 #ifndef MODALDIALOG_H
 #define MODALDIALOG_H
 
-#include "../Windows/Window.h"
+#include "../Windows/WindowHandle.h"
 #include "DialogControllerFactory.h"
 #include "ModalDialogController.h"
 
 class ModalDialog
 {
 public:
-   ModalDialog(HINSTANCE hInst, const Window& window, int dlgResource, DLGPROC dlgProc, AbstractDialogControllerFactory* controllerFactory)
+   ModalDialog(HINSTANCE hInst, const WindowHandle& window, int dlgResource, DLGPROC dlgProc, AbstractDialogControllerFactory* controllerFactory)
    {
       result = ::DialogBoxParam(hInst, MAKEINTRESOURCE(dlgResource), window, dlgProc, reinterpret_cast<LPARAM>(controllerFactory));
    }

@@ -1,8 +1,8 @@
 #include "../../stdafx.h"
 #include "WindowController.h"
-#include "Window.h"
+#include "WindowHandle.h"
 
-WindowController::WindowController(Window window, CREATESTRUCT* createStruct)
+WindowController::WindowController(WindowHandle window, CREATESTRUCT* createStruct)
    :window(window)
 {
 }

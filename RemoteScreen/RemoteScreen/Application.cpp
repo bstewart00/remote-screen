@@ -23,7 +23,7 @@ bool Application::Initialize()
    mainWindowFactory.AddStyle(WS_OVERLAPPEDWINDOW | WS_VISIBLE);
    mainWindowFactory.SetTitle(StringResource(hInstance, IDS_APP_TITLE));
 
-   Window mainWindow(mainWindowFactory.Create());
+   WindowHandle mainWindow(mainWindowFactory.Create());
    mainWindow.Show(nCmdShow);
    mainWindow.Update();
 

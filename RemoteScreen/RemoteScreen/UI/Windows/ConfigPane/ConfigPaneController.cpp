@@ -1,7 +1,7 @@
 #include "../../../stdafx.h"
 #include "ConfigPaneController.h"
 
-ConfigPaneController::ConfigPaneController(Window window, CREATESTRUCT* createStruct)
+ConfigPaneController::ConfigPaneController(WindowHandle window, CREATESTRUCT* createStruct)
    : WindowController(window, createStruct)
 {
 }

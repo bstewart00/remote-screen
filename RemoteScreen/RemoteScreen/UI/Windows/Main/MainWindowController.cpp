@@ -15,7 +15,7 @@
 #include "../../../CustomMessages.h"
 #include "../../../Utils/StringResource.h"
 
-MainWindowController::MainWindowController(Window window, CREATESTRUCT* createStruct)
+MainWindowController::MainWindowController(WindowHandle window, CREATESTRUCT* createStruct)
    : WindowController(window, createStruct),
    splitter(nullptr),
    splitRatioPercentage(30)

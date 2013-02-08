@@ -26,7 +26,7 @@ void WindowFactory::SetPosition (int x, int y, int width, int height)
     this->height = height;
 }
 
-Window WindowFactory::Create()
+WindowHandle WindowFactory::Create()
 {
 
    std::unique_ptr<std::wstring> className = StringConverter::ToWide(wndClass.GetName());
@@ -42,12 +42,12 @@ Window WindowFactory::Create()
       nullptr);
 
    if (!hWnd)
-      throw WindowsException("Window creation failed.");
+      throw WindowsException("WindowHandle creation failed.");
 
-   return Window(hWnd);
+   return WindowHandle(hWnd);
 }
 
-Window WindowFactory::Create(HINSTANCE hInstance)
+WindowHandle WindowFactory::Create(HINSTANCE hInstance)
 {
    std::wstring className = boost::nowide::widen(wndClass.GetName());
    std::wstring windowTitle = boost::nowide::widen(titleCaption);
@@ -64,10 +64,10 @@ Window WindowFactory::Create(HINSTANCE hInstance)
    if (!hWnd)
       throw WindowsException("WindowFactory creation failed");
 
-   return Window(hWnd);
+   return WindowHandle(hWnd);
 }
 
-Window WindowFactory::CreateChild(const Window& parent, const WindowClass wndClass)
+WindowHandle WindowFactory::CreateChild(const WindowHandle& parent, const WindowClass wndClass)
 {
    WindowFactory factory(wndClass);
    factory.AddStyle(WS_CHILD | WS_VISIBLE);
@@ -75,7 +75,7 @@ Window WindowFactory::CreateChild(const Window& parent, const WindowClass wndCla
    return factory.Create();
 }
 
-Window WindowFactory::CreateDefaultChild(const Window& parent, std::string className, HINSTANCE hInstance)
+WindowHandle WindowFactory::CreateDefaultChild(const WindowHandle& parent, std::string className, HINSTANCE hInstance)
 {
    WindowClass childClass(WindowController::DefaultWndProc, className, hInstance);
    childClass.Register();

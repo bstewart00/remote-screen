@@ -1,26 +1,26 @@
 #include "../../stdafx.h"
-#include "Window.h"
+#include "WindowHandle.h"
 #include "../../WindowsException.h"
 #include <string>
 #include <boost/nowide/convert.hpp>
 #include <functional>
 
-Window::Window(HWND hwnd) : hWnd(hwnd)
+WindowHandle::WindowHandle(HWND hwnd) : hWnd(hwnd)
 {
 }
 
-void Window::Destroy()
+void WindowHandle::Destroy()
 {
    InvokeBoolFunc(::DestroyWindow, "DestroyWindow failed");
 }
 
-void Window::Show(int nCmdShow)
+void WindowHandle::Show(int nCmdShow)
 {
    ::ShowWindow(hWnd, nCmdShow);
    InvokeBoolFunc(::UpdateWindow, "UpdateWindow failed");
 }
 
-void Window::InvokeBoolFunc(std::function<BOOL(HWND)> func, std::string errorMessage)
+void WindowHandle::InvokeBoolFunc(std::function<BOOL(HWND)> func, std::string errorMessage)
 {
    BOOL result = func(hWnd);
    if (result == 0) {

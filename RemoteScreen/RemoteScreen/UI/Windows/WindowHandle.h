@@ -1,6 +1,6 @@
 #pragma once
-#ifndef WINDOW_H
-#define WINDOW_H
+#ifndef Window_H
+#define Window_H
 
 #include <Windows.h>
 #include <string>
@@ -8,10 +8,10 @@
 #include <boost/nowide/convert.hpp>
 #include "../../WindowsException.h"
 
-class Window
+class WindowHandle
 {
 public:
-   Window(HWND hwnd);
+   WindowHandle(HWND hwnd);
 
    void Show(int nCmdShow);
    void Destroy();
@@ -51,7 +51,7 @@ public:
       return GetLongPtr<HINSTANCE>(GWLP_HINSTANCE);		
    }
 
-   Window GetParent() const
+   WindowHandle GetParent() const
    {
       return ::GetParent(hWnd);
    }

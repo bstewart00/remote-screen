@@ -3,7 +3,7 @@
 #define MODALDIALOGCONTROLLER_H
 
 #include "DialogControllerFactory.h"
-#include "../Windows/Window.h"
+#include "../Windows/WindowHandle.h"
 
 class ModalDialogController
 {
@@ -16,14 +16,14 @@ public:
    static INT_PTR CALLBACK DialogProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
    {
 
-      ModalDialogController* controller = Window::GetLongPtr<ModalDialogController*> (hwndDlg, GWLP_USERDATA);
+      ModalDialogController* controller = WindowHandle::GetLongPtr<ModalDialogController*> (hwndDlg, GWLP_USERDATA);
       switch (message)
       {
       case WM_INITDIALOG:
          {
             AbstractDialogControllerFactory* factory = reinterpret_cast<AbstractDialogControllerFactory*>(lParam);
             controller = factory->MakeController(hwndDlg);
-            Window::SetLongPtr<ModalDialogController*>(hwndDlg, controller, GWLP_USERDATA);
+            WindowHandle::SetLongPtr<ModalDialogController*>(hwndDlg, controller, GWLP_USERDATA);
             controller->OnInitDialog (hwndDlg);
          }
          return TRUE;
@@ -40,7 +40,7 @@ public:
          break;
       case WM_DESTROY:
          delete controller;
-         Window::SetLongPtr<ModalDialogController*> (hwndDlg, 0, GWLP_USERDATA);
+         WindowHandle::SetLongPtr<ModalDialogController*> (hwndDlg, 0, GWLP_USERDATA);
          break;
       }
       return FALSE;

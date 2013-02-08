@@ -10,7 +10,7 @@ namespace Splitter
    class Controller : public WindowController
    {
    public:
-      Controller(Window window, CREATESTRUCT* createStruct);
+      Controller(WindowHandle window, CREATESTRUCT* createStruct);
       LRESULT ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
    private:
       void Size (int cx, int cy);
@@ -21,7 +21,7 @@ namespace Splitter
       void LButtonDrag (POINTS pt);
       void CaptureChanged ();
 
-      Window parent;
+      WindowHandle parent;
 
       int cx;
       int cy;

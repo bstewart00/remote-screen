@@ -4,7 +4,7 @@
 
 #include "../../Utils/StringResource.h"
 #include "../../WindowsException.h"
-#include "Window.h"
+#include "WindowHandle.h"
 #include <string>
 
 class WindowClass

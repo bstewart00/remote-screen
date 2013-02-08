@@ -8,7 +8,7 @@
 class MainWindowController : public WindowController
 {
 public:
-   MainWindowController(Window window, CREATESTRUCT* createStruct);
+   MainWindowController(WindowHandle window, CREATESTRUCT* createStruct);
    LRESULT ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 private:
    void OnCreate();
@@ -21,9 +21,9 @@ private:
 
    static const int splitterWidth = 8;
 
-   std::unique_ptr<Window> leftWin;
-   std::unique_ptr<Window> rightWin;
-   Window splitter;
+   std::unique_ptr<WindowHandle> leftWin;
+   std::unique_ptr<WindowHandle> rightWin;
+   WindowHandle splitter;
    int cx;
    int cy;
    int splitRatioPercentage;

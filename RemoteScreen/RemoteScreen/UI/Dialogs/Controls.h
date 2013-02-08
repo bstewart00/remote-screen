@@ -2,13 +2,13 @@
 #ifndef CONTROLS_H
 #define CONTROLS_H
 
-#include "../Windows/Window.h"
+#include "../Windows/WindowHandle.h"
 
-class Control : public Window
+class Control : public WindowHandle
 {
 public:
    Control(HWND hwndParent, int id)
-      : Window(GetDlgItem(hwndParent, id))
+      : WindowHandle(GetDlgItem(hwndParent, id))
    {}
 
    static BOOL IsClicked(int code)

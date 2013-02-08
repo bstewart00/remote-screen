@@ -4,7 +4,7 @@
 #include "../../Windows/WindowController.h"
 #include "../../Windows/WindowFactory.h"
 
-Window Splitter::RegisterAndCreate(Window parent, HINSTANCE hInstance)
+WindowHandle Splitter::RegisterAndCreate(WindowHandle parent, HINSTANCE hInstance)
 {
    WindowClass wndClass(WindowController::WndProc<Splitter::Controller>, WINDOW_CLASS_NAME, hInstance);
    wndClass.SetSysCursor(IDC_SIZEWE);

@@ -2,13 +2,13 @@
 #ifndef TREEVIEW_H
 #define TREEVIEW_H
 
-#include "../../Windows/Window.h"
+#include "../../Windows/WindowHandle.h"
 #include <vector>
 
-class TreeView : public Window
+class TreeView : public WindowHandle
 {
 public:
-   static TreeView Create(const Window& parent, HINSTANCE hInstance);
+   static TreeView Create(const WindowHandle& parent, HINSTANCE hInstance);
 
    void AddItem(const std::string text);
 private:
