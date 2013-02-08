@@ -96,7 +96,7 @@ namespace Splitter
       if (dragStarted) {
          dragStarted = false;
 
-         window.ReleaseMouse();
+         ::ReleaseCapture();
          parent.SendMessage(MSG_MOVESPLITTER, dragStart + pt.x);
       }
    }

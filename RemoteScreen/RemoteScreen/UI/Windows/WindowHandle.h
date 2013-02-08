@@ -17,7 +17,6 @@ public:
    void Destroy();
 
    operator HWND() const { return hWnd; }
-   void SetHWND(HWND hwnd) { hWnd = hwnd; }
 
    bool operator==(const HWND& hwnd) const { return hWnd == hwnd; }
    operator bool() const { return hWnd != 0; }
@@ -46,25 +45,10 @@ public:
       return this->SetLongPtr<T>(hWnd, value, index); 
    }
 
-   HINSTANCE GetInstance() const
-   { 
-      return GetLongPtr<HINSTANCE>(GWLP_HINSTANCE);		
-   }
-
-   WindowHandle GetParent() const
-   {
-      return ::GetParent(hWnd);
-   }
-
-   void SetParent(HWND hwndParent) const
-   {
-      ::SetParent(hWnd, hwndParent);
-   }
-
-   void ClientToScreen(POINT & pt) const
-   {
-      ::ClientToScreen(hWnd, &pt);
-   }
+   HINSTANCE GetInstance() const { return GetLongPtr<HINSTANCE>(GWLP_HINSTANCE); }
+   WindowHandle GetParent() const {return ::GetParent(hWnd); }
+   void SetParent(HWND hwndParent) const { ::SetParent(hWnd, hwndParent); }
+   void ClientToScreen(POINT & pt) const { ::ClientToScreen(hWnd, &pt); }
 
    LRESULT SendMessage(UINT msg, WPARAM wparam = 0, LPARAM lparam = 0) const
    {
@@ -81,40 +65,12 @@ public:
       return ::SendDlgItemMessage(hWnd, idChild, msg, wparam, lparam);
    }
 
-   void SetFocus() const
-   { 
-      ::SetFocus(hWnd); 
-   }
+   void SetFocus() const { ::SetFocus(hWnd); }
+   bool HasFocus() const { return ::GetFocus() == hWnd; }
+   void CaptureMouse() const { ::SetCapture(hWnd); }
 
-   bool HasFocus() const
-   {
-      return ::GetFocus() == hWnd;
-   }
-
-   void CaptureMouse() const
-   {
-      ::SetCapture(hWnd);
-   }
-
-   static void ReleaseMouse()
-   {
-      ::ReleaseCapture();
-   }
-
-   bool HasCapture() const
-   {
-      return ::GetCapture() == hWnd;
-   }
-
-   int GetTextLength() const
-   {
-      return SendMessage(WM_GETTEXTLENGTH, 0, 0);
-   }
-
-   void GetString(wchar_t* buf, int len) const
-   {
-      SendMessage(WM_GETTEXT,(WPARAM) len,(LPARAM) buf);
-   }
+   int GetTextLength() const { return SendMessage(WM_GETTEXTLENGTH, 0, 0); }
+   void GetString(wchar_t* buf, int len) const { SendMessage(WM_GETTEXT,(WPARAM) len,(LPARAM) buf); }
 
    void SetString(std::string text) const
    {
@@ -122,51 +78,20 @@ public:
       SendMessage(WM_SETTEXT, 0, reinterpret_cast<LPARAM>(wideText.c_str()));
    }
 
-   void Select() const
-   {
-      SendMessage(EM_SETSEL, 0, -1);
-   }
-
+   void Select() const { SendMessage(EM_SETSEL, 0, -1); }
    void SetFont(HFONT hFont) const
    {
       BOOL fRedraw = TRUE;
       SendMessage(WM_SETFONT, (WPARAM)hFont, MAKELPARAM(fRedraw, 0));
    }
 
-   void Show(int cmdShow = SW_SHOW) const
-   { 
-      ::ShowWindow(hWnd, cmdShow); 
-   }
-
-   void Hide() const
-   { 
-      ::ShowWindow(hWnd, SW_HIDE); 
-   }
-
-   void Update() const
-   { 
-      ::UpdateWindow(hWnd); 
-   }
-
-   virtual void Move(int x, int y, int width, int height) const
-   {
-      ::MoveWindow(hWnd, x, y, width, height, TRUE);
-   }
-
-   void MoveDelayPaint(int x, int y, int width, int height) const
-   {
-      ::MoveWindow(hWnd, x, y, width, height, FALSE);
-   }
-
-   void Invalidate() const
-   {
-      ::InvalidateRect(hWnd, 0, TRUE);
-   }
-
-   void Invalidate(RECT const & rect) const
-   {
-      ::InvalidateRect(hWnd, &rect, TRUE);
-   }
+   void Show(int cmdShow = SW_SHOW) const { ::ShowWindow(hWnd, cmdShow); }
+   void Hide() const {  ::ShowWindow(hWnd, SW_HIDE); }
+   void Update() const { ::UpdateWindow(hWnd); }
+   void Move(int x, int y, int width, int height) const { ::MoveWindow(hWnd, x, y, width, height, TRUE); }
+   void MoveDelayPaint(int x, int y, int width, int height) const { ::MoveWindow(hWnd, x, y, width, height, FALSE); }
+   void Invalidate() const { ::InvalidateRect(hWnd, 0, TRUE); }
+   void Invalidate(RECT const & rect) const { ::InvalidateRect(hWnd, &rect, TRUE); }
 
    void ForceRepaint() const
    {
@@ -174,15 +99,9 @@ public:
       Update();
    }
 
-   void Scroll(int xAmount, int yAmount) const
-   {
-      ::ScrollWindow(hWnd, xAmount, yAmount, 0, 0);
-   }
+   void Scroll(int xAmount, int yAmount) const { ::ScrollWindow(hWnd, xAmount, yAmount, 0, 0); }
 
-   void Scroll(RECT & rect, int xAmount, int yAmount) const
-   {
-      ::ScrollWindow(hWnd, xAmount, yAmount, &rect, 0);
-   }
+   void Scroll(RECT & rect, int xAmount, int yAmount) const { ::ScrollWindow(hWnd, xAmount, yAmount, &rect, 0); }
 
    RECT GetClientRect() const
    {
@@ -204,25 +123,10 @@ public:
          throw WindowsException("Internal error: Cannot attach menu.");
    }
 
-   void Enable() const
-   {
-      ::EnableWindow(hWnd, TRUE);
-   }
-
-   void Disable() const
-   {
-      ::EnableWindow(hWnd, FALSE);
-   }
-
-   void ToForeground() const
-   {
-      ::SetForegroundWindow(hWnd);     
-   }
-
-   bool IsIconic() const 
-   {
-      return ::IsIconic(hWnd) != 0;
-   }
+   void Enable() const { ::EnableWindow(hWnd, TRUE); }
+   void Disable() const { ::EnableWindow(hWnd, FALSE); }
+   void ToForeground() const { ::SetForegroundWindow(hWnd); }
+   bool IsIconic() const { return ::IsIconic(hWnd) != 0; }
 
 protected:
    void InvokeBoolFunc(std::function<BOOL(HWND)> func, std::string errorMessage);
