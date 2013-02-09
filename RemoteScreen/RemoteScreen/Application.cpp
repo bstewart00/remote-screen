@@ -19,8 +19,12 @@ int Application::Run()
 {
    Initialize();
 
-   MainWindow view(MainWindow::Create(hInstance));
-   view.Show(nCmdShow);
+   Window* view = MainWindow::Create(hInstance);
+   HWND hwnd = view->operator HWND();
+   auto test = Window::GetLongPtr<MainWindow*>(hwnd, GWLP_USERDATA);
+   view->Show(nCmdShow);
+
+   test = Window::GetLongPtr<MainWindow*>(static_cast<HWND>(*view), GWLP_USERDATA);
 
    HACCEL hAccelTable = LoadAccelerators(StringResource(IDC_REMOTESCREEN));
    MSG msg;

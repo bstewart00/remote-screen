@@ -14,6 +14,15 @@ class Window
 public:
    Window() {}
    Window(HWND hwnd) : hWnd(hwnd) {}
+   Window(const Window& obj)
+   {
+      hWnd = obj.hWnd;
+   }
+
+   virtual ~Window()
+   {
+
+   }
 
    virtual LRESULT CALLBACK ProcessMessage(UINT msg, WPARAM wParam, LPARAM lParam);
 

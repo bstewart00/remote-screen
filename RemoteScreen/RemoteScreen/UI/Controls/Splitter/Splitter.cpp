@@ -2,7 +2,7 @@
 #include "Controller.h"
 #include "../../Windows/WindowFactory.h"
 
-Window Splitter::RegisterAndCreate(Window parent, HINSTANCE hInstance)
+Window* Splitter::RegisterAndCreate(Window parent, HINSTANCE hInstance)
 {
    WindowFactory<Window> wndFactory(hInstance);
    wndFactory.SetSysCursor(IDC_SIZEWE);

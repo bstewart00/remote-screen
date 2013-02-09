@@ -25,7 +25,7 @@ public:
       wndClass.hIconSm = nullptr;
    }
 
-   TWindow Create(std::string className, int style, HWND parent = nullptr, std::string title = "",
+   TWindow* Create(std::string className, int style, HWND parent = nullptr, std::string title = "",
       int x = CW_USEDEFAULT, int y = CW_USEDEFAULT, int width = CW_USEDEFAULT, int height = CW_USEDEFAULT, HMENU menu = nullptr)
    {
       std::unique_ptr<std::wstring> wideName = StringConverter::ToWide(className);
@@ -37,7 +37,7 @@ public:
 
       std::unique_ptr<std::wstring> wideTitle = StringConverter::ToWide(title);
 
-      TWindow window;
+      TWindow* window = new TWindow();
       HWND hWnd = ::CreateWindowEx(
          0,
          wideName.get()->c_str(),
@@ -45,7 +45,7 @@ public:
          style,
          x, y, width, height,
          parent, menu, hInstance,
-         &window);
+         window);
 
       if (!hWnd)
          throw WindowsException("Window creation failed.");

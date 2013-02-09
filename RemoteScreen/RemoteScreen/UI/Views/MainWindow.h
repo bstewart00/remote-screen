@@ -7,7 +7,16 @@
 class MainWindow : public Window
 {
 public:
-   static MainWindow Create(HINSTANCE hInstance);
+   MainWindow() : Window() {}
+   MainWindow(HWND hwnd) : Window(hwnd) {}
+   MainWindow(const MainWindow& obj) : Window(obj) {}
+
+   ~MainWindow()
+   {
+
+   }
+
+   static MainWindow* Create(HINSTANCE hInstance);
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
 private:

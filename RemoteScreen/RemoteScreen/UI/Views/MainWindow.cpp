@@ -8,7 +8,7 @@
 #include "../../Utils/StringResource.h"
 #include "../../Resource.h"
 
-MainWindow MainWindow::Create(HINSTANCE hInstance)
+MainWindow* MainWindow::Create(HINSTANCE hInstance)
 {
    WindowFactory<MainWindow> factory(hInstance);
    factory.SetStyle(CS_HREDRAW | CS_VREDRAW);
