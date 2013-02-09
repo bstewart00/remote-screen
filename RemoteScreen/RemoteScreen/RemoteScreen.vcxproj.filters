@@ -21,12 +21,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Windows\Main\MainWindowController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\Windows\WindowController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Dialogs\ModalDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -72,12 +66,6 @@
     <ClInclude Include="UI\Controls\Splitter\Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Windows\ContentPane\ContentPane.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\Windows\ConfigPane\ConfigPaneController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Windows\ConfigPane\ConfigPane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -96,10 +84,10 @@
     <ClInclude Include="WindowsException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Views\MainWindowView.h">
+    <ClInclude Include="UI\Windows\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Windows\Window.h">
+    <ClInclude Include="UI\Views\MainWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -107,19 +95,10 @@
     <ClCompile Include="RemoteScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UI\Windows\Main\MainWindowController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\Windows\WindowController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UI\Dialogs\Edit\EditDialogController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Dialogs\About\AboutDialogController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\Windows\WindowFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Application.cpp">
@@ -137,12 +116,6 @@
     <ClCompile Include="UI\Windows\ConfigPane\ConfigPane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UI\Windows\ContentPane\ContentPane.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\Windows\ConfigPane\ConfigPaneController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Utils\StringConverter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -155,10 +128,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UI\Views\MainWindowView.cpp">
+    <ClCompile Include="UI\Windows\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UI\Windows\Window.cpp">
+    <ClCompile Include="UI\Views\MainWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

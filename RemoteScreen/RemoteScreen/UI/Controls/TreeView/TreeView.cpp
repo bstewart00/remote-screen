@@ -21,7 +21,7 @@ TreeView TreeView::Create(const Window& parent, HINSTANCE hInstance)
       TreeView::Initialize();
 
    RECT parentClientRect = parent.GetClientRect();
-   WindowFactory wndFactory(hInstance);
+   WindowFactory<Window> wndFactory(hInstance);
    Window window = wndFactory.Create(StringConverter::ToUtf8(WC_TREEVIEW), WS_VISIBLE | WS_CHILD | TVS_HASLINES, parent, "", 0, 0, parentClientRect.right, parentClientRect.bottom);
    window.Show();
    return TreeView(window);

@@ -3,15 +3,55 @@
 #define WINDOWFACTORY_H
 
 #include "Window.h"
+#include "../../Utils/StringConverter.h"
 
+template <class TWindow>
 class WindowFactory
 {
 public:
-   WindowFactory(HINSTANCE hInstance);
+   WindowFactory(HINSTANCE hInstance) : hInstance(hInstance)
+   {
+      wndClass.cbSize = sizeof(WNDCLASSEX);
+      wndClass.style = 0;
+      wndClass.lpfnWndProc = Window::InitialWndProc<TWindow>;
+      wndClass.cbClsExtra = 0;
+      wndClass.cbWndExtra = sizeof(Window*);
+      wndClass.hInstance = hInstance;
+      SetSysCursor(IDC_ARROW);
+      SetBgSysColor(COLOR_WINDOW);
+      wndClass.hIcon = nullptr;
+      wndClass.lpszMenuName = nullptr;
+      wndClass.lpszClassName = nullptr;
+      wndClass.hIconSm = nullptr;
+   }
 
-   Window Create(std::string className, int style, HWND parent = nullptr, std::string title = "",
-      int x = 0, int y = 0, int width = CW_USEDEFAULT, int height = CW_USEDEFAULT, HMENU menu = nullptr);
-   Window CreateDefaultChild(const Window& parent, std::string className);
+   TWindow Create(std::string className, int style, HWND parent = nullptr, std::string title = "",
+      int x = CW_USEDEFAULT, int y = CW_USEDEFAULT, int width = CW_USEDEFAULT, int height = CW_USEDEFAULT, HMENU menu = nullptr)
+   {
+      std::unique_ptr<std::wstring> wideName = StringConverter::ToWide(className);
+
+      if (!className.empty()) {
+         wndClass.lpszClassName = wideName.get()->c_str();
+         Register();
+      }
+
+      std::unique_ptr<std::wstring> wideTitle = StringConverter::ToWide(title);
+
+      TWindow window;
+      HWND hWnd = ::CreateWindowEx(
+         0,
+         wideName.get()->c_str(),
+         wideTitle.get()->c_str(),
+         style,
+         x, y, width, height,
+         parent, menu, hInstance,
+         &window);
+
+      if (!hWnd)
+         throw WindowsException("Window creation failed.");
+
+      return window;
+   }
 
    void SetBgSysColor(int sysColor) { wndClass.hbrBackground = reinterpret_cast<HBRUSH>(sysColor + 1); }
    void SetBgBrush(HBRUSH hbr) { wndClass.hbrBackground = hbr; }
@@ -35,13 +75,16 @@ public:
    }
    void SetStyle(int flags) { wndClass.style = flags; }
    void SetMenu(int resourceId) { wndClass.lpszMenuName = MAKEINTRESOURCE(resourceId); }
-   void SetClassName(std::string name) { className = name; }
-   void SetWndProc(WNDPROC wndProc) { wndClass.lpfnWndProc = wndProc; }
 
 private:
-   void Register();
+   void Register()
+   {
+      ATOM result = ::RegisterClassEx(&wndClass);
+      if(result == 0) {
+         throw WindowsException("Window class registration failure.");
+      }
+   }
 
-   std::string className;
    WNDCLASSEX wndClass;
    HINSTANCE hInstance;
 };

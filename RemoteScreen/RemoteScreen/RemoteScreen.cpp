@@ -4,7 +4,7 @@
 #include <sstream>
 #include <string>
 #include <boost/format.hpp>
-#include <boost/nowide/convert.hpp>
+#include "Utils/StringConverter.h"
 #include <stdio.h>
 #include <io.h>
 #include <fcntl.h>
@@ -39,8 +39,8 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
       return app.Run();
    } catch (WindowsException e) {
       boost::format test = boost::format("Error: %1 Win32 Error %2: %3") % e.GetMessage() % e.GetErrorCode() % e.GetFormattedMessage();
-      std::wstring message(boost::nowide::widen(test.str()));
-      ::MessageBox (0, message.c_str(), L"Exception", MB_ICONEXCLAMATION | MB_OK);
+      std::unique_ptr<std::wstring> message = StringConverter::ToWide(test.str());
+      ::MessageBox (0, message.get()->c_str(), L"Exception", MB_ICONEXCLAMATION | MB_OK);
    } catch (...) {
       ::MessageBox (0, L"Unknown Error", L"Exception", MB_ICONEXCLAMATION | MB_OK);
    }

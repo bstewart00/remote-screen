@@ -6,12 +6,42 @@
 #include <string>
 #include <functional>
 #include <boost/nowide/convert.hpp>
+#include <cassert>
 #include "../../WindowsException.h"
 
 class Window
 {
 public:
-   Window(HWND hwnd);
+   Window() {}
+   Window(HWND hwnd) : hWnd(hwnd) {}
+
+   virtual LRESULT CALLBACK ProcessMessage(UINT msg, WPARAM wParam, LPARAM lParam);
+
+   template<class TWindow>
+   static LRESULT CALLBACK InitialWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+   {
+      if (msg == WM_NCCREATE) {
+         LPCREATESTRUCT cs = reinterpret_cast<LPCREATESTRUCT>(lParam);
+         TWindow* window = reinterpret_cast<TWindow*>(cs->lpCreateParams);
+         window->hWnd = hWnd;
+         window->SetLongPtr<TWindow*>(window, GWLP_USERDATA);
+         window->SetLongPtr<WNDPROC>(Window::BoundWndProc<TWindow>, GWLP_WNDPROC);
+
+         return window->ProcessMessage(msg, wParam, lParam);
+      } else {
+         return ::DefWindowProc(hWnd, msg, wParam, lParam);
+      }
+   }
+
+   template<class TWindow>
+   static LRESULT CALLBACK BoundWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+   {
+      TWindow* w = Window::GetLongPtr<TWindow*>(hWnd, GWLP_USERDATA);
+      assert(w);
+      return w->ProcessMessage(msg, wParam, lParam);
+   }
+
+   static LRESULT CALLBACK DefaultWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
    operator HWND() const { return hWnd; }
 
@@ -25,7 +55,7 @@ public:
    }
 
    template <typename T>
-    T GetLongPtr(int index) const
+   T GetLongPtr(int index) const
    { 
       return GetLongPtr<T>(hWnd, index); 
    }

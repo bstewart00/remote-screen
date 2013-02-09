@@ -1,12 +1,18 @@
-#include "../../stdafx.h"
 #include "Window.h"
 #include "../../WindowsException.h"
 #include <string>
 #include <boost/nowide/convert.hpp>
 #include <functional>
+#include <cassert>
 
-Window::Window(HWND hwnd) : hWnd(hwnd)
+LRESULT CALLBACK Window::ProcessMessage(UINT msg, WPARAM wParam, LPARAM lParam)
 {
+   return ::DefWindowProc(hWnd, msg, wParam, lParam);
+}
+
+LRESULT CALLBACK Window::DefaultWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+   return ::DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
 void Window::Destroy()
