@@ -3,16 +3,21 @@
 #define STRINGRESOURCE_H
 
 #include "../WindowsException.h"
+#include <Windows.h>
 #include <string>
 
 class StringResource
 {
-   static const int MAX_LENGTH = 255;
 public:
-   StringResource (HINSTANCE hInst, int resId);
+   static const int MAX_LENGTH = 255;
+
+   StringResource (int resId);
+   static void SetInstance(HINSTANCE hInst);
 
    operator std::string () { return str; }
 private:
+   static HINSTANCE hInstance;
+
    std::string str;
 };
 

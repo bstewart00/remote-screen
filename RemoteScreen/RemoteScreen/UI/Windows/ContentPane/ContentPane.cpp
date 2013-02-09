@@ -9,7 +9,7 @@
 std::unique_ptr<ContentPane> ContentPane::Create(const Window& parent, HINSTANCE hInstance)
 {
    WindowFactory wndFactory(hInstance);
-   Window root = wndFactory.CreateDefaultChild(parent, StringResource(hInstance, IDC_CONTENTPANE));
+   Window root = wndFactory.CreateDefaultChild(parent, StringResource(IDC_CONTENTPANE));
    return std::unique_ptr<ContentPane>(new ContentPane(root));
 }
 

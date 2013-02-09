@@ -11,6 +11,8 @@ Application::Application(HINSTANCE hInstance, int nCmdShow)
 
 bool Application::Initialize()
 {
+   StringResource::SetInstance(hInstance);
+
    MainWindowView view(hInstance);
    view.Display(nCmdShow);
 
@@ -22,7 +24,7 @@ int Application::Run()
 
    Initialize();
 
-   HACCEL hAccelTable = LoadAccelerators(StringResource(hInstance, IDC_REMOTESCREEN));
+   HACCEL hAccelTable = LoadAccelerators(StringResource(IDC_REMOTESCREEN));
    MSG msg;
    BOOL bRet;
    while ((bRet = ::GetMessage(&msg, NULL, 0, 0)) != 0) {

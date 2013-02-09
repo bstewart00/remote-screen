@@ -18,10 +18,10 @@ Window MainWindowView::MakeWindow()
    mainWindowFactory.SetResIcons(IDI_REMOTESCREEN);
    mainWindowFactory.SetWndProc(WindowController::WndProc<MainWindowController>);
 
-   StringResource className = StringResource(hInstance, IDC_REMOTESCREEN);
+   StringResource className = StringResource(IDC_REMOTESCREEN);
    mainWindowFactory.SetClassName(className);
 
-   return mainWindowFactory.Create(className, WS_OVERLAPPEDWINDOW | WS_VISIBLE, nullptr, StringResource(hInstance, IDS_APP_TITLE), 0, 0);
+   return mainWindowFactory.Create(className, WS_OVERLAPPEDWINDOW | WS_VISIBLE, nullptr, StringResource(IDS_APP_TITLE), 0, 0);
 }
 
 void MainWindowView::Display(int nCmdShow)

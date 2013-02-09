@@ -9,7 +9,7 @@
 
 std::unique_ptr<ConfigPane> ConfigPane::Create(const Window& parent, HINSTANCE hInstance)
 {   
-   StringResource className = StringResource(hInstance, IDC_CONFIGPANE);
+   StringResource className = StringResource(IDC_CONFIGPANE);
 
    WindowFactory factory(hInstance);
    factory.SetClassName(className);

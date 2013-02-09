@@ -1,11 +1,17 @@
 #include "StringResource.h"
-#include <boost/nowide/convert.hpp>
+#include "StringConverter.h"
 
-StringResource::StringResource (HINSTANCE hInst, int resId)
+StringResource::StringResource(int resId)
 {
    wchar_t buffer[MAX_LENGTH + 1];
 
-   if (!::LoadString (hInst, resId, buffer, MAX_LENGTH + 1))
+   if (!::LoadString (hInstance, resId, buffer, MAX_LENGTH + 1))
       throw WindowsException("Failed to load string");
-   str = boost::nowide::narrow(buffer);
+   str = StringConverter::ToUtf8(buffer);
+}
+HINSTANCE StringResource::hInstance = nullptr;
+
+void StringResource::SetInstance(HINSTANCE hInst)
+{
+   hInstance = hInst;
 }

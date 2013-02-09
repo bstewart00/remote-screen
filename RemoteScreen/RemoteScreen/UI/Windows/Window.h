@@ -13,9 +13,6 @@ class Window
 public:
    Window(HWND hwnd);
 
-   void Show(int nCmdShow);
-   void Destroy();
-
    operator HWND() const { return hWnd; }
 
    bool operator==(const HWND& hwnd) const { return hWnd == hwnd; }
@@ -45,8 +42,11 @@ public:
       return this->SetLongPtr<T>(hWnd, value, index); 
    }
 
+   void Show(int nCmdShow);
+   void Destroy();
+
    HINSTANCE GetInstance() const { return GetLongPtr<HINSTANCE>(GWLP_HINSTANCE); }
-   Window GetParent() const {return ::GetParent(hWnd); }
+   Window GetParent() const { return ::GetParent(hWnd); }
    void SetParent(HWND hwndParent) const { ::SetParent(hWnd, hwndParent); }
    void ClientToScreen(POINT & pt) const { ::ClientToScreen(hWnd, &pt); }
 
