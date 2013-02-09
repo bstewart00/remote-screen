@@ -1,6 +1,6 @@
 #include "ConfigPaneController.h"
 
-ConfigPaneController::ConfigPaneController(WindowHandle window, CREATESTRUCT* createStruct)
+ConfigPaneController::ConfigPaneController(Window window, CREATESTRUCT* createStruct)
    : WindowController(window, createStruct)
 {
 }

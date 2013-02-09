@@ -3,12 +3,12 @@
 #define CONTENTPANE_H
 
 #include <memory>
-#include "../WindowHandle.h"
+#include "../Window.h"
 
-class ContentPane : public WindowHandle
+class ContentPane : public Window
 {
 public:
-   static std::unique_ptr<ContentPane> Create(const WindowHandle& parent, HINSTANCE hInstance);
+   static std::unique_ptr<ContentPane> Create(const Window& parent, HINSTANCE hInstance);
 private:
    ContentPane(HWND hwnd);
 };

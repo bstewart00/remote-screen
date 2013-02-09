@@ -2,7 +2,7 @@
 #ifndef MainWindowView_H
 #define MainWindowView_H
 
-#include "../Windows/WindowHandle.h"
+#include "../Windows/Window.h"
 #include <Windows.h>
 
 class MainWindowView
@@ -13,9 +13,9 @@ public:
    void Display(int nCmdShow);
 
 private:
-   WindowHandle MakeWindow();
+   Window MakeWindow();
 
-   WindowHandle window;
+   Window window;
    HINSTANCE hInstance;
 };
 

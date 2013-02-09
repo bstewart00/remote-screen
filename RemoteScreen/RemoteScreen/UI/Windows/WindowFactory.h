@@ -2,16 +2,16 @@
 #ifndef WINDOWFACTORY_H
 #define WINDOWFACTORY_H
 
-#include "WindowHandle.h"
+#include "Window.h"
 
 class WindowFactory
 {
 public:
    WindowFactory(HINSTANCE hInstance);
 
-   WindowHandle Create(std::string className, int style, HWND parent = nullptr, std::string title = "",
+   Window Create(std::string className, int style, HWND parent = nullptr, std::string title = "",
       int x = 0, int y = 0, int width = CW_USEDEFAULT, int height = CW_USEDEFAULT, HMENU menu = nullptr);
-   WindowHandle CreateDefaultChild(const WindowHandle& parent, std::string className);
+   Window CreateDefaultChild(const Window& parent, std::string className);
 
    void SetBgSysColor(int sysColor) { wndClass.hbrBackground = reinterpret_cast<HBRUSH>(sysColor + 1); }
    void SetBgBrush(HBRUSH hbr) { wndClass.hbrBackground = hbr; }

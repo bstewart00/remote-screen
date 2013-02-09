@@ -5,7 +5,7 @@
 #include "../ModalDialogController.h"
 #include "EditDialogViewModel.h"
 #include "../Controls.h"
-#include "../../Windows/WindowHandle.h"
+#include "../../Windows/Window.h"
 #include "../../../resource.h"
 
 class EditDialogController : public ModalDialogController

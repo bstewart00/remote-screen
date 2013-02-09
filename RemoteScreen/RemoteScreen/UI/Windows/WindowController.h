@@ -2,12 +2,12 @@
 #ifndef WINDOWCONTROLLER_H
 #define WINDOWCONTROLLER_H
 
-#include "WindowHandle.h"
+#include "Window.h"
 
 class WindowController
 {
 public:
-   WindowController(WindowHandle window, CREATESTRUCT* createStruct);
+   WindowController(Window window, CREATESTRUCT* createStruct);
 
    template<class Controller>
    static LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -15,11 +15,11 @@ public:
       Controller* controller = nullptr;
 
       if (message == WM_NCCREATE) {
-         WindowHandle window(hwnd);
+         Window window(hwnd);
          controller = new Controller(window, reinterpret_cast<CREATESTRUCT *>(lParam));
          window.SetLongPtr(controller, GWLP_USERDATA);
       } else {
-         controller = WindowHandle::GetLongPtr<Controller*>(hwnd, GWLP_USERDATA);
+         controller = Window::GetLongPtr<Controller*>(hwnd, GWLP_USERDATA);
       }
 
       LRESULT result =  controller
@@ -27,7 +27,7 @@ public:
          : ::DefWindowProc(hwnd, message, wParam, lParam);
 
       if (message == WM_DESTROY) {
-         WindowHandle::SetLongPtr(hwnd, nullptr, GWLP_USERDATA);
+         Window::SetLongPtr(hwnd, nullptr, GWLP_USERDATA);
          delete controller;
       }
 
@@ -41,7 +41,7 @@ public:
 
    virtual LRESULT ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam) = 0;
 protected:
-   WindowHandle window;
+   Window window;
 };
 
 #endif

@@ -96,9 +96,6 @@
     <ClInclude Include="WindowsException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Windows\WindowHandle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Views\MainWindowView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -156,9 +153,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\Windows\WindowHandle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Views\MainWindowView.cpp">

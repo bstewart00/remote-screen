@@ -3,11 +3,11 @@
 #define SPLITTER_H
 
 #include <string>
-#include "../../Windows/WindowHandle.h"
+#include "../../Windows/Window.h"
 
 namespace Splitter
 {
-   WindowHandle RegisterAndCreate(WindowHandle parent, HINSTANCE hInstance);
+   Window RegisterAndCreate(Window parent, HINSTANCE hInstance);
    const std::string WINDOW_CLASS_NAME = "Splitter";
    class Controller;
 };

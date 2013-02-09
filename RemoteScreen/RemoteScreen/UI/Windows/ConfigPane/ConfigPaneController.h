@@ -7,7 +7,7 @@
 class ConfigPaneController : public WindowController
 {
 public:
-   ConfigPaneController(WindowHandle window, CREATESTRUCT* createStruct);
+   ConfigPaneController(Window window, CREATESTRUCT* createStruct);
    LRESULT ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
 private:

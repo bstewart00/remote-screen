@@ -6,7 +6,7 @@
 
 namespace Splitter
 {
-   Controller::Controller(WindowHandle window, CREATESTRUCT* createStruct)
+   Controller::Controller(Window window, CREATESTRUCT* createStruct)
       : WindowController(window, createStruct), parent(createStruct->hwndParent)
    {
    }

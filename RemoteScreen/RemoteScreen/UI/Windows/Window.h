@@ -8,10 +8,10 @@
 #include <boost/nowide/convert.hpp>
 #include "../../WindowsException.h"
 
-class WindowHandle
+class Window
 {
 public:
-   WindowHandle(HWND hwnd);
+   Window(HWND hwnd);
 
    void Show(int nCmdShow);
    void Destroy();
@@ -46,7 +46,7 @@ public:
    }
 
    HINSTANCE GetInstance() const { return GetLongPtr<HINSTANCE>(GWLP_HINSTANCE); }
-   WindowHandle GetParent() const {return ::GetParent(hWnd); }
+   Window GetParent() const {return ::GetParent(hWnd); }
    void SetParent(HWND hwndParent) const { ::SetParent(hWnd, hwndParent); }
    void ClientToScreen(POINT & pt) const { ::ClientToScreen(hWnd, &pt); }
 

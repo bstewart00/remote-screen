@@ -29,11 +29,11 @@ void WindowFactory::Register()
    wndClass.lpszClassName = wideClassName.get()->c_str();
    ATOM result = ::RegisterClassEx(&wndClass);
    if(result == 0) {
-      throw WindowsException("WindowHandle class registration failure.");
+      throw WindowsException("Window class registration failure.");
    }
 }
 
-WindowHandle WindowFactory::Create(std::string className, int style, HWND parent, std::string title, int x, int y, int width, int height, HMENU menu)
+Window WindowFactory::Create(std::string className, int style, HWND parent, std::string title, int x, int y, int width, int height, HMENU menu)
 {
    if (!className.empty())
       Register();
@@ -51,12 +51,12 @@ WindowHandle WindowFactory::Create(std::string className, int style, HWND parent
       nullptr);
 
    if (!hWnd)
-      throw WindowsException("WindowHandle creation failed.");
+      throw WindowsException("Window creation failed.");
 
-   return WindowHandle(hWnd);
+   return Window(hWnd);
 }
 
-WindowHandle WindowFactory::CreateDefaultChild(const WindowHandle& parent, std::string className)
+Window WindowFactory::CreateDefaultChild(const Window& parent, std::string className)
 {
    SetWndProc(WindowController::DefaultWndProc);
    SetClassName(className);

@@ -7,7 +7,7 @@
 #include "../../../Utils/StringConverter.h"
 #include <boost/format.hpp>
 
-std::unique_ptr<ConfigPane> ConfigPane::Create(const WindowHandle& parent, HINSTANCE hInstance)
+std::unique_ptr<ConfigPane> ConfigPane::Create(const Window& parent, HINSTANCE hInstance)
 {   
    StringResource className = StringResource(hInstance, IDC_CONFIGPANE);
 
@@ -15,14 +15,14 @@ std::unique_ptr<ConfigPane> ConfigPane::Create(const WindowHandle& parent, HINST
    factory.SetClassName(className);
    factory.SetWndProc(WindowController::WndProc<ConfigPaneController>);
 
-   WindowHandle root = factory.Create(className, WS_CHILD | WS_VISIBLE, parent);
+   Window root = factory.Create(className, WS_CHILD | WS_VISIBLE, parent);
    TreeView treeview = TreeView::Create(root, hInstance);
 
    return std::unique_ptr<ConfigPane>(new ConfigPane(root, treeview));
 }
 
 ConfigPane::ConfigPane(HWND hwnd, TreeView treeview)
-   : WindowHandle(hwnd), treeview(treeview)
+   : Window(hwnd), treeview(treeview)
 {
    //AddTreeViewItems();
 }
@@ -54,6 +54,6 @@ void ConfigPane::AddTreeViewItems()
 
 void ConfigPane::Move(int x, int y, int width, int height) const
 {
-   WindowHandle::Move(x, y, width, height);
+   Window::Move(x, y, width, height);
    treeview.Move(x, y, width, height);
 }

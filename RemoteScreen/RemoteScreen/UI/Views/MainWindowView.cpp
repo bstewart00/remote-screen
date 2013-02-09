@@ -10,7 +10,7 @@ MainWindowView::MainWindowView(HINSTANCE hInstance)
 {
 }
 
-WindowHandle MainWindowView::MakeWindow()
+Window MainWindowView::MakeWindow()
 {
    WindowFactory mainWindowFactory(hInstance);
    mainWindowFactory.SetStyle(CS_HREDRAW | CS_VREDRAW);
