@@ -1,7 +1,5 @@
-#include "../../../stdafx.h"
 #include "ConfigPane.h"
 #include "../../Controls/TreeView/TreeView.h"
-#include "../WindowClass.h"
 #include "../WindowFactory.h"
 #include "ConfigPaneController.h"
 #include "../../../Resource.h"
@@ -11,14 +9,14 @@
 
 std::unique_ptr<ConfigPane> ConfigPane::Create(const WindowHandle& parent, HINSTANCE hInstance)
 {   
-   WindowClass childClass(WindowController::WndProc<ConfigPaneController>, StringResource(hInstance, IDC_CONFIGPANE), hInstance);
-   childClass.Register();
+   StringResource className = StringResource(hInstance, IDC_CONFIGPANE);
 
-   WindowFactory factory(childClass);
-   factory.AddStyle(WS_CHILD | WS_VISIBLE);
-   factory.SetParent(parent);
-   WindowHandle root = factory.Create();
-   TreeView treeview(TreeView::Create(root, hInstance));
+   WindowFactory factory(hInstance);
+   factory.SetClassName(className);
+   factory.SetWndProc(WindowController::WndProc<ConfigPaneController>);
+
+   WindowHandle root = factory.Create(className, WS_CHILD | WS_VISIBLE, parent);
+   TreeView treeview = TreeView::Create(root, hInstance);
 
    return std::unique_ptr<ConfigPane>(new ConfigPane(root, treeview));
 }

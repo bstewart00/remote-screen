@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "WindowsException.h"
 #include "Application.h"
 #include <Windows.h>

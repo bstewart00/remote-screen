@@ -4,41 +4,50 @@
 #include "../../WindowsException.h"
 #include "../../Utils/StringConverter.h"
 
-WindowFactory::WindowFactory(const WindowClass wndClass)
-    : wndClass(wndClass),
-      hWnd(nullptr),
-      exStyle(0),
-      style(WS_OVERLAPPED),
-      x(CW_USEDEFAULT),
-      y(0),
-      width(CW_USEDEFAULT),
-      height(0),
-      hWndParent(nullptr),
-      hMenu(nullptr)
+WindowFactory::WindowFactory(HINSTANCE hInstance) : hInstance(hInstance)
 {
+   wndClass.cbSize = sizeof(WNDCLASSEX);
+   wndClass.style = 0;
+   wndClass.lpfnWndProc	= nullptr;
+   wndClass.cbClsExtra = 0;
+   wndClass.cbWndExtra = 0;
+   wndClass.hInstance = hInstance;
+   SetSysCursor(IDC_ARROW);
+   SetBgSysColor(COLOR_WINDOW);
+   wndClass.hIcon = nullptr;
+   wndClass.lpszMenuName = nullptr;
+   wndClass.lpszClassName = nullptr;
+   wndClass.hIconSm = nullptr;
 }
 
-void WindowFactory::SetPosition (int x, int y, int width, int height)
+void WindowFactory::Register()
 {
-    this->x = x;
-    this->y = y;
-    this->width = width;
-    this->height = height;
+   if (!wndClass.lpfnWndProc)
+      wndClass.lpfnWndProc = WindowController::DefaultWndProc;
+
+   std::unique_ptr<std::wstring> wideClassName = StringConverter::ToWide(className);
+   wndClass.lpszClassName = wideClassName.get()->c_str();
+   ATOM result = ::RegisterClassEx(&wndClass);
+   if(result == 0) {
+      throw WindowsException("WindowHandle class registration failure.");
+   }
 }
 
-WindowHandle WindowFactory::Create()
+WindowHandle WindowFactory::Create(std::string className, int style, HWND parent, std::string title, int x, int y, int width, int height, HMENU menu)
 {
+   if (!className.empty())
+      Register();
 
-   std::unique_ptr<std::wstring> className = StringConverter::ToWide(wndClass.GetName());
-   std::unique_ptr<std::wstring> windowTitle = StringConverter::ToWide(titleCaption);
- 
-   hWnd = ::CreateWindowEx(
+   std::unique_ptr<std::wstring> wideName = StringConverter::ToWide(className);
+   std::unique_ptr<std::wstring> wideTitle = StringConverter::ToWide(title);
+
+   HWND hWnd = ::CreateWindowEx(
       0,
-      className.get()->c_str(),
-      windowTitle.get()->c_str(),
+      wideName.get()->c_str(),
+      wideTitle.get()->c_str(),
       style,
       x, y, width, height,
-      hWndParent, hMenu, wndClass.GetInstance(),
+      parent, menu, hInstance,
       nullptr);
 
    if (!hWnd)
@@ -47,38 +56,9 @@ WindowHandle WindowFactory::Create()
    return WindowHandle(hWnd);
 }
 
-WindowHandle WindowFactory::Create(HINSTANCE hInstance)
+WindowHandle WindowFactory::CreateDefaultChild(const WindowHandle& parent, std::string className)
 {
-   std::wstring className = boost::nowide::widen(wndClass.GetName());
-   std::wstring windowTitle = boost::nowide::widen(titleCaption);
- 
-   hWnd = ::CreateWindowEx(
-      0,
-      className.c_str(),
-      windowTitle.c_str(),
-      style,
-      x, y, width, height,
-      hWndParent, hMenu, hInstance,
-      nullptr);
-
-   if (!hWnd)
-      throw WindowsException("WindowFactory creation failed");
-
-   return WindowHandle(hWnd);
-}
-
-WindowHandle WindowFactory::CreateChild(const WindowHandle& parent, const WindowClass wndClass)
-{
-   WindowFactory factory(wndClass);
-   factory.AddStyle(WS_CHILD | WS_VISIBLE);
-   factory.SetParent(parent);
-   return factory.Create();
-}
-
-WindowHandle WindowFactory::CreateDefaultChild(const WindowHandle& parent, std::string className, HINSTANCE hInstance)
-{
-   WindowClass childClass(WindowController::DefaultWndProc, className, hInstance);
-   childClass.Register();
-
-   return CreateChild(parent, childClass);
+   SetWndProc(WindowController::DefaultWndProc);
+   SetClassName(className);
+   return Create(className, WS_CHILD | WS_VISIBLE, parent);
 }

@@ -1,4 +1,3 @@
-#include "../../../stdafx.h"
 #include "ConfigPaneController.h"
 
 ConfigPaneController::ConfigPaneController(WindowHandle window, CREATESTRUCT* createStruct)

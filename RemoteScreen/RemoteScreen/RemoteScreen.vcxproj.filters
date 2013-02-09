@@ -24,9 +24,6 @@
     <ClInclude Include="UI\Windows\Main\MainWindowController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Windows\WindowClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Windows\WindowController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -102,15 +99,18 @@
     <ClInclude Include="UI\Windows\WindowHandle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UI\Views\MainWindowView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Windows\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RemoteScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Windows\Main\MainWindowController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\Windows\WindowClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Windows\WindowController.cpp">
@@ -159,6 +159,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Windows\WindowHandle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Views\MainWindowView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Windows\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

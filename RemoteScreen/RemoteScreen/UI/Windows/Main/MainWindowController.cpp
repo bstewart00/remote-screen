@@ -1,4 +1,3 @@
-#include "../../../stdafx.h"
 #include "../../Controls/TreeView/TreeView.h"
 #include "MainWindowController.h"
 #include "../WindowFactory.h"
@@ -50,9 +49,9 @@ void MainWindowController::OnCreate()
 {
    HINSTANCE hInstance = window.GetInstance();
 
-   leftWin = ConfigPane::Create(window, hInstance);
-   rightWin = ContentPane::Create(window, hInstance);
-   splitter = Splitter::RegisterAndCreate(window, hInstance);
+   //leftWin = ConfigPane::Create(window, hInstance);
+   //rightWin = ContentPane::Create(window, hInstance);
+   //splitter = Splitter::RegisterAndCreate(window, hInstance);
 }
 
 LRESULT MainWindowController::OnCommand(WPARAM wParam, LPARAM lParam)

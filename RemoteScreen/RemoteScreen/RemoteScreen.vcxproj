@@ -74,6 +74,8 @@
       <StringPooling>false</StringPooling>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -110,6 +112,10 @@
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="UI\Views\MainWindowView.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="UI\Windows\ConfigPane\ConfigPaneController.h" />
     <ClInclude Include="Utils\StringConverter.h" />
     <ClInclude Include="UI\Windows\ContentPane\ContentPane.h" />
@@ -133,7 +139,6 @@
     <ClInclude Include="Utils\StringResource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="UI\Windows\WindowHandle.h" />
-    <ClInclude Include="UI\Windows\WindowClass.h" />
     <ClInclude Include="UI\Windows\WindowController.h" />
     <ClInclude Include="UI\Windows\WindowFactory.h" />
     <ClInclude Include="WindowsException.h" />
@@ -141,6 +146,10 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="UI\Views\MainWindowView.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="UI\Windows\ConfigPane\ConfigPaneController.cpp" />
     <ClCompile Include="Utils\StringConverter.cpp" />
     <ClCompile Include="UI\Windows\ContentPane\ContentPane.cpp" />
@@ -154,7 +163,6 @@
     <ClCompile Include="RemoteScreen.cpp" />
     <ClCompile Include="Utils\StringResource.cpp" />
     <ClCompile Include="UI\Windows\WindowHandle.cpp" />
-    <ClCompile Include="UI\Windows\WindowClass.cpp" />
     <ClCompile Include="UI\Windows\WindowController.cpp" />
     <ClCompile Include="UI\Windows\WindowFactory.cpp" />
     <ClCompile Include="WindowsException.cpp" />

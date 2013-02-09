@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "WindowsException.h"
 
 std::unique_ptr<WCHAR, LocalFreeDeleter<WCHAR>> WindowsException::GetFormattedMessage () const

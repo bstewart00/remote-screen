@@ -1,9 +1,7 @@
-#include "stdafx.h"
 #include "Application.h"
 #include "Utils/StringResource.h"
 #include "UI/Windows/Main/MainWindowController.h"
-#include "UI/Windows/WindowFactory.h"
-#include "UI/Windows/WindowController.h"
+#include "UI/Views/MainWindowView.h"
 #include "Resource.h"
 
 Application::Application(HINSTANCE hInstance, int nCmdShow)
@@ -13,25 +11,15 @@ Application::Application(HINSTANCE hInstance, int nCmdShow)
 
 bool Application::Initialize()
 {
-   WindowClass mainWndClass(WindowController::WndProc<MainWindowController>, StringResource(hInstance, IDC_REMOTESCREEN), hInstance);
-   mainWndClass.SetSizeRedraw();
-   mainWndClass.SetMenu(IDC_REMOTESCREEN);
-   mainWndClass.SetResIcons(IDI_REMOTESCREEN);
-   mainWndClass.Register();
-
-   WindowFactory mainWindowFactory(mainWndClass);
-   mainWindowFactory.AddStyle(WS_OVERLAPPEDWINDOW | WS_VISIBLE);
-   mainWindowFactory.SetTitle(StringResource(hInstance, IDS_APP_TITLE));
-
-   WindowHandle mainWindow(mainWindowFactory.Create());
-   mainWindow.Show(nCmdShow);
-   mainWindow.Update();
+   MainWindowView view(hInstance);
+   view.Display(nCmdShow);
 
    return true;
 }
 
 int Application::Run()
 {
+
    Initialize();
 
    HACCEL hAccelTable = LoadAccelerators(StringResource(hInstance, IDC_REMOTESCREEN));

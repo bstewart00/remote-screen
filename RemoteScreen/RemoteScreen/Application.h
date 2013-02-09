@@ -2,7 +2,6 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include "UI/Windows/WindowClass.h"
 #include "Utils/StringConverter.h"
 #include <Windows.h>
 

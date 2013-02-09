@@ -1,4 +1,3 @@
-#include "../../../stdafx.h"
 #include "Splitter.h"
 #include "Controller.h"
 #include "../../Windows/WindowController.h"
@@ -6,14 +5,10 @@
 
 WindowHandle Splitter::RegisterAndCreate(WindowHandle parent, HINSTANCE hInstance)
 {
-   WindowClass wndClass(WindowController::WndProc<Splitter::Controller>, WINDOW_CLASS_NAME, hInstance);
-   wndClass.SetSysCursor(IDC_SIZEWE);
-   wndClass.SetBgSysColor(COLOR_3DFACE);
-   wndClass.Register();
+   WindowFactory wndFactory(hInstance);
+   wndFactory.SetSysCursor(IDC_SIZEWE);
+   wndFactory.SetBgSysColor(COLOR_3DFACE);
+   wndFactory.SetWndProc(WindowController::WndProc<Splitter::Controller>);
 
-   WindowFactory wndFactory(wndClass);
-   wndFactory.AddStyle(WS_CHILD | WS_VISIBLE);
-   wndFactory.SetParent(parent);
-
-   return wndFactory.Create();
+   return wndFactory.Create(WINDOW_CLASS_NAME, WS_CHILD | WS_VISIBLE, parent);
 }
