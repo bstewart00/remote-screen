@@ -3,11 +3,12 @@
 #define SPLITTER_H
 
 #include <string>
+#include <memory>
 #include "../../Windows/Window.h"
 
 namespace Splitter
 {
-   Window* RegisterAndCreate(Window parent, HINSTANCE hInstance);
+   std::unique_ptr<Window> RegisterAndCreate(Window parent, HINSTANCE hInstance);
    const std::string WINDOW_CLASS_NAME = "Splitter";
    class Controller;
 };

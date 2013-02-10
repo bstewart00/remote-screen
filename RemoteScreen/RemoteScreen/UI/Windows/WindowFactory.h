@@ -4,6 +4,7 @@
 
 #include "Window.h"
 #include "../../Utils/StringConverter.h"
+#include <memory>
 
 template <class TWindow>
 class WindowFactory
@@ -25,7 +26,7 @@ public:
       wndClass.hIconSm = nullptr;
    }
 
-   TWindow* Create(std::string className, int style, HWND parent = nullptr, std::string title = "",
+   std::unique_ptr<TWindow> Create(std::string className, int style, HWND parent = nullptr, std::string title = "",
       int x = CW_USEDEFAULT, int y = CW_USEDEFAULT, int width = CW_USEDEFAULT, int height = CW_USEDEFAULT, HMENU menu = nullptr)
    {
       std::unique_ptr<std::wstring> wideName = StringConverter::ToWide(className);
@@ -50,7 +51,7 @@ public:
       if (!hWnd)
          throw WindowsException("Window creation failed.");
 
-      return window;
+      return std::unique_ptr<TWindow>(window);
    }
 
    void SetBgSysColor(int sysColor) { wndClass.hbrBackground = reinterpret_cast<HBRUSH>(sysColor + 1); }

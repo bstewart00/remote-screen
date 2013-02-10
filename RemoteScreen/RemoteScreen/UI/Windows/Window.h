@@ -19,10 +19,7 @@ public:
       hWnd = obj.hWnd;
    }
 
-   virtual ~Window()
-   {
-
-   }
+   virtual ~Window() {}
 
    virtual LRESULT CALLBACK ProcessMessage(UINT msg, WPARAM wParam, LPARAM lParam);
 

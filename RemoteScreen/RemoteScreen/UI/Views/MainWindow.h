@@ -3,6 +3,7 @@
 #define MainWindow_H
 
 #include "../Windows/Window.h"
+#include <memory>
 
 class MainWindow : public Window
 {
@@ -11,12 +12,7 @@ public:
    MainWindow(HWND hwnd) : Window(hwnd) {}
    MainWindow(const MainWindow& obj) : Window(obj) {}
 
-   ~MainWindow()
-   {
-
-   }
-
-   static MainWindow* Create(HINSTANCE hInstance);
+   static std::unique_ptr<MainWindow> Create(HINSTANCE hInstance);
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
 private:
