@@ -3,7 +3,10 @@
 #define MainWindow_H
 
 #include "../Windows/Window.h"
+#include "MainWindowListener.h"
 #include <memory>
+#include <functional>
+#include <vector>
 
 class MainWindow : public Window
 {
@@ -14,6 +17,11 @@ public:
 
    static std::unique_ptr<MainWindow> Create(HINSTANCE hInstance);
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
+
+   void AddListener(MainWindowListener* listener)
+   {
+      listeners.push_back(listener);
+   }
 
 private:
    void OnCreate();
@@ -27,6 +35,8 @@ private:
    std::unique_ptr<Window> leftWin;
    std::unique_ptr<Window> rightWin;
    std::unique_ptr<Window> splitter;
+
+   std::vector<MainWindowListener*> listeners;
 };
 
 #endif

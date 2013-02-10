@@ -7,6 +7,7 @@
 #include "../../CustomMessages.h"
 #include "../../Utils/StringResource.h"
 #include "../../Resource.h"
+#include <algorithm>
 
 std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
 {
@@ -60,6 +61,7 @@ LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
       ShowEditDialog();
       break;
    case IDM_EXIT:
+      std::for_each(listeners.begin(), listeners.end(), std::mem_fun(&MainWindowListener::OnExit));
       Destroy();
       break;
    default:

@@ -2,18 +2,21 @@
 #ifndef MainPresenter_H
 #define MainPresenter_H
 
-#include "../Windows/Window.h"
+#include "../Views/MainWindow.h"
+#include "../Views/MainWindowListener.h"
 #include "../../Models/Model.h"
 
-class MainPresenter
+class MainPresenter : private MainWindowListener
 {
 public:
-   MainPresenter(Window& view, Model& model);
-
-   void Display(int nCmdShow);
+   MainPresenter(MainWindow& view, Model& model);
 
 private:
-   Window& view;
+   void OnAboutDialog() const;
+   void OnEditDialog() const;
+   void OnExit() const;
+
+   MainWindow& view;
    Model& model;
 };
 

@@ -120,7 +120,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="UI\Presenters\ModalDialogPresenter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="UI\Views\MainWindow.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="UI\Views\MainWindowListener.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -155,6 +163,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="UI\Presenters\MainPresenter.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="UI\Presenters\ModalDialogPresenter.cpp">
       <SubType>
       </SubType>
     </ClCompile>
