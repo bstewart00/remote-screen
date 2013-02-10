@@ -8,6 +8,7 @@
 #include "../../Utils/StringResource.h"
 #include "../../Resource.h"
 #include <algorithm>
+#include <functional>
 
 std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
 {
@@ -55,13 +56,15 @@ LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
    int wmEvent = HIWORD(wParam);
    switch (wmId) {
    case IDM_ABOUT: 
+      NotifyListeners(&MainWindowListener::OnAbout);
       ShowAboutDialog();
       break;
    case IDM_EDIT:
+      NotifyListeners(&MainWindowListener::OnEdit);
       ShowEditDialog();
       break;
    case IDM_EXIT:
-      std::for_each(listeners.begin(), listeners.end(), std::mem_fun(&MainWindowListener::OnExit));
+      NotifyListeners(&MainWindowListener::OnExit);
       Destroy();
       break;
    default:

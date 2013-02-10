@@ -6,6 +6,7 @@
 #include "MainWindowListener.h"
 #include <memory>
 #include <functional>
+#include <algorithm>
 #include <vector>
 
 class MainWindow : public Window
@@ -24,6 +25,11 @@ public:
    }
 
 private:
+   void NotifyListeners(void(MainWindowListener::*fn)() const)
+   {
+      std::for_each(listeners.begin(), listeners.end(), std::bind(fn, std::placeholders::_1));
+   }
+
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
 

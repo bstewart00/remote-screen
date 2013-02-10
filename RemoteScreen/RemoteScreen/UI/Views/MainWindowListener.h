@@ -5,8 +5,8 @@
 class MainWindowListener
 {
 public:
-   virtual void OnAboutDialog() const = 0;
-   virtual void OnEditDialog() const = 0;
+   virtual void OnAbout() const = 0;
+   virtual void OnEdit() const = 0;
    virtual void OnExit() const = 0;
 };
 

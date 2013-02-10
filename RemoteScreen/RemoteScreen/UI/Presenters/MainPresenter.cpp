@@ -6,12 +6,12 @@ MainPresenter::MainPresenter(MainWindow& view, Model& model)
    view.AddListener(this);
 }
 
-void MainPresenter::OnAboutDialog() const
+void MainPresenter::OnAbout() const
 {
    ::MessageBox(view, L"ABOUT", L"CAPT", MB_OK);
 }
 
-void MainPresenter::OnEditDialog() const
+void MainPresenter::OnEdit() const
 {
    ::MessageBox(view, L"EDIT", L"CAPT", MB_OK);
 }

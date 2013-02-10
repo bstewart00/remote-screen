@@ -12,8 +12,8 @@ public:
    MainPresenter(MainWindow& view, Model& model);
 
 private:
-   void OnAboutDialog() const;
-   void OnEditDialog() const;
+   void OnAbout() const;
+   void OnEdit() const;
    void OnExit() const;
 
    MainWindow& view;
