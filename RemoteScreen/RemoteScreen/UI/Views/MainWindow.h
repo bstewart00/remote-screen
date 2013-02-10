@@ -23,6 +23,10 @@ private:
    void ShowEditDialog();
    void OnSize(int cx, int cy);
    void MoveSplitter(int x);
+
+   std::unique_ptr<Window> leftWin;
+   std::unique_ptr<Window> rightWin;
+   std::unique_ptr<Window> splitter;
 };
 
 #endif

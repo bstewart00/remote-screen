@@ -66,9 +66,6 @@
     <ClInclude Include="UI\Controls\Splitter\Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Windows\ConfigPane\ConfigPane.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Utils\StringResource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -88,6 +85,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UI\Views\MainWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Views\ConfigPane\ConfigPane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Presenters\MainPresenter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -113,9 +119,6 @@
     <ClCompile Include="UI\Controls\Splitter\Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UI\Windows\ConfigPane\ConfigPane.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Utils\StringConverter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -132,6 +135,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Views\MainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Views\ConfigPane\ConfigPane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Presenters\MainPresenter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

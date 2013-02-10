@@ -41,7 +41,7 @@ LRESULT CALLBACK MainWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
 
 void MainWindow::OnCreate()
 {
-   //HINSTANCE hInstance = window.GetInstance();
+   HINSTANCE hInstance = GetInstance();
 
    //leftWin = ConfigPane::Create(window, hInstance);
    //rightWin = ContentPane::Create(window, hInstance);

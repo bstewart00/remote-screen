@@ -1,6 +1,8 @@
 #include "Application.h"
 #include "Utils/StringResource.h"
 #include "UI/Views/MainWindow.h"
+#include "UI/Presenters/MainPresenter.h"
+#include "Models/Model.h"
 #include "WindowsException.h"
 #include "Resource.h"
 
@@ -20,8 +22,10 @@ int Application::Run()
 {
    Initialize();
 
+   Model model;
    std::unique_ptr<Window> view = MainWindow::Create(hInstance);
-   view->Show(nCmdShow);
+   MainPresenter presenter(*view, model);
+   presenter.Display(nCmdShow);
 
    HACCEL hAccelTable = LoadAccelerators(StringResource(IDC_REMOTESCREEN));
    MSG msg;
