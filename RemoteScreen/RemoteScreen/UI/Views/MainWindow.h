@@ -25,7 +25,7 @@ public:
       listeners.push_back(listener);
    }
 
-   ModalDialog2 CreateAboutDialog();
+   ModalDialog CreateAboutDialog();
 
 private:
    void NotifyListeners(void(MainWindowListener::*fn)() const) const

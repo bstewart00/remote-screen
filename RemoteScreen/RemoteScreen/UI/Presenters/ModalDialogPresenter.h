@@ -7,10 +7,10 @@
 class ModalDialogPresenter
 {
 public:
-   ModalDialogPresenter(const ModalDialog2& dialog);
+   ModalDialogPresenter(const ModalDialog& dialog);
 
 private:
-   const ModalDialog2& dialog;
+   const ModalDialog& dialog;
 };
 
 #endif

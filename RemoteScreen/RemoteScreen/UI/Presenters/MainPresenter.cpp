@@ -11,7 +11,7 @@ MainPresenter::MainPresenter(MainWindow& view, Model& model, HINSTANCE hInstance
 
 void MainPresenter::OnAbout() const
 {
-   ModalDialog2 dialog = view.CreateAboutDialog();
+   ModalDialog dialog = view.CreateAboutDialog();
    ModalDialogPresenter presenter(dialog);
    ModalDialogResult result = dialog.Show();
 }

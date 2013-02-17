@@ -10,10 +10,10 @@ enum class ModalDialogResult
    Ok = 1
 };
 
-class ModalDialog2
+class ModalDialog
 {
 public:
-   ModalDialog2(HINSTANCE hInstance, int resourceId, HWND parent);
+   ModalDialog(HINSTANCE hInstance, int resourceId, HWND parent);
    ModalDialogResult Show();
 
    template<class TWindow>

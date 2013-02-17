@@ -68,9 +68,9 @@ LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
    return 0;
 }
 
-ModalDialog2 MainWindow::CreateAboutDialog()
+ModalDialog MainWindow::CreateAboutDialog()
 {
-   return ModalDialog2(GetInstance(), IDD_ABOUTBOX, hWnd);
+   return ModalDialog(GetInstance(), IDD_ABOUTBOX, hWnd);
 }
 
 void MainWindow::OnSize(int cx, int cy) 
