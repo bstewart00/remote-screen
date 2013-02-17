@@ -9,7 +9,7 @@
 class MainPresenter : private MainWindowListener
 {
 public:
-   MainPresenter(MainWindow& view, Model& model);
+   MainPresenter(MainWindow& view, Model& model, HINSTANCE hInstance);
 
 private:
    void OnAbout() const;
@@ -18,6 +18,7 @@ private:
 
    MainWindow& view;
    Model& model;
+   HINSTANCE hInstance;
 };
 
 #endif

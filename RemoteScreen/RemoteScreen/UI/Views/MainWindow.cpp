@@ -1,9 +1,6 @@
 #include "MainWindow.h"
 #include "../Windows/WindowFactory.h"
-#include "../Dialogs/About/AboutDialogController.h"
 #include "../Dialogs/Edit/EditDialogController.h"
-#include "../Dialogs/ModalDialog.h"
-#include "../Dialogs/ModalDialogController.h"
 #include "../../CustomMessages.h"
 #include "../../Utils/StringResource.h"
 #include "../../Resource.h"
@@ -57,15 +54,12 @@ LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
    switch (wmId) {
    case IDM_ABOUT: 
       NotifyListeners(&MainWindowListener::OnAbout);
-      ShowAboutDialog();
       break;
    case IDM_EDIT:
       NotifyListeners(&MainWindowListener::OnEdit);
-      ShowEditDialog();
       break;
    case IDM_EXIT:
       NotifyListeners(&MainWindowListener::OnExit);
-      Destroy();
       break;
    default:
       return Window::ProcessMessage(WM_COMMAND, wParam, lParam);
@@ -74,19 +68,9 @@ LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
    return 0;
 }
 
-void MainWindow::ShowAboutDialog()
+ModalDialog2 MainWindow::CreateAboutDialog()
 {
-   HINSTANCE hInst = GetLongPtr<HINSTANCE>(GWLP_HINSTANCE);
-   DialogControllerFactory<AboutDialogController, nullptr_t> factory(nullptr);
-   ModalDialog dialog(hInst, *this, IDD_ABOUTBOX, ModalDialogController::DialogProc, &factory);
-}
-
-void MainWindow::ShowEditDialog()
-{
-   HINSTANCE hInst = GetLongPtr<HINSTANCE>(GWLP_HINSTANCE);
-   EditDialogViewModel viewModel("TEST");
-   DialogControllerFactory<EditDialogController, EditDialogViewModel> factory(&viewModel);
-   ModalDialog dialog(hInst, *this, IDD_EDIT, ModalDialogController::DialogProc, &factory);
+   return ModalDialog2(GetInstance(), IDD_ABOUTBOX, hWnd);
 }
 
 void MainWindow::OnSize(int cx, int cy) 

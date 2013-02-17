@@ -4,6 +4,7 @@
 
 #include "../Windows/Window.h"
 #include "MainWindowListener.h"
+#include "ModalDialog.h"
 #include <memory>
 #include <functional>
 #include <algorithm>
@@ -24,8 +25,10 @@ public:
       listeners.push_back(listener);
    }
 
+   ModalDialog2 CreateAboutDialog();
+
 private:
-   void NotifyListeners(void(MainWindowListener::*fn)() const)
+   void NotifyListeners(void(MainWindowListener::*fn)() const) const
    {
       std::for_each(listeners.begin(), listeners.end(), std::bind(fn, std::placeholders::_1));
    }
@@ -33,8 +36,6 @@ private:
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
 
-   void ShowAboutDialog();
-   void ShowEditDialog();
    void OnSize(int cx, int cy);
    void MoveSplitter(int x);
 

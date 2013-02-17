@@ -1,14 +1,19 @@
 #include "MainPresenter.h"
+#include "../../Resource.h"
+#include "../Views/ModalDialog.h"
+#include "ModalDialogPresenter.h"
 
-MainPresenter::MainPresenter(MainWindow& view, Model& model)
-   : view(view), model(model)
+MainPresenter::MainPresenter(MainWindow& view, Model& model, HINSTANCE hInstance)
+   : view(view), model(model), hInstance(hInstance)
 {
    view.AddListener(this);
 }
 
 void MainPresenter::OnAbout() const
 {
-   ::MessageBox(view, L"ABOUT", L"CAPT", MB_OK);
+   ModalDialog2 dialog = view.CreateAboutDialog();
+   ModalDialogPresenter presenter(dialog);
+   ModalDialogResult result = dialog.Show();
 }
 
 void MainPresenter::OnEdit() const
@@ -19,4 +24,5 @@ void MainPresenter::OnEdit() const
 void MainPresenter::OnExit() const
 {
    ::MessageBox(view, L"EXIT", L"CAPT", MB_OK);
+   view.Destroy();
 }

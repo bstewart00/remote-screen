@@ -24,7 +24,7 @@ int Application::Run()
 
    Model model;
    std::unique_ptr<MainWindow> view = MainWindow::Create(hInstance);
-   MainPresenter presenter(*view, model);
+   MainPresenter presenter(*view, model, hInstance);
    view->Show(nCmdShow);
 
    HACCEL hAccelTable = LoadAccelerators(StringResource(IDC_REMOTESCREEN));

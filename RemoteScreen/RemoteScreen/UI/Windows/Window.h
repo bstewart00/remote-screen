@@ -31,7 +31,7 @@ public:
          TWindow* window = reinterpret_cast<TWindow*>(cs->lpCreateParams);
          window->hWnd = hWnd;
          window->SetLongPtr<TWindow*>(window, GWLP_USERDATA);
-         window->SetLongPtr<WNDPROC>(Window::BoundWndProc<TWindow>, GWLP_WNDPROC);
+         window->SetLongPtr<WNDPROC>(Window::BoundWndProc<TWindow, GWLP_USERDATA>, GWLP_WNDPROC);
 
          return window->ProcessMessage(msg, wParam, lParam);
       } else {
@@ -39,10 +39,10 @@ public:
       }
    }
 
-   template<class TWindow>
+   template<class TWindow, int UserData>
    static LRESULT CALLBACK BoundWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
-      TWindow* w = Window::GetLongPtr<TWindow*>(hWnd, GWLP_USERDATA);
+      TWindow* w = Window::GetLongPtr<TWindow*>(hWnd, UserData);
       assert(w);
       return w->ProcessMessage(msg, wParam, lParam);
    }

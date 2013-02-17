@@ -1,5 +1,6 @@
 #include "ModalDialogPresenter.h"
 
-ModalDialogPresenter::ModalDialogPresenter()
+ModalDialogPresenter::ModalDialogPresenter(const ModalDialog2& dialog)
+   : dialog(dialog)
 {
 }

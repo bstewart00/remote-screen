@@ -21,19 +21,10 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Dialogs\ModalDialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Dialogs\DialogControllerFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Dialogs\ModalDialogController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Dialogs\Edit\EditDialogController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\Dialogs\About\AboutDialogController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UI\Dialogs\Edit\EditDialogViewModel.h">
@@ -102,15 +93,15 @@
     <ClInclude Include="UI\Views\MainWindowListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UI\Views\ModalDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RemoteScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Dialogs\Edit\EditDialogController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\Dialogs\About\AboutDialogController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Application.cpp">
@@ -153,6 +144,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Presenters\ModalDialogPresenter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Views\ModalDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
