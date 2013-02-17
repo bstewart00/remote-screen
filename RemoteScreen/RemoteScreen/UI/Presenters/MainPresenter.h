@@ -14,7 +14,9 @@ private:
    void OnAbout() const;
    void OnEdit() const;
    void OnExit() const;
-   void OnDestroy() const;
+   void OnClose() const;
+
+   void ConfirmExit() const;
 
    MainWindow& view;
    Model& model;

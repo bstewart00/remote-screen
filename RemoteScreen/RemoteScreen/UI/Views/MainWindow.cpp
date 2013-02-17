@@ -30,9 +30,8 @@ LRESULT CALLBACK MainWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
    case MSG_MOVESPLITTER:
       MoveSplitter(wParam);
       break;
-   case WM_DESTROY:
-      return OnDestroy(wParam, lParam);
-      break;
+   case WM_CLOSE:
+      return OnClose(wParam, lParam);
    }
 
    return Window::ProcessMessage(message, wParam, lParam);
@@ -68,9 +67,9 @@ LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
    return 0;
 }
 
-LRESULT MainWindow::OnDestroy(WPARAM wParam, LPARAM lParam)
+LRESULT MainWindow::OnClose(WPARAM wParam, LPARAM lParam)
 {
-   NotifyListeners(&MainWindowListener::OnDestroy);
+   NotifyListeners(&MainWindowListener::OnClose);
    return 0;
 }
 

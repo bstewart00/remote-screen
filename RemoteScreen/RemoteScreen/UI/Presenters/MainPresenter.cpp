@@ -19,15 +19,27 @@ void MainPresenter::OnAbout() const
 void MainPresenter::OnEdit() const
 {
    ::MessageBox(view, L"EDIT", L"CAPT", MB_OK);
+
+   // Get model
+   // Ask view to create an edit dialog
+   // View subscribes to the model for changes, then populates itself with the current values
+   // Presenter created
+   // Child presenter will handle Ok/close handling and make sure model is updated etc
 }
 
 void MainPresenter::OnExit() const
 {
-   ::MessageBox(view, L"EXIT", L"CAPT", MB_OK);
-   view.Destroy();
+   ConfirmExit();
 }
 
-void MainPresenter::OnDestroy() const
+void MainPresenter::OnClose() const
 {
-   ::PostQuitMessage(0);
+   ConfirmExit();
+}
+
+void MainPresenter::ConfirmExit() const
+{
+   int result = MessageBox(view, L"Confirm exit", L"Save unsaved changes?", MB_OKCANCEL);
+   if (result == IDOK)
+      view.Destroy();
 }
