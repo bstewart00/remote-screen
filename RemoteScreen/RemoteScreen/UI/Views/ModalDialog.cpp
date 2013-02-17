@@ -10,3 +10,25 @@ ModalDialog::Result ModalDialog::Show()
    INT_PTR result = ::DialogBoxParam(hInstance, MAKEINTRESOURCE(resourceId), parent, ModalDialog::InitialDlgProc<ModalDialog>, reinterpret_cast<LPARAM>(this));
    return static_cast<Result>(result);
 }
+
+INT_PTR CALLBACK ModalDialog::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
+{
+   switch (message) {
+   case WM_COMMAND:
+      return OnCommand(wParam, lParam);
+   }
+
+   return FALSE;
+}
+
+INT_PTR ModalDialog::OnCommand(WPARAM wParam, LPARAM lParam)
+{
+   switch (LOWORD(wParam)) 
+   { 
+   case IDOK:
+   case IDCANCEL:
+      ::EndDialog(hWnd, wParam);
+      return TRUE;
+   } 
+   return FALSE;
+}
