@@ -96,6 +96,9 @@
     <ClInclude Include="UI\Views\ModalDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UI\Views\Observable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RemoteScreen.cpp">

@@ -2,9 +2,10 @@
 #ifndef ModalDialog_H
 #define ModalDialog_H
 
+#include "../Windows/Window.h"
 #include <Windows.h>
 
-class ModalDialog
+class ModalDialog : public Window
 {
 public:
    enum class Result
@@ -17,15 +18,15 @@ public:
    ModalDialog::Result Show();
 
    template<class TWindow>
-   static LRESULT CALLBACK InitialDlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+   static INT_PTR CALLBACK InitialDlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
       if (msg == WM_INITDIALOG) {
-         TWindow* dialog = reinterpret_cast<TDialog*>(lParam);
-         dialog->hWnd = hWnd;
-         dialog->SetLongPtr<TWindow*>(window, DWLP_USER);
-         dialog->SetLongPtr<DLGPROC>(Window::BoundWndProc<TWindow, DWLP_DLGPROC>, DWLP_DLGPROC);
+         TWindow* window = reinterpret_cast<TWindow*>(lParam);
+         window->hWnd = hWnd;
+         window->SetLongPtr<TWindow*>(window, DWLP_USER);
+         window->SetLongPtr<DLGPROC>(Window::BoundWndProc<TWindow, DWLP_DLGPROC, INT_PTR>, DWLP_DLGPROC);
 
-         return dialog->ProcessMessage(msg, wParam, lParam);
+         return window->ProcessMessage(msg, wParam, lParam);
       }
       return FALSE;
    }

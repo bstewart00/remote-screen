@@ -7,7 +7,7 @@ ModalDialog::ModalDialog(HINSTANCE hInstance, int resourceId, HWND parent)
 
 ModalDialog::Result ModalDialog::Show()
 {
-   auto result = ::DialogBoxParam(hInstance, MAKEINTRESOURCE(resourceId), parent, nullptr, 0);
+   auto result = ::DialogBoxParam(hInstance, MAKEINTRESOURCE(resourceId), parent, ModalDialog::InitialDlgProc<ModalDialog>, 0);
 
    return Result::Ok;
 }

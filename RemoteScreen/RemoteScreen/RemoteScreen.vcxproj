@@ -136,6 +136,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="UI\Views\Observable.h" />
     <ClInclude Include="Utils\StringConverter.h" />
     <ClInclude Include="UI\Views\ConfigPane\ConfigPane.h" />
     <ClInclude Include="CustomMessages.h" />
