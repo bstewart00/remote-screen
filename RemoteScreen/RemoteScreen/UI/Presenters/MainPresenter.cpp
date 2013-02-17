@@ -13,7 +13,7 @@ void MainPresenter::OnAbout() const
 {
    ModalDialog dialog = view.CreateAboutDialog();
    ModalDialogPresenter presenter(dialog);
-   ModalDialogResult result = dialog.Show();
+   ModalDialog::Result result = dialog.Show();
 }
 
 void MainPresenter::OnEdit() const

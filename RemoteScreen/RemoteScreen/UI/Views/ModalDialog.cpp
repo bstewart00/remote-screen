@@ -5,9 +5,9 @@ ModalDialog::ModalDialog(HINSTANCE hInstance, int resourceId, HWND parent)
 {
 }
 
-ModalDialogResult ModalDialog::Show()
+ModalDialog::Result ModalDialog::Show()
 {
    auto result = ::DialogBoxParam(hInstance, MAKEINTRESOURCE(resourceId), parent, nullptr, 0);
 
-   return ModalDialogResult::Ok;
+   return Result::Ok;
 }

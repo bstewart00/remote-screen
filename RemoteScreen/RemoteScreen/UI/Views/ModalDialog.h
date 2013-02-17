@@ -4,17 +4,17 @@
 
 #include <Windows.h>
 
-enum class ModalDialogResult
-{
-   Cancel = 0,
-   Ok = 1
-};
-
 class ModalDialog
 {
 public:
+   enum class Result
+   {
+      Cancel = 0,
+      Ok = 1
+   };
+
    ModalDialog(HINSTANCE hInstance, int resourceId, HWND parent);
-   ModalDialogResult Show();
+   ModalDialog::Result Show();
 
    template<class TWindow>
    static LRESULT CALLBACK InitialDlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
