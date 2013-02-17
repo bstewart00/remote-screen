@@ -3,7 +3,6 @@
 #define MainPresenter_H
 
 #include "../Views/MainWindow.h"
-#include "../Views/MainWindowListener.h"
 #include "../../Models/Model.h"
 
 class MainPresenter : private MainWindowListener

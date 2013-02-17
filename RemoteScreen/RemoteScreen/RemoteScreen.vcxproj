@@ -128,10 +128,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="UI\Views\MainWindowListener.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="UI\Views\ModalDialog.h">
       <SubType>
       </SubType>

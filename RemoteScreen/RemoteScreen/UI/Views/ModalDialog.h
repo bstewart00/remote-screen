@@ -3,9 +3,17 @@
 #define ModalDialog_H
 
 #include "../Windows/Window.h"
+#include "Observable.h"
 #include <Windows.h>
 
-class ModalDialog : public Window<INT_PTR>
+class ModalDialogListener
+{
+public:
+   virtual void OnOkClicked() const = 0;
+   virtual void OnCancelClicked() const = 0;
+};
+
+class ModalDialog : public Window<INT_PTR>, public Observable<ModalDialogListener>
 {
 public:
    enum class Result
@@ -32,11 +40,6 @@ public:
       }
       return FALSE;
    }
-
-    static INT_PTR CALLBACK DefaultDlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
-    {
-       return ::DefDlgProc(hWnd, msg, wParam, lParam);
-    }
 
 private:
    INT_PTR OnCommand(WPARAM wParam, LPARAM lParam);

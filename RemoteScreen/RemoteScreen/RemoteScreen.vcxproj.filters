@@ -90,9 +90,6 @@
     <ClInclude Include="UI\Presenters\ModalDialogPresenter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Views\MainWindowListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Views\ModalDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>

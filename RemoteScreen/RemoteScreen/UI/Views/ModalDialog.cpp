@@ -26,8 +26,10 @@ INT_PTR ModalDialog::OnCommand(WPARAM wParam, LPARAM lParam)
    switch (LOWORD(wParam)) 
    { 
    case IDOK:
+      NotifyListeners(&ModalDialogListener::OnOkClicked);
+      return TRUE;
    case IDCANCEL:
-      ::EndDialog(hWnd, wParam);
+      NotifyListeners(&ModalDialogListener::OnCancelClicked);
       return TRUE;
    } 
    return FALSE;

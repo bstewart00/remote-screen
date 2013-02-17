@@ -4,12 +4,19 @@
 
 #include "Observable.h"
 #include "../Windows/Window.h"
-#include "MainWindowListener.h"
 #include "ModalDialog.h"
 #include <memory>
 #include <functional>
 #include <algorithm>
 #include <vector>
+
+class MainWindowListener
+{
+public:
+   virtual void OnAbout() const = 0;
+   virtual void OnEdit() const = 0;
+   virtual void OnExit() const = 0;
+};
 
 class MainWindow : public Window<LRESULT>, public Observable<MainWindowListener>
 {

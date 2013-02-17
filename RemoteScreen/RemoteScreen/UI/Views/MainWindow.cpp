@@ -31,7 +31,7 @@ LRESULT CALLBACK MainWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
       MoveSplitter(wParam);
       break;
    case WM_DESTROY:
-      ::PostQuitMessage(0);
+      ::PostQuitMessage(0); //TODO: Every message should be a presenter notification
       break;
    }
 

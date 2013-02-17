@@ -4,13 +4,16 @@
 
 #include "../Views/ModalDialog.h"
 
-class ModalDialogPresenter
+class ModalDialogPresenter : private ModalDialogListener
 {
 public:
-   ModalDialogPresenter(const ModalDialog& dialog);
+   ModalDialogPresenter(ModalDialog& view);
 
 private:
-   const ModalDialog& dialog;
+   void OnOkClicked() const;
+   void OnCancelClicked() const;
+
+   ModalDialog& view;
 };
 
 #endif
