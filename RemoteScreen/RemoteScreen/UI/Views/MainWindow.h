@@ -11,7 +11,7 @@
 #include <algorithm>
 #include <vector>
 
-class MainWindow : public Window, public Observable<MainWindowListener>
+class MainWindow : public Window<LRESULT>, public Observable<MainWindowListener>
 {
 public:
    MainWindow() : Window() {}
@@ -19,6 +19,7 @@ public:
    MainWindow(const MainWindow& obj) : Window(obj) {}
 
    static std::unique_ptr<MainWindow> Create(HINSTANCE hInstance);
+
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
    ModalDialog CreateAboutDialog();

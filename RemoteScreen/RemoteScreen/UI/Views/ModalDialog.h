@@ -5,7 +5,7 @@
 #include "../Windows/Window.h"
 #include <Windows.h>
 
-class ModalDialog : public Window
+class ModalDialog : public Window<INT_PTR>
 {
 public:
    enum class Result
@@ -24,7 +24,7 @@ public:
          TWindow* window = reinterpret_cast<TWindow*>(lParam);
          window->hWnd = hWnd;
          window->SetLongPtr<TWindow*>(window, DWLP_USER);
-         window->SetLongPtr<DLGPROC>(Window::BoundWndProc<TWindow, DWLP_DLGPROC, INT_PTR>, DWLP_DLGPROC);
+         window->SetLongPtr<DLGPROC>(Window::BoundWndProc<TWindow, DWLP_DLGPROC>, DWLP_DLGPROC);
 
          return window->ProcessMessage(msg, wParam, lParam);
       }

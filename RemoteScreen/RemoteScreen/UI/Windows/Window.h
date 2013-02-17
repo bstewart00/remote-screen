@@ -9,6 +9,7 @@
 #include <cassert>
 #include "../../WindowsException.h"
 
+template<class MessageResult = LRESULT>
 class Window
 {
 public:
@@ -21,17 +22,20 @@ public:
 
    virtual ~Window() {}
 
-   virtual LRESULT CALLBACK ProcessMessage(UINT msg, WPARAM wParam, LPARAM lParam);
+   virtual MessageResult CALLBACK ProcessMessage(UINT msg, WPARAM wParam, LPARAM lParam)
+   {
+      return ::DefWindowProc(hWnd, msg, wParam, lParam);
+   }
 
    template<class TWindow>
-   static LRESULT CALLBACK InitialWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+   static MessageResult CALLBACK InitialWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
       if (msg == WM_NCCREATE) {
          LPCREATESTRUCT cs = reinterpret_cast<LPCREATESTRUCT>(lParam);
          TWindow* window = reinterpret_cast<TWindow*>(cs->lpCreateParams);
          window->hWnd = hWnd;
          window->SetLongPtr<TWindow*>(window, GWLP_USERDATA);
-         window->SetLongPtr<WNDPROC>(Window::BoundWndProc<TWindow, GWLP_USERDATA, LRESULT>, GWLP_WNDPROC);
+         window->SetLongPtr<WNDPROC>(Window::BoundWndProc<TWindow, GWLP_USERDATA>, GWLP_WNDPROC);
 
          return window->ProcessMessage(msg, wParam, lParam);
       } else {
@@ -39,15 +43,18 @@ public:
       }
    }
 
-   template<class TWindow, int UserData, class TReturn>
-   static TReturn CALLBACK BoundWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+   template<class TWindow, int UserData>
+   static MessageResult CALLBACK BoundWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
       TWindow* w = Window::GetLongPtr<TWindow*>(hWnd, UserData);
       assert(w);
       return w->ProcessMessage(msg, wParam, lParam);
    }
 
-   static LRESULT CALLBACK DefaultWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+   static MessageResult CALLBACK DefaultWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+   {
+      return ::DefWindowProc(hWnd, msg, wParam, lParam);
+   }
 
    operator HWND() const { return hWnd; }
 
@@ -78,8 +85,16 @@ public:
       return this->SetLongPtr<T>(hWnd, value, index); 
    }
 
-   void Show(int nCmdShow);
-   void Destroy();
+   void Destroy()
+   {
+      InvokeBoolFunc(::DestroyWindow, "DestroyWindow failed");
+   }
+
+   void Show(int nCmdShow)
+   {
+      ::ShowWindow(hWnd, nCmdShow);
+      InvokeBoolFunc(::UpdateWindow, "UpdateWindow failed");
+   }
 
    HINSTANCE GetInstance() const { return GetLongPtr<HINSTANCE>(GWLP_HINSTANCE); }
    Window GetParent() const { return ::GetParent(hWnd); }
@@ -121,7 +136,6 @@ public:
       SendMessage(WM_SETFONT, (WPARAM)hFont, MAKELPARAM(fRedraw, 0));
    }
 
-   void Show(int cmdShow = SW_SHOW) const { ::ShowWindow(hWnd, cmdShow); }
    void Hide() const {  ::ShowWindow(hWnd, SW_HIDE); }
    void Update() const { ::UpdateWindow(hWnd); }
    void Move(int x, int y, int width, int height) const { ::MoveWindow(hWnd, x, y, width, height, TRUE); }
@@ -165,7 +179,13 @@ public:
    bool IsIconic() const { return ::IsIconic(hWnd) != 0; }
 
 protected:
-   void InvokeBoolFunc(std::function<BOOL(HWND)> func, std::string errorMessage);
+   void InvokeBoolFunc(std::function<BOOL(HWND)> func, std::string errorMessage)
+   {
+      BOOL result = func(hWnd);
+      if (result == 0) {
+         throw WindowsException(errorMessage);
+      }
+   }
    HWND hWnd;
 };
 

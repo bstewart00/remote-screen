@@ -188,7 +188,6 @@
     <ClCompile Include="UI\Dialogs\Edit\EditDialogController.cpp" />
     <ClCompile Include="RemoteScreen.cpp" />
     <ClCompile Include="Utils\StringResource.cpp" />
-    <ClCompile Include="UI\Windows\Window.cpp" />
     <ClCompile Include="WindowsException.cpp" />
   </ItemGroup>
   <ItemGroup>

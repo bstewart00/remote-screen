@@ -131,9 +131,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UI\Windows\Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UI\Views\MainWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

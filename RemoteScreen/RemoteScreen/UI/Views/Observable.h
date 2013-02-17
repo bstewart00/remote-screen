@@ -20,7 +20,8 @@ protected:
    {
       std::for_each(listeners.begin(), listeners.end(), std::bind(eventHandler, std::placeholders::_1));
    }
-
+   
+private:
    std::vector<TListener*> listeners;
 };
 

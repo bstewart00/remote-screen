@@ -14,9 +14,9 @@ public:
    {
       wndClass.cbSize = sizeof(WNDCLASSEX);
       wndClass.style = 0;
-      wndClass.lpfnWndProc = Window::InitialWndProc<TWindow>;
+      wndClass.lpfnWndProc = Window<>::InitialWndProc<TWindow>;
       wndClass.cbClsExtra = 0;
-      wndClass.cbWndExtra = sizeof(Window*);
+      wndClass.cbWndExtra = sizeof(Window<>*);
       wndClass.hInstance = hInstance;
       SetSysCursor(IDC_ARROW);
       SetBgSysColor(COLOR_WINDOW);
