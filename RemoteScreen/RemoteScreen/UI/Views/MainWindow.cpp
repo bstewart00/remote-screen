@@ -31,7 +31,7 @@ LRESULT CALLBACK MainWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
       MoveSplitter(wParam);
       break;
    case WM_DESTROY:
-      ::PostQuitMessage(0); //TODO: Every message should be a presenter notification
+      return OnDestroy(wParam, lParam);
       break;
    }
 
@@ -65,6 +65,12 @@ LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
       return Window::ProcessMessage(WM_COMMAND, wParam, lParam);
    }
 
+   return 0;
+}
+
+LRESULT MainWindow::OnDestroy(WPARAM wParam, LPARAM lParam)
+{
+   NotifyListeners(&MainWindowListener::OnDestroy);
    return 0;
 }
 

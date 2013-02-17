@@ -26,3 +26,8 @@ void MainPresenter::OnExit() const
    ::MessageBox(view, L"EXIT", L"CAPT", MB_OK);
    view.Destroy();
 }
+
+void MainPresenter::OnDestroy() const
+{
+   ::PostQuitMessage(0);
+}

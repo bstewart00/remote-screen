@@ -16,6 +16,7 @@ public:
    virtual void OnAbout() const = 0;
    virtual void OnEdit() const = 0;
    virtual void OnExit() const = 0;
+   virtual void OnDestroy() const = 0;
 };
 
 class MainWindow : public Window<LRESULT>, public Observable<MainWindowListener>
@@ -34,6 +35,7 @@ public:
 private:
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
+   LRESULT OnDestroy(WPARAM wParam, LPARAM lParam);
 
    void OnSize(int cx, int cy);
    void MoveSplitter(int x);
