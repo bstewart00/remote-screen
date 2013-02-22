@@ -5,27 +5,19 @@
 #include "Models/ApplicationSettings.h"
 #include "WindowsException.h"
 #include "Resource.h"
-#include "Persistence\AppDataSettingsProvider.h"
+#include "Persistence\ApplicationSettingsRepository.h"
 
 Application::Application(HINSTANCE hInstance, int nCmdShow)
-   : hInstance(hInstance), 
-   nCmdShow(nCmdShow), 
-   settingsProvider(std::unique_ptr<AppDataSettingsProvider>(new AppDataSettingsProvider()))
+   : hInstance(hInstance), nCmdShow(nCmdShow)
 {
-}
-
-bool Application::Initialize()
-{
-   StringResource::SetInstance(hInstance);
-
-   return true;
 }
 
 int Application::Run()
 {
-   Initialize();
+   StringResource::SetInstance(hInstance);
+   ApplicationSettingsRepository settingsRepository;
 
-   ApplicationSettings settings = settingsProvider->GetSettings();
+   ApplicationSettings settings = settingsRepository.Get();
    std::unique_ptr<MainWindow> view = MainWindow::Create(hInstance);
    MainPresenter presenter(*view, settings, hInstance);
    view->Show(nCmdShow);

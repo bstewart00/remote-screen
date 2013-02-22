@@ -112,11 +112,7 @@
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="Models\ApplicationSettings.h" />
-    <ClInclude Include="Persistence\AppDataSettingsProvider.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Persistence\ApplicationSettingsProvider.h">
+    <ClInclude Include="Persistence\ApplicationSettingsRepository.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -168,7 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Persistence\AppDataSettingsProvider.cpp">
+    <ClCompile Include="Persistence\ApplicationSettingsRepository.cpp">
       <SubType>
       </SubType>
     </ClCompile>

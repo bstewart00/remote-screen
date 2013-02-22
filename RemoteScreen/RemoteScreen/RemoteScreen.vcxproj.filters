@@ -90,13 +90,10 @@
     <ClInclude Include="UI\Views\ApplicationSettingsDataBinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Persistence\ApplicationSettingsProvider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Persistence\AppDataSettingsProvider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Utils\WindowsDeleters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Persistence\ApplicationSettingsRepository.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -149,7 +146,7 @@
     <ClCompile Include="UI\Presenters\ApplicationSettingsDialogPresenter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Persistence\AppDataSettingsProvider.cpp">
+    <ClCompile Include="Persistence\ApplicationSettingsRepository.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,7 +7,7 @@ StringResource::StringResource(int resId)
 
    if (!::LoadString (hInstance, resId, buffer, MAX_LENGTH + 1))
       throw WindowsException("Failed to load string");
-   str = StringConverter::ToUtf8(buffer);
+   buf = StringConverter::ToUtf8(buffer);
 }
 HINSTANCE StringResource::hInstance = nullptr;
 
