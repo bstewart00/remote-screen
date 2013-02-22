@@ -113,10 +113,6 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Models\ApplicationSettings.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Models\Model.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="UI\Presenters\ApplicationSettingsDialogPresenter.h">
       <SubType>
       </SubType>
@@ -161,10 +157,6 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="Models\Model.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="UI\Presenters\ApplicationSettingsDialogPresenter.cpp">
       <SubType>
       </SubType>

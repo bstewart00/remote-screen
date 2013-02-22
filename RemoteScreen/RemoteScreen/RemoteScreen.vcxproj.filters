@@ -72,9 +72,6 @@
     <ClInclude Include="UI\Presenters\MainPresenter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Models\Model.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Presenters\ModalDialogPresenter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -129,9 +126,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Presenters\MainPresenter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Models\Model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Presenters\ModalDialogPresenter.cpp">

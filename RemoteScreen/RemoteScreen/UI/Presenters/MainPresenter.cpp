@@ -5,8 +5,8 @@
 #include "ModalDialogPresenter.h"
 #include "../../Models/ApplicationSettings.h"
 
-MainPresenter::MainPresenter(MainWindow& view, Model& model, HINSTANCE hInstance)
-   : view(view), model(model), hInstance(hInstance)
+MainPresenter::MainPresenter(MainWindow& view, ApplicationSettings& settings, HINSTANCE hInstance)
+   : view(view), settings(settings), hInstance(hInstance)
 {
    view.AddListener(this);
 }
@@ -21,7 +21,6 @@ void MainPresenter::OnAbout()
 
 void MainPresenter::OnSettings()
 {
-   ApplicationSettings settings;
    ApplicationSettingsDialog dialog = view.CreateApplicationSettingsDialog();
    ApplicationSettingsDialogPresenter presenter(dialog, settings);
    ModalDialog::Result result = dialog.Show();

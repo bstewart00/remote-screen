@@ -3,12 +3,12 @@
 #define MainPresenter_H
 
 #include "../Views/MainWindow.h"
-#include "../../Models/Model.h"
+#include "../../Models/ApplicationSettings.h"
 
 class MainPresenter : private MainWindowListener
 {
 public:
-   MainPresenter(MainWindow& view, Model& model, HINSTANCE hInstance);
+   MainPresenter(MainWindow& view, ApplicationSettings& settings, HINSTANCE hInstance);
 
 private:
    void OnAbout();
@@ -19,7 +19,7 @@ private:
    void ConfirmExit() const;
 
    MainWindow& view;
-   Model& model;
+   ApplicationSettings& settings;
    HINSTANCE hInstance;
 };
 
