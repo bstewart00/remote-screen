@@ -3,7 +3,7 @@
 #define ModalDialog_H
 
 #include "../Windows/Window.h"
-#include "Observable.h"
+#include "../../Observable.h"
 #include <Windows.h>
 
 class ModalDialogListener
@@ -36,14 +36,15 @@ public:
          window->SetLongPtr<TWindow*>(window, DWLP_USER);
          window->SetLongPtr<DLGPROC>(Window::BoundWndProc<TWindow, DWLP_USER>, DWLP_DLGPROC);
 
-         return window->ProcessMessage(msg, wParam, lParam);
+         return window->OnInit(wParam, lParam);
       }
       return FALSE;
    }
 
+protected:
+   virtual INT_PTR OnCommand(WPARAM wParam, LPARAM lParam);
+   virtual INT_PTR OnInit(WPARAM wParam, LPARAM lParam);
 private:
-   INT_PTR OnCommand(WPARAM wParam, LPARAM lParam);
-
    HINSTANCE hInstance;
    int resourceId;
    HWND parent;

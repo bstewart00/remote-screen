@@ -9,7 +9,7 @@ class ModalDialogPresenter : private ModalDialogListener
 public:
    ModalDialogPresenter(ModalDialog& view);
 
-private:
+protected:
    void OnOkClicked() const;
    void OnCancelClicked() const;
 

@@ -78,6 +78,11 @@ ModalDialog MainWindow::CreateAboutDialog()
    return ModalDialog(GetInstance(), IDD_ABOUTBOX, hWnd);
 }
 
+ApplicationSettingsDialog MainWindow::CreateApplicationSettingsDialog()
+{
+   return ApplicationSettingsDialog(GetInstance(), IDD_ABOUTBOX, hWnd);
+}
+
 void MainWindow::OnSize(int cx, int cy) 
 {
    //this->cx = cx;

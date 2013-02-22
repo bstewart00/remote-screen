@@ -93,7 +93,16 @@
     <ClInclude Include="UI\Views\ModalDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Views\Observable.h">
+    <ClInclude Include="Models\ApplicationSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Views\ApplicationSettingsDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Presenters\ApplicationSettingsDialogPresenter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Observable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -144,6 +153,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Views\ModalDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Views\ApplicationSettingsDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Presenters\ApplicationSettingsDialogPresenter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

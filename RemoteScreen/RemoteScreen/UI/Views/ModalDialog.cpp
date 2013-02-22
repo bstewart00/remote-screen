@@ -21,6 +21,11 @@ INT_PTR CALLBACK ModalDialog::ProcessMessage(UINT message, WPARAM wParam, LPARAM
    return FALSE;
 }
 
+INT_PTR ModalDialog::OnInit(WPARAM wParam, LPARAM lParam)
+{
+   return FALSE;
+}
+
 INT_PTR ModalDialog::OnCommand(WPARAM wParam, LPARAM lParam)
 {
    switch (LOWORD(wParam)) 

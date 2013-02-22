@@ -2,9 +2,10 @@
 #ifndef MainWindow_H
 #define MainWindow_H
 
-#include "Observable.h"
+#include "../../Observable.h"
 #include "../Windows/Window.h"
 #include "ModalDialog.h"
+#include "ApplicationSettingsDialog.h"
 #include <memory>
 #include <functional>
 #include <algorithm>
@@ -31,6 +32,7 @@ public:
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
    ModalDialog CreateAboutDialog();
+   ApplicationSettingsDialog CreateApplicationSettingsDialog();
 
 private:
    void OnCreate();
