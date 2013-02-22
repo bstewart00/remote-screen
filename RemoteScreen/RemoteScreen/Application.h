@@ -2,8 +2,10 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
+#include "Persistence\ApplicationSettingsProvider.h"
 #include "Utils/StringConverter.h"
 #include <Windows.h>
+#include <memory>
 
 class Application
 {
@@ -18,6 +20,7 @@ public:
    }
 
 private:
+   std::unique_ptr<ApplicationSettingsProvider> settingsProvider;
    HINSTANCE hInstance;
    int nCmdShow;
 };

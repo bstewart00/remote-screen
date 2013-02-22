@@ -2,22 +2,9 @@
 #ifndef ApplicationSettingsDialog_H
 #define ApplicationSettingsDialog_H
 
+#include "ApplicationSettingsDataBinder.h"
 #include "../../Models/ApplicationSettings.h"
 #include "ModalDialog.h"
-
-class ApplicationSettingsDialog;
-
-class ApplicationSettingsDataBinder
-{
-public:
-   ApplicationSettingsDataBinder(ApplicationSettingsDialog& view, ApplicationSettings& model)
-      : view(view), model(model)
-   {
-   }
-
-   const ApplicationSettingsDialog& view;
-   const ApplicationSettings& model;
-};
 
 class ApplicationSettingsDialog : public ModalDialog, private ApplicationSettingsListener
 {

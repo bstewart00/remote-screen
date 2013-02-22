@@ -5,9 +5,12 @@
 #include "Models/ApplicationSettings.h"
 #include "WindowsException.h"
 #include "Resource.h"
+#include "Persistence\AppDataSettingsProvider.h"
 
 Application::Application(HINSTANCE hInstance, int nCmdShow)
-   : hInstance(hInstance), nCmdShow(nCmdShow)
+   : hInstance(hInstance), 
+   nCmdShow(nCmdShow), 
+   settingsProvider(std::unique_ptr<AppDataSettingsProvider>(new AppDataSettingsProvider()))
 {
 }
 
@@ -22,7 +25,7 @@ int Application::Run()
 {
    Initialize();
 
-   ApplicationSettings settings;
+   ApplicationSettings settings = settingsProvider->GetSettings();
    std::unique_ptr<MainWindow> view = MainWindow::Create(hInstance);
    MainPresenter presenter(*view, settings, hInstance);
    view->Show(nCmdShow);

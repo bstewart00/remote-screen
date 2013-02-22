@@ -1,6 +1,6 @@
 #include "WindowsException.h"
 
-std::unique_ptr<WCHAR, LocalFreeDeleter<WCHAR>> WindowsException::GetFormattedMessage () const
+std::unique_ptr<WCHAR, LocalFreeDeleter> WindowsException::GetFormattedMessage () const
 {
    LPWSTR formattedText = nullptr;
    ::FormatMessageW(
@@ -12,5 +12,5 @@ std::unique_ptr<WCHAR, LocalFreeDeleter<WCHAR>> WindowsException::GetFormattedMe
       0,
       NULL);
 
-   return std::unique_ptr<WCHAR, LocalFreeDeleter<WCHAR>>(formattedText);
+   return std::unique_ptr<WCHAR, LocalFreeDeleter>(formattedText);
 }

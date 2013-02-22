@@ -2,7 +2,7 @@
 #ifndef WINDOWSEXCEPTION_H
 #define WINDOWSEXCEPTION_H
 
-#include "Utils/LocalFreeDeleter.h"
+#include "Utils\WindowsDeleters.h"
 #include <string>
 #include <memory>
 
@@ -14,7 +14,7 @@ public:
 
    DWORD GetErrorCode() const { return errorCode; }
    const char* GetMessage () const { return message.c_str(); }
-   std::unique_ptr<WCHAR, LocalFreeDeleter<WCHAR>> GetFormattedMessage () const;
+   std::unique_ptr<WCHAR, LocalFreeDeleter> GetFormattedMessage () const;
 
 private:
    DWORD errorCode;
