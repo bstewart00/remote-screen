@@ -6,13 +6,25 @@
 
 class ApplicationSettingsListener
 {
-   virtual void OnSomeSettingChanged() const = 0;
+public:
+   virtual void OnSettingsChanged() = 0;
 };
 
 class ApplicationSettings : public Observable<ApplicationSettingsListener>
 {
 public:
-   int someSetting;
+   int someSetting() const
+   {
+      return someSetting_;
+   }
+   void someSetting(int value)
+   {
+      someSetting_ = value;
+      NotifyListeners(&ApplicationSettingsListener::OnSettingsChanged);
+   }
+
+private:
+   int someSetting_;
 };
 
 #endif

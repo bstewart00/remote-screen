@@ -9,8 +9,8 @@
 class ModalDialogListener
 {
 public:
-   virtual void OnOkClicked() const = 0;
-   virtual void OnCancelClicked() const = 0;
+   virtual void OnOkClicked() = 0;
+   virtual void OnCancelClicked() = 0;
 };
 
 class ModalDialog : public Window<INT_PTR>, public Observable<ModalDialogListener>

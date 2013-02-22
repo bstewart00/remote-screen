@@ -1,6 +1,5 @@
 #include "MainWindow.h"
 #include "../Windows/WindowFactory.h"
-#include "../Dialogs/Edit/EditDialogController.h"
 #include "../../CustomMessages.h"
 #include "../../Utils/StringResource.h"
 #include "../../Resource.h"
@@ -54,8 +53,8 @@ LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
    case IDM_ABOUT: 
       NotifyListeners(&MainWindowListener::OnAbout);
       break;
-   case IDM_EDIT:
-      NotifyListeners(&MainWindowListener::OnEdit);
+   case IDM_SETTINGS:
+      NotifyListeners(&MainWindowListener::OnSettings);
       break;
    case IDM_EXIT:
       NotifyListeners(&MainWindowListener::OnExit);
@@ -80,7 +79,7 @@ ModalDialog MainWindow::CreateAboutDialog()
 
 ApplicationSettingsDialog MainWindow::CreateApplicationSettingsDialog()
 {
-   return ApplicationSettingsDialog(GetInstance(), IDD_ABOUTBOX, hWnd);
+   return ApplicationSettingsDialog(GetInstance(), IDD_SETTINGS, hWnd);
 }
 
 void MainWindow::OnSize(int cx, int cy) 

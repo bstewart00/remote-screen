@@ -16,7 +16,7 @@ public:
    }
 
 protected:
-   void NotifyListeners(void(TListener::*eventHandler)() const) const
+   void NotifyListeners(void(TListener::*eventHandler)()) const
    {
       std::for_each(listeners.begin(), listeners.end(), std::bind(eventHandler, std::placeholders::_1));
    }

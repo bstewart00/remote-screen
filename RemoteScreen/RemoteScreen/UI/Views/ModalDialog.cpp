@@ -23,7 +23,7 @@ INT_PTR CALLBACK ModalDialog::ProcessMessage(UINT message, WPARAM wParam, LPARAM
 
 INT_PTR ModalDialog::OnInit(WPARAM wParam, LPARAM lParam)
 {
-   return FALSE;
+   return TRUE;
 }
 
 INT_PTR ModalDialog::OnCommand(WPARAM wParam, LPARAM lParam)

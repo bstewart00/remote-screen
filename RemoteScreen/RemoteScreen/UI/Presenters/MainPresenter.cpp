@@ -11,7 +11,7 @@ MainPresenter::MainPresenter(MainWindow& view, Model& model, HINSTANCE hInstance
    view.AddListener(this);
 }
 
-void MainPresenter::OnAbout() const
+void MainPresenter::OnAbout()
 {
    ModalDialog dialog = view.CreateAboutDialog();
    ModalDialogPresenter presenter(dialog);
@@ -19,21 +19,24 @@ void MainPresenter::OnAbout() const
    ModalDialog::Result result = dialog.Show();
 }
 
-void MainPresenter::OnEdit() const
+void MainPresenter::OnSettings()
 {
    ApplicationSettings settings;
    ApplicationSettingsDialog dialog = view.CreateApplicationSettingsDialog();
    ApplicationSettingsDialogPresenter presenter(dialog, settings);
-
    ModalDialog::Result result = dialog.Show();
+
+   if (result == ModalDialog::Result::Ok) {
+      // Persist app settings
+   }
 }
 
-void MainPresenter::OnExit() const
+void MainPresenter::OnExit()
 {
    ConfirmExit();
 }
 
-void MainPresenter::OnClose() const
+void MainPresenter::OnClose()
 {
    ConfirmExit();
 }

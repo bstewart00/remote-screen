@@ -10,8 +10,8 @@ public:
    ModalDialogPresenter(ModalDialog& view);
 
 protected:
-   void OnOkClicked() const;
-   void OnCancelClicked() const;
+   virtual void OnOkClicked();
+   virtual void OnCancelClicked();
 
    ModalDialog& view;
 };

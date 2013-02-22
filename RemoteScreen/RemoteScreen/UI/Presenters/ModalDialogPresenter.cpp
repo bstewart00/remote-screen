@@ -6,12 +6,12 @@ ModalDialogPresenter::ModalDialogPresenter(ModalDialog& view)
    view.AddListener(this);
 }
 
-void ModalDialogPresenter::OnOkClicked() const
+void ModalDialogPresenter::OnOkClicked()
 {
    ::EndDialog(view, TRUE);
 }
 
-void ModalDialogPresenter::OnCancelClicked() const
+void ModalDialogPresenter::OnCancelClicked()
 {
    ::EndDialog(view, FALSE);
 }

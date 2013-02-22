@@ -21,18 +21,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Dialogs\DialogControllerFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\Dialogs\Edit\EditDialogController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\Dialogs\Edit\EditDialogViewModel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\Dialogs\Controls.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CustomMessages.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -108,9 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RemoteScreen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\Dialogs\Edit\EditDialogController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Application.cpp">

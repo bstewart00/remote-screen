@@ -10,16 +10,20 @@ void ApplicationSettingsDialog::BindTo(const ApplicationSettingsDataBinder& data
    this->dataBinder = &dataBinder;
 }
 
-void ApplicationSettingsDialog::OnSomeSettingChanged() const
+void ApplicationSettingsDialog::OnSettingsChanged()
 {
-   // Get new value
+   Refresh();
+}
+
+void ApplicationSettingsDialog::Refresh()
+{
+   int newValue = dataBinder->model.someSetting();
+   //update UI
 }
 
 INT_PTR ApplicationSettingsDialog::OnInit(WPARAM wParam, LPARAM lParam)
 {
-   // We want to populate our controls with the current values of the model here, with read-only access
-   // 
-
+   Refresh();
    return ModalDialog::OnInit(wParam, lParam);
 }
 

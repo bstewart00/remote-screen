@@ -150,10 +150,6 @@
     <ClInclude Include="UI\Canvas.h" />
     <ClInclude Include="UI\CanvasTools.h" />
     <ClInclude Include="UI\Controls\Splitter\Controller.h" />
-    <ClInclude Include="UI\Dialogs\Controls.h" />
-    <ClInclude Include="UI\Dialogs\Edit\EditDialogViewModel.h" />
-    <ClInclude Include="UI\Dialogs\Edit\EditDialogController.h" />
-    <ClInclude Include="UI\Dialogs\DialogControllerFactory.h" />
     <ClInclude Include="Utils\LocalFreeDeleter.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Utils\StringResource.h" />
@@ -198,7 +194,6 @@
     <ClCompile Include="UI\Controls\Splitter\Splitter.cpp" />
     <ClCompile Include="UI\Controls\TreeView\TreeView.cpp" />
     <ClCompile Include="UI\Controls\Splitter\Controller.cpp" />
-    <ClCompile Include="UI\Dialogs\Edit\EditDialogController.cpp" />
     <ClCompile Include="RemoteScreen.cpp" />
     <ClCompile Include="Utils\StringResource.cpp" />
     <ClCompile Include="WindowsException.cpp" />

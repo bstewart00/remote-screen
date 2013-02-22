@@ -27,7 +27,8 @@ public:
    void BindTo(const ApplicationSettingsDataBinder& dataBinder);
 
 private:
-   void OnSomeSettingChanged() const;
+   void OnSettingsChanged();
+   void Refresh();
 
    const ApplicationSettingsDataBinder* dataBinder;
    INT_PTR OnInit(WPARAM wParam, LPARAM lParam);

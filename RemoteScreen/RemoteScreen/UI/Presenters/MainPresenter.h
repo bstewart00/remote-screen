@@ -11,10 +11,10 @@ public:
    MainPresenter(MainWindow& view, Model& model, HINSTANCE hInstance);
 
 private:
-   void OnAbout() const;
-   void OnEdit() const;
-   void OnExit() const;
-   void OnClose() const;
+   void OnAbout();
+   void OnSettings();
+   void OnExit();
+   void OnClose();
 
    void ConfirmExit() const;
 

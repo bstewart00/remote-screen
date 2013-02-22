@@ -14,10 +14,10 @@
 class MainWindowListener
 {
 public:
-   virtual void OnAbout() const = 0;
-   virtual void OnEdit() const = 0;
-   virtual void OnExit() const = 0;
-   virtual void OnClose() const = 0;
+   virtual void OnAbout() = 0;
+   virtual void OnSettings() = 0;
+   virtual void OnExit() = 0;
+   virtual void OnClose() = 0;
 };
 
 class MainWindow : public Window<LRESULT>, public Observable<MainWindowListener>
