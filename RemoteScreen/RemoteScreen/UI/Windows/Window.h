@@ -5,12 +5,11 @@
 #include <Windows.h>
 #include <string>
 #include <functional>
-#include <boost/noncopyable.hpp>
 #include <cassert>
 #include "../../WindowsException.h"
 
 template<class MessageResult = LRESULT>
-class Window : public boost::noncopyable
+class Window
 {
 public:
    virtual ~Window() {}

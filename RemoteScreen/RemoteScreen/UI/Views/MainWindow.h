@@ -11,7 +11,6 @@
 #include <functional>
 #include <algorithm>
 #include <vector>
-#include <boost/noncopyable.hpp>
 
 class MainWindowListener
 {
