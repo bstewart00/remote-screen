@@ -93,7 +93,7 @@ public:
    }
 
    HINSTANCE GetInstance() const { return GetLongPtr<HINSTANCE>(GWLP_HINSTANCE); }
-   Window GetParent() const { return ::GetParent(hWnd); }
+   Window<MessageResult> GetParent() const { return ::GetParent(hWnd); }
    void SetParent(HWND hwndParent) const { ::SetParent(hWnd, hwndParent); }
    void ClientToScreen(POINT & pt) const { ::ClientToScreen(hWnd, &pt); }
 
@@ -176,6 +176,7 @@ public:
 
 protected:
    Window() {}
+
    void InvokeBoolFunc(std::function<BOOL(HWND)> func, std::string errorMessage)
    {
       BOOL result = func(hWnd);
@@ -184,6 +185,8 @@ protected:
       }
    }
    HWND hWnd;
+private:
+      Window(HWND hWnd) : hWnd(hWnd) {}
 };
 
 #endif

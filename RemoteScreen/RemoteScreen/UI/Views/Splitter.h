@@ -30,8 +30,6 @@ private:
    void LButtonDrag(POINTS pt);
    void CaptureChanged();
 
-   Window parent;
-
    int splitterSize;
    int width;
    int height;

@@ -1,5 +1,6 @@
 #include "../../stdafx.h"
 #include "MainWindow.h"
+#include "ContentPane.h"
 #include "Splitter.h"
 #include "../Windows/WindowFactory.h"
 #include "../../CustomMessages.h"
@@ -44,11 +45,7 @@ void MainWindow::OnCreate()
    HINSTANCE hInstance = GetInstance();
 
    leftWin = ConfigPane::Create(hInstance, *this);
-
-   WindowFactory<Window> factory(hInstance);
-   rightWin = factory.Create("BUTTON", WS_CHILD | WS_VISIBLE, hWnd, "SomeTitle");
-
-   //rightWin = ContentPane::Create(window, hInstance);
+   rightWin = ContentPane::Create(hInstance, *this);
    splitter = Splitter::Create(hInstance, *this);
 }
 

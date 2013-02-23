@@ -58,6 +58,8 @@ void Splitter::Paint()
 void Splitter::LButtonDown(POINTS pt)
 {
    dragStarted = true;
+   
+   Window parent = GetParent();
 
    CaptureMouse();
    // Find x offset of splitter
@@ -82,6 +84,8 @@ void Splitter::LButtonDown(POINTS pt)
 void Splitter::LButtonDrag(POINTS pt)
 {
    if (dragStarted) {
+      Window parent = GetParent();
+
       // Erase previous divider and draw new one
       UpdateCanvas canvas(parent);
       ModeSetter mode(canvas, R2_NOTXORPEN);
@@ -94,6 +98,8 @@ void Splitter::LButtonDrag(POINTS pt)
 void Splitter::LButtonUp(POINTS pt)
 {
    if (dragStarted) {
+      Window parent = GetParent();
+
       dragStarted = false;
 
       ::ReleaseCapture();
@@ -103,6 +109,8 @@ void Splitter::LButtonUp(POINTS pt)
 
 void Splitter::CaptureChanged()
 {
+   Window parent = GetParent();
+
    // We are losing capture
    // End drag selection -- for whatever reason
    // Erase previous divider
