@@ -198,7 +198,7 @@
     <ClCompile Include="UI\Controls\Splitter\Splitter.cpp" />
     <ClCompile Include="UI\Controls\TreeView\TreeView.cpp" />
     <ClCompile Include="UI\Controls\Splitter\Controller.cpp" />
-    <ClCompile Include="RemoteScreen.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Utils\StringResource.cpp" />
     <ClCompile Include="WindowsException.cpp" />
   </ItemGroup>
