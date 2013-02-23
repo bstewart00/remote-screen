@@ -1,6 +1,6 @@
 #pragma once
-#ifndef WINDOWFACTORY_H
-#define WINDOWFACTORY_H
+#ifndef WindowFactory_H
+#define WindowFactory_H
 
 #include "Window.h"
 #include "../../Utils/StringConverter.h"

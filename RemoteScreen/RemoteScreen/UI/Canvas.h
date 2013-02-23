@@ -1,7 +1,8 @@
 #pragma once
-#ifndef CANVAS_H
-#define CANVAS_H
+#ifndef Canvas_H
+#define Canvas_H
 
+#include <Windows.h>
 #include "CanvasTools.h"
 
 class Canvas

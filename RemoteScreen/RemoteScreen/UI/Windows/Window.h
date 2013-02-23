@@ -5,21 +5,14 @@
 #include <Windows.h>
 #include <string>
 #include <functional>
-#include <boost/nowide/convert.hpp>
+#include <boost/noncopyable.hpp>
 #include <cassert>
 #include "../../WindowsException.h"
 
 template<class MessageResult = LRESULT>
-class Window
+class Window : public boost::noncopyable
 {
 public:
-   Window() {}
-   Window(HWND hwnd) : hWnd(hwnd) {}
-   Window(const Window& obj)
-   {
-      hWnd = obj.hWnd;
-   }
-
    virtual ~Window() {}
 
    virtual MessageResult CALLBACK ProcessMessage(UINT msg, WPARAM wParam, LPARAM lParam)
@@ -179,6 +172,7 @@ public:
    bool IsIconic() const { return ::IsIconic(hWnd) != 0; }
 
 protected:
+   Window() {}
    void InvokeBoolFunc(std::function<BOOL(HWND)> func, std::string errorMessage)
    {
       BOOL result = func(hWnd);

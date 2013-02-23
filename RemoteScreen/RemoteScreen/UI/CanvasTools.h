@@ -1,7 +1,8 @@
 #pragma once
-#ifndef CANVASTOOLS_H
-#define CANVASTOOLS_H
+#ifndef CanvasTools_H
+#define CanvasTools_H
 
+#include <Windows.h>
 
 class StockObject
 {

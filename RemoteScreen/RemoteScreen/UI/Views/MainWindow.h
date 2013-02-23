@@ -4,12 +4,14 @@
 
 #include "../../Observable.h"
 #include "../Windows/Window.h"
+#include "../Windows/WindowFactory.h"
 #include "ModalDialog.h"
 #include "ApplicationSettingsDialog.h"
 #include <memory>
 #include <functional>
 #include <algorithm>
 #include <vector>
+#include <boost/noncopyable.hpp>
 
 class MainWindowListener
 {
@@ -22,11 +24,8 @@ public:
 
 class MainWindow : public Window<LRESULT>, public Observable<MainWindowListener>
 {
+   friend class WindowFactory<MainWindow>;
 public:
-   MainWindow() : Window() {}
-   MainWindow(HWND hwnd) : Window(hwnd) {}
-   MainWindow(const MainWindow& obj) : Window(obj) {}
-
    static std::unique_ptr<MainWindow> Create(HINSTANCE hInstance);
 
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
@@ -35,6 +34,8 @@ public:
    ApplicationSettingsDialog CreateApplicationSettingsDialog();
 
 private:
+   MainWindow() : Window() {}
+
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
    LRESULT OnClose(WPARAM wParam, LPARAM lParam);
