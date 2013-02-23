@@ -1,3 +1,4 @@
+#include "../../stdafx.h"
 #include "MainWindow.h"
 #include "../Windows/WindowFactory.h"
 #include "../../CustomMessages.h"

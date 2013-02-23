@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Application.h"
 #include "Utils/StringResource.h"
 #include "UI/Views/MainWindow.h"
