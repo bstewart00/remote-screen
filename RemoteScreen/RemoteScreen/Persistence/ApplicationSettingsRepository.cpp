@@ -53,5 +53,5 @@ void ApplicationSettingsRepository::Save(const ApplicationSettings& settings)
    stream << settings.someSetting();
 
    boost::filesystem::path settingsPath = SettingsFilePath();
-   ::WritePrivateProfileString(L"SomeSetting", L"test", StringConverter::ToWide(stream.str()).get()->c_str(), settingsPath.c_str());
+   ::WritePrivateProfileString(L"SomeSetting", L"test", StringConverter::ToWide(stream.str()).c_str(), settingsPath.c_str());
 }

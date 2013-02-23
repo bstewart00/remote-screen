@@ -30,20 +30,18 @@ public:
    std::unique_ptr<TWindow> Create(std::string className, int style, HWND parent = nullptr, std::string title = "",
       int x = CW_USEDEFAULT, int y = CW_USEDEFAULT, int width = CW_USEDEFAULT, int height = CW_USEDEFAULT, HMENU menu = nullptr)
    {
-      std::unique_ptr<std::wstring> wideName = StringConverter::ToWide(className);
+      std::wstring wideName = StringConverter::ToWide(className);
 
       if (!className.empty() && !IsPredefinedClass(className)) {
-         wndClass.lpszClassName = wideName->c_str();
+         wndClass.lpszClassName = wideName.c_str();
          Register();
       }
-
-      std::unique_ptr<std::wstring> wideTitle = StringConverter::ToWide(title);
 
       TWindow* window = new TWindow();
       HWND hWnd = ::CreateWindowEx(
          0,
-         wideName->c_str(),
-         wideTitle->c_str(),
+         wideName.c_str(),
+         StringConverter::ToWide(title).c_str(),
          style,
          x, y, width, height,
          parent, menu, hInstance,

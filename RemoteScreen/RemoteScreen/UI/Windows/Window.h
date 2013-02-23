@@ -121,7 +121,7 @@ public:
 
    void SetString(std::string text) const
    {
-      std::unique_ptr<std::wstring> wideText = StringConverter::ToWide(text);
+      std::wstring wideText = StringConverter::ToWide(text);
       SendMessage(WM_SETTEXT, 0, reinterpret_cast<LPARAM>(wideText->c_str()));
    }
 

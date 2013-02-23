@@ -15,7 +15,7 @@ public:
 
    HACCEL LoadAccelerators(std::string tableName) const
    {
-      return ::LoadAccelerators(hInstance, StringConverter::ToWide(tableName).get()->c_str());
+      return ::LoadAccelerators(hInstance, StringConverter::ToWide(tableName).c_str());
    }
 
 private:

@@ -8,7 +8,7 @@
 class StringConverter
 {
 public:
-   static std::unique_ptr<std::wstring> ToWide(const std::string& str);
+   static std::wstring ToWide(const std::string& str);
    static std::string ToUtf8(const std::wstring& str);
 };
 
