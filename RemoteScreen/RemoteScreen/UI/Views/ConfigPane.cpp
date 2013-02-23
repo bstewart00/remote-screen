@@ -6,7 +6,7 @@
 std::unique_ptr<ConfigPane> ConfigPane::Create(HINSTANCE hInstance, const Window& parent)
 {
    WindowFactory<ConfigPane> factory(hInstance);
-   return factory.Create(StringResource(IDC_CONFIGPANE), WS_CHILD | WS_VISIBLE | WS_BORDER, parent, "", 0, 0, 200, 100);
+   return factory.Create(StringResource(IDC_CONFIGPANE), WS_CHILD | WS_VISIBLE, parent, "", 0, 0, 200, 100);
 }
 
 LRESULT CALLBACK ConfigPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
@@ -25,5 +25,5 @@ void ConfigPane::OnCreate()
    HINSTANCE hInstance = GetInstance();
 
    WindowFactory<Window> factory(hInstance);
-   child = factory.Create("STATIC", WS_CHILD | WS_VISIBLE | WS_BORDER, hWnd, "Some Button", 20, 20, 50, 50);
+   child = factory.Create("STATIC", WS_CHILD | WS_VISIBLE, hWnd, "Some Button", 20, 20, 50, 50);
 }

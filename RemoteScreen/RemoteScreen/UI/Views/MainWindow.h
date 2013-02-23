@@ -4,6 +4,7 @@
 
 #include "../../Observable.h"
 #include "../Windows/Window.h"
+#include "Splitter.h"
 #include "../Windows/WindowFactory.h"
 #include "ModalDialog.h"
 #include "ApplicationSettingsDialog.h"
@@ -33,7 +34,7 @@ public:
    ApplicationSettingsDialog CreateApplicationSettingsDialog();
 
 private:
-   MainWindow() : Window() {}
+   MainWindow() : Window(), splitRatioPercentage(30) {}
 
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
@@ -41,10 +42,16 @@ private:
 
    void OnSize(int cx, int cy);
    void MoveSplitter(int x);
+   int CalculateSplitterPercentage(int splitterX);
+   int CalculateSplitterX();
 
    std::unique_ptr<Window> leftWin;
    std::unique_ptr<Window> rightWin;
-   std::unique_ptr<Window> splitter;
+   std::unique_ptr<Splitter> splitter;
+
+   int width;
+   int height;
+   int splitRatioPercentage;
 };
 
 #endif

@@ -147,14 +147,16 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Observable.h" />
+    <ClInclude Include="UI\Views\Splitter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Utils\StringConverter.h" />
     <ClInclude Include="UI\Views\ConfigPane\ConfigPane.h" />
     <ClInclude Include="CustomMessages.h" />
-    <ClInclude Include="UI\Controls\Splitter\Splitter.h" />
     <ClInclude Include="UI\Controls\TreeView\TreeView.h" />
     <ClInclude Include="UI\Canvas.h" />
     <ClInclude Include="UI\CanvasTools.h" />
-    <ClInclude Include="UI\Controls\Splitter\Controller.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Utils\StringResource.h" />
     <ClInclude Include="targetver.h" />
@@ -201,11 +203,13 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="UI\Views\Splitter.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Utils\StringConverter.cpp" />
     <ClCompile Include="UI\Views\ConfigPane\ConfigPane.cpp" />
-    <ClCompile Include="UI\Controls\Splitter\Splitter.cpp" />
     <ClCompile Include="UI\Controls\TreeView\TreeView.cpp" />
-    <ClCompile Include="UI\Controls\Splitter\Controller.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Utils\StringResource.cpp" />
     <ClCompile Include="WindowsException.cpp" />
