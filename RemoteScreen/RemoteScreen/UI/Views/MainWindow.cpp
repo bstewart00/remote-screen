@@ -4,6 +4,7 @@
 #include "../../CustomMessages.h"
 #include "../../Utils/StringResource.h"
 #include "../../Resource.h"
+#include "ConfigPane.h"
 #include <algorithm>
 #include <functional>
 
@@ -13,7 +14,7 @@ std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
    factory.SetStyle(CS_HREDRAW | CS_VREDRAW);
    factory.SetMenu(IDC_REMOTESCREEN);
    factory.SetResIcons(IDI_REMOTESCREEN);
-   return factory.Create(StringResource(IDC_REMOTESCREEN), WS_OVERLAPPEDWINDOW | WS_VISIBLE, nullptr, StringResource(IDS_APP_TITLE));
+   return factory.Create(StringResource(IDC_REMOTESCREEN), WS_OVERLAPPEDWINDOW, nullptr, StringResource(IDS_APP_TITLE));
 }
 
 LRESULT CALLBACK MainWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
@@ -41,7 +42,11 @@ void MainWindow::OnCreate()
 {
    HINSTANCE hInstance = GetInstance();
 
-   //leftWin = ConfigPane::Create(window, hInstance);
+   leftWin = ConfigPane::Create(hInstance, *this);
+
+   WindowFactory<Window> factory(hInstance);
+   rightWin = factory.Create("BUTTON", WS_CHILD | WS_VISIBLE | WS_BORDER, hWnd, "SomeTitle", 50, 50, 100, 30);
+
    //rightWin = ContentPane::Create(window, hInstance);
    //splitter = Splitter::RegisterAndCreate(window, hInstance);
 }

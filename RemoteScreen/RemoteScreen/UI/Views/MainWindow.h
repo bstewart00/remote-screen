@@ -21,7 +21,7 @@ public:
    virtual void OnClose() = 0;
 };
 
-class MainWindow : public Window<LRESULT>, public Observable<MainWindowListener>
+class MainWindow : public Window<>, public Observable<MainWindowListener>
 {
    friend class WindowFactory<MainWindow>;
 public:

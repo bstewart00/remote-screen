@@ -1,10 +1,11 @@
 #pragma once
-#ifndef WINDOWSEXCEPTION_H
-#define WINDOWSEXCEPTION_H
+#ifndef WindowsException_H
+#define WindowsException_H
 
 #include "Utils\WindowsDeleters.h"
 #include <string>
 #include <memory>
+#include <Windows.h>
 
 class WindowsException
 {

@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "../../Utils/StringConverter.h"
 #include <memory>
+#include <boost/algorithm/string.hpp>
 
 template <class TWindow>
 class WindowFactory
@@ -31,8 +32,8 @@ public:
    {
       std::unique_ptr<std::wstring> wideName = StringConverter::ToWide(className);
 
-      if (!className.empty()) {
-         wndClass.lpszClassName = wideName.get()->c_str();
+      if (!className.empty() && !IsPredefinedClass(className)) {
+         wndClass.lpszClassName = wideName->c_str();
          Register();
       }
 
@@ -41,8 +42,8 @@ public:
       TWindow* window = new TWindow();
       HWND hWnd = ::CreateWindowEx(
          0,
-         wideName.get()->c_str(),
-         wideTitle.get()->c_str(),
+         wideName->c_str(),
+         wideTitle->c_str(),
          style,
          x, y, width, height,
          parent, menu, hInstance,
@@ -78,6 +79,19 @@ public:
    void SetMenu(int resourceId) { wndClass.lpszMenuName = MAKEINTRESOURCE(resourceId); }
 
 private:
+   bool IsPredefinedClass(std::string name)
+   {
+      return boost::iequals(name, "button")
+         || boost::iequals(name, "combobox") 
+         || boost::iequals(name, "edit")
+         || boost::iequals(name, "listbox")
+         || boost::iequals(name, "mdiclient")
+         || boost::iequals(name, "richedit")
+         || boost::iequals(name, "richedit_class")
+         || boost::iequals(name, "scrollbar")
+         || boost::iequals(name, "static");
+   }
+
    void Register()
    {
       ATOM result = ::RegisterClassEx(&wndClass);

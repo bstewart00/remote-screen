@@ -2,15 +2,19 @@
 #ifndef Window_H
 #define Window_H
 
+#include "WindowFactory.h"
 #include <Windows.h>
 #include <string>
 #include <functional>
 #include <cassert>
+#include "../../Utils/StringConverter.h"
 #include "../../WindowsException.h"
+#include <memory>
 
 template<class MessageResult = LRESULT>
 class Window
 {
+   friend class WindowFactory<Window>;
 public:
    virtual ~Window() {}
 
@@ -117,8 +121,8 @@ public:
 
    void SetString(std::string text) const
    {
-      std::wstring wideText = boost::nowide::widen(text);
-      SendMessage(WM_SETTEXT, 0, reinterpret_cast<LPARAM>(wideText.c_str()));
+      std::unique_ptr<std::wstring> wideText = StringConverter::ToWide(text);
+      SendMessage(WM_SETTEXT, 0, reinterpret_cast<LPARAM>(wideText->c_str()));
    }
 
    void Select() const { SendMessage(EM_SETSEL, 0, -1); }

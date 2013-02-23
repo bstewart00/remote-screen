@@ -11,7 +11,7 @@
 
 void OutOfMemoryHandler()
 {
-   throw WindowsException("Out of memory");
+   throw std::runtime_error("Out of memory");
 }
 
 #ifdef _DEBUG
@@ -19,7 +19,7 @@ void OpenDebugConsole()
 {
    AllocConsole();
 
-   HANDLE handle_out = GetStdHandle(STD_OUTPUT_HANDLE);
+   HANDLE handle_out = ::GetStdHandle(STD_OUTPUT_HANDLE);
    int hCrt = _open_osfhandle((long) handle_out, _O_TEXT);
    FILE* hf_out = _fdopen(hCrt, "w");
    setvbuf(hf_out, NULL, _IONBF, 1);
@@ -40,7 +40,10 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
    } catch (WindowsException e) {
       boost::format test = boost::format("Error: %1 Win32 Error %2: %3") % e.GetMessage() % e.GetErrorCode() % e.GetFormattedMessage();
       std::unique_ptr<std::wstring> message = StringConverter::ToWide(test.str());
-      ::MessageBox (0, message.get()->c_str(), L"Exception", MB_ICONEXCLAMATION | MB_OK);
+      ::MessageBox (0, message->c_str(), L"Exception", MB_ICONEXCLAMATION | MB_OK);
+   } catch(std::runtime_error e) {
+      std::unique_ptr<std::wstring> message = StringConverter::ToWide(e.what());
+      ::MessageBox(0, message->c_str(), L"Exception", MB_ICONEXCLAMATION | MB_OK);
    } catch (...) {
       ::MessageBox (0, L"Unknown Error", L"Exception", MB_ICONEXCLAMATION | MB_OK);
    }
