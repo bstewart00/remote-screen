@@ -2,7 +2,7 @@
 #ifndef Window_H
 #define Window_H
 
-#include "WindowFactory.h"
+#include "WindowBuilder.h"
 #include <Windows.h>
 #include <string>
 #include <functional>
@@ -14,7 +14,7 @@
 template<class MessageResult = LRESULT>
 class Window
 {
-   friend class WindowFactory<Window>;
+   friend class WindowBuilder<Window>;
 public:
    virtual ~Window() {}
 

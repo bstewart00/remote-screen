@@ -1,6 +1,6 @@
 //#include "../../../stdafx.h"
 //#include "TreeView.h"
-//#include "../../Windows/WindowFactory.h"
+//#include "../../Windows/WindowBuilder.h"
 //#include "../../../Utils/StringConverter.h"
 //#include "../../../WindowsException.h"
 //
@@ -21,7 +21,7 @@
 //      TreeView::Initialize();
 //
 //   RECT parentClientRect = parent.GetClientRect();
-//   WindowFactory<Window> wndFactory(hInstance);
+//   WindowBuilder<Window> wndFactory(hInstance);
 //   std::unique_ptr<Window> window = wndFactory.Create(StringConverter::ToUtf8(WC_TREEVIEW), WS_VISIBLE | WS_CHILD | TVS_HASLINES, parent, "", 0, 0, parentClientRect.right, parentClientRect.bottom);
 //   window->Show();
 //   return TreeView(*window);

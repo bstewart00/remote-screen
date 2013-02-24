@@ -1,6 +1,6 @@
 //#include "ConfigPane.h"
 //#include "../../Controls/TreeView/TreeView.h"
-//#include "../WindowFactory.h"
+//#include "../WindowBuilder.h"
 //#include "ConfigPaneController.h"
 //#include "../../../Resource.h"
 //#include "../../../Utils/StringResource.h"
@@ -11,7 +11,7 @@
 //{   
 //   StringResource className = StringResource(IDC_CONFIGPANE);
 //
-//   WindowFactory factory(hInstance);
+//   WindowBuilder factory(hInstance);
 //   Window root = factory.Create<Window>(className, WS_CHILD | WS_VISIBLE, parent);
 //   TreeView treeview = TreeView::Create(root, hInstance);
 //

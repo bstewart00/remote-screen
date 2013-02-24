@@ -1,6 +1,6 @@
 #pragma once
-#ifndef WindowFactory_H
-#define WindowFactory_H
+#ifndef WindowBuilder_H
+#define WindowBuilder_H
 
 #include "Window.h"
 #include "../../Utils/StringConverter.h"
@@ -8,10 +8,10 @@
 #include <boost/algorithm/string.hpp>
 
 template <class TWindow>
-class WindowFactory
+class WindowBuilder
 {
 public:
-   WindowFactory(HINSTANCE hInstance) : hInstance(hInstance)
+   WindowBuilder(HINSTANCE hInstance) : hInstance(hInstance)
    {
       parent = nullptr;
       className = "";
@@ -37,37 +37,37 @@ public:
       wndClass.hIconSm = nullptr;
    }
 
-   WindowFactory<TWindow>& ClassName(std::string className)
+   WindowBuilder<TWindow>& ClassName(std::string className)
    {
       this->className = className;
       return *this;
    }
 
-   WindowFactory<TWindow>& ClassStyle(int classStyle)
+   WindowBuilder<TWindow>& ClassStyle(int classStyle)
    {
       wndClass.style = classStyle;
       return *this;
    }
 
-   WindowFactory<TWindow>& Style(int windowStyle)
+   WindowBuilder<TWindow>& Style(int windowStyle)
    {
       this->windowStyle = windowStyle;
       return *this;
    }
 
-   WindowFactory<TWindow>& Parent(HWND parent)
+   WindowBuilder<TWindow>& Parent(HWND parent)
    {
       this->parent = parent;
       return *this;
    }
 
-   WindowFactory<TWindow>& Title(std::string title)
+   WindowBuilder<TWindow>& Title(std::string title)
    {
       this->title = title;
       return *this;
    }
 
-   WindowFactory<TWindow>& Position(int x, int y, int width, int height)
+   WindowBuilder<TWindow>& Position(int x, int y, int width, int height)
    {
       this->x = x;
       this->y = y;
@@ -76,43 +76,43 @@ public:
       return *this;
    }
 
-   WindowFactory<TWindow>& ClassMenu(int resourceId)
+   WindowBuilder<TWindow>& ClassMenu(int resourceId)
    {
       wndClass.lpszMenuName = MAKEINTRESOURCE(resourceId);
       return *this;
    }
 
-   WindowFactory<TWindow>& Menu(HMENU menu)
+   WindowBuilder<TWindow>& Menu(HMENU menu)
    {
       this->menu = menu;
       return *this;
    }
 
-   WindowFactory<TWindow>& Background(int systemColor)
+   WindowBuilder<TWindow>& Background(int systemColor)
    {
       wndClass.hbrBackground = reinterpret_cast<HBRUSH>(systemColor + 1);
       return *this;
    }
 
-   WindowFactory<TWindow>& Background(HBRUSH brush)
+   WindowBuilder<TWindow>& Background(HBRUSH brush)
    {
       wndClass.hbrBackground = brush;
       return *this;
    }
 
-   WindowFactory<TWindow>& CursorFromSystem(const wchar_t* predefinedId)
+   WindowBuilder<TWindow>& CursorFromSystem(const wchar_t* predefinedId)
    {
       wndClass.hCursor = ::LoadCursor(nullptr, predefinedId);
       return *this;
    }
 
-   WindowFactory<TWindow>& CursorFromResource(const wchar_t* resId)
+   WindowBuilder<TWindow>& CursorFromResource(const wchar_t* resId)
    {
       wndClass.hCursor = ::LoadCursor(hInstance, resId);
       return *this;
    }
 
-   WindowFactory<TWindow>& Icon(int resId)
+   WindowBuilder<TWindow>& Icon(int resId)
    {
       wndClass.hIcon = ::LoadIcon(hInstance, MAKEINTRESOURCE (resId));
       wndClass.hIconSm =(HICON)::LoadImage(

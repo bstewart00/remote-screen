@@ -165,7 +165,7 @@
     <ClInclude Include="Utils\StringResource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="UI\Windows\Window.h" />
-    <ClInclude Include="UI\Windows\WindowFactory.h" />
+    <ClInclude Include="UI\Windows\WindowBuilder.h" />
     <ClInclude Include="Utils\WindowsDeleters.h">
       <SubType>
       </SubType>

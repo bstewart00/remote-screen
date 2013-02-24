@@ -5,7 +5,7 @@
 #include "../../Observable.h"
 #include "../Windows/Window.h"
 #include "Splitter.h"
-#include "../Windows/WindowFactory.h"
+#include "../Windows/WindowBuilder.h"
 #include "ModalDialog.h"
 #include "ApplicationSettingsDialog.h"
 #include <memory>
@@ -24,7 +24,7 @@ public:
 
 class MainWindow : public Window<>, public Observable<MainWindowListener>
 {
-   friend class WindowFactory<MainWindow>;
+   friend class WindowBuilder<MainWindow>;
 public:
    static std::unique_ptr<MainWindow> Create(HINSTANCE hInstance);
 

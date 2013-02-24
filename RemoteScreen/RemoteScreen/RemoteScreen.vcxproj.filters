@@ -24,9 +24,6 @@
     <ClInclude Include="CustomMessages.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Windows\WindowFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Canvas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -97,6 +94,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UI\Views\ContentPane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Windows\WindowBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

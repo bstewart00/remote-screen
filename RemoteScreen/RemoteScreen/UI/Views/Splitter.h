@@ -3,13 +3,13 @@
 #define Splitter_H
 
 #include "../Windows/Window.h"
-#include "../Windows/WindowFactory.h"
+#include "../Windows/WindowBuilder.h"
 #include "../CanvasTools.h"
 #include <memory>
 
 class Splitter : public Window<>
 {
-   friend class WindowFactory<Splitter>;
+   friend class WindowBuilder<Splitter>;
 public:
    static std::unique_ptr<Splitter> Create(HINSTANCE hInstance, const Window& parent);
 

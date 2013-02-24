@@ -5,7 +5,7 @@
 
 std::unique_ptr<ContentPane> ContentPane::Create(HINSTANCE hInstance, const Window& parent)
 {
-   return WindowFactory<ContentPane>(hInstance)
+   return WindowBuilder<ContentPane>(hInstance)
       .ClassName(StringResource(IDC_CONTENTPANE))
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
@@ -26,7 +26,7 @@ LRESULT CALLBACK ContentPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM
 
 void ContentPane::OnCreate()
 {
-   child = WindowFactory<Window>(GetInstance())
+   child = WindowBuilder<Window>(GetInstance())
       .ClassName("STATIC")
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(*this)

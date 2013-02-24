@@ -3,12 +3,12 @@
 #define ConfigPane_H
 
 #include "../Windows/Window.h"
-#include "../Windows/WindowFactory.h"
+#include "../Windows/WindowBuilder.h"
 #include <memory>
 
 class ConfigPane : public Window<>
 {
-   friend class WindowFactory<ConfigPane>;
+   friend class WindowBuilder<ConfigPane>;
 public:
    static std::unique_ptr<ConfigPane> Create(HINSTANCE hInstance, const Window& parent);
 

@@ -7,7 +7,7 @@
 
 std::unique_ptr<Splitter> Splitter::Create(HINSTANCE hInstance, const Window& parent)
 {
-   return WindowFactory<Splitter>(hInstance)
+   return WindowBuilder<Splitter>(hInstance)
       .ClassName("Splitter")
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)

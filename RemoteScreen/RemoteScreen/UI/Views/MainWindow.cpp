@@ -2,7 +2,7 @@
 #include "MainWindow.h"
 #include "ContentPane.h"
 #include "Splitter.h"
-#include "../Windows/WindowFactory.h"
+#include "../Windows/WindowBuilder.h"
 #include "../../CustomMessages.h"
 #include "../../Utils/StringResource.h"
 #include "../../Resource.h"
@@ -12,7 +12,7 @@
 
 std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
 {
-   return WindowFactory<MainWindow>(hInstance)
+   return WindowBuilder<MainWindow>(hInstance)
       .ClassName(StringResource(IDC_REMOTESCREEN))
       .ClassStyle(CS_HREDRAW | CS_VREDRAW)
       .ClassMenu(IDC_REMOTESCREEN)

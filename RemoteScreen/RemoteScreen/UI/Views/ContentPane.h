@@ -3,12 +3,12 @@
 #define ContentPane_H
 
 #include "../Windows/Window.h"
-#include "../Windows/WindowFactory.h"
+#include "../Windows/WindowBuilder.h"
 #include <memory>
 
 class ContentPane : public Window<>
 {
-   friend class WindowFactory<ContentPane>;
+   friend class WindowBuilder<ContentPane>;
 public:
    static std::unique_ptr<ContentPane> Create(HINSTANCE hInstance, const Window& parent);
 

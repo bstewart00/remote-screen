@@ -5,7 +5,7 @@
 
 std::unique_ptr<ConfigPane> ConfigPane::Create(HINSTANCE hInstance, const Window& parent)
 {
-   return WindowFactory<ConfigPane>(hInstance)
+   return WindowBuilder<ConfigPane>(hInstance)
       .ClassName(StringResource(IDC_CONFIGPANE))
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
@@ -26,7 +26,7 @@ LRESULT CALLBACK ConfigPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
 
 void ConfigPane::OnCreate()
 {
-   child = WindowFactory<Window>(GetInstance())
+   child = WindowBuilder<Window>(GetInstance())
       .ClassName("STATIC")
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(*this)
