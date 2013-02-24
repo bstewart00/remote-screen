@@ -27,7 +27,7 @@ private:
    std::unique_ptr<TreeView> treeview;
    std::vector<DISPLAY_DEVICE> display_devices;
 
-   std::unique_ptr<Window> child;
+   std::unique_ptr<SystemWindow> child;
 };
 
 #endif

@@ -7,8 +7,9 @@
 #include "../../Utils/StringConverter.h"
 #include <memory>
 #include <boost/algorithm/string.hpp>
+#include <Windows.h>
 
-template <class TWindow>
+template <class TWindow = Window<>>
 class WindowBuilder : public SystemWindowBuilder<TWindow>
 {
 public:

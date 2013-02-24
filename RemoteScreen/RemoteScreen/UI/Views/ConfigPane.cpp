@@ -29,7 +29,7 @@ LRESULT CALLBACK ConfigPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
 
 void ConfigPane::OnCreate()
 {
-   child = SystemWindowBuilder<Window>(GetInstance())
+   child = SystemWindowBuilder<>(GetInstance())
       .ClassName("STATIC")
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(*this)

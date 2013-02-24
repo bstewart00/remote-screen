@@ -17,7 +17,7 @@ void TreeView::Initialize()
    TreeView::initialized = true;
 }
 
-std::unique_ptr<TreeView> TreeView::Create(HINSTANCE hInstance, const Window& parent)
+std::unique_ptr<TreeView> TreeView::Create(HINSTANCE hInstance, const Window<>& parent)
 {
    if (!TreeView::initialized)
       TreeView::Initialize();

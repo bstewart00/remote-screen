@@ -99,6 +99,9 @@
     <ClInclude Include="UI\Windows\SystemWindowBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UI\Windows\SystemWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">

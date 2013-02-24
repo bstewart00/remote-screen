@@ -159,6 +159,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="UI\Windows\SystemWindow.h" />
     <ClInclude Include="UI\Windows\SystemWindowBuilder.h">
       <SubType>
       </SubType>

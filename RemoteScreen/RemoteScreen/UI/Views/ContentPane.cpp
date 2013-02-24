@@ -28,7 +28,7 @@ LRESULT CALLBACK ContentPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM
 
 void ContentPane::OnCreate()
 {
-   child = SystemWindowBuilder<Window>(GetInstance())
+   child = SystemWindowBuilder<>(GetInstance())
       .ClassName("STATIC")
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(*this)

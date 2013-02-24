@@ -3,21 +3,22 @@
 #define TreeView_H
 
 #include "../Windows/Window.h"
+#include "../Windows/SystemWindow.h"
 #include "../Windows/SystemWindowBuilder.h"
 #include <Windows.h>
 #include <vector>
 #include <string>
 #include <memory>
 
-class TreeView : public Window<>
+class TreeView : public SystemWindow
 {
    friend class SystemWindowBuilder<TreeView>;
 public:
-   static std::unique_ptr<TreeView> Create(HINSTANCE hInstance, const Window& parent);
+   static std::unique_ptr<TreeView> Create(HINSTANCE hInstance, const Window<>& parent);
 
    void AddItem(const std::string text);
 private:
-   TreeView(const wchar_t* classAtom) : Window(classAtom) {}
+   TreeView(const wchar_t* classAtom) : SystemWindow(classAtom) {}
 
    static bool initialized;
    static void Initialize();

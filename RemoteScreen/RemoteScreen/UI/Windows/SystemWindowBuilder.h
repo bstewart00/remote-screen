@@ -2,12 +2,14 @@
 #ifndef SystemWindowBuilder_H
 #define SystemWindowBuilder_H
 
-#include "Window.h"
+#include "SystemWindow.h"
 #include "../../Utils/StringConverter.h"
+#include "../../WindowsException.h"
+#include <string>
 #include <memory>
-#include <boost/algorithm/string.hpp>
+#include <Windows.h>
 
-template <class TWindow>
+template<class TWindow = SystemWindow>
 class SystemWindowBuilder
 {
 public:

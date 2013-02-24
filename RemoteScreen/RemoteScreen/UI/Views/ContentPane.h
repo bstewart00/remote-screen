@@ -21,7 +21,7 @@ private:
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
 
-   std::unique_ptr<Window> child;
+   std::unique_ptr<SystemWindow> child;
 };
 
 #endif
