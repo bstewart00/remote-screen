@@ -150,6 +150,12 @@ public:
       return Create(new TWindow(arg1, arg2));
    }
 
+   template<class T1, class T2, class T3>
+   std::unique_ptr<TWindow> Create(T1 arg1, T2 arg2, T3 arg3)
+   {
+      return Create(new TWindow(arg1, arg2, arg3));
+   }
+
 private:
    std::unique_ptr<TWindow> Create(TWindow* window)
    {

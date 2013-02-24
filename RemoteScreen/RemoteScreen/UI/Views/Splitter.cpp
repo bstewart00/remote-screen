@@ -5,7 +5,7 @@
 #include "../Canvas.h"
 #include "../../CustomMessages.h"
 
-std::unique_ptr<Splitter> Splitter::Create(HINSTANCE hInstance, const Window& parent)
+std::unique_ptr<Splitter> Splitter::Create(HINSTANCE hInstance, const Window& parent, int splitterSize)
 {
    return WindowBuilder<Splitter>(hInstance)
       .ClassName("Splitter")
@@ -14,7 +14,7 @@ std::unique_ptr<Splitter> Splitter::Create(HINSTANCE hInstance, const Window& pa
       .CursorFromSystem(IDC_SIZEWE)
       .Background(COLOR_3DFACE)
       .Register()
-      .Create();
+      .Create(splitterSize);
 }
 
 LRESULT CALLBACK Splitter::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)

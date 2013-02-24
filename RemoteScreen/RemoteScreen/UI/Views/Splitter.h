@@ -12,13 +12,13 @@ class Splitter : public Window<>
 {
    friend class WindowBuilder<Splitter>;
 public:
-   static std::unique_ptr<Splitter> Create(HINSTANCE hInstance, const Window& parent);
+   static std::unique_ptr<Splitter> Create(HINSTANCE hInstance, const Window& parent, int splitterSize = 8);
 
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
    int GetSize() const { return splitterSize; }
 
 private:
-   Splitter() : Window(), splitterSize(8) {}
+   Splitter(int splitterSize) : Window(), splitterSize(splitterSize) {}
 
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);

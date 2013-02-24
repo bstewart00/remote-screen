@@ -102,6 +102,9 @@
     <ClInclude Include="UI\Windows\SystemWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UI\Views\SplitWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -153,6 +156,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Views\TreeView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Views\SplitWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -20,7 +20,7 @@ std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance, int splitter
       .Icon(IDI_REMOTESCREEN)
       .Title(StringResource(IDS_APP_TITLE))
       .Register()
-      .Create<int>(splitterPercentage);
+      .Create(splitterPercentage);
 }
 
 LRESULT CALLBACK MainWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
@@ -73,11 +73,9 @@ LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
    case MSG_MOVESPLITTER:
       MoveSplitter(wParam);
       return 0;
-   default:
-      return Window::ProcessMessage(WM_COMMAND, wParam, lParam);
    }
 
-   return 0;
+   return Window::ProcessMessage(WM_COMMAND, wParam, lParam);
 }
 
 LRESULT MainWindow::OnClose(WPARAM wParam, LPARAM lParam)
