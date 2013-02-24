@@ -27,7 +27,7 @@ class MainWindow : public Window<>, public Observable<MainWindowListener>
 {
    friend class WindowBuilder<MainWindow>;
 public:
-   static std::unique_ptr<MainWindow> Create(HINSTANCE hInstance);
+   static std::unique_ptr<MainWindow> Create(HINSTANCE hInstance, int splitterPercentage);
 
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -35,7 +35,7 @@ public:
    ApplicationSettingsDialog CreateApplicationSettingsDialog();
 
 private:
-   MainWindow() : Window(), splitRatioPercentage(30) {}
+   MainWindow(int splitterPercentage) : Window(), splitRatioPercentage(splitterPercentage) {}
 
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);

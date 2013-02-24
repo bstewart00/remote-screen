@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <functional>
 
-std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
+std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance, int splitterPercentage)
 {
    return WindowBuilder<MainWindow>(hInstance)
       .ClassName(StringResource(IDC_REMOTESCREEN))
@@ -20,7 +20,7 @@ std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
       .Icon(IDI_REMOTESCREEN)
       .Title(StringResource(IDS_APP_TITLE))
       .Register()
-      .Create();
+      .Create<int>(splitterPercentage);
 }
 
 LRESULT CALLBACK MainWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)

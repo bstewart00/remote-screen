@@ -135,7 +135,24 @@ public:
 
    std::unique_ptr<TWindow> Create()
    {
-      TWindow* window = new TWindow();
+      return Create(new TWindow());
+   }
+
+   template<class T1>
+   std::unique_ptr<TWindow> Create(T1 arg1)
+   {
+      return Create(new TWindow(arg1));
+   }
+
+   template<class T1, class T2>
+   std::unique_ptr<TWindow> Create(T1 arg1, T2 arg2)
+   {
+      return Create(new TWindow(arg1, arg2));
+   }
+
+private:
+   std::unique_ptr<TWindow> Create(TWindow* window)
+   {
       HWND hWnd = ::CreateWindowEx(
          0,
          StringConverter::ToWide(className).c_str(),
@@ -147,11 +164,9 @@ public:
 
       if (!hWnd)
          throw WindowsException("Window creation failed.");
-
       return std::unique_ptr<TWindow>(window);
    }
 
-private:
    WNDCLASSEX wndClass;
 };
 
