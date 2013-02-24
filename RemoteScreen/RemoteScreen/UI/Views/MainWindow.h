@@ -3,9 +3,9 @@
 #define MainWindow_H
 
 #include "../../Observable.h"
-#include "../Windows/Window.h"
+#include "Win32Framework/Windows/Window.h"
 #include "SplitWindow.h"
-#include "../Windows/WindowBuilder.h"
+#include "Win32Framework/Windows/WindowBuilder.h"
 #include "ModalDialog.h"
 #include "ApplicationSettingsDialog.h"
 #include <memory>

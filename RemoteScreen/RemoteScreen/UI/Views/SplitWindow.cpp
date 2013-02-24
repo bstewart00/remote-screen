@@ -1,7 +1,7 @@
 #include "../../stdafx.h"
 #include "SplitWindow.h"
 #include "Splitter.h"
-#include "../Windows/WindowBuilder.h"
+#include "Win32Framework/Windows/WindowBuilder.h"
 #include "../../CustomMessages.h"
 
 std::unique_ptr<SplitWindow> SplitWindow::Create(HINSTANCE hInstance, const Window& parent, std::unique_ptr<Window>&& left, std::unique_ptr<Window>&& right, int splitterPercentage)

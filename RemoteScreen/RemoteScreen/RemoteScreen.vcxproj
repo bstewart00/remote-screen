@@ -76,6 +76,7 @@
       <BrowseInformation>true</BrowseInformation>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>".."</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -244,6 +245,11 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="RemoteScreen.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Win32Framework\Win32Framework.vcxproj">
+      <Project>{195b869f-2812-4f79-a06d-3e69db7c95c0}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

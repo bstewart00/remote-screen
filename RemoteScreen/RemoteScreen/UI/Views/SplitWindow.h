@@ -2,9 +2,9 @@
 #ifndef SplitWindow_H
 #define SplitWindow_H
 
-#include "../Windows/Window.h"
+#include "Win32Framework/Windows/Window.h"
 #include "Splitter.h"
-#include "../Windows/WindowBuilder.h"
+#include "Win32Framework/Windows/WindowBuilder.h"
 #include <memory>
 #include <Windows.h>
 

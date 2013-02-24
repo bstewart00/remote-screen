@@ -2,8 +2,8 @@
 #ifndef ConfigPane_H
 #define ConfigPane_H
 
-#include "../Windows/Window.h"
-#include "../Windows/WindowBuilder.h"
+#include "Win32Framework/Windows/Window.h"
+#include "Win32Framework/Windows/WindowBuilder.h"
 #include "TreeView.h"
 #include <memory>
 #include <Windows.h>

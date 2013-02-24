@@ -2,7 +2,7 @@
 #include "MainWindow.h"
 #include "ContentPane.h"
 #include "Splitter.h"
-#include "../Windows/WindowBuilder.h"
+#include "Win32Framework/Windows/WindowBuilder.h"
 #include "../../CustomMessages.h"
 #include "../../Utils/StringResource.h"
 #include "../../Resource.h"

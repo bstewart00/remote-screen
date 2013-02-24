@@ -1,6 +1,6 @@
 #include "../../stdafx.h"
 #include "ContentPane.h"
-#include "../Windows/SystemWindowBuilder.h"
+#include "Win32Framework/Windows/SystemWindowBuilder.h"
 #include "../../Utils/StringResource.h"
 #include "../../resource.h"
 
