@@ -74,10 +74,11 @@
       <StringPooling>false</StringPooling>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <BrowseInformation>true</BrowseInformation>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
       <AdditionalIncludeDirectories>..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(ProjectName)$(TargetName).pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -164,7 +165,9 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="UI\Presenters\ApplicationSettingsDialogPresenter.cpp">
       <SubType>
       </SubType>
