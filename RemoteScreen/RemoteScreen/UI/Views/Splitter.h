@@ -6,6 +6,7 @@
 #include "../Windows/WindowBuilder.h"
 #include "../CanvasTools.h"
 #include <memory>
+#include <Windows.h>
 
 class Splitter : public Window<>
 {

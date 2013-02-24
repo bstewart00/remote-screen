@@ -12,6 +12,7 @@
 #include <functional>
 #include <algorithm>
 #include <vector>
+#include <Windows.h>
 
 class MainWindowListener
 {

@@ -5,6 +5,7 @@
 #include "../Windows/Window.h"
 #include "../Windows/WindowBuilder.h"
 #include <memory>
+#include <Windows.h>
 
 class ContentPane : public Window<>
 {

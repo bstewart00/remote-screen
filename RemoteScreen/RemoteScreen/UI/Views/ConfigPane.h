@@ -4,7 +4,10 @@
 
 #include "../Windows/Window.h"
 #include "../Windows/WindowBuilder.h"
+#include "TreeView.h"
 #include <memory>
+#include <Windows.h>
+#include <vector>
 
 class ConfigPane : public Window<>
 {
@@ -19,6 +22,10 @@ private:
 
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
+
+   void AddTreeViewItems();
+   std::unique_ptr<TreeView> treeview;
+   std::vector<DISPLAY_DEVICE> display_devices;
 
    std::unique_ptr<Window> child;
 };
@@ -42,9 +49,7 @@ private:
 //
 //private:
 //   ConfigPane(HWND hwnd, TreeView treeview);
-//   void AddTreeViewItems();
-//   TreeView treeview;
-//   std::vector<DISPLAY_DEVICE> display_devices;
+
 //};
 //
 //#endif

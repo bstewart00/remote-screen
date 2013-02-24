@@ -155,9 +155,12 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="UI\Views\TreeView.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Utils\StringConverter.h" />
     <ClInclude Include="CustomMessages.h" />
-    <ClInclude Include="UI\Controls\TreeView\TreeView.h" />
     <ClInclude Include="UI\Canvas.h" />
     <ClInclude Include="UI\CanvasTools.h" />
     <ClInclude Include="Resource.h" />
@@ -214,8 +217,11 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="UI\Views\TreeView.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Utils\StringConverter.cpp" />
-    <ClCompile Include="UI\Controls\TreeView\TreeView.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Utils\StringResource.cpp" />
     <ClCompile Include="WindowsException.cpp" />

@@ -10,6 +10,7 @@ std::unique_ptr<ContentPane> ContentPane::Create(HINSTANCE hInstance, const Wind
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
       .Position(0, 0, 200, 100)
+      .Register()
       .Create();
 }
 
@@ -32,5 +33,5 @@ void ContentPane::OnCreate()
       .Parent(*this)
       .Title("Some Button")
       .Position(20, 20, 50, 50)
-      .Create();
+      .Create2();
 }

@@ -19,6 +19,7 @@ std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
       .Style(WS_OVERLAPPEDWINDOW)
       .Icon(IDI_REMOTESCREEN)
       .Title(StringResource(IDS_APP_TITLE))
+      .Register()
       .Create();
 }
 

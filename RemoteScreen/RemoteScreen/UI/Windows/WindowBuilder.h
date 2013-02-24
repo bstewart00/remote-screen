@@ -22,6 +22,7 @@ public:
       height = CW_USEDEFAULT;
       windowStyle = 0;
       menu = nullptr;
+      registeredClass = 0;
 
       wndClass.cbSize = sizeof(WNDCLASSEX);
       wndClass.style = 0;
@@ -41,6 +42,11 @@ public:
    {
       this->className = className;
       return *this;
+   }
+
+   WindowBuilder<TWindow>& ClassName(const wchar_t* systemClassName)
+   {
+      return ClassName(StringConverter::ToUtf8(systemClassName));
    }
 
    WindowBuilder<TWindow>& ClassStyle(int classStyle)
@@ -126,16 +132,21 @@ public:
       return *this;
    }
 
+   WindowBuilder<TWindow>& Register()
+   {
+      std::wstring wideName = StringConverter::ToWide(className);
+      wndClass.lpszClassName = wideName.c_str();
+      registeredClass = ::RegisterClassEx(&wndClass);
+      if(registeredClass == 0) {
+         throw WindowsException("Window class registration failure.");
+      }
+
+      return *this;
+   }
+
    std::unique_ptr<TWindow> Create()
    {
       std::wstring wideName = StringConverter::ToWide(className);
-
-      ATOM registeredClass = 0;
-      if (!className.empty() && !IsPredefinedClass(className)) {
-         wndClass.lpszClassName = wideName.c_str();
-         registeredClass = Register();
-      }
-
       const wchar_t* classNameOrAtom =  registeredClass != 0 ? MAKEINTATOM(registeredClass) : wideName.c_str();
 
       TWindow* window = new TWindow(classNameOrAtom);
@@ -154,30 +165,31 @@ public:
       return std::unique_ptr<TWindow>(window);
    }
 
+   std::unique_ptr<TWindow> Create2()
+   {
+      std::wstring wideName = StringConverter::ToWide(className);
+      const wchar_t* classNameOrAtom = wideName.c_str();
+
+      TWindow* window = new TWindow(classNameOrAtom);
+      HWND hWnd = ::CreateWindowEx(
+         0,
+         wideName.c_str(),
+         StringConverter::ToWide(title).c_str(),
+         windowStyle,
+         x, y, width, height,
+         parent, menu, hInstance,
+         nullptr);
+
+      window->hWnd = hWnd;
+
+      if (!hWnd)
+         throw WindowsException("Window creation failed.");
+
+      return std::unique_ptr<TWindow>(window);
+   }
+
 private:
-   bool IsPredefinedClass(std::string name)
-   {
-      return boost::iequals(name, "button")
-         || boost::iequals(name, "combobox") 
-         || boost::iequals(name, "edit")
-         || boost::iequals(name, "listbox")
-         || boost::iequals(name, "mdiclient")
-         || boost::iequals(name, "richedit")
-         || boost::iequals(name, "richedit_class")
-         || boost::iequals(name, "scrollbar")
-         || boost::iequals(name, "static");
-   }
-
-   ATOM Register()
-   {
-      ATOM result = ::RegisterClassEx(&wndClass);
-      if(result == 0) {
-         throw WindowsException("Window class registration failure.");
-      }
-
-      return result;
-   }
-
+   ATOM registeredClass;
    std::string className;
    std::string title;
    int windowStyle;

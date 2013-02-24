@@ -13,6 +13,7 @@ std::unique_ptr<Splitter> Splitter::Create(HINSTANCE hInstance, const Window& pa
       .Parent(parent)
       .CursorFromSystem(IDC_SIZEWE)
       .Background(COLOR_3DFACE)
+      .Register()
       .Create();
 }
 
