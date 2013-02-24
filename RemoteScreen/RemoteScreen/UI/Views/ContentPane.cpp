@@ -21,6 +21,8 @@ LRESULT CALLBACK ContentPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM
    case WM_CREATE:
       OnCreate();
       break;
+   case WM_SIZE:
+      OnResize();
    }
 
    return Window::ProcessMessage(message, wParam, lParam);
@@ -35,4 +37,9 @@ void ContentPane::OnCreate()
       .Title("Some Button")
       .Position(20, 20, 50, 50)
       .Create();
+}
+
+void ContentPane::OnResize() const
+{
+   child->Move(100, 100, 200, 200);
 }

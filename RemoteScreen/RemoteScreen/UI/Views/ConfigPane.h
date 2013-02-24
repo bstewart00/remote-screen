@@ -22,34 +22,11 @@ private:
 
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
-
+   void OnResize() const;
+   
    void AddTreeViewItems();
    std::unique_ptr<TreeView> treeview;
    std::vector<DISPLAY_DEVICE> display_devices;
-
-   std::unique_ptr<SystemWindow> child;
 };
 
 #endif
-
-//#pragma once
-//#ifndef CONFIGPANE_H
-//#define CONFIGPANE_H
-//
-//#include "../Window.h"
-//#include "../../Controls/TreeView/TreeView.h"
-//#include <memory>
-//#include <vector>
-//
-//class ConfigPane : public Window
-//{
-//public:
-//   static std::unique_ptr<ConfigPane> Create(const Window& parent, HINSTANCE hInstance);
-//   void Move(int x, int y, int width, int height) const;
-//
-//private:
-//   ConfigPane(HWND hwnd, TreeView treeview);
-
-//};
-//
-//#endif

@@ -59,6 +59,12 @@ public:
       return *this;
    }
 
+   WindowBuilder<TWindow>& Position(RECT rect)
+   {
+      SystemWindowBuilder::Position(rect.left, rect.top, rect.right, rect.bottom);
+      return *this;
+   }
+
    WindowBuilder<TWindow>& Menu(HMENU menu)
    {
       this->menu = menu;

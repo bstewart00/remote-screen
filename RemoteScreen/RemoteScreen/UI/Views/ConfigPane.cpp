@@ -11,7 +11,7 @@ std::unique_ptr<ConfigPane> ConfigPane::Create(HINSTANCE hInstance, const Window
       .ClassName(StringResource(IDC_CONFIGPANE))
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
-      .Position(0, 0, 200, 100)
+      .Position(parent.GetClientRect())
       .Register()
       .Create();
 }
@@ -22,6 +22,9 @@ LRESULT CALLBACK ConfigPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
    case WM_CREATE:
       OnCreate();
       break;
+   case WM_SIZE:
+      OnResize();
+      break;
    }
 
    return Window::ProcessMessage(message, wParam, lParam);
@@ -29,14 +32,6 @@ LRESULT CALLBACK ConfigPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
 
 void ConfigPane::OnCreate()
 {
-   child = SystemWindowBuilder<>(GetInstance())
-      .ClassName("STATIC")
-      .Style(WS_CHILD | WS_VISIBLE)
-      .Parent(*this)
-      .Title("Some Button")
-      .Position(20, 20, 50, 50)
-      .Create();
-
    treeview = TreeView::Create(GetInstance(), *this);
    AddTreeViewItems();
 }
@@ -66,9 +61,8 @@ void ConfigPane::AddTreeViewItems()
    }
 }
 
-//
-//void ConfigPane::Move(int x, int y, int width, int height) const
-//{
-//   Window::Move(x, y, width, height);
-//   treeview.Move(x, y, width, height);
-//}
+void ConfigPane::OnResize() const
+{
+   RECT rect = GetClientRect();
+   treeview->Move(rect.left, rect.top, rect.right, rect.bottom);
+}

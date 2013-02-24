@@ -20,6 +20,7 @@ private:
 
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
+   void OnResize() const;
 
    std::unique_ptr<SystemWindow> child;
 };
