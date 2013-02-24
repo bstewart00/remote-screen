@@ -2,7 +2,7 @@
 #include "ConfigPane.h"
 #include "../../Utils/StringResource.h"
 #include "../../resource.h"
-#include "Win32Framework/Windows/SystemWindowBuilder.h"
+#include "Win32Framework/SystemWindowBuilder.h"
 #include <boost/format.hpp>
 
 std::unique_ptr<ConfigPane> ConfigPane::Create(HINSTANCE hInstance, const Window& parent)

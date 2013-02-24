@@ -2,9 +2,9 @@
 #ifndef TreeView_H
 #define TreeView_H
 
-#include "Win32Framework/Windows/Window.h"
-#include "Win32Framework/Windows/SystemWindow.h"
-#include "Win32Framework/Windows/SystemWindowBuilder.h"
+#include "Win32Framework/Window.h"
+#include "Win32Framework/SystemWindow.h"
+#include "Win32Framework/SystemWindowBuilder.h"
 #include <Windows.h>
 #include <vector>
 #include <string>

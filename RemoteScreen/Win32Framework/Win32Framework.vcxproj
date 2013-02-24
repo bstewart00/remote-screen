@@ -73,10 +73,10 @@
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Windows\SystemWindow.h" />
-    <ClInclude Include="Windows\SystemWindowBuilder.h" />
-    <ClInclude Include="Windows\Window.h" />
-    <ClInclude Include="Windows\WindowBuilder.h" />
+    <ClInclude Include="SystemWindow.h" />
+    <ClInclude Include="SystemWindowBuilder.h" />
+    <ClInclude Include="Window.h" />
+    <ClInclude Include="WindowBuilder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

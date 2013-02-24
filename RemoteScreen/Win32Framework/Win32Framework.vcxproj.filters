@@ -21,16 +21,16 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Windows\SystemWindow.h">
+    <ClInclude Include="SystemWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Windows\SystemWindowBuilder.h">
+    <ClInclude Include="SystemWindowBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Windows\Window.h">
+    <ClInclude Include="Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Windows\WindowBuilder.h">
+    <ClInclude Include="WindowBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,7 +2,7 @@
 #ifndef ModalDialog_H
 #define ModalDialog_H
 
-#include "Win32Framework/Windows/Window.h"
+#include "Win32Framework/Window.h"
 #include "../../Observable.h"
 #include <Windows.h>
 
