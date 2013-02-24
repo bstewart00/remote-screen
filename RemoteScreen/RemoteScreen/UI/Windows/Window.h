@@ -56,7 +56,7 @@ public:
    Window<MessageResult> GetParent() const { return ::GetParent(hWnd); }
 
 protected:
-   Window(const wchar_t* classAtom = nullptr) : SystemWindow(classAtom) {}
+   Window() : SystemWindow() {}
    Window(HWND hWnd) : SystemWindow(hWnd) {}
 };
 

@@ -18,8 +18,6 @@ public:
 
    void AddItem(const std::string text);
 private:
-   TreeView(const wchar_t* classAtom) : SystemWindow(classAtom) {}
-
    static bool initialized;
    static void Initialize();
    std::vector<wchar_t*> text_buffer;

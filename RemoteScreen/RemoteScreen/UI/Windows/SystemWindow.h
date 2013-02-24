@@ -139,7 +139,7 @@ public:
    bool IsIconic() const { return ::IsIconic(hWnd) != 0; }
 
 protected:
-   SystemWindow(const wchar_t* classAtom = nullptr) : classAtom(classAtom) {}
+   SystemWindow() {}
    SystemWindow(HWND hWnd) : hWnd(hWnd) {}
 
    void InvokeBoolFunc(std::function<BOOL(HWND)> func, std::string errorMessage)
@@ -150,7 +150,6 @@ protected:
       }
    }
    HWND hWnd;
-   const wchar_t* classAtom;
 };
 
 #endif

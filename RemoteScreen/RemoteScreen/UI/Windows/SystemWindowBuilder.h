@@ -75,7 +75,7 @@ public:
    {
       std::wstring wideName = StringConverter::ToWide(className);
 
-      TWindow* window = new TWindow(wideName.c_str());
+      TWindow* window = new TWindow();
       HWND hWnd = ::CreateWindowEx(
          0,
          wideName.c_str(),

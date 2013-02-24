@@ -15,8 +15,6 @@ class WindowBuilder : public SystemWindowBuilder<TWindow>
 public:
    WindowBuilder(HINSTANCE hInstance) : SystemWindowBuilder(hInstance)
    {
-      registeredClass = 0;
-
       wndClass.cbSize = sizeof(WNDCLASSEX);
       wndClass.style = 0;
       wndClass.lpfnWndProc = Window<>::InitialWndProc<TWindow>;
@@ -121,7 +119,7 @@ public:
    {
       std::wstring wideName = StringConverter::ToWide(className);
       wndClass.lpszClassName = wideName.c_str();
-      registeredClass = ::RegisterClassEx(&wndClass);
+      ATOM registeredClass = ::RegisterClassEx(&wndClass);
       if(registeredClass == 0) {
          throw WindowsException("Window class registration failure.");
       }
@@ -131,13 +129,10 @@ public:
 
    std::unique_ptr<TWindow> Create()
    {
-      std::wstring wideName = StringConverter::ToWide(className);
-      const wchar_t* classAtom =  MAKEINTATOM(registeredClass);
-
-      TWindow* window = new TWindow(classAtom);
+      TWindow* window = new TWindow();
       HWND hWnd = ::CreateWindowEx(
          0,
-         classAtom,
+         StringConverter::ToWide(className).c_str(),
          StringConverter::ToWide(title).c_str(),
          windowStyle,
          x, y, width, height,
@@ -151,7 +146,6 @@ public:
    }
 
 private:
-   ATOM registeredClass;
    WNDCLASSEX wndClass;
 };
 

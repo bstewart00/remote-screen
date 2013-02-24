@@ -16,7 +16,7 @@ public:
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
 private:
-   ContentPane(const wchar_t* classAtom) : Window(classAtom) {}
+   ContentPane() : Window() {}
 
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
