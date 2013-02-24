@@ -74,7 +74,7 @@
       <StringPooling>false</StringPooling>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <BrowseInformation>true</BrowseInformation>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
       <AdditionalIncludeDirectories>..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
