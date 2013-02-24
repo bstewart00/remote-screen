@@ -7,10 +7,13 @@
 
 std::unique_ptr<Splitter> Splitter::Create(HINSTANCE hInstance, const Window& parent)
 {
-   WindowFactory<Splitter> factory(hInstance);
-   factory.SetSysCursor(IDC_SIZEWE);
-   factory.SetBgSysColor(COLOR_3DFACE);
-   return factory.Create("Splitter", WS_CHILD | WS_VISIBLE, parent);
+   return WindowFactory<Splitter>(hInstance)
+      .ClassName("Splitter")
+      .Style(WS_CHILD | WS_VISIBLE)
+      .Parent(parent)
+      .CursorFromSystem(IDC_SIZEWE)
+      .Background(COLOR_3DFACE)
+      .Create();
 }
 
 LRESULT CALLBACK Splitter::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)

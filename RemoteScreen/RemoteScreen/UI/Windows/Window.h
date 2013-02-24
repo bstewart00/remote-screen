@@ -175,7 +175,7 @@ public:
    bool IsIconic() const { return ::IsIconic(hWnd) != 0; }
 
 protected:
-   Window() {}
+   Window(const wchar_t* classAtom = nullptr) : classAtom(classAtom) {}
 
    void InvokeBoolFunc(std::function<BOOL(HWND)> func, std::string errorMessage)
    {
@@ -185,6 +185,7 @@ protected:
       }
    }
    HWND hWnd;
+   const wchar_t* classAtom;
 private:
       Window(HWND hWnd) : hWnd(hWnd) {}
 };

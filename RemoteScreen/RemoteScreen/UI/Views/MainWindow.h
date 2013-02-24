@@ -34,7 +34,7 @@ public:
    ApplicationSettingsDialog CreateApplicationSettingsDialog();
 
 private:
-   MainWindow() : Window(), splitRatioPercentage(30) {}
+   MainWindow(const wchar_t* classAtom) : Window(classAtom), splitRatioPercentage(30) {}
 
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);

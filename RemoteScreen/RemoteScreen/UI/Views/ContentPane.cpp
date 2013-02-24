@@ -5,8 +5,12 @@
 
 std::unique_ptr<ContentPane> ContentPane::Create(HINSTANCE hInstance, const Window& parent)
 {
-   WindowFactory<ContentPane> factory(hInstance);
-   return factory.Create(StringResource(IDC_CONTENTPANE), WS_CHILD | WS_VISIBLE, parent, "", 0, 0, 200, 100);
+   return WindowFactory<ContentPane>(hInstance)
+      .ClassName(StringResource(IDC_CONTENTPANE))
+      .Style(WS_CHILD | WS_VISIBLE)
+      .Parent(parent)
+      .Position(0, 0, 200, 100)
+      .Create();
 }
 
 LRESULT CALLBACK ContentPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
@@ -22,8 +26,11 @@ LRESULT CALLBACK ContentPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM
 
 void ContentPane::OnCreate()
 {
-   HINSTANCE hInstance = GetInstance();
-
-   WindowFactory<Window> factory(hInstance);
-   child = factory.Create("STATIC", WS_CHILD | WS_VISIBLE, hWnd, "Some Button", 20, 20, 50, 50);
+   child = WindowFactory<Window>(GetInstance())
+      .ClassName("STATIC")
+      .Style(WS_CHILD | WS_VISIBLE)
+      .Parent(*this)
+      .Title("Some Button")
+      .Position(20, 20, 50, 50)
+      .Create();
 }

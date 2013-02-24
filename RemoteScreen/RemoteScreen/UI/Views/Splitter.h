@@ -17,7 +17,7 @@ public:
    int GetSize() const { return splitterSize; }
 
 private:
-   Splitter() : Window(), splitterSize(8) {}
+   Splitter(const wchar_t* classAtom) : Window(classAtom), splitterSize(8) {}
 
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);

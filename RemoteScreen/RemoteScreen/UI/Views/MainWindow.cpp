@@ -12,11 +12,14 @@
 
 std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
 {
-   WindowFactory<MainWindow> factory(hInstance);
-   factory.SetStyle(CS_HREDRAW | CS_VREDRAW);
-   factory.SetMenu(IDC_REMOTESCREEN);
-   factory.SetResIcons(IDI_REMOTESCREEN);
-   return factory.Create(StringResource(IDC_REMOTESCREEN), WS_OVERLAPPEDWINDOW, nullptr, StringResource(IDS_APP_TITLE));
+   return WindowFactory<MainWindow>(hInstance)
+      .ClassName(StringResource(IDC_REMOTESCREEN))
+      .ClassStyle(CS_HREDRAW | CS_VREDRAW)
+      .ClassMenu(IDC_REMOTESCREEN)
+      .Style(WS_OVERLAPPEDWINDOW)
+      .Icon(IDI_REMOTESCREEN)
+      .Title(StringResource(IDS_APP_TITLE))
+      .Create();
 }
 
 LRESULT CALLBACK MainWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
