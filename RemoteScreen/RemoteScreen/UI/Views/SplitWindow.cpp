@@ -4,7 +4,7 @@
 #include "../Windows/WindowBuilder.h"
 #include "../../CustomMessages.h"
 
-std::unique_ptr<SplitWindow> SplitWindow::Create(HINSTANCE hInstance, std::shared_ptr<Window> left, std::shared_ptr<Window> right, int splitterPercentage)
+std::unique_ptr<SplitWindow> SplitWindow::Create(HINSTANCE hInstance, std::unique_ptr<Window>& left, std::unique_ptr<Window>& right, int splitterPercentage)
 {
    return WindowBuilder<SplitWindow>(hInstance)
       .ClassName("SplitWindow")

@@ -139,19 +139,19 @@ public:
    }
 
    template<class T1>
-   std::unique_ptr<TWindow> Create(T1 arg1)
+   std::unique_ptr<TWindow> Create(T1&& arg1)
    {
       return Create(new TWindow(arg1));
    }
 
    template<class T1, class T2>
-   std::unique_ptr<TWindow> Create(T1 arg1, T2 arg2)
+   std::unique_ptr<TWindow> Create(T1&& arg1, T2&& arg2)
    {
       return Create(new TWindow(arg1, arg2));
    }
 
    template<class T1, class T2, class T3>
-   std::unique_ptr<TWindow> Create(T1 arg1, T2 arg2, T3 arg3)
+   std::unique_ptr<TWindow> Create(T1&& arg1, T2&& arg2, T3&& arg3)
    {
       return Create(new TWindow(arg1, arg2, arg3));
    }

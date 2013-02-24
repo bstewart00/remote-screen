@@ -18,7 +18,7 @@ class SplitWindow : public Window<>
 {
    friend class WindowBuilder<SplitWindow>;
 public:
-   static std::unique_ptr<SplitWindow> Create(HINSTANCE hInstance, std::shared_ptr<Window> left, std::shared_ptr<Window> right, int splitterPercentage);
+   static std::unique_ptr<SplitWindow> Create(HINSTANCE hInstance, std::unique_ptr<Window>& left, std::unique_ptr<Window>& right, int splitterPercentage);
 
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -26,7 +26,7 @@ public:
    ApplicationSettingsDialog CreateApplicationSettingsDialog();
 
 private:
-   SplitWindow(std::shared_ptr<Window> left, std::shared_ptr<Window> right, int splitterPercentage) : Window(),
+   SplitWindow(std::unique_ptr<Window>& left, std::unique_ptr<Window>& right, int splitterPercentage) : Window(),
       leftWin(std::move(left)),
       rightWin(std::move(right)),
       splitRatioPercentage(splitterPercentage) {}
@@ -39,8 +39,8 @@ private:
    int CalculateSplitterPercentage(int splitterX);
    int CalculateSplitterX();
 
-   std::shared_ptr<Window> leftWin;
-   std::shared_ptr<Window> rightWin;
+   std::unique_ptr<Window> leftWin;
+   std::unique_ptr<Window> rightWin;
    std::unique_ptr<Splitter> splitter;
 
    int width;
