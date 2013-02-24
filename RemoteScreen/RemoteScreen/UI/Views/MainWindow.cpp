@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <functional>
 
-std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance, int splitterPercentage)
+std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
 {
    return WindowBuilder<MainWindow>(hInstance)
       .ClassName(StringResource(IDC_REMOTESCREEN))
@@ -20,7 +20,7 @@ std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance, int splitter
       .Icon(IDI_REMOTESCREEN)
       .Title(StringResource(IDS_APP_TITLE))
       .Register()
-      .Create(splitterPercentage);
+      .Create();
 }
 
 LRESULT CALLBACK MainWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
@@ -34,9 +34,6 @@ LRESULT CALLBACK MainWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
    case WM_SIZE:
       OnSize(LOWORD(lParam), HIWORD(lParam));
       break;
-   case MSG_MOVESPLITTER:
-      MoveSplitter(wParam);
-      break;
    case WM_CLOSE:
       return OnClose(wParam, lParam);
    }
@@ -48,9 +45,9 @@ void MainWindow::OnCreate()
 {
    HINSTANCE hInstance = GetInstance();
 
-   leftWin = ConfigPane::Create(hInstance, *this);
-   rightWin = ContentPane::Create(hInstance, *this);
-   splitter = Splitter::Create(hInstance, *this);
+   std::unique_ptr<Window> leftWin = ConfigPane::Create(hInstance, *this);
+   std::unique_ptr<Window> rightWin = ContentPane::Create(hInstance, *this);
+   splitWindow = SplitWindow::Create(hInstance, *this, std::move(leftWin), std::move(rightWin), 30);
 }
 
 LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
@@ -69,9 +66,6 @@ LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
       break;
    case WM_SIZE:
       OnSize(LOWORD(lParam), HIWORD(lParam));
-      return 0;
-   case MSG_MOVESPLITTER:
-      MoveSplitter(wParam);
       return 0;
    }
 
@@ -96,40 +90,6 @@ ApplicationSettingsDialog MainWindow::CreateApplicationSettingsDialog()
 
 void MainWindow::OnSize(int width, int height) 
 {
-   this->width = width;
-   this->height = height;
-
-   int splitterX = CalculateSplitterX();
-   int splitterSize = splitter->GetSize();
-
-   splitter->MoveDelayPaint(splitterX, 0, splitterSize, this->height);
-   leftWin->Move(0, 0, splitterX, this->height);
-   rightWin->Move(splitterX + splitterSize, 0, this->width - splitterX - splitterSize, this->height);
-   splitter->ForceRepaint();
+   splitWindow->Move(0, 0, width, height);
 }
 
-int MainWindow::CalculateSplitterX()
-{
-   int splitterX = (width * splitRatioPercentage) / 100;
-   if (splitterX < 0)
-      splitterX = 0;
-
-   return splitterX;
-}
-
-void MainWindow::MoveSplitter (int splitterX)
-{
-   splitRatioPercentage = CalculateSplitterPercentage(splitterX);
-   OnSize(width, height);
-}
-
-int MainWindow::CalculateSplitterPercentage(int splitterX)
-{
-   int newPercent = splitterX * 100 / width;
-   if (newPercent < 0)
-      newPercent = 0;
-   else if (newPercent > 100)
-      newPercent = 100;
-
-   return newPercent;
-}

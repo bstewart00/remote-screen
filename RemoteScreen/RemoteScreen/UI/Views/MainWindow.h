@@ -4,7 +4,7 @@
 
 #include "../../Observable.h"
 #include "../Windows/Window.h"
-#include "Splitter.h"
+#include "SplitWindow.h"
 #include "../Windows/WindowBuilder.h"
 #include "ModalDialog.h"
 #include "ApplicationSettingsDialog.h"
@@ -27,7 +27,7 @@ class MainWindow : public Window<>, public Observable<MainWindowListener>
 {
    friend class WindowBuilder<MainWindow>;
 public:
-   static std::unique_ptr<MainWindow> Create(HINSTANCE hInstance, int splitterPercentage);
+   static std::unique_ptr<MainWindow> Create(HINSTANCE hInstance);
 
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -35,24 +35,15 @@ public:
    ApplicationSettingsDialog CreateApplicationSettingsDialog();
 
 private:
-   MainWindow(int splitterPercentage) : Window(), splitRatioPercentage(splitterPercentage) {}
+   MainWindow() : Window() {}
 
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
    LRESULT OnClose(WPARAM wParam, LPARAM lParam);
 
    void OnSize(int cx, int cy);
-   void MoveSplitter(int x);
-   int CalculateSplitterPercentage(int splitterX);
-   int CalculateSplitterX();
 
-   std::unique_ptr<Window> leftWin;
-   std::unique_ptr<Window> rightWin;
-   std::unique_ptr<Splitter> splitter;
-
-   int width;
-   int height;
-   int splitRatioPercentage;
+   std::unique_ptr<SplitWindow> splitWindow;
 };
 
 #endif

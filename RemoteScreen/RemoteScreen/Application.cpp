@@ -19,7 +19,7 @@ int Application::Run()
    ApplicationSettingsRepository settingsRepository;
 
    ApplicationSettings settings = settingsRepository.Get();
-   std::unique_ptr<MainWindow> view = MainWindow::Create(hInstance, 30);
+   std::unique_ptr<MainWindow> view = MainWindow::Create(hInstance);
    MainPresenter presenter(*view, settings, hInstance);
    view->Show(nCmdShow);
 

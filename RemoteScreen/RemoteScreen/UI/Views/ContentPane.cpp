@@ -10,7 +10,6 @@ std::unique_ptr<ContentPane> ContentPane::Create(HINSTANCE hInstance, const Wind
       .ClassName(StringResource(IDC_CONTENTPANE))
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
-      .Position(0, 0, 200, 100)
       .Register()
       .Create();
 }

@@ -11,7 +11,7 @@ class ContentPane : public Window<>
 {
    friend class WindowBuilder<ContentPane>;
 public:
-   static std::unique_ptr<ContentPane> Create(HINSTANCE hInstance, const Window& parent);
+   static std::unique_ptr<ContentPane> Create(HINSTANCE hInstance, const Window& parenti);
 
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 

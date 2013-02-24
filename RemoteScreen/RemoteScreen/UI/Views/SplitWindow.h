@@ -18,7 +18,7 @@ class SplitWindow : public Window<>
 {
    friend class WindowBuilder<SplitWindow>;
 public:
-   static std::unique_ptr<SplitWindow> Create(HINSTANCE hInstance, std::unique_ptr<Window>& left, std::unique_ptr<Window>& right, int splitterPercentage);
+   static std::unique_ptr<SplitWindow> Create(HINSTANCE hInstance, const Window& parent, std::unique_ptr<Window>&& left, std::unique_ptr<Window>&& right, int splitterPercentage);
 
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 

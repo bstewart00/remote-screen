@@ -11,7 +11,6 @@ std::unique_ptr<ConfigPane> ConfigPane::Create(HINSTANCE hInstance, const Window
       .ClassName(StringResource(IDC_CONFIGPANE))
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
-      .Position(parent.GetClientRect())
       .Register()
       .Create();
 }
