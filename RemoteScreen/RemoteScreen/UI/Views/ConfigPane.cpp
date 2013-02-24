@@ -2,6 +2,7 @@
 #include "ConfigPane.h"
 #include "../../Utils/StringResource.h"
 #include "../../resource.h"
+#include "../Windows/SystemWindowBuilder.h"
 #include <boost/format.hpp>
 
 std::unique_ptr<ConfigPane> ConfigPane::Create(HINSTANCE hInstance, const Window& parent)
@@ -28,13 +29,13 @@ LRESULT CALLBACK ConfigPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
 
 void ConfigPane::OnCreate()
 {
-   child = WindowBuilder<Window>(GetInstance())
+   child = SystemWindowBuilder<Window>(GetInstance())
       .ClassName("STATIC")
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(*this)
       .Title("Some Button")
       .Position(20, 20, 50, 50)
-      .Create2();
+      .Create();
 
    treeview = TreeView::Create(GetInstance(), *this);
    AddTreeViewItems();

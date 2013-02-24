@@ -23,12 +23,12 @@ std::unique_ptr<TreeView> TreeView::Create(HINSTANCE hInstance, const Window& pa
       TreeView::Initialize();
 
    RECT parentClientRect = parent.GetClientRect();
-   return WindowBuilder<TreeView>(hInstance)
+   return SystemWindowBuilder<TreeView>(hInstance)
       .ClassName(WC_TREEVIEW)
       .Style(WS_CHILD | WS_VISIBLE | TVS_HASLINES)
       .Parent(parent)
       .Position(100, 300, 200, 200)
-      .Create2();
+      .Create();
 }
 
 void TreeView::AddItem(std::string item)

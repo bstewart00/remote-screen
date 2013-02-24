@@ -3,25 +3,17 @@
 #define WindowBuilder_H
 
 #include "Window.h"
+#include "SystemWindowBuilder.h"
 #include "../../Utils/StringConverter.h"
 #include <memory>
 #include <boost/algorithm/string.hpp>
 
 template <class TWindow>
-class WindowBuilder
+class WindowBuilder : public SystemWindowBuilder<TWindow>
 {
 public:
-   WindowBuilder(HINSTANCE hInstance) : hInstance(hInstance)
+   WindowBuilder(HINSTANCE hInstance) : SystemWindowBuilder(hInstance)
    {
-      parent = nullptr;
-      className = "";
-      title = "";
-      x = CW_USEDEFAULT;
-      y = CW_USEDEFAULT;
-      width = CW_USEDEFAULT;
-      height = CW_USEDEFAULT;
-      windowStyle = 0;
-      menu = nullptr;
       registeredClass = 0;
 
       wndClass.cbSize = sizeof(WNDCLASSEX);
@@ -40,13 +32,38 @@ public:
 
    WindowBuilder<TWindow>& ClassName(std::string className)
    {
-      this->className = className;
+      SystemWindowBuilder::ClassName(className);
       return *this;
    }
 
-   WindowBuilder<TWindow>& ClassName(const wchar_t* systemClassName)
+   WindowBuilder<TWindow>& Style(int windowStyle)
    {
-      return ClassName(StringConverter::ToUtf8(systemClassName));
+      SystemWindowBuilder::Style(windowStyle);
+      return *this;
+   }
+
+   WindowBuilder<TWindow>& Parent(HWND parent)
+   {
+      SystemWindowBuilder::Parent(parent);
+      return *this;
+   }
+
+   WindowBuilder<TWindow>& Title(std::string title)
+   {
+      SystemWindowBuilder::Title(title);
+      return *this;
+   }
+
+   WindowBuilder<TWindow>& Position(int x, int y, int width, int height)
+   {
+      SystemWindowBuilder::Position(x, y, width, height);
+      return *this;
+   }
+
+   WindowBuilder<TWindow>& Menu(HMENU menu)
+   {
+      this->menu = menu;
+      return *this;
    }
 
    WindowBuilder<TWindow>& ClassStyle(int classStyle)
@@ -55,42 +72,9 @@ public:
       return *this;
    }
 
-   WindowBuilder<TWindow>& Style(int windowStyle)
-   {
-      this->windowStyle = windowStyle;
-      return *this;
-   }
-
-   WindowBuilder<TWindow>& Parent(HWND parent)
-   {
-      this->parent = parent;
-      return *this;
-   }
-
-   WindowBuilder<TWindow>& Title(std::string title)
-   {
-      this->title = title;
-      return *this;
-   }
-
-   WindowBuilder<TWindow>& Position(int x, int y, int width, int height)
-   {
-      this->x = x;
-      this->y = y;
-      this->width = width;
-      this->height = height;
-      return *this;
-   }
-
    WindowBuilder<TWindow>& ClassMenu(int resourceId)
    {
       wndClass.lpszMenuName = MAKEINTRESOURCE(resourceId);
-      return *this;
-   }
-
-   WindowBuilder<TWindow>& Menu(HMENU menu)
-   {
-      this->menu = menu;
       return *this;
    }
 
@@ -147,12 +131,12 @@ public:
    std::unique_ptr<TWindow> Create()
    {
       std::wstring wideName = StringConverter::ToWide(className);
-      const wchar_t* classNameOrAtom =  registeredClass != 0 ? MAKEINTATOM(registeredClass) : wideName.c_str();
+      const wchar_t* classAtom =  MAKEINTATOM(registeredClass);
 
-      TWindow* window = new TWindow(classNameOrAtom);
+      TWindow* window = new TWindow(classAtom);
       HWND hWnd = ::CreateWindowEx(
          0,
-         classNameOrAtom,
+         classAtom,
          StringConverter::ToWide(title).c_str(),
          windowStyle,
          x, y, width, height,
@@ -165,43 +149,9 @@ public:
       return std::unique_ptr<TWindow>(window);
    }
 
-   std::unique_ptr<TWindow> Create2()
-   {
-      std::wstring wideName = StringConverter::ToWide(className);
-      const wchar_t* classNameOrAtom = wideName.c_str();
-
-      TWindow* window = new TWindow(classNameOrAtom);
-      HWND hWnd = ::CreateWindowEx(
-         0,
-         wideName.c_str(),
-         StringConverter::ToWide(title).c_str(),
-         windowStyle,
-         x, y, width, height,
-         parent, menu, hInstance,
-         nullptr);
-
-      window->hWnd = hWnd;
-
-      if (!hWnd)
-         throw WindowsException("Window creation failed.");
-
-      return std::unique_ptr<TWindow>(window);
-   }
-
 private:
    ATOM registeredClass;
-   std::string className;
-   std::string title;
-   int windowStyle;
-   int x;
-   int y;
-   int width;
-   int height;
-   HWND parent;
-   HMENU menu;
-
    WNDCLASSEX wndClass;
-   HINSTANCE hInstance;
 };
 
 #endif

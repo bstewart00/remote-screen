@@ -3,7 +3,7 @@
 #define TreeView_H
 
 #include "../Windows/Window.h"
-#include "../Windows/WindowBuilder.h"
+#include "../Windows/SystemWindowBuilder.h"
 #include <Windows.h>
 #include <vector>
 #include <string>
@@ -11,7 +11,7 @@
 
 class TreeView : public Window<>
 {
-   friend class WindowBuilder<TreeView>;
+   friend class SystemWindowBuilder<TreeView>;
 public:
    static std::unique_ptr<TreeView> Create(HINSTANCE hInstance, const Window& parent);
 
