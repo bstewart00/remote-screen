@@ -1,7 +1,5 @@
 #include "../../stdafx.h"
 #include "Splitter.h"
-#include "../../Utils/StringResource.h"
-#include "../../resource.h"
 #include "../Canvas.h"
 #include "../../CustomMessages.h"
 

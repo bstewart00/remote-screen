@@ -27,7 +27,6 @@ std::unique_ptr<TreeView> TreeView::Create(HINSTANCE hInstance, const Window<>& 
       .ClassName(WC_TREEVIEW)
       .Style(WS_CHILD | WS_VISIBLE | TVS_HASLINES)
       .Parent(parent)
-      .Position(100, 300, 200, 200)
       .Create();
 }
 

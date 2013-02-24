@@ -2,16 +2,10 @@
 #ifndef SplitWindow_H
 #define SplitWindow_H
 
-#include "../../Observable.h"
 #include "../Windows/Window.h"
 #include "Splitter.h"
 #include "../Windows/WindowBuilder.h"
-#include "ModalDialog.h"
-#include "ApplicationSettingsDialog.h"
 #include <memory>
-#include <functional>
-#include <algorithm>
-#include <vector>
 #include <Windows.h>
 
 class SplitWindow : public Window<>
@@ -21,9 +15,6 @@ public:
    static std::unique_ptr<SplitWindow> Create(HINSTANCE hInstance, const Window& parent, std::unique_ptr<Window>&& left, std::unique_ptr<Window>&& right, int splitterPercentage);
 
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
-
-   ModalDialog CreateAboutDialog();
-   ApplicationSettingsDialog CreateApplicationSettingsDialog();
 
 private:
    SplitWindow(std::unique_ptr<Window>& left, std::unique_ptr<Window>& right, int splitterPercentage) : Window(),
