@@ -153,17 +153,7 @@ public:
 private:
    std::unique_ptr<TWindow> Create(TWindow* window)
    {
-      HWND hWnd = ::CreateWindowEx(
-         0,
-         StringConverter::ToWide(className).c_str(),
-         StringConverter::ToWide(title).c_str(),
-         windowStyle,
-         x, y, width, height,
-         parent, menu, hInstance,
-         window);
-
-      if (!hWnd)
-         throw WindowsException("Window creation failed.");
+      CreateWindowHandle(window);
       return std::unique_ptr<TWindow>(window);
    }
 

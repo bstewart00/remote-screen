@@ -73,6 +73,13 @@ public:
 
    std::unique_ptr<TWindow> Create()
    {
+      HWND hWnd = CreateWindowHandle(nullptr);
+      return std::unique_ptr<TWindow>(new TWindow(hWnd));
+   }
+
+protected:
+   HWND CreateWindowHandle(void* data)
+   {
       HWND hWnd = ::CreateWindowEx(
          0,
          StringConverter::ToWide(className).c_str(),
@@ -80,15 +87,14 @@ public:
          windowStyle,
          x, y, width, height,
          parent, menu, hInstance,
-         nullptr);
+         data);
 
       if (!hWnd)
          throw WindowsException("Window creation failed.");
 
-      return std::unique_ptr<TWindow>(new TWindow(hWnd));
+      return hWnd;
    }
 
-protected:
    HINSTANCE hInstance;
    std::string className;
    std::string title;
