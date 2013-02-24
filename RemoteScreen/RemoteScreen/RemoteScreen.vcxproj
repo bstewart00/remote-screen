@@ -156,7 +156,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Utils\StringConverter.h" />
-    <ClInclude Include="UI\Views\ConfigPane\ConfigPane.h" />
     <ClInclude Include="CustomMessages.h" />
     <ClInclude Include="UI\Controls\TreeView\TreeView.h" />
     <ClInclude Include="UI\Canvas.h" />
@@ -216,7 +215,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Utils\StringConverter.cpp" />
-    <ClCompile Include="UI\Views\ConfigPane\ConfigPane.cpp" />
     <ClCompile Include="UI\Controls\TreeView\TreeView.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Utils\StringResource.cpp" />
