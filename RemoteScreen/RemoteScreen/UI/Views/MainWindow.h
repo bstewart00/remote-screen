@@ -2,11 +2,11 @@
 #ifndef MainWindow_H
 #define MainWindow_H
 
-#include "../../Observable.h"
+#include "Win32Framework/Observable.h"
 #include "Win32Framework/Window.h"
-#include "SplitWindow.h"
+#include "Win32Framework/SplitWindow.h"
 #include "Win32Framework/WindowBuilder.h"
-#include "ModalDialog.h"
+#include "Win32Framework/ModalDialog.h"
 #include "ApplicationSettingsDialog.h"
 #include <memory>
 #include <functional>

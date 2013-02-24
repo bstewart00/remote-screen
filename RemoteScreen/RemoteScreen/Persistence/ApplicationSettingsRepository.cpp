@@ -1,8 +1,8 @@
-#include "../stdafx.h"
+#include "stdafx.h"
 #include "../resource.h"
-#include "../Utils/StringResource.h"
+#include "Win32Framework/Utils/StringResource.h"
 #include "ApplicationSettingsRepository.h"
-#include "../Utils/StringConverter.h"
+#include "Win32Framework/Utils/StringConverter.h"
 #include <ShlObj.h>
 #include <iostream>
 #include <sstream>

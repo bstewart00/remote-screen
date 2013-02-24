@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "Application.h"
-#include "Utils/StringResource.h"
+#include "Win32Framework/Utils/StringResource.h"
 #include "UI/Views/MainWindow.h"
 #include "UI/Presenters/MainPresenter.h"
 #include "Models/ApplicationSettings.h"
-#include "WindowsException.h"
+#include "Win32Framework/WindowsException.h"
 #include "Resource.h"
-#include "Persistence\ApplicationSettingsRepository.h"
+#include "Persistence/ApplicationSettingsRepository.h"
 
 Application::Application(HINSTANCE hInstance, int nCmdShow)
    : hInstance(hInstance), nCmdShow(nCmdShow)

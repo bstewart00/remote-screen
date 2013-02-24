@@ -2,7 +2,7 @@
 #ifndef ModalDialogPresenter_H
 #define ModalDialogPresenter_H
 
-#include "../Views/ModalDialog.h"
+#include "Win32Framework/ModalDialog.h"
 
 class ModalDialogPresenter : private ModalDialogListener
 {

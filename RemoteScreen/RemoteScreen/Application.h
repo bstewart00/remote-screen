@@ -3,7 +3,7 @@
 #define APPLICATION_H
 
 #include "Persistence\ApplicationSettingsRepository.h"
-#include "Utils/StringConverter.h"
+#include "Win32Framework/Utils/StringConverter.h"
 #include <Windows.h>
 #include <memory>
 

@@ -1,4 +1,4 @@
-#include "../../stdafx.h"
+#include "stdafx.h"
 #include "MainPresenter.h"
 #include "../../Resource.h"
 #include "../Views/ApplicationSettingsDialog.h"

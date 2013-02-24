@@ -3,7 +3,7 @@
 #define ApplicationSettingsRepository_H
 
 #include "../Models/ApplicationSettings.h"
-#include "../Utils/WindowsDeleters.h"
+#include "Win32Framework/Utils/WindowsDeleters.h"
 #include <memory>
 #include <boost/filesystem.hpp>
 

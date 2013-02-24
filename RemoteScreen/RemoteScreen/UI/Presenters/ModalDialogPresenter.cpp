@@ -1,4 +1,4 @@
-#include "../../stdafx.h"
+#include "stdafx.h"
 #include "ModalDialogPresenter.h"
 
 ModalDialogPresenter::ModalDialogPresenter(ModalDialog& view)

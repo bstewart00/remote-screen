@@ -1,4 +1,4 @@
-#include "../stdafx.h"
+#include "stdafx.h"
 #include "StringResource.h"
 #include "StringConverter.h"
 

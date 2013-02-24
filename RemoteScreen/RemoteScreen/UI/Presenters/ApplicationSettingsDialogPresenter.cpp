@@ -1,4 +1,4 @@
-#include "../../stdafx.h"
+#include "stdafx.h"
 #include "ApplicationSettingsDialogPresenter.h"
 
 ApplicationSettingsDialogPresenter::ApplicationSettingsDialogPresenter(ApplicationSettingsDialog& view, ApplicationSettings& model)

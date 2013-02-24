@@ -6,8 +6,8 @@
 #include <Windows.h>
 #include <string>
 #include <functional>
-#include "../../Utils/StringConverter.h"
-#include "../../WindowsException.h"
+#include "Utils/StringConverter.h"
+#include "WindowsException.h"
 #include <memory>
 
 class SystemWindow

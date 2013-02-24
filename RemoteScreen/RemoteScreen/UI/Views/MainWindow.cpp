@@ -1,10 +1,9 @@
-#include "../../stdafx.h"
+#include "stdafx.h"
 #include "MainWindow.h"
 #include "ContentPane.h"
-#include "Splitter.h"
 #include "Win32Framework/WindowBuilder.h"
-#include "../../CustomMessages.h"
-#include "../../Utils/StringResource.h"
+#include "Win32Framework/Utils/StringResource.h"
+#include "Win32Framework/SplitWindow.h"
 #include "../../Resource.h"
 #include "ConfigPane.h"
 #include <algorithm>

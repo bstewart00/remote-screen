@@ -1,10 +1,10 @@
 #include "stdafx.h"
-#include "WindowsException.h"
+#include "Win32Framework/WindowsException.h"
 #include "Application.h"
 #include <sstream>
 #include <string>
 #include <boost/format.hpp>
-#include "Utils/StringConverter.h"
+#include "Win32Framework/Utils/StringConverter.h"
 #include <stdio.h>
 #include <io.h>
 #include <fcntl.h>

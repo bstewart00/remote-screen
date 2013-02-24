@@ -2,7 +2,7 @@
 #ifndef WindowsException_H
 #define WindowsException_H
 
-#include "Utils\WindowsDeleters.h"
+#include "Utils/WindowsDeleters.h"
 #include <string>
 #include <memory>
 #include <Windows.h>

@@ -2,9 +2,9 @@
 #ifndef Splitter_H
 #define Splitter_H
 
-#include "Win32Framework/Window.h"
-#include "Win32Framework/WindowBuilder.h"
-#include "../CanvasTools.h"
+#include "Window.h"
+#include "WindowBuilder.h"
+#include "CanvasTools.h"
 #include <memory>
 #include <Windows.h>
 

@@ -8,8 +8,8 @@
 #include <string>
 #include <functional>
 #include <cassert>
-#include "../../Utils/StringConverter.h"
-#include "../../WindowsException.h"
+#include "Utils/StringConverter.h"
+#include "WindowsException.h"
 #include <memory>
 
 template<class MessageResult = LRESULT>

@@ -1,7 +1,7 @@
-#include "../../stdafx.h"
+#include "stdafx.h"
 #include "ContentPane.h"
 #include "Win32Framework/SystemWindowBuilder.h"
-#include "../../Utils/StringResource.h"
+#include "../Win32Framework/Utils/StringResource.h"
 #include "../../resource.h"
 
 std::unique_ptr<ContentPane> ContentPane::Create(HINSTANCE hInstance, const Window& parent)

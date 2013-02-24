@@ -1,4 +1,4 @@
-#include "../../stdafx.h"
+#include "stdafx.h"
 #include "ApplicationSettingsDialog.h"
 
 ApplicationSettingsDialog::ApplicationSettingsDialog(HINSTANCE hInstance, int resourceId, HWND parent)

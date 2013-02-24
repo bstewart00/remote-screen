@@ -4,7 +4,7 @@
 
 #include "Window.h"
 #include "SystemWindowBuilder.h"
-#include "../../Utils/StringConverter.h"
+#include "Utils/StringConverter.h"
 #include <memory>
 #include <boost/algorithm/string.hpp>
 #include <Windows.h>

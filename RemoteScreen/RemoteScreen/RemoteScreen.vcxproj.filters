@@ -21,28 +21,10 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CustomMessages.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\Canvas.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\CanvasTools.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utils\StringResource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\StringConverter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowsException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UI\Windows\Window.h">
@@ -57,9 +39,6 @@
     <ClInclude Include="UI\Presenters\ModalDialogPresenter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Views\ModalDialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Models\ApplicationSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -69,13 +48,7 @@
     <ClInclude Include="UI\Presenters\ApplicationSettingsDialogPresenter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Observable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Views\ApplicationSettingsDataBinder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\WindowsDeleters.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Persistence\ApplicationSettingsRepository.h">
@@ -84,16 +57,10 @@
     <ClInclude Include="UI\Views\ConfigPane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Views\Splitter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Views\ContentPane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UI\Windows\WindowBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\Views\TreeView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UI\Windows\SystemWindowBuilder.h">
@@ -102,21 +69,9 @@
     <ClInclude Include="UI\Windows\SystemWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Views\SplitWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils\StringConverter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils\StringResource.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowsException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
@@ -129,9 +84,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Presenters\ModalDialogPresenter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\Views\ModalDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Views\ApplicationSettingsDialog.cpp">
@@ -149,16 +101,7 @@
     <ClCompile Include="UI\Views\ConfigPane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UI\Views\Splitter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UI\Views\ContentPane.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\Views\TreeView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\Views\SplitWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

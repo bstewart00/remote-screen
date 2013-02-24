@@ -1,6 +1,6 @@
-#include "../../stdafx.h"
+#include "stdafx.h"
 #include "ConfigPane.h"
-#include "../../Utils/StringResource.h"
+#include "../Win32Framework/Utils/StringResource.h"
 #include "../../resource.h"
 #include "Win32Framework/SystemWindowBuilder.h"
 #include <boost/format.hpp>

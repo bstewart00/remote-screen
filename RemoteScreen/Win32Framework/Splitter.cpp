@@ -1,7 +1,7 @@
-#include "../../stdafx.h"
+#include "stdafx.h"
 #include "Splitter.h"
-#include "../Canvas.h"
-#include "../../CustomMessages.h"
+#include "Canvas.h"
+#include "CustomMessages.h"
 
 std::unique_ptr<Splitter> Splitter::Create(HINSTANCE hInstance, const Window& parent, int splitterSize)
 {

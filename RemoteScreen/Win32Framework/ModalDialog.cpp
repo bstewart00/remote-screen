@@ -1,4 +1,4 @@
-#include "../../stdafx.h"
+#include "stdafx.h"
 #include "ModalDialog.h"
 
 ModalDialog::ModalDialog(HINSTANCE hInstance, int resourceId, HWND parent)
