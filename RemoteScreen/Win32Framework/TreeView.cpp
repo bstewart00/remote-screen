@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "TreeView.h"
 #include "Utils/StringConverter.h"
 #include "WindowsException.h"

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "StringConverter.h"
 #include <boost/nowide/convert.hpp>
 

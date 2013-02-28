@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "WindowsException.h"
 
 std::unique_ptr<WCHAR, LocalFreeDeleter> WindowsException::GetFormattedMessage () const
@@ -9,7 +8,7 @@ std::unique_ptr<WCHAR, LocalFreeDeleter> WindowsException::GetFormattedMessage (
       NULL,
       errorCode,
       MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-      formattedText, 
+      reinterpret_cast<LPWSTR>(&formattedText),
       0,
       NULL);
 

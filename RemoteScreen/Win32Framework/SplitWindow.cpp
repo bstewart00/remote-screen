@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "SplitWindow.h"
 #include "Splitter.h"
 #include "WindowBuilder.h"

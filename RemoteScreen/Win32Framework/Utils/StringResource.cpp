@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "StringResource.h"
 #include "StringConverter.h"
 

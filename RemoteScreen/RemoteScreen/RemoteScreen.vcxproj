@@ -56,6 +56,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\boost;$(IncludePath)</IncludePath>
     <LibraryPath>C:\boost\stage\lib;$(LibraryPath)</LibraryPath>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -79,6 +80,7 @@
       </ForcedIncludeFiles>
       <AdditionalIncludeDirectories>..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile>$(IntDir)$(ProjectName)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <EnablePREfast>false</EnablePREfast>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

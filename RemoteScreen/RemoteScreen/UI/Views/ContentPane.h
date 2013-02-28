@@ -19,6 +19,7 @@ private:
    ContentPane() : Window() {}
 
    void OnCreate();
+   void OnPaint() const;
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
    void OnResize() const;
 

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Splitter.h"
 #include "Canvas.h"
 #include "CustomMessages.h"
