@@ -116,6 +116,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Imaging\Bitmap.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Imaging\ImageSource.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Imaging\MonitorImageSource.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Models\ApplicationSettings.h" />
     <ClInclude Include="Persistence\ApplicationSettingsRepository.h">
       <SubType>
@@ -163,6 +175,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Imaging\Bitmap.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Imaging\MonitorImageSource.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Persistence\ApplicationSettingsRepository.cpp">
       <SubType>
       </SubType>

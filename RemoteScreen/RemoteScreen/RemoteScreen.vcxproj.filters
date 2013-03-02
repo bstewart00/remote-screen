@@ -69,6 +69,15 @@
     <ClInclude Include="UI\Windows\SystemWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Imaging\ImageSource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Imaging\Bitmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Imaging\MonitorImageSource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -102,6 +111,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\Views\ContentPane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Imaging\Bitmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Imaging\MonitorImageSource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

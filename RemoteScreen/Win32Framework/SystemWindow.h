@@ -2,6 +2,7 @@
 #ifndef SystemWindow_H
 #define SystemWindow_H
 
+#include "DeviceContext.h"
 #include "SystemWindowBuilder.h"
 #include <Windows.h>
 #include <string>
@@ -138,6 +139,12 @@ public:
    void ToForeground() const { ::SetForegroundWindow(hWnd); }
    bool IsIconic() const { return ::IsIconic(hWnd) != 0; }
 
+   WindowDeviceContext GetDeviceContext() const
+   {
+      return WindowDeviceContext(hWnd);
+   }
+
+   //TODO: Create a WindowHandle class. Maybe call it Window and have SystemWindow/CustomWindow
 protected:
    SystemWindow() {}
    SystemWindow(HWND hWnd) : hWnd(hWnd) {}

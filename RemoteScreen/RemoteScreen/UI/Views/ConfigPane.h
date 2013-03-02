@@ -23,10 +23,11 @@ private:
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
    void OnResize() const;
-   
+
+   static BOOL CALLBACK MonitorEnumProc(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData);
    void AddTreeViewItems();
    std::unique_ptr<TreeView> treeview;
-   std::vector<DISPLAY_DEVICE> display_devices;
+   std::vector<HMONITOR> monitors;
 };
 
 #endif

@@ -83,6 +83,10 @@
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="CanvasTools.h" />
     <ClInclude Include="CustomMessages.h" />
+    <ClInclude Include="DeviceContext.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ModalDialog.h" />
     <ClInclude Include="Observable.h" />
     <ClInclude Include="Splitter.h" />

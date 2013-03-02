@@ -35,28 +35,29 @@ void ConfigPane::OnCreate()
    AddTreeViewItems();
 }
 
+BOOL CALLBACK ConfigPane::MonitorEnumProc(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData)
+{
+   ConfigPane* instance = reinterpret_cast<ConfigPane*>(dwData);
+   instance->monitors.push_back(hMonitor);
+
+   return TRUE;
+}
+
 void ConfigPane::AddTreeViewItems()
 {
    treeview->AddItem("Monitor");
 
-   for (int deviceId = 0;;deviceId++) {
-      DISPLAY_DEVICE device;
-      device.cb = sizeof(DISPLAY_DEVICE);
+   ::EnumDisplayMonitors(NULL, NULL, MonitorEnumProc, reinterpret_cast<LPARAM>(this));
 
-      BOOL result = ::EnumDisplayDevices(NULL, deviceId, &device, 0);
-      if (result == 0) break;
+   for (auto i = monitors.begin(); i != monitors.end(); ++i)
+   {
+      HMONITOR monitor = *i;
+      MONITORINFOEX info;
+      info.cbSize = sizeof(MONITORINFOEX);
+      ::GetMonitorInfoW(monitor, &info);
 
-      if (device.StateFlags & DISPLAY_DEVICE_ATTACHED_TO_DESKTOP) {
-         DISPLAY_DEVICE named_device;
-         named_device.cb = sizeof(DISPLAY_DEVICE);
-
-         result = ::EnumDisplayDevices(device.DeviceName, 0, &named_device, 0);
-         if (result != 0) {
-            display_devices.push_back(named_device);
-            std::string text = boost::str(boost::format("Monitor %1% - %2%") % (deviceId + 1) % StringConverter::ToUtf8(named_device.DeviceString));
-            treeview->AddItem(text);
-         }
-      }
+      std::string text = boost::str(boost::format("Monitor %1%") % StringConverter::ToUtf8(info.szDevice));
+      treeview->AddItem(text);
    }
 }
 
