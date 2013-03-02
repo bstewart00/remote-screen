@@ -1,13 +1,14 @@
 #include "stdafx.h"
 #include "MainWindow.h"
-#include "ContentPane.h"
 #include "Win32Framework/WindowBuilder.h"
 #include "Win32Framework/Utils/StringResource.h"
 #include "Win32Framework/SplitWindow.h"
 #include "../../Resource.h"
-#include "ConfigPane.h"
 #include <algorithm>
+#include <iostream>
 #include <functional>
+#include "ConfigPane.h"
+#include "ContentPane.h"
 
 std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
 {
@@ -46,6 +47,7 @@ void MainWindow::OnCreate()
 
    std::unique_ptr<Window> leftWin = ConfigPane::Create(hInstance, *this);
    std::unique_ptr<Window> rightWin = ContentPane::Create(hInstance, *this);
+
    splitWindow = SplitWindow::Create(hInstance, *this, std::move(leftWin), std::move(rightWin), 30);
 }
 
@@ -62,6 +64,10 @@ LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
       break;
    case IDM_EXIT:
       NotifyListeners(&MainWindowListener::OnExit);
+      break;
+   case IDC_CONFIGPANE:
+      std::cout << "IDC_CONFIGPANE" << wParam << lParam << std::endl;
+      return 0;
       break;
    case WM_SIZE:
       OnSize(LOWORD(lParam), HIWORD(lParam));

@@ -16,6 +16,16 @@ public:
 
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
+   const Window& GetFirst() const
+   {
+      return *leftWin;
+   }
+
+   const Window& GetSecond() const
+   {
+      return *rightWin;
+   }
+
 private:
    SplitWindow(std::unique_ptr<Window>& left, std::unique_ptr<Window>& right, int splitterPercentage) : Window(),
       leftWin(std::move(left)),
