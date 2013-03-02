@@ -4,7 +4,7 @@
 
 #include "Win32Framework/Window.h"
 #include "Win32Framework/WindowBuilder.h"
-#include "Win32Framework/TreeView.h"
+#include "Win32Framework/ListBox.h"
 #include <memory>
 #include <Windows.h>
 #include <vector>
@@ -26,7 +26,7 @@ private:
 
    static BOOL CALLBACK MonitorEnumProc(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData);
    void AddTreeViewItems();
-   std::unique_ptr<TreeView> treeview;
+   std::unique_ptr<ListBox> monitorList;
    std::vector<HMONITOR> monitors;
 };
 

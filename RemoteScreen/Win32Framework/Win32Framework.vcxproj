@@ -87,6 +87,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ListBox.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ModalDialog.h" />
     <ClInclude Include="Observable.h" />
     <ClInclude Include="Splitter.h" />
@@ -103,6 +107,10 @@
     <ClInclude Include="WindowsException.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ListBox.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ModalDialog.cpp" />
     <ClCompile Include="Splitter.cpp" />
     <ClCompile Include="SplitWindow.cpp" />

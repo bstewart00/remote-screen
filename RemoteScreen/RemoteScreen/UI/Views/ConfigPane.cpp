@@ -4,6 +4,7 @@
 #include "../../resource.h"
 #include "Win32Framework/SystemWindowBuilder.h"
 #include <boost/format.hpp>
+#include <CommCtrl.h>
 
 std::unique_ptr<ConfigPane> ConfigPane::Create(HINSTANCE hInstance, const Window& parent)
 {
@@ -31,7 +32,14 @@ LRESULT CALLBACK ConfigPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
 
 void ConfigPane::OnCreate()
 {
-   treeview = TreeView::Create(GetInstance(), *this);
+   HINSTANCE hInstance = GetInstance();
+
+   monitorList = SystemWindowBuilder<ListBox>(hInstance)
+      .ClassName(WC_LISTBOX)
+      .Parent(*this)
+      .Style(WS_CHILD | WS_VISIBLE)
+      .Create();
+
    AddTreeViewItems();
 }
 
@@ -45,24 +53,21 @@ BOOL CALLBACK ConfigPane::MonitorEnumProc(HMONITOR hMonitor, HDC hdcMonitor, LPR
 
 void ConfigPane::AddTreeViewItems()
 {
-   treeview->AddItem("Monitor");
-
    ::EnumDisplayMonitors(NULL, NULL, MonitorEnumProc, reinterpret_cast<LPARAM>(this));
 
-   for (auto i = monitors.begin(); i != monitors.end(); ++i)
-   {
+   for (auto i = monitors.begin(); i != monitors.end(); ++i) {
       HMONITOR monitor = *i;
       MONITORINFOEX info;
       info.cbSize = sizeof(MONITORINFOEX);
       ::GetMonitorInfoW(monitor, &info);
 
       std::string text = boost::str(boost::format("Monitor %1%") % StringConverter::ToUtf8(info.szDevice));
-      treeview->AddItem(text);
+      monitorList->AddItem(text);
    }
 }
 
 void ConfigPane::OnResize() const
 {
    RECT rect = GetClientRect();
-   treeview->Move(rect.left, rect.top, rect.right, rect.bottom);
+   monitorList->Move(rect.left, rect.top, rect.right, rect.bottom);
 }
