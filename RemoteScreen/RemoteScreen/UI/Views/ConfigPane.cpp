@@ -5,6 +5,8 @@
 #include "Win32Framework/SystemWindowBuilder.h"
 #include <boost/format.hpp>
 #include <CommCtrl.h>
+#include <iostream>
+#include <array>
 
 std::unique_ptr<ConfigPane> ConfigPane::Create(HINSTANCE hInstance, const Window& parent)
 {
@@ -25,6 +27,8 @@ LRESULT CALLBACK ConfigPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
    case WM_SIZE:
       OnResize();
       break;
+   case WM_COMMAND:
+      return OnCommand(wParam, lParam);
    }
 
    return Window::ProcessMessage(message, wParam, lParam);
@@ -36,11 +40,39 @@ void ConfigPane::OnCreate()
 
    monitorList = SystemWindowBuilder<ListBox>(hInstance)
       .ClassName(WC_LISTBOX)
+      .Id(monitorListId)
       .Parent(*this)
-      .Style(WS_CHILD | WS_VISIBLE)
+      .Style(WS_CHILD | WS_VISIBLE | LBS_STANDARD)
       .Create();
 
    AddTreeViewItems();
+}
+
+LRESULT ConfigPane::OnCommand(WPARAM wParam, LPARAM lParam)
+{
+   int controlId = LOWORD(wParam);
+   int notificationCode = HIWORD(wParam);
+
+   switch (notificationCode) {
+   case LBN_SELCHANGE:
+      if (controlId == monitorListId)
+     OnMonitorListSelectionChanged();
+      break;
+   }
+   return 0;
+}
+
+void ConfigPane::OnMonitorListSelectionChanged() const
+{
+   LRESULT selectedItemIndex = monitorList->SendMessage(LB_GETCURSEL);
+   if (selectedItemIndex != LB_ERR) {
+
+      std::array<wchar_t, 255> buf;
+      LRESULT selectedItem = monitorList->SendMessage(LB_GETTEXT, selectedItemIndex, reinterpret_cast<LPARAM>(buf.data()));
+      if (selectedItem != LB_ERR) {
+         std::cout << StringConverter::ToUtf8(std::wstring(buf.data())) << std::endl;
+      }
+   }
 }
 
 BOOL CALLBACK ConfigPane::MonitorEnumProc(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData)

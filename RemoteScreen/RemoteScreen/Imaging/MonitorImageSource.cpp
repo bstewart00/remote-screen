@@ -56,6 +56,7 @@ HBITMAP MonitorImageSource::GetImage(int width, int height)
    hbmScreen = CreateCompatibleBitmap(hdcWindow, width, height);
    if(!hbmScreen)
    {
+      //TODO: Error handling
    }
 
    // Select the compatible bitmap into the compatible memory DC.
@@ -68,6 +69,7 @@ HBITMAP MonitorImageSource::GetImage(int width, int height)
       0,0,
       SRCCOPY))
    {
+      //TODO: Error handling
    }
 
    // Get the BITMAP from the HBITMAP

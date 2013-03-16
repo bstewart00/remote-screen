@@ -30,7 +30,7 @@ LRESULT CALLBACK SplitWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM
       break;
    }
 
-   return GetParent().SendMessageW(message, wParam, lParam);
+   return Window::ProcessMessage(message, wParam, lParam);
 }
 
 void SplitWindow::OnCreate()
@@ -49,7 +49,8 @@ LRESULT SplitWindow::OnCommand(WPARAM wParam, LPARAM lParam)
       MoveSplitter(wParam);
       return 0;
    }
-   return GetParent().SendMessageW(WM_COMMAND, wParam, lParam);
+   GetParent().SendMessageW(WM_COMMAND, wParam, lParam);
+   return 0;
 }
 
 void SplitWindow::OnSize(int width, int height) 

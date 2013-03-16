@@ -71,6 +71,12 @@ public:
       return *this;
    }
 
+   WindowBuilder<TWindow>& Id(int id)
+   {
+      this->menu = reinterpret_cast<HMENU>(id);
+      return *this;
+   }
+
    WindowBuilder<TWindow>& ClassStyle(int classStyle)
    {
       wndClass.style = classStyle;

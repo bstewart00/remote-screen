@@ -71,6 +71,12 @@ public:
       return *this;
    }
 
+   SystemWindowBuilder<TWindow>& Id(int id)
+   {
+      this->menu = reinterpret_cast<HMENU>(id);
+      return *this;
+   }
+
    std::unique_ptr<TWindow> Create()
    {
       HWND hWnd = CreateWindowHandle(nullptr);

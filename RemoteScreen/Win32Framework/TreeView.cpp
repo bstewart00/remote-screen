@@ -18,8 +18,8 @@ void TreeView::Initialize()
 
 std::unique_ptr<TreeView> TreeView::Create(HINSTANCE hInstance, const Window<>& parent)
 {
-   if (!TreeView::initialized)
-      TreeView::Initialize();
+   if (!initialized)
+      Initialize();
 
    RECT parentClientRect = parent.GetClientRect();
    return SystemWindowBuilder<TreeView>(hInstance)

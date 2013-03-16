@@ -4,8 +4,23 @@
 
 #include <CommCtrl.h>
 
+bool ListBox::initialized = false;
+void ListBox::Initialize()
+{
+   INITCOMMONCONTROLSEX params;
+   params.dwSize = sizeof(INITCOMMONCONTROLSEX);
+   params.dwICC = ICC_STANDARD_CLASSES;
+   bool initialized = ::InitCommonControlsEx(&params) != 0;
+   if (!initialized)
+      throw WindowsException("Failed to initialize tree view classes");
+   ListBox::initialized = true;
+}
+
 std::unique_ptr<ListBox> ListBox::Create(HINSTANCE hInstance, const Window<>& parent)
 {
+   if (!initialized)
+      Initialize();
+
    RECT parentClientRect = parent.GetClientRect();
    return SystemWindowBuilder<ListBox>(hInstance)
       .ClassName(WC_LISTBOX)
@@ -14,11 +29,15 @@ std::unique_ptr<ListBox> ListBox::Create(HINSTANCE hInstance, const Window<>& pa
       .Create();
 }
 
-void ListBox::AddItem(std::string item)
+void ListBox::AddItem(std::string item, LPARAM data)
 {
    std::wstring text = StringConverter::ToWide(item);
-   LRESULT result = SendMessageW(LB_ADDSTRING, NULL, reinterpret_cast<LPARAM>(text.c_str()));
-   if (result == LB_ERR || result == LB_ERRSPACE) {
+   LRESULT insertedIndex = SendMessageW(LB_ADDSTRING, NULL, reinterpret_cast<LPARAM>(text.c_str()));
+   if (insertedIndex == LB_ERR || insertedIndex == LB_ERRSPACE) {
       throw WindowsException("ListBox insert item failed");
+   }
+
+   if (SendMessageW(LB_SETITEMDATA, insertedIndex, data) == LB_ERR) {
+      //TODO: Error
    }
 }
