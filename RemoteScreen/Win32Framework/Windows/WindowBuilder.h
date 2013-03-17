@@ -1,19 +1,19 @@
 #pragma once
-#ifndef CustomWindowBuilder_H
-#define CustomWindowBuilder_H
+#ifndef WindowBuilder_H
+#define WindowBuilder_H
 
-#include "CustomWindow.h"
+#include "Window.h"
 #include "../Controls/CommonControlBuilder.h"
 #include "../WindowProcedures.h"
 #include "../Utils/StringConverter.h"
 #include <memory>
 #include <Windows.h>
 
-template <class TWindow = CustomWindow>
-class CustomWindowBuilder : public CommonControlBuilder<TWindow>
+template <class TWindow = Window>
+class WindowBuilder : public CommonControlBuilder<TWindow>
 {
 public:
-   CustomWindowBuilder(HINSTANCE hInstance) : CommonControlBuilder(hInstance)
+   WindowBuilder(HINSTANCE hInstance) : CommonControlBuilder(hInstance)
    {
       wndClass.cbSize = sizeof(WNDCLASSEX);
       wndClass.style = 0;
@@ -29,91 +29,91 @@ public:
       wndClass.hIconSm = nullptr;
    }
 
-   CustomWindowBuilder<TWindow>& ClassName(std::string className)
+   WindowBuilder<TWindow>& ClassName(std::string className)
    {
       CommonControlBuilder::ClassName(className);
       return *this;
    }
 
-   CustomWindowBuilder<TWindow>& Style(int windowStyle)
+   WindowBuilder<TWindow>& Style(int windowStyle)
    {
       CommonControlBuilder::Style(windowStyle);
       return *this;
    }
 
-   CustomWindowBuilder<TWindow>& Parent(HWND parent)
+   WindowBuilder<TWindow>& Parent(HWND parent)
    {
       CommonControlBuilder::Parent(parent);
       return *this;
    }
 
-   CustomWindowBuilder<TWindow>& Title(std::string title)
+   WindowBuilder<TWindow>& Title(std::string title)
    {
       CommonControlBuilder::Title(title);
       return *this;
    }
 
-   CustomWindowBuilder<TWindow>& Position(int x, int y, int width, int height)
+   WindowBuilder<TWindow>& Position(int x, int y, int width, int height)
    {
       CommonControlBuilder::Position(x, y, width, height);
       return *this;
    }
 
-   CustomWindowBuilder<TWindow>& Position(RECT rect)
+   WindowBuilder<TWindow>& Position(RECT rect)
    {
       CommonControlBuilder::Position(rect.left, rect.top, rect.right, rect.bottom);
       return *this;
    }
 
-   CustomWindowBuilder<TWindow>& Menu(HMENU menu)
+   WindowBuilder<TWindow>& Menu(HMENU menu)
    {
       this->menu = menu;
       return *this;
    }
 
-   CustomWindowBuilder<TWindow>& Id(int id)
+   WindowBuilder<TWindow>& Id(int id)
    {
       this->menu = reinterpret_cast<HMENU>(id);
       return *this;
    }
 
-   CustomWindowBuilder<TWindow>& ClassStyle(int classStyle)
+   WindowBuilder<TWindow>& ClassStyle(int classStyle)
    {
       wndClass.style = classStyle;
       return *this;
    }
 
-   CustomWindowBuilder<TWindow>& ClassMenu(int resourceId)
+   WindowBuilder<TWindow>& ClassMenu(int resourceId)
    {
       wndClass.lpszMenuName = MAKEINTRESOURCE(resourceId);
       return *this;
    }
 
-   CustomWindowBuilder<TWindow>& Background(int systemColor)
+   WindowBuilder<TWindow>& Background(int systemColor)
    {
       wndClass.hbrBackground = reinterpret_cast<HBRUSH>(systemColor + 1);
       return *this;
    }
 
-   CustomWindowBuilder<TWindow>& Background(HBRUSH brush)
+   WindowBuilder<TWindow>& Background(HBRUSH brush)
    {
       wndClass.hbrBackground = brush;
       return *this;
    }
 
-   CustomWindowBuilder<TWindow>& CursorFromSystem(const wchar_t* predefinedId)
+   WindowBuilder<TWindow>& CursorFromSystem(const wchar_t* predefinedId)
    {
       wndClass.hCursor = ::LoadCursor(nullptr, predefinedId);
       return *this;
    }
 
-   CustomWindowBuilder<TWindow>& CursorFromResource(const wchar_t* resId)
+   WindowBuilder<TWindow>& CursorFromResource(const wchar_t* resId)
    {
       wndClass.hCursor = ::LoadCursor(hInstance, resId);
       return *this;
    }
 
-   CustomWindowBuilder<TWindow>& Icon(int resId)
+   WindowBuilder<TWindow>& Icon(int resId)
    {
       wndClass.hIcon = ::LoadIcon(hInstance, MAKEINTRESOURCE (resId));
       wndClass.hIconSm =(HICON)::LoadImage(
@@ -127,13 +127,13 @@ public:
       return *this;
    }
 
-   CustomWindowBuilder<TWindow>& Register()
+   WindowBuilder<TWindow>& Register()
    {
       std::wstring wideName = StringConverter::ToWide(className);
       wndClass.lpszClassName = wideName.c_str();
       ATOM registeredClass = ::RegisterClassEx(&wndClass);
       if(registeredClass == 0) {
-         throw WindowsException("CustomWindow class registration failure.");
+         throw WindowsException("Window class registration failure.");
       }
 
       return *this;
@@ -144,19 +144,19 @@ public:
       return Create(new TWindow());
    }
 
-   template<class T1>
+   template<typename T1>
    std::unique_ptr<TWindow> Create(T1&& arg1)
    {
       return Create(new TWindow(arg1));
    }
 
-   template<class T1, class T2>
+   template<typename T1, typename T2>
    std::unique_ptr<TWindow> Create(T1&& arg1, T2&& arg2)
    {
       return Create(new TWindow(arg1, arg2));
    }
 
-   template<class T1, class T2, class T3>
+   template<typename T1, typename T2, typename T3>
    std::unique_ptr<TWindow> Create(T1&& arg1, T2&& arg2, T3&& arg3)
    {
       return Create(new TWindow(arg1, arg2, arg3));

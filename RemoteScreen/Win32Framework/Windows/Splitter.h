@@ -2,15 +2,15 @@
 #ifndef Splitter_H
 #define Splitter_H
 
-#include "CustomWindow.h"
-#include "CustomWindowBuilder.h"
+#include "Window.h"
+#include "WindowBuilder.h"
 #include "../CanvasTools.h"
 #include <memory>
 #include <Windows.h>
 
-class Splitter : public CustomWindow
+class Splitter : public Window
 {
-   friend class CustomWindowBuilder<Splitter>;
+   friend class WindowBuilder<Splitter>;
 public:
    static std::unique_ptr<Splitter> Create(HINSTANCE hInstance, const WindowHandle& parent, int splitterSize = 8);
 
@@ -18,7 +18,7 @@ public:
    int GetSize() const { return splitterSize; }
 
 private:
-   Splitter(int splitterSize) : CustomWindow(), splitterSize(splitterSize) {}
+   Splitter(int splitterSize) : Window(), splitterSize(splitterSize) {}
 
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);

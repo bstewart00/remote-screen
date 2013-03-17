@@ -101,8 +101,8 @@
     <ClInclude Include="Utils\StringConverter.h" />
     <ClInclude Include="Utils\StringResource.h" />
     <ClInclude Include="Utils\WindowsDeleters.h" />
-    <ClInclude Include="Windows\CustomWindow.h" />
-    <ClInclude Include="Windows\CustomWindowBuilder.h" />
+    <ClInclude Include="Windows\Window.h" />
+    <ClInclude Include="Windows\WindowBuilder.h" />
     <ClInclude Include="WindowHandle.h">
       <SubType>
       </SubType>

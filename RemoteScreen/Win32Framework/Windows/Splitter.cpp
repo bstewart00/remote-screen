@@ -4,7 +4,7 @@
 
 std::unique_ptr<Splitter> Splitter::Create(HINSTANCE hInstance, const WindowHandle& parent, int splitterSize)
 {
-   return CustomWindowBuilder<Splitter>(hInstance)
+   return WindowBuilder<Splitter>(hInstance)
       .ClassName("Splitter")
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
@@ -38,7 +38,7 @@ LRESULT CALLBACK Splitter::ProcessMessage(UINT message, WPARAM wParam, LPARAM lP
       return 0;
    }
 
-   return CustomWindow::ProcessMessage(message, wParam, lParam);
+   return Window::ProcessMessage(message, wParam, lParam);
 }
 
 void Splitter::Size(int width, int height)

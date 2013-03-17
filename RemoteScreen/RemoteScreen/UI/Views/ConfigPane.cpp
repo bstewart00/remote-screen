@@ -8,9 +8,9 @@
 #include <iostream>
 #include <array>
 
-std::unique_ptr<ConfigPane> ConfigPane::Create(HINSTANCE hInstance, const CustomWindow& parent)
+std::unique_ptr<ConfigPane> ConfigPane::Create(HINSTANCE hInstance, const Window& parent)
 {
-   return CustomWindowBuilder<ConfigPane>(hInstance)
+   return WindowBuilder<ConfigPane>(hInstance)
       .ClassName(StringResource(IDC_CONFIGPANE))
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
@@ -31,7 +31,7 @@ LRESULT CALLBACK ConfigPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
       return OnCommand(wParam, lParam);
    }
 
-   return CustomWindow::ProcessMessage(message, wParam, lParam);
+   return Window::ProcessMessage(message, wParam, lParam);
 }
 
 void ConfigPane::OnCreate()

@@ -1,11 +1,11 @@
 #include "SplitWindow.h"
 #include "Splitter.h"
-#include "CustomWindowBuilder.h"
+#include "WindowBuilder.h"
 #include "../CustomMessages.h"
 
 std::unique_ptr<SplitWindow> SplitWindow::Create(HINSTANCE hInstance, const WindowHandle& parent, std::unique_ptr<WindowHandle>&& left, std::unique_ptr<WindowHandle>&& right, int splitterPercentage)
 {
-   return CustomWindowBuilder<SplitWindow>(hInstance)
+   return WindowBuilder<SplitWindow>(hInstance)
       .ClassName("SplitWindow")
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
@@ -30,7 +30,7 @@ LRESULT CALLBACK SplitWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM
       break;
    }
 
-   return CustomWindow::ProcessMessage(message, wParam, lParam);
+   return Window::ProcessMessage(message, wParam, lParam);
 }
 
 void SplitWindow::OnCreate()

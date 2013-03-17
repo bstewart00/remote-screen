@@ -1,18 +1,18 @@
 #pragma once
-#ifndef CustomWindow_H
-#define CustomWindow_H
+#ifndef Window_H
+#define Window_H
 
-#include "CustomWindowBuilder.h"
+#include "WindowBuilder.h"
 #include "../WindowHandle.h"
 #include "../Utils/StringConverter.h"
 #include "../WindowsException.h"
 #include <Windows.h>
 
-class CustomWindow : public WindowHandle
+class Window : public WindowHandle
 {
-   friend class CustomWindowBuilder<CustomWindow>;
+   friend class WindowBuilder<Window>;
 public:
-   virtual ~CustomWindow() {}
+   virtual ~Window() {}
 
    virtual LRESULT CALLBACK ProcessMessage(UINT msg, WPARAM wParam, LPARAM lParam)
    {
@@ -20,7 +20,7 @@ public:
    }
 
 protected:
-   CustomWindow() : WindowHandle() {}
+   Window() : WindowHandle() {}
 };
 
 #endif

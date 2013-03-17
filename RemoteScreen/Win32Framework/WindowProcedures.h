@@ -9,27 +9,27 @@
 class WindowProcedures
 {
 public:
-   template<class TWindow>
+   template<typename TWindow>
    static LRESULT CALLBACK InitialWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
       return InitialMessageHandler<TWindow, LRESULT, WM_NCCREATE, GetWindow<TWindow>, DefaultWindowResult>(hWnd, msg, wParam, lParam);
    }
 
-   template<class TDialog>
+   template<typename TDialog>
    static INT_PTR CALLBACK InitialDlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
       return InitialMessageHandler<TDialog, INT_PTR, WM_INITDIALOG, GetDialog<TDialog>, DefaultDialogResult>(hWnd, msg, wParam, lParam);
    }
 
 private:
-   template<class T>
+   template<typename T>
    static T* GetWindow(LPARAM lParam)
    {
       LPCREATESTRUCT cs = reinterpret_cast<LPCREATESTRUCT>(lParam);
       return reinterpret_cast<T*>(cs->lpCreateParams);
    }
 
-   template<class T>
+   template<typename T>
    static T* GetDialog(LPARAM lParam)
    {
       return reinterpret_cast<T*>(lParam);
@@ -45,7 +45,13 @@ private:
       return FALSE;
    }
 
-   template<class TWindow, class MessageResult, int InitialMessage, TWindow*(*TWindowGetter)(LPARAM), MessageResult(*DefaultHandler)(HWND, UINT, WPARAM, LPARAM)>
+   template<
+      typename TWindow,
+      typename MessageResult, 
+      int InitialMessage, 
+      TWindow*(*TWindowGetter)(LPARAM), 
+      MessageResult(*DefaultHandler)(HWND, UINT, WPARAM, LPARAM)
+   >
    static MessageResult CALLBACK InitialMessageHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
       if (msg == InitialMessage) {
@@ -57,7 +63,7 @@ private:
       return DefaultHandler(hWnd, msg, wParam, lParam);
    }
 
-   template<class TWindow, class MessageResult, int UserDataKey, int WndProcKey>
+   template<typename TWindow, typename MessageResult, int UserDataKey, int WndProcKey>
    static void BindToWindow(TWindow* window)
    {
       auto wndProc = BoundWndProc<TWindow, MessageResult, UserDataKey>;
@@ -65,7 +71,7 @@ private:
       window->SetLongPtr(wndProc, WndProcKey);
    }
 
-   template<class TWindow, class MessageResult, int UserDataKey>
+   template<typename TWindow, typename MessageResult, int UserDataKey>
    static MessageResult CALLBACK BoundWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
       TWindow* w = WindowHandle::GetLongPtr<TWindow*>(hWnd, UserDataKey);

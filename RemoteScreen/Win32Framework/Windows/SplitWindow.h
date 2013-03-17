@@ -2,16 +2,16 @@
 #ifndef SplitWindow_H
 #define SplitWindow_H
 
-#include "CustomWindow.h"
+#include "Window.h"
 #include "../WindowHandle.h"
 #include "Splitter.h"
-#include "CustomWindowBuilder.h"
+#include "WindowBuilder.h"
 #include <memory>
 #include <Windows.h>
 
-class SplitWindow : public CustomWindow
+class SplitWindow : public Window
 {
-   friend class CustomWindowBuilder<SplitWindow>;
+   friend class WindowBuilder<SplitWindow>;
 public:
    static std::unique_ptr<SplitWindow> Create(HINSTANCE hInstance, const WindowHandle& parent, std::unique_ptr<WindowHandle>&& left, std::unique_ptr<WindowHandle>&& right, int splitterPercentage);
 
@@ -28,7 +28,7 @@ public:
    }
 
 private:
-   SplitWindow(std::unique_ptr<WindowHandle>& left, std::unique_ptr<WindowHandle>& right, int splitterPercentage) : CustomWindow(),
+   SplitWindow(std::unique_ptr<WindowHandle>& left, std::unique_ptr<WindowHandle>& right, int splitterPercentage) : Window(),
       leftWin(std::move(left)),
       rightWin(std::move(right)),
       splitRatioPercentage(splitterPercentage) {}

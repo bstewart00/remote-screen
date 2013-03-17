@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "MainWindow.h"
-#include "Win32Framework/Windows/CustomWindowBuilder.h"
+#include "Win32Framework/Windows/WindowBuilder.h"
 #include "Win32Framework/Utils/StringResource.h"
 #include "Win32Framework/Windows/SplitWindow.h"
 #include "../../Resource.h"
@@ -12,7 +12,7 @@
 
 std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
 {
-   return CustomWindowBuilder<MainWindow>(hInstance)
+   return WindowBuilder<MainWindow>(hInstance)
       .ClassName(StringResource(IDC_REMOTESCREEN))
       .ClassStyle(CS_HREDRAW | CS_VREDRAW)
       .ClassMenu(IDC_REMOTESCREEN)
@@ -38,7 +38,7 @@ LRESULT CALLBACK MainWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
       return OnClose(wParam, lParam);
    }
 
-   return CustomWindow::ProcessMessage(message, wParam, lParam);
+   return Window::ProcessMessage(message, wParam, lParam);
 }
 
 void MainWindow::OnCreate()
@@ -74,7 +74,7 @@ LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
       return 0;
    }
 
-   return CustomWindow::ProcessMessage(WM_COMMAND, wParam, lParam);
+   return Window::ProcessMessage(WM_COMMAND, wParam, lParam);
 }
 
 LRESULT MainWindow::OnClose(WPARAM wParam, LPARAM lParam)

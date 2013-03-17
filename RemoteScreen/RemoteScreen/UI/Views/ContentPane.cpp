@@ -8,9 +8,9 @@
 
 #include <iostream>
 
-std::unique_ptr<ContentPane> ContentPane::Create(HINSTANCE hInstance, const CustomWindow& parent)
+std::unique_ptr<ContentPane> ContentPane::Create(HINSTANCE hInstance, const Window& parent)
 {
-   return CustomWindowBuilder<ContentPane>(hInstance)
+   return WindowBuilder<ContentPane>(hInstance)
       .ClassName(StringResource(IDC_CONTENTPANE))
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
@@ -31,7 +31,7 @@ LRESULT CALLBACK ContentPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM
       OnResize();
    }
 
-   return CustomWindow::ProcessMessage(message, wParam, lParam);
+   return Window::ProcessMessage(message, wParam, lParam);
 }
 
 void ContentPane::OnCreate()

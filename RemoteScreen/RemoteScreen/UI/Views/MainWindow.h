@@ -3,9 +3,9 @@
 #define MainWindow_H
 
 #include "Win32Framework/Observable.h"
-#include "Win32Framework/Windows/CustomWindow.h"
+#include "Win32Framework/Windows/Window.h"
 #include "Win32Framework/Windows/SplitWindow.h"
-#include "Win32Framework/Windows/CustomWindowBuilder.h"
+#include "Win32Framework/Windows/WindowBuilder.h"
 #include "Win32Framework/Dialogs/ModalDialog.h"
 #include "ApplicationSettingsDialog.h"
 #include <memory>
@@ -23,9 +23,9 @@ public:
    virtual void OnClose() = 0;
 };
 
-class MainWindow : public CustomWindow, public Observable<MainWindowListener>
+class MainWindow : public Window, public Observable<MainWindowListener>
 {
-   friend class CustomWindowBuilder<MainWindow>;
+   friend class WindowBuilder<MainWindow>;
 public:
    static std::unique_ptr<MainWindow> Create(HINSTANCE hInstance);
 
@@ -36,7 +36,7 @@ public:
 
 private:
    static const int splitterPercentage = 30;
-   MainWindow() : CustomWindow() {}
+   MainWindow() : Window() {}
 
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);

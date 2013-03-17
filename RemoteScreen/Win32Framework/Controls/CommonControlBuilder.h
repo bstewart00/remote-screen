@@ -8,7 +8,7 @@
 #include <memory>
 #include <Windows.h>
 
-template<class TWindow = SystemWindow>
+template<typename TWindow = SystemWindow>
 class CommonControlBuilder
 {
 public:
@@ -95,7 +95,7 @@ protected:
          data);
 
       if (!hWnd)
-         throw WindowsException("CustomWindow creation failed.");
+         throw WindowsException("Window creation failed.");
 
       return hWnd;
    }

@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <functional>
 
-template<class TListener>
+template<typename TListener>
 class Observable
 {
 public:

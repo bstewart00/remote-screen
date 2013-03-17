@@ -66,13 +66,13 @@
     <ClInclude Include="Windows\SplitWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Windows\CustomWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows\CustomWindowBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Windows\Splitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\WindowBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
