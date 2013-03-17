@@ -3,7 +3,7 @@
 #define ModalDialog_H
 
 #include "WindowHandle.h"
-#include "CustomWindow.h"
+#include "WindowProcedureInitializer.h"
 #include "Observable.h"
 #include <Windows.h>
 
@@ -32,7 +32,8 @@ public:
    {
       if (msg == WM_INITDIALOG) {
          ModalDialog* dialog = reinterpret_cast<ModalDialog*>(lParam);
-         dialog->Initialize(hWnd);
+         dialog->hWnd = hWnd;
+         WindowProcedureInitializer<ModalDialog>::BindToWindow<DWLP_USER, DWLP_DLGPROC>(dialog);
          return dialog->OnInit(wParam, lParam);
       }
       return FALSE;
@@ -42,21 +43,6 @@ protected:
    virtual INT_PTR OnCommand(WPARAM wParam, LPARAM lParam);
    virtual INT_PTR OnInit(WPARAM wParam, LPARAM lParam);
 private:
-   void Initialize(HWND hWnd)
-   {
-      this->hWnd = hWnd;
-      this->SetLongPtr(this, DWLP_USER);
-      this->SetLongPtr(ModalDialog::BoundDlgProc, DWLP_DLGPROC);
-   }
-
-   static INT_PTR CALLBACK BoundDlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
-   {
-      ModalDialog* w = WindowHandle::GetLongPtr<ModalDialog*>(hWnd, DWLP_USER);
-      assert(w);
-      return w->ProcessMessage(msg, wParam, lParam);
-   }
-
-
    HINSTANCE hInstance;
    int resourceId;
    HWND parent;

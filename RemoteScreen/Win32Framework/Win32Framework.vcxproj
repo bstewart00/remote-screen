@@ -124,10 +124,6 @@
     <ClCompile Include="TreeView.cpp" />
     <ClCompile Include="Utils\StringConverter.cpp" />
     <ClCompile Include="Utils\StringResource.cpp" />
-    <ClCompile Include="WindowProcedureInitializer.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="WindowsException.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
