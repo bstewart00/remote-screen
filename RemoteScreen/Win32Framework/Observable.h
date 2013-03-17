@@ -6,23 +6,26 @@
 #include <algorithm>
 #include <functional>
 
-template<typename TListener>
-class Observable
+namespace Win32
 {
-public:
-   void AddListener(TListener* listener)
+   template<typename TListener>
+   class Observable
    {
-      listeners.push_back(listener);
-   }
+   public:
+      void AddListener(TListener* listener)
+      {
+         listeners.push_back(listener);
+      }
 
-protected:
-   void NotifyListeners(void(TListener::*eventHandler)()) const
-   {
-      std::for_each(listeners.begin(), listeners.end(), std::bind(eventHandler, std::placeholders::_1));
-   }
-   
-private:
-   std::vector<TListener*> listeners;
-};
+   protected:
+      void NotifyListeners(void(TListener::*eventHandler)()) const
+      {
+         std::for_each(listeners.begin(), listeners.end(), std::bind(eventHandler, std::placeholders::_1));
+      }
+
+   private:
+      std::vector<TListener*> listeners;
+   };
+}
 
 #endif

@@ -7,98 +7,100 @@
 #include <Windows.h>
 #include <string>
 
-class DisplayDeviceContext
+namespace Win32
 {
-public:
-   DisplayDeviceContext(const char* deviceName)
+   class DisplayDeviceContext
    {
-      hDC = deviceName == nullptr
-         ? CreateFromFullScreen(deviceName)
-         : CreateFromSingleDevice(deviceName);
+   public:
+      DisplayDeviceContext(const char* deviceName)
+      {
+         hDC = deviceName == nullptr
+            ? CreateFromFullScreen(deviceName)
+            : CreateFromSingleDevice(deviceName);
 
-      if (!hDC)
-         throw WindowsException("Failed to create compatible memory device context");
-   }
+         if (!hDC)
+            throw WindowsException("Failed to create compatible memory device context");
+      }
 
-   ~DisplayDeviceContext()
+      ~DisplayDeviceContext()
+      {
+         ::DeleteDC(hDC);
+      }
+
+      operator HDC() const
+      {
+         return hDC;
+      }
+
+   private:
+      HDC CreateFromSingleDevice(const char* deviceName)
+      {
+         std::wstring wideName = StringConverter::ToWide(deviceName);
+         HDC result = ::CreateDCW(wideName.c_str(), NULL, NULL, NULL);
+         return result;
+      }
+
+      HDC CreateFromFullScreen(const char* deviceName)
+      {
+         return ::CreateDC(NULL, NULL, NULL, NULL);
+      }
+
+      HDC hDC;
+   };
+
+   class MemoryDeviceContext
    {
-      ::DeleteDC(hDC);
-   }
+   public:
+      MemoryDeviceContext(HDC hDC)
+         : hDC(::CreateCompatibleDC(hDC))
+      {
+         if (!hDC)
+            throw WindowsException("Failed to create compatible memory device context");
+      }
 
-   operator HDC() const
+      ~MemoryDeviceContext()
+      {
+         ::DeleteDC(hDC);
+      }
+
+      operator HDC() const
+      {
+         return hDC;
+      }
+
+   private:
+      HDC hDC;
+   };
+
+   class WindowDeviceContext
    {
-      return hDC;
-   }
+   public:
+      WindowDeviceContext(HWND hWnd)
+         : hWnd(hWnd), hDC(::GetDC(hWnd))
+      {
+         if (!hDC)
+            throw WindowsException("Failed to create window device context");
+      }
 
-private:
-   HDC CreateFromSingleDevice(const char* deviceName)
-   {
-      std::wstring wideName = StringConverter::ToWide(deviceName);
-      HDC result = ::CreateDCW(wideName.c_str(), NULL, NULL, NULL);
-      return result;
-   }
+      ~WindowDeviceContext()
+      {
+         ::ReleaseDC(hWnd, hDC);
+      }
 
-   HDC CreateFromFullScreen(const char* deviceName)
-   {
-      return ::CreateDC(NULL, NULL, NULL, NULL);
-   }
+      MemoryDeviceContext CreateCompatibleMemoryContext() const
+      {
+         return ::CreateCompatibleDC(hDC);
+      }
 
-   HDC hDC;
-};
+      operator HDC() const
+      {
+         return hDC;
+      }
 
-class MemoryDeviceContext
-{
-public:
-   MemoryDeviceContext(HDC hDC)
-      : hDC(::CreateCompatibleDC(hDC))
-   {
-      if (!hDC)
-         throw WindowsException("Failed to create compatible memory device context");
-   }
-
-   ~MemoryDeviceContext()
-   {
-      ::DeleteDC(hDC);
-   }
-
-   operator HDC() const
-   {
-      return hDC;
-   }
-
-private:
-   HDC hDC;
-};
-
-class WindowDeviceContext
-{
-public:
-   WindowDeviceContext(HWND hWnd)
-      : hWnd(hWnd), hDC(::GetDC(hWnd))
-   {
-      if (!hDC)
-         throw WindowsException("Failed to create window device context");
-   }
-
-   ~WindowDeviceContext()
-   {
-      ::ReleaseDC(hWnd, hDC);
-   }
-
-   MemoryDeviceContext CreateCompatibleMemoryContext() const
-   {
-      return ::CreateCompatibleDC(hDC);
-   }
-
-   operator HDC() const
-   {
-      return hDC;
-   }
-
-private:
-   HDC hDC;
-   HWND hWnd;
-};
-
+   private:
+      HDC hDC;
+      HWND hWnd;
+   };
+}
 
 #endif

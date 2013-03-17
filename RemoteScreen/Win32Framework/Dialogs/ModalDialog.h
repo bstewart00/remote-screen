@@ -6,34 +6,37 @@
 #include "../Observable.h"
 #include <Windows.h>
 
-class ModalDialogListener
+namespace Win32
 {
-public:
-   virtual void OnOkClicked() = 0;
-   virtual void OnCancelClicked() = 0;
-};
-
-class ModalDialog : public WindowHandle, public Observable<ModalDialogListener>
-{
-public:
-   enum class Result
+   class ModalDialogListener
    {
-      Cancel = 0,
-      Ok = 1
+   public:
+      virtual void OnOkClicked() = 0;
+      virtual void OnCancelClicked() = 0;
    };
 
-   ModalDialog(HINSTANCE hInstance, int resourceId, HWND parent);
-   ModalDialog::Result Show();
+   class ModalDialog : public WindowHandle, public Observable<ModalDialogListener>
+   {
+   public:
+      enum class Result
+      {
+         Cancel = 0,
+         Ok = 1
+      };
 
-   INT_PTR CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
+      ModalDialog(HINSTANCE hInstance, int resourceId, HWND parent);
+      ModalDialog::Result Show();
 
-protected:
-   virtual INT_PTR OnInit(WPARAM wParam, LPARAM lParam);
-   virtual INT_PTR OnCommand(WPARAM wParam, LPARAM lParam);
-private:
-   HINSTANCE hInstance;
-   int resourceId;
-   HWND parent;
-};
+      INT_PTR CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
+
+   protected:
+      virtual INT_PTR OnInit(WPARAM wParam, LPARAM lParam);
+      virtual INT_PTR OnCommand(WPARAM wParam, LPARAM lParam);
+   private:
+      HINSTANCE hInstance;
+      int resourceId;
+      HWND parent;
+   };
+}
 
 #endif

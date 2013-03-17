@@ -9,45 +9,47 @@
 #include <memory>
 #include <Windows.h>
 
-class SplitWindow : public Window
+namespace Win32
 {
-   friend class WindowBuilder<SplitWindow>;
-public:
-   static std::unique_ptr<SplitWindow> Create(HINSTANCE hInstance, const WindowHandle& parent, std::unique_ptr<WindowHandle>&& left, std::unique_ptr<WindowHandle>&& right, int splitterPercentage);
-
-   LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
-
-   const WindowHandle& GetFirst() const
+   class SplitWindow : public Window
    {
-      return *leftWin;
-   }
+      friend class WindowBuilder<SplitWindow>;
+   public:
+      static std::unique_ptr<SplitWindow> Create(HINSTANCE hInstance, const WindowHandle& parent, std::unique_ptr<WindowHandle>&& left, std::unique_ptr<WindowHandle>&& right, int splitterPercentage);
 
-   const WindowHandle& GetSecond() const
-   {
-      return *rightWin;
-   }
+      LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
-private:
-   SplitWindow(std::unique_ptr<WindowHandle>& left, std::unique_ptr<WindowHandle>& right, int splitterPercentage) : Window(),
-      leftWin(std::move(left)),
-      rightWin(std::move(right)),
-      splitRatioPercentage(splitterPercentage) {}
+      const WindowHandle& GetFirst() const
+      {
+         return *leftWin;
+      }
 
-   void OnCreate();
-   LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
+      const WindowHandle& GetSecond() const
+      {
+         return *rightWin;
+      }
 
-   void OnSize(int cx, int cy);
-   void MoveSplitter(int x);
-   int CalculateSplitterPercentage(int splitterX);
-   int CalculateSplitterX();
+   private:
+      SplitWindow(std::unique_ptr<WindowHandle>& left, std::unique_ptr<WindowHandle>& right, int splitterPercentage) : Window(),
+         leftWin(std::move(left)),
+         rightWin(std::move(right)),
+         splitRatioPercentage(splitterPercentage) {}
 
-   std::unique_ptr<WindowHandle> leftWin;
-   std::unique_ptr<WindowHandle> rightWin;
-   std::unique_ptr<Splitter> splitter;
+      void OnCreate();
+      LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
 
-   int width;
-   int height;
-   int splitRatioPercentage;
-};
+      void OnSize(int cx, int cy);
+      void MoveSplitter(int x);
+      int CalculateSplitterPercentage(int splitterX);
+      int CalculateSplitterX();
 
+      std::unique_ptr<WindowHandle> leftWin;
+      std::unique_ptr<WindowHandle> rightWin;
+      std::unique_ptr<Splitter> splitter;
+
+      int width;
+      int height;
+      int splitRatioPercentage;
+   };
+}
 #endif

@@ -9,20 +9,23 @@
 #include <string>
 #include <memory>
 
-class ListBox : public WindowHandle
+namespace Win32
 {
-   friend class CommonControlBuilder<ListBox>;
-public:
-   static std::unique_ptr<ListBox> Create(HINSTANCE hInstance, const WindowHandle& parent);
+   class ListBox : public WindowHandle
+   {
+      friend class CommonControlBuilder<ListBox>;
+   public:
+      static std::unique_ptr<ListBox> Create(HINSTANCE hInstance, const WindowHandle& parent);
 
-   void AddItem(const std::string text, LPARAM data = 0);
-private:
-   ListBox(HWND hWnd) : WindowHandle(hWnd) {}
-   
-   static bool initialized;
-   static void Initialize();
-   std::vector<wchar_t*> text_buffer;
-   
-};
+      void AddItem(const std::string text, LPARAM data = 0);
+   private:
+      ListBox(HWND hWnd) : WindowHandle(hWnd) {}
+
+      static bool initialized;
+      static void Initialize();
+      std::vector<wchar_t*> text_buffer;
+
+   };
+}
 
 #endif

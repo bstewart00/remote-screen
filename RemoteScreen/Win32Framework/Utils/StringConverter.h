@@ -5,11 +5,14 @@
 #include <string>
 #include <memory>
 
-class StringConverter
+namespace Win32
 {
-public:
-   static std::wstring ToWide(const std::string& str);
-   static std::string ToUtf8(const std::wstring& str);
-};
+   class StringConverter
+   {
+   public:
+      static std::wstring ToWide(const std::string& str);
+      static std::string ToUtf8(const std::wstring& str);
+   };
+}
 
 #endif

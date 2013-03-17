@@ -8,38 +8,41 @@
 #include <memory>
 #include <Windows.h>
 
-class Splitter : public Window
+namespace Win32
 {
-   friend class WindowBuilder<Splitter>;
-public:
-   static std::unique_ptr<Splitter> Create(HINSTANCE hInstance, const WindowHandle& parent, int splitterSize = 8);
+   class Splitter : public Window
+   {
+      friend class WindowBuilder<Splitter>;
+   public:
+      static std::unique_ptr<Splitter> Create(HINSTANCE hInstance, const WindowHandle& parent, int splitterSize = 8);
 
-   LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
-   int GetSize() const { return splitterSize; }
+      LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
+      int GetSize() const { return splitterSize; }
 
-private:
-   Splitter(int splitterSize) : Window(), splitterSize(splitterSize) {}
+   private:
+      Splitter(int splitterSize) : Window(), splitterSize(splitterSize) {}
 
-   void OnCreate();
-   LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
+      void OnCreate();
+      LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
 
-   void Size(int width, int height);
-   void Paint();
+      void Size(int width, int height);
+      void Paint();
 
-   void LButtonDown(POINTS pt);
-   void LButtonUp(POINTS pt);
-   void LButtonDrag(POINTS pt);
-   void CaptureChanged();
+      void LButtonDown(POINTS pt);
+      void LButtonUp(POINTS pt);
+      void LButtonDrag(POINTS pt);
+      void CaptureChanged();
 
-   int splitterSize;
-   int width;
-   int height;
+      int splitterSize;
+      int width;
+      int height;
 
-   int dragStart;
-   int dragX;
-   Pens3d pens;
+      int dragStart;
+      int dragX;
+      Pens3d pens;
 
-   bool dragStarted;
-};
+      bool dragStarted;
+   };
+}
 
 #endif

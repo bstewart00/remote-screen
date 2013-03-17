@@ -7,19 +7,22 @@
 #include <memory>
 #include <Windows.h>
 
-class WindowsException
+namespace Win32
 {
-public:
-   WindowsException (const char* msg) : errorCode(::GetLastError()), message(msg) {}
-   WindowsException (std::string msg) : errorCode(::GetLastError()), message(msg) {}
+   class WindowsException
+   {
+   public:
+      WindowsException (const char* msg) : errorCode(::GetLastError()), message(msg) {}
+      WindowsException (std::string msg) : errorCode(::GetLastError()), message(msg) {}
 
-   DWORD GetErrorCode() const { return errorCode; }
-   const char* GetMessage () const { return message.c_str(); }
-   std::unique_ptr<WCHAR, LocalFreeDeleter> GetFormattedMessage () const;
+      DWORD GetErrorCode() const { return errorCode; }
+      const char* GetMessage () const { return message.c_str(); }
+      std::unique_ptr<WCHAR, LocalFreeDeleter> GetFormattedMessage () const;
 
-private:
-   DWORD errorCode;
-   std::string message;
-};
+   private:
+      DWORD errorCode;
+      std::string message;
+   };
+}
 
 #endif

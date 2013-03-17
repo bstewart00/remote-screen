@@ -8,19 +8,22 @@
 #include "../WindowsException.h"
 #include <Windows.h>
 
-class Window : public WindowHandle
+namespace Win32
 {
-   friend class WindowBuilder<Window>;
-public:
-   virtual ~Window() {}
-
-   virtual LRESULT CALLBACK ProcessMessage(UINT msg, WPARAM wParam, LPARAM lParam)
+   class Window : public WindowHandle
    {
-      return ::DefWindowProc(hWnd, msg, wParam, lParam);
-   }
+      friend class WindowBuilder<Window>;
+   public:
+      virtual ~Window() {}
 
-protected:
-   Window() : WindowHandle() {}
-};
+      virtual LRESULT CALLBACK ProcessMessage(UINT msg, WPARAM wParam, LPARAM lParam)
+      {
+         return ::DefWindowProc(hWnd, msg, wParam, lParam);
+      }
+
+   protected:
+      Window() : WindowHandle() {}
+   };
+}
 
 #endif

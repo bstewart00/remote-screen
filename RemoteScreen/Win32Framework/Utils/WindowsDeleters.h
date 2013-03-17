@@ -5,9 +5,12 @@
 #include <Windows.h>
 #include <objbase.h>
 
-struct LocalFreeDeleter
+namespace Win32
 {
-   void operator()(void* p) const { ::LocalFree(p); }
-};
+   struct LocalFreeDeleter
+   {
+      void operator()(void* p) const { ::LocalFree(p); }
+   };
+}
 
 #endif

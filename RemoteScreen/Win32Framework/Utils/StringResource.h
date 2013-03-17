@@ -6,20 +6,23 @@
 #include <Windows.h>
 #include <string>
 
-class StringResource
+namespace Win32
 {
-public:
-   static const int MAX_LENGTH = 255;
+   class StringResource
+   {
+   public:
+      static const int MAX_LENGTH = 255;
 
-   StringResource (int resId);
-   static void SetInstance(HINSTANCE hInst);
+      StringResource (int resId);
+      static void SetInstance(HINSTANCE hInst);
 
-   operator std::string () const { return buf; }
-   const std::string str() const { return buf; }
-private:
-   static HINSTANCE hInstance;
+      operator std::string () const { return buf; }
+      const std::string str() const { return buf; }
+   private:
+      static HINSTANCE hInstance;
 
-   std::string buf;
-};
+      std::string buf;
+   };
+}
 
 #endif
