@@ -41,6 +41,11 @@ void MainPresenter::OnClose()
    ConfirmExit();
 }
 
+void MainPresenter::OnCreated()
+{
+
+}
+
 void MainPresenter::ConfirmExit() const
 {
    int result = ::MessageBox(view, L"Confirm exit", L"Save unsaved changes?", MB_OKCANCEL);

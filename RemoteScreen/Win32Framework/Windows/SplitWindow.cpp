@@ -5,7 +5,7 @@
 
 namespace Win32
 {
-   std::unique_ptr<SplitWindow> SplitWindow::Create(HINSTANCE hInstance, const WindowHandle& parent, std::unique_ptr<WindowHandle>&& left, std::unique_ptr<WindowHandle>&& right, int splitterPercentage)
+   std::unique_ptr<SplitWindow> SplitWindow::Create(HINSTANCE hInstance, const Window& parent, std::unique_ptr<Window>&& left, std::unique_ptr<Window>&& right, int splitterPercentage)
    {
       return WindowBuilder<SplitWindow>(hInstance)
          .ClassName("SplitWindow")

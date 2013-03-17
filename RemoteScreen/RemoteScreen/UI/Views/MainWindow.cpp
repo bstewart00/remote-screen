@@ -44,13 +44,8 @@ LRESULT CALLBACK MainWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
 void MainWindow::OnCreate()
 {
    HINSTANCE hInstance = GetInstance();
-
-   std::unique_ptr<ConfigPane> configPane = ConfigPane::Create(hInstance, *this);
-   configPane->AddListener(this);
-
-   std::unique_ptr<ContentPane> contentPane = ContentPane::Create(hInstance, *this);
-
-   splitWindow = Win32::SplitWindow::Create(hInstance, *this, std::move(configPane), std::move(contentPane), splitterPercentage);
+   splitWindow = Win32::SplitWindow::Create(hInstance, *this, ConfigPane::Create(hInstance, *this), ContentPane::Create(hInstance, *this), splitterPercentage);
+   NotifyListeners(&MainWindowListener::OnCreated);
 }
 
 LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
@@ -75,23 +70,23 @@ LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
    return Window::ProcessMessage(WM_COMMAND, wParam, lParam);
 }
 
-LRESULT MainWindow::OnClose(WPARAM wParam, LPARAM lParam)
+LRESULT MainWindow::OnClose(WPARAM wParam, LPARAM lParam) const
 {
    NotifyListeners(&MainWindowListener::OnClose);
    return 0;
 }
 
-Win32::ModalDialog MainWindow::CreateAboutDialog()
+Win32::ModalDialog MainWindow::CreateAboutDialog() const
 {
    return Win32::ModalDialog(GetInstance(), IDD_ABOUTBOX, hWnd);
 }
 
-ApplicationSettingsDialog MainWindow::CreateApplicationSettingsDialog()
+ApplicationSettingsDialog MainWindow::CreateApplicationSettingsDialog() const
 {
    return ApplicationSettingsDialog(GetInstance(), IDD_SETTINGS, hWnd);
 }
 
-void MainWindow::OnSize(int width, int height) 
+void MainWindow::OnSize(int width, int height) const
 {
    splitWindow->Move(0, 0, width, height);
 }

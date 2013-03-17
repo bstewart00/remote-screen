@@ -15,6 +15,7 @@ private:
    void OnSettings();
    void OnExit();
    void OnClose();
+   void OnCreated();
 
    void ConfirmExit() const;
 
