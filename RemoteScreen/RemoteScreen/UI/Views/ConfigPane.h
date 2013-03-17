@@ -9,9 +9,9 @@
 #include <Windows.h>
 #include <vector>
 
-class ConfigPane : public Window
+class ConfigPane : public Win32::Window
 {
-   friend class WindowBuilder<ConfigPane>;
+   friend class Win32::WindowBuilder<ConfigPane>;
 public:
    static std::unique_ptr<ConfigPane> Create(HINSTANCE hInstance, const Window& parent);
 
@@ -27,7 +27,7 @@ private:
 
    static BOOL CALLBACK MonitorEnumProc(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData);
    void AddTreeViewItems();
-   std::unique_ptr<ListBox> monitorList;
+   std::unique_ptr<Win32::ListBox> monitorList;
    std::vector<HMONITOR> monitors;
 
    static const int monitorListId = 1;

@@ -10,8 +10,8 @@
 
 std::unique_ptr<ContentPane> ContentPane::Create(HINSTANCE hInstance, const Window& parent)
 {
-   return WindowBuilder<ContentPane>(hInstance)
-      .ClassName(StringResource(IDC_CONTENTPANE))
+   return Win32::WindowBuilder<ContentPane>(hInstance)
+      .ClassName(Win32::StringResource(IDC_CONTENTPANE))
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
       .Register()

@@ -15,8 +15,8 @@ void ApplicationSettingsRepository::InitializeAppDataFolder()
    if (result == E_FAIL)
       throw std::runtime_error("Failed to get Roaming AppData directory.");
 
-   appDataPath = StringConverter::ToUtf8(path);
-   appDataPath /= StringResource(AppDataFolderName).str();
+   appDataPath = Win32::StringConverter::ToUtf8(path);
+   appDataPath /= Win32::StringResource(AppDataFolderName).str();
 
    ::CoTaskMemFree(path);
 }
@@ -27,7 +27,7 @@ boost::filesystem::path ApplicationSettingsRepository::SettingsFilePath()
       InitializeAppDataFolder();
 
    if (settingsFilePath.empty()) {
-      StringResource fileName(AppDataFolderName);
+      Win32::StringResource fileName(AppDataFolderName);
       settingsFilePath = appDataPath / fileName.str();
    }
 
@@ -53,5 +53,5 @@ void ApplicationSettingsRepository::Save(const ApplicationSettings& settings)
    stream << settings.someSetting();
 
    boost::filesystem::path settingsPath = SettingsFilePath();
-   ::WritePrivateProfileString(L"SomeSetting", L"test", StringConverter::ToWide(stream.str()).c_str(), settingsPath.c_str());
+   ::WritePrivateProfileString(L"SomeSetting", L"test", Win32::StringConverter::ToWide(stream.str()).c_str(), settingsPath.c_str());
 }

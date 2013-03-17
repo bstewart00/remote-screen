@@ -7,9 +7,9 @@
 #include <memory>
 #include <Windows.h>
 
-class ContentPane : public Window
+class ContentPane : public Win32::Window
 {
-   friend class WindowBuilder<ContentPane>;
+   friend class Win32::WindowBuilder<ContentPane>;
 public:
    static std::unique_ptr<ContentPane> Create(HINSTANCE hInstance, const Window& parenti);
 

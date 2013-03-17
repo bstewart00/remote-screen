@@ -7,7 +7,7 @@
 #include "Win32Framework/Dialogs/ModalDialog.h"
 #include <Windows.h>
 
-class ApplicationSettingsDialog : public ModalDialog, private ApplicationSettingsListener
+class ApplicationSettingsDialog : public Win32::ModalDialog, private ApplicationSettingsListener
 {
 public:
    ApplicationSettingsDialog(HINSTANCE hInstance, int resourceId, HWND parent);

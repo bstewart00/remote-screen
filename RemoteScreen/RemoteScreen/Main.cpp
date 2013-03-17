@@ -37,12 +37,12 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
    try {
       Application app(hInstance, nCmdShow);
       return app.Run();
-   } catch (WindowsException e) {
+   } catch (Win32::WindowsException e) {
       boost::format test = boost::format("Error: %1 Win32 Error %2: %3") % e.GetMessage() % e.GetErrorCode() % e.GetFormattedMessage();
-      std::wstring message = StringConverter::ToWide(test.str());
+      std::wstring message = Win32::StringConverter::ToWide(test.str());
       ::MessageBox (0, message.c_str(), L"Exception", MB_ICONEXCLAMATION | MB_OK);
    } catch(std::runtime_error e) {
-      std::wstring message = StringConverter::ToWide(e.what());
+      std::wstring message = Win32::StringConverter::ToWide(e.what());
       ::MessageBox(0, message.c_str(), L"Exception", MB_ICONEXCLAMATION | MB_OK);
    } catch (...) {
       ::MessageBox (0, L"Unknown Error", L"Exception", MB_ICONEXCLAMATION | MB_OK);

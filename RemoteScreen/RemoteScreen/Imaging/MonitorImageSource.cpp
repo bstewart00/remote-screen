@@ -32,11 +32,11 @@ HBITMAP MonitorImageSource::GetImage(int width, int height)
 
    // Retrieve the handle to a display device context for the client 
    // area of the window.
-   DisplayDeviceContext hdcScreen("DISPLAY");
-   WindowDeviceContext hdcWindow(::GetDesktopWindow());
+   Win32::DisplayDeviceContext hdcScreen("DISPLAY");
+   Win32::WindowDeviceContext hdcWindow(::GetDesktopWindow());
 
    // Create a compatible DC which is used in a BitBlt from the window DC
-   MemoryDeviceContext hdcMemDC(hdcWindow); 
+   Win32::MemoryDeviceContext hdcMemDC(hdcWindow); 
 
    //This is the best stretch mode
    ::SetStretchBltMode(hdcWindow,HALFTONE);

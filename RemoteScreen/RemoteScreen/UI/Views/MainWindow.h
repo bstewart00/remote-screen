@@ -23,15 +23,15 @@ public:
    virtual void OnClose() = 0;
 };
 
-class MainWindow : public Window, public Observable<MainWindowListener>
+class MainWindow : public Win32::Window, public Win32::Observable<MainWindowListener>
 {
-   friend class WindowBuilder<MainWindow>;
+   friend class Win32::WindowBuilder<MainWindow>;
 public:
    static std::unique_ptr<MainWindow> Create(HINSTANCE hInstance);
 
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
-   ModalDialog CreateAboutDialog();
+   Win32::ModalDialog CreateAboutDialog();
    ApplicationSettingsDialog CreateApplicationSettingsDialog();
 
 private:
@@ -44,7 +44,7 @@ private:
 
    void OnSize(int cx, int cy);
 
-   std::unique_ptr<SplitWindow> splitWindow;
+   std::unique_ptr<Win32::SplitWindow> splitWindow;
 };
 
 #endif

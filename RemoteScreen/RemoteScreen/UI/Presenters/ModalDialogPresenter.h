@@ -4,16 +4,16 @@
 
 #include "Win32Framework/Dialogs/ModalDialog.h"
 
-class ModalDialogPresenter : private ModalDialogListener
+class ModalDialogPresenter : private Win32::ModalDialogListener
 {
 public:
-   ModalDialogPresenter(ModalDialog& view);
+   ModalDialogPresenter(Win32::ModalDialog& view);
 
 protected:
    virtual void OnOkClicked();
    virtual void OnCancelClicked();
 
-   ModalDialog& view;
+   Win32::ModalDialog& view;
 };
 
 #endif

@@ -10,7 +10,7 @@ public:
    virtual void OnSettingsChanged() = 0;
 };
 
-class ApplicationSettings : public Observable<ApplicationSettingsListener>
+class ApplicationSettings : public Win32::Observable<ApplicationSettingsListener>
 {
 public:
    int someSetting() const

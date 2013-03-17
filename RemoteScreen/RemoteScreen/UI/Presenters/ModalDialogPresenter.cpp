@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ModalDialogPresenter.h"
 
-ModalDialogPresenter::ModalDialogPresenter(ModalDialog& view)
+ModalDialogPresenter::ModalDialogPresenter(Win32::ModalDialog& view)
    : view(view)
 {
    view.AddListener(this);

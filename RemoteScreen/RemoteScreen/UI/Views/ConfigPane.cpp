@@ -10,8 +10,8 @@
 
 std::unique_ptr<ConfigPane> ConfigPane::Create(HINSTANCE hInstance, const Window& parent)
 {
-   return WindowBuilder<ConfigPane>(hInstance)
-      .ClassName(StringResource(IDC_CONFIGPANE))
+   return Win32::WindowBuilder<ConfigPane>(hInstance)
+      .ClassName(Win32::StringResource(IDC_CONFIGPANE))
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
       .Register()
@@ -38,7 +38,7 @@ void ConfigPane::OnCreate()
 {
    HINSTANCE hInstance = GetInstance();
 
-   monitorList = CommonControlBuilder<ListBox>(hInstance)
+   monitorList = Win32::CommonControlBuilder<Win32::ListBox>(hInstance)
       .ClassName(WC_LISTBOX)
       .Id(monitorListId)
       .Parent(*this)
@@ -70,7 +70,7 @@ void ConfigPane::OnMonitorListSelectionChanged() const
       std::array<wchar_t, 255> buf;
       LRESULT selectedItem = monitorList->SendMsg(LB_GETTEXT, selectedItemIndex, reinterpret_cast<LPARAM>(buf.data()));
       if (selectedItem != LB_ERR) {
-         std::cout << StringConverter::ToUtf8(std::wstring(buf.data())) << std::endl;
+         std::cout << Win32::StringConverter::ToUtf8(std::wstring(buf.data())) << std::endl;
       }
    }
 }
@@ -93,7 +93,7 @@ void ConfigPane::AddTreeViewItems()
       info.cbSize = sizeof(MONITORINFOEX);
       ::GetMonitorInfoW(monitor, &info);
 
-      std::string text = boost::str(boost::format("Monitor %1%") % StringConverter::ToUtf8(info.szDevice));
+      std::string text = boost::str(boost::format("Monitor %1%") % Win32::StringConverter::ToUtf8(info.szDevice));
       monitorList->AddItem(text);
    }
 }

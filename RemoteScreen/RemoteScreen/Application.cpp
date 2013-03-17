@@ -15,7 +15,7 @@ Application::Application(HINSTANCE hInstance, int nCmdShow)
 
 int Application::Run()
 {
-   StringResource::SetInstance(hInstance);
+   Win32::StringResource::SetInstance(hInstance);
    ApplicationSettingsRepository settingsRepository;
 
    ApplicationSettings settings = settingsRepository.Get();
@@ -23,12 +23,12 @@ int Application::Run()
    MainPresenter presenter(*view, settings, hInstance);
    view->Show(nCmdShow);
 
-   HACCEL hAccelTable = LoadAccelerators(StringResource(IDC_REMOTESCREEN));
+   HACCEL hAccelTable = LoadAccelerators(Win32::StringResource(IDC_REMOTESCREEN));
    MSG msg;
    BOOL bRet;
    while ((bRet = ::GetMessage(&msg, 0, 0, 0)) != 0) {
       if (bRet == -1) {
-         throw WindowsException("Unspecified windows error");
+         throw Win32::WindowsException("Unspecified windows error");
       } else if (!::TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) {
          ::TranslateMessage(&msg);
          ::DispatchMessage(&msg);

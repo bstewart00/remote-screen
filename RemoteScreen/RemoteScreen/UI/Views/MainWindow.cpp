@@ -12,13 +12,13 @@
 
 std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
 {
-   return WindowBuilder<MainWindow>(hInstance)
-      .ClassName(StringResource(IDC_REMOTESCREEN))
+   return Win32::WindowBuilder<MainWindow>(hInstance)
+      .ClassName(Win32::StringResource(IDC_REMOTESCREEN))
       .ClassStyle(CS_HREDRAW | CS_VREDRAW)
       .ClassMenu(IDC_REMOTESCREEN)
       .Style(WS_OVERLAPPEDWINDOW)
       .Icon(IDI_REMOTESCREEN)
-      .Title(StringResource(IDS_APP_TITLE))
+      .Title(Win32::StringResource(IDS_APP_TITLE))
       .Register()
       .Create();
 }
@@ -48,7 +48,7 @@ void MainWindow::OnCreate()
    std::unique_ptr<ConfigPane> configPane = ConfigPane::Create(hInstance, *this);
    std::unique_ptr<ContentPane> contentPane = ContentPane::Create(hInstance, *this);
 
-   splitWindow = SplitWindow::Create(hInstance, *this, std::move(configPane), std::move(contentPane), splitterPercentage);
+   splitWindow = Win32::SplitWindow::Create(hInstance, *this, std::move(configPane), std::move(contentPane), splitterPercentage);
 }
 
 LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
@@ -83,9 +83,9 @@ LRESULT MainWindow::OnClose(WPARAM wParam, LPARAM lParam)
    return 0;
 }
 
-ModalDialog MainWindow::CreateAboutDialog()
+Win32::ModalDialog MainWindow::CreateAboutDialog()
 {
-   return ModalDialog(GetInstance(), IDD_ABOUTBOX, hWnd);
+   return Win32::ModalDialog(GetInstance(), IDD_ABOUTBOX, hWnd);
 }
 
 ApplicationSettingsDialog MainWindow::CreateApplicationSettingsDialog()

@@ -14,19 +14,19 @@ MainPresenter::MainPresenter(MainWindow& view, ApplicationSettings& settings, HI
 
 void MainPresenter::OnAbout()
 {
-   ModalDialog dialog = view.CreateAboutDialog();
+   Win32::ModalDialog dialog = view.CreateAboutDialog();
    ModalDialogPresenter presenter(dialog);
 
-   ModalDialog::Result result = dialog.Show();
+   Win32::ModalDialog::Result result = dialog.Show();
 }
 
 void MainPresenter::OnSettings()
 {
    ApplicationSettingsDialog dialog = view.CreateApplicationSettingsDialog();
    ApplicationSettingsDialogPresenter presenter(dialog, settings);
-   ModalDialog::Result result = dialog.Show();
+   Win32::ModalDialog::Result result = dialog.Show();
 
-   if (result == ModalDialog::Result::Ok) {
+   if (result == Win32::ModalDialog::Result::Ok) {
       // Persist app settings
    }
 }
