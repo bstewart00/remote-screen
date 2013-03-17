@@ -107,7 +107,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="WindowProcedureInitializer.h">
+    <ClInclude Include="WindowProcedures.h">
       <SubType>
       </SubType>
     </ClInclude>

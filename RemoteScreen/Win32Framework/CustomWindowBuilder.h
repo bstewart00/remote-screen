@@ -4,12 +4,13 @@
 
 #include "CustomWindow.h"
 #include "CommonControlBuilder.h"
+#include "WindowProcedures.h"
 #include "Utils/StringConverter.h"
 #include <memory>
 #include <boost/algorithm/string.hpp>
 #include <Windows.h>
 
-template <class TWindow = CustomWindow<LRESULT>>
+template <class TWindow = CustomWindow>
 class CustomWindowBuilder : public CommonControlBuilder<TWindow>
 {
 public:
@@ -17,7 +18,7 @@ public:
    {
       wndClass.cbSize = sizeof(WNDCLASSEX);
       wndClass.style = 0;
-      wndClass.lpfnWndProc = TWindow::InitialWndProc;
+      wndClass.lpfnWndProc = WindowProcedures::InitialWndProc<TWindow>;
       wndClass.cbClsExtra = 0;
       wndClass.cbWndExtra = sizeof(TWindow*);
       wndClass.hInstance = hInstance;

@@ -72,7 +72,7 @@
     <ClInclude Include="CommonControlBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WindowProcedureInitializer.h">
+    <ClInclude Include="WindowProcedures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,6 +3,7 @@
 #define WindowHandle_H
 
 #include "DeviceContext.h"
+#include "WindowProcedures.h"
 #include <Windows.h>
 #include <string>
 #include <functional>
@@ -12,6 +13,8 @@
 
 class WindowHandle
 {
+   friend class WindowProcedures;
+
 public:
    WindowHandle() {}
    WindowHandle(HWND hWnd) : hWnd(hWnd) {}
