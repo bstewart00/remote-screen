@@ -1,5 +1,5 @@
 #include "ModalDialog.h"
-#include "WindowProcedures.h"
+#include "../WindowProcedures.h"
 
 ModalDialog::ModalDialog(HINSTANCE hInstance, int resourceId, HWND parent)
    : hInstance(hInstance), resourceId(resourceId), parent(parent)

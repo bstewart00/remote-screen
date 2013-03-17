@@ -4,7 +4,7 @@
 
 #include "ApplicationSettingsDataBinder.h"
 #include "../../Models/ApplicationSettings.h"
-#include "Win32Framework/ModalDialog.h"
+#include "Win32Framework/Dialogs/ModalDialog.h"
 #include <Windows.h>
 
 class ApplicationSettingsDialog : public ModalDialog, private ApplicationSettingsListener

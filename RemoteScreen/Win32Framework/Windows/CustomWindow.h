@@ -3,14 +3,10 @@
 #define CustomWindow_H
 
 #include "CustomWindowBuilder.h"
-#include "WindowHandle.h"
+#include "../WindowHandle.h"
+#include "../Utils/StringConverter.h"
+#include "../WindowsException.h"
 #include <Windows.h>
-#include <string>
-#include <functional>
-#include <cassert>
-#include "Utils/StringConverter.h"
-#include "WindowsException.h"
-#include <memory>
 
 class CustomWindow : public WindowHandle
 {

@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "MainWindow.h"
-#include "Win32Framework/CustomWindowBuilder.h"
+#include "Win32Framework/Windows/CustomWindowBuilder.h"
 #include "Win32Framework/Utils/StringResource.h"
-#include "Win32Framework/SplitWindow.h"
+#include "Win32Framework/Windows/SplitWindow.h"
 #include "../../Resource.h"
 #include <algorithm>
 #include <iostream>

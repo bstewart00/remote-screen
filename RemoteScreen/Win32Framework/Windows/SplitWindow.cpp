@@ -1,7 +1,7 @@
 #include "SplitWindow.h"
 #include "Splitter.h"
 #include "CustomWindowBuilder.h"
-#include "CustomMessages.h"
+#include "../CustomMessages.h"
 
 std::unique_ptr<SplitWindow> SplitWindow::Create(HINSTANCE hInstance, const WindowHandle& parent, std::unique_ptr<WindowHandle>&& left, std::unique_ptr<WindowHandle>&& right, int splitterPercentage)
 {

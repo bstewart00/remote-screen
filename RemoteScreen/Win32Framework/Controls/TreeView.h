@@ -2,7 +2,7 @@
 #ifndef TreeView_H
 #define TreeView_H
 
-#include "WindowHandle.h"
+#include "../WindowHandle.h"
 #include "CommonControlBuilder.h"
 #include <Windows.h>
 #include <vector>

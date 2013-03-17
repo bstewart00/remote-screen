@@ -1,6 +1,6 @@
 #include "Splitter.h"
-#include "Canvas.h"
-#include "CustomMessages.h"
+#include "../Canvas.h"
+#include "../CustomMessages.h"
 
 std::unique_ptr<Splitter> Splitter::Create(HINSTANCE hInstance, const WindowHandle& parent, int splitterSize)
 {

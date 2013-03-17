@@ -3,11 +3,10 @@
 #define CustomWindowBuilder_H
 
 #include "CustomWindow.h"
-#include "CommonControlBuilder.h"
-#include "WindowProcedures.h"
-#include "Utils/StringConverter.h"
+#include "../Controls/CommonControlBuilder.h"
+#include "../WindowProcedures.h"
+#include "../Utils/StringConverter.h"
 #include <memory>
-#include <boost/algorithm/string.hpp>
 #include <Windows.h>
 
 template <class TWindow = CustomWindow>

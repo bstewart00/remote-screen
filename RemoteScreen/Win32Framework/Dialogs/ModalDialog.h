@@ -2,8 +2,8 @@
 #ifndef ModalDialog_H
 #define ModalDialog_H
 
-#include "WindowHandle.h"
-#include "Observable.h"
+#include "../WindowHandle.h"
+#include "../Observable.h"
 #include <Windows.h>
 
 class ModalDialogListener

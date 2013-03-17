@@ -2,13 +2,12 @@
 #ifndef WindowHandle_H
 #define WindowHandle_H
 
+#include "Utils/StringConverter.h"
+#include "WindowsException.h"
 #include "DeviceContext.h"
-#include "WindowProcedures.h"
 #include <Windows.h>
 #include <string>
 #include <functional>
-#include "Utils/StringConverter.h"
-#include "WindowsException.h"
 #include <memory>
 
 class WindowHandle

@@ -3,10 +3,10 @@
 #define MainWindow_H
 
 #include "Win32Framework/Observable.h"
-#include "Win32Framework/CustomWindow.h"
-#include "Win32Framework/SplitWindow.h"
-#include "Win32Framework/CustomWindowBuilder.h"
-#include "Win32Framework/ModalDialog.h"
+#include "Win32Framework/Windows/CustomWindow.h"
+#include "Win32Framework/Windows/SplitWindow.h"
+#include "Win32Framework/Windows/CustomWindowBuilder.h"
+#include "Win32Framework/Dialogs/ModalDialog.h"
 #include "ApplicationSettingsDialog.h"
 #include <memory>
 #include <functional>

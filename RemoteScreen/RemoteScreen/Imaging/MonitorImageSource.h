@@ -3,7 +3,7 @@
 #define MonitorImageSource_H
 
 #include "ImageSource.h"
-#include "Win32Framework/CustomWindow.h"
+#include "Win32Framework/Windows/CustomWindow.h"
 
 class MonitorImageSource : public ImageSource
 {

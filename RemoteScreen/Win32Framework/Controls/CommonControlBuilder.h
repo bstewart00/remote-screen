@@ -2,8 +2,8 @@
 #ifndef SystemWindowBuilder_H
 #define SystemWindowBuilder_H
 
-#include "Utils/StringConverter.h"
-#include "WindowsException.h"
+#include "../Utils/StringConverter.h"
+#include "../WindowsException.h"
 #include <string>
 #include <memory>
 #include <Windows.h>

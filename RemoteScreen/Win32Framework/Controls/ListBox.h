@@ -2,7 +2,7 @@
 #ifndef ListBox_H
 #define ListBox_H
 
-#include "CustomWindow.h"
+#include "../WindowHandle.h"
 #include "CommonControlBuilder.h"
 #include <Windows.h>
 #include <vector>

@@ -2,9 +2,9 @@
 #ifndef ConfigPane_H
 #define ConfigPane_H
 
-#include "Win32Framework/CustomWindow.h"
-#include "Win32Framework/CustomWindowBuilder.h"
-#include "Win32Framework/ListBox.h"
+#include "Win32Framework/Windows/CustomWindow.h"
+#include "Win32Framework/Windows/CustomWindowBuilder.h"
+#include "Win32Framework/Controls/ListBox.h"
 #include <memory>
 #include <Windows.h>
 #include <vector>

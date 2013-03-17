@@ -12,13 +12,13 @@ public:
    template<class TWindow>
    static LRESULT CALLBACK InitialWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
-      return InitialMessageHandler<TWindow, LRESULT, WM_NCCREATE, GetWindow, DefaultWindowResult>(hWnd, msg, wParam, lParam);
+      return InitialMessageHandler<TWindow, LRESULT, WM_NCCREATE, GetWindow<TWindow>, DefaultWindowResult>(hWnd, msg, wParam, lParam);
    }
 
    template<class TDialog>
    static INT_PTR CALLBACK InitialDlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
-      return InitialMessageHandler<TDialog, INT_PTR, WM_INITDIALOG, GetDialog, DefaultDialogResult>(hWnd, msg, wParam, lParam);
+      return InitialMessageHandler<TDialog, INT_PTR, WM_INITDIALOG, GetDialog<TDialog>, DefaultDialogResult>(hWnd, msg, wParam, lParam);
    }
 
 private:
@@ -45,7 +45,7 @@ private:
       return FALSE;
    }
 
-   template<class TWindow, class MessageResult, int InitialMessage, class TWindowGetter, class DefaultHandler>
+   template<class TWindow, class MessageResult, int InitialMessage, TWindow*(*TWindowGetter)(LPARAM), MessageResult(*DefaultHandler)(HWND, UINT, WPARAM, LPARAM)>
    static MessageResult CALLBACK InitialMessageHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
       if (msg == InitialMessage) {

@@ -4,7 +4,7 @@
 
 #include "CustomWindow.h"
 #include "CustomWindowBuilder.h"
-#include "CanvasTools.h"
+#include "../CanvasTools.h"
 #include <memory>
 #include <Windows.h>
 

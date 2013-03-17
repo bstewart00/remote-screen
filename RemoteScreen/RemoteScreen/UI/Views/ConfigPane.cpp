@@ -2,7 +2,7 @@
 #include "ConfigPane.h"
 #include "../Win32Framework/Utils/StringResource.h"
 #include "../../resource.h"
-#include "Win32Framework/CommonControlBuilder.h"
+#include "Win32Framework/Controls/CommonControlBuilder.h"
 #include <boost/format.hpp>
 #include <CommCtrl.h>
 #include <iostream>

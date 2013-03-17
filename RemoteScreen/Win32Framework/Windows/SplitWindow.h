@@ -3,7 +3,7 @@
 #define SplitWindow_H
 
 #include "CustomWindow.h"
-#include "WindowHandle.h"
+#include "../WindowHandle.h"
 #include "Splitter.h"
 #include "CustomWindowBuilder.h"
 #include <memory>

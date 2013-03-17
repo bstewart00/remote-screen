@@ -2,8 +2,8 @@
 #ifndef ContentPane_H
 #define ContentPane_H
 
-#include "Win32Framework/CustomWindow.h"
-#include "Win32Framework/CustomWindowBuilder.h"
+#include "Win32Framework/Windows/CustomWindow.h"
+#include "Win32Framework/Windows/CustomWindowBuilder.h"
 #include <memory>
 #include <Windows.h>
 
