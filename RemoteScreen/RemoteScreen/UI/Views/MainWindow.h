@@ -8,6 +8,7 @@
 #include "Win32Framework/Windows/WindowBuilder.h"
 #include "Win32Framework/Dialogs/ModalDialog.h"
 #include "ApplicationSettingsDialog.h"
+#include "ConfigPane.h"
 #include <memory>
 #include <functional>
 #include <algorithm>
@@ -23,7 +24,7 @@ public:
    virtual void OnClose() = 0;
 };
 
-class MainWindow : public Win32::Window, public Win32::Observable<MainWindowListener>
+class MainWindow : public Win32::Window, public Win32::Observable<MainWindowListener>, private ConfigPaneListener
 {
    friend class Win32::WindowBuilder<MainWindow>;
 public:
@@ -41,6 +42,7 @@ private:
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
    LRESULT OnClose(WPARAM wParam, LPARAM lParam);
+   void OnMonitorSelected();
 
    void OnSize(int cx, int cy);
 

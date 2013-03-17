@@ -5,11 +5,18 @@
 #include "Win32Framework/Windows/Window.h"
 #include "Win32Framework/Windows/WindowBuilder.h"
 #include "Win32Framework/Controls/ListBox.h"
+#include "Win32Framework/Observable.h"
 #include <memory>
 #include <Windows.h>
 #include <vector>
 
-class ConfigPane : public Win32::Window
+class ConfigPaneListener
+{
+public:
+   virtual void OnMonitorSelected() = 0;
+};
+
+class ConfigPane : public Win32::Window, public Win32::Observable<ConfigPaneListener>
 {
    friend class Win32::WindowBuilder<ConfigPane>;
 public:
@@ -23,7 +30,7 @@ private:
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);
    void OnResize() const;
-   void OnMonitorListSelectionChanged() const;
+   void OnMonitorSelected() const;
 
    static BOOL CALLBACK MonitorEnumProc(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData);
    void AddTreeViewItems();

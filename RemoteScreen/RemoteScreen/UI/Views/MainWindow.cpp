@@ -46,6 +46,8 @@ void MainWindow::OnCreate()
    HINSTANCE hInstance = GetInstance();
 
    std::unique_ptr<ConfigPane> configPane = ConfigPane::Create(hInstance, *this);
+   configPane->AddListener(this);
+
    std::unique_ptr<ContentPane> contentPane = ContentPane::Create(hInstance, *this);
 
    splitWindow = Win32::SplitWindow::Create(hInstance, *this, std::move(configPane), std::move(contentPane), splitterPercentage);
@@ -64,10 +66,6 @@ LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
       break;
    case IDM_EXIT:
       NotifyListeners(&MainWindowListener::OnExit);
-      break;
-   case IDC_CONFIGPANE:
-      std::cout << "IDC_CONFIGPANE" << wParam << lParam << std::endl;
-      return 0;
       break;
    case WM_SIZE:
       OnSize(LOWORD(lParam), HIWORD(lParam));
@@ -98,3 +96,7 @@ void MainWindow::OnSize(int width, int height)
    splitWindow->Move(0, 0, width, height);
 }
 
+void MainWindow::OnMonitorSelected()
+{
+   std::cout << "MainWindow: MonitorSelected" << std::endl;
+}

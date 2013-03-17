@@ -56,13 +56,13 @@ LRESULT ConfigPane::OnCommand(WPARAM wParam, LPARAM lParam)
    switch (notificationCode) {
    case LBN_SELCHANGE:
       if (controlId == monitorListId)
-         OnMonitorListSelectionChanged();
+         OnMonitorSelected();
       break;
    }
    return 0;
 }
 
-void ConfigPane::OnMonitorListSelectionChanged() const
+void ConfigPane::OnMonitorSelected() const
 {
    LRESULT selectedItemIndex = monitorList->SendMsg(LB_GETCURSEL);
    if (selectedItemIndex != LB_ERR) {
@@ -72,6 +72,8 @@ void ConfigPane::OnMonitorListSelectionChanged() const
       if (selectedItem != LB_ERR) {
          std::cout << Win32::StringConverter::ToUtf8(std::wstring(buf.data())) << std::endl;
       }
+
+      NotifyListeners(&ConfigPaneListener::OnMonitorSelected);
    }
 }
 
