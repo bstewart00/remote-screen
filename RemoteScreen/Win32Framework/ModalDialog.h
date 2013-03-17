@@ -25,10 +25,10 @@ public:
    ModalDialog(HINSTANCE hInstance, int resourceId, HWND parent);
    ModalDialog::Result Show();
 
-   virtual INT_PTR OnInit(WPARAM wParam, LPARAM lParam);
    INT_PTR CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
 protected:
+   virtual INT_PTR OnInit(WPARAM wParam, LPARAM lParam);
    virtual INT_PTR OnCommand(WPARAM wParam, LPARAM lParam);
 private:
    HINSTANCE hInstance;

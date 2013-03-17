@@ -15,6 +15,8 @@ ModalDialog::Result ModalDialog::Show()
 INT_PTR CALLBACK ModalDialog::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
 {
    switch (message) {
+   case WM_INITDIALOG:
+      return OnInit(wParam, lParam);
    case WM_COMMAND:
       return OnCommand(wParam, lParam);
    }

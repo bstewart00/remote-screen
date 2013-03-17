@@ -12,29 +12,51 @@ public:
    template<class TWindow>
    static LRESULT CALLBACK InitialWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
-      if (msg == WM_NCCREATE) {
-         LPCREATESTRUCT cs = reinterpret_cast<LPCREATESTRUCT>(lParam);
-         TWindow* window = reinterpret_cast<TWindow*>(cs->lpCreateParams);
-         window->hWnd = hWnd;
-         BindToWindow<TWindow, LRESULT, GWLP_USERDATA, GWLP_WNDPROC>(window);
-         return window->ProcessMessage(msg, wParam, lParam);
-      } else {
-         return ::DefWindowProc(hWnd, msg, wParam, lParam);
-      }
+      return InitialMessageHandler<TWindow, LRESULT, WM_NCCREATE, GetWindow, DefaultWindowResult>(hWnd, msg, wParam, lParam);
    }
 
    template<class TDialog>
    static INT_PTR CALLBACK InitialDlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
-      if (msg == WM_INITDIALOG) {
-         TDialog* dialog = reinterpret_cast<TDialog*>(lParam);
-         dialog->hWnd = hWnd;
-         BindToWindow<TDialog, INT_PTR, DWLP_USER, DWLP_DLGPROC>(dialog);
-         return dialog->OnInit(wParam, lParam);
-      }
+      return InitialMessageHandler<TDialog, INT_PTR, WM_INITDIALOG, GetDialog, DefaultDialogResult>(hWnd, msg, wParam, lParam);
+   }
+
+private:
+   template<class T>
+   static T* GetWindow(LPARAM lParam)
+   {
+      LPCREATESTRUCT cs = reinterpret_cast<LPCREATESTRUCT>(lParam);
+      return reinterpret_cast<T*>(cs->lpCreateParams);
+   }
+
+   template<class T>
+   static T* GetDialog(LPARAM lParam)
+   {
+      return reinterpret_cast<T*>(lParam);
+   }
+
+   static LRESULT DefaultWindowResult(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+   {
+      return ::DefWindowProc(hWnd, msg, wParam, lParam);
+   }
+
+   static INT_PTR DefaultDialogResult(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+   {
       return FALSE;
    }
-private:
+
+   template<class TWindow, class MessageResult, int InitialMessage, class TWindowGetter, class DefaultHandler>
+   static MessageResult CALLBACK InitialMessageHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+   {
+      if (msg == InitialMessage) {
+         TWindow* window = TWindowGetter(lParam);
+         window->hWnd = hWnd;
+         BindToWindow<TWindow, LRESULT, GWLP_USERDATA, GWLP_WNDPROC>(window);
+         return window->ProcessMessage(msg, wParam, lParam);
+      }
+      return DefaultHandler(hWnd, msg, wParam, lParam);
+   }
+
    template<class TWindow, class MessageResult, int UserDataKey, int WndProcKey>
    static void BindToWindow(TWindow* window)
    {
