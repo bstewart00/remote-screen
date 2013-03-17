@@ -17,7 +17,7 @@ void OutOfMemoryHandler()
 #ifdef _DEBUG
 void OpenDebugConsole()
 {
-   AllocConsole();
+   ::AllocConsole();
 
    HANDLE handle_out = ::GetStdHandle(STD_OUTPUT_HANDLE);
    int hCrt = _open_osfhandle((long) handle_out, _O_TEXT);

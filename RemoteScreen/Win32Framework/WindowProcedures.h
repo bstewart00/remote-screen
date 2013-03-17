@@ -14,13 +14,13 @@ namespace Win32
       template<typename TWindow>
       static LRESULT CALLBACK InitialWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
       {
-         return InitialMessageHandler<TWindow, LRESULT, WM_NCCREATE, GetWindow<TWindow>, DefaultWindowResult>(hWnd, msg, wParam, lParam);
+         return InitialMessageHandler<TWindow, LRESULT, GWLP_USERDATA, GWLP_WNDPROC, WM_NCCREATE, GetWindow<TWindow>, DefaultWindowResult>(hWnd, msg, wParam, lParam);
       }
 
       template<typename TDialog>
       static INT_PTR CALLBACK InitialDlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
       {
-         return InitialMessageHandler<TDialog, INT_PTR, WM_INITDIALOG, GetDialog<TDialog>, DefaultDialogResult>(hWnd, msg, wParam, lParam);
+         return InitialMessageHandler<TDialog, INT_PTR, DWLP_USER, DWLP_DLGPROC, WM_INITDIALOG, GetDialog<TDialog>, DefaultDialogResult>(hWnd, msg, wParam, lParam);
       }
 
    private:
@@ -50,6 +50,8 @@ namespace Win32
       template<
          typename TWindow,
          typename MessageResult, 
+         int UserDataKey,
+         int WndProcKey,
          int InitialMessage, 
          TWindow*(*TWindowGetter)(LPARAM), 
          MessageResult(*DefaultHandler)(HWND, UINT, WPARAM, LPARAM)
@@ -59,7 +61,7 @@ namespace Win32
          if (msg == InitialMessage) {
             TWindow* window = TWindowGetter(lParam);
             window->hWnd = hWnd;
-            BindToWindow<TWindow, LRESULT, GWLP_USERDATA, GWLP_WNDPROC>(window);
+            BindToWindow<TWindow, MessageResult, UserDataKey, WndProcKey>(window);
             return window->ProcessMessage(msg, wParam, lParam);
          }
          return DefaultHandler(hWnd, msg, wParam, lParam);
