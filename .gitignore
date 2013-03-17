@@ -151,3 +151,4 @@ $RECYCLE.BIN/
 *.exe
 *.idb
 build/*
+*.bmp
