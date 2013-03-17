@@ -7,7 +7,7 @@ ModalDialog::ModalDialog(HINSTANCE hInstance, int resourceId, HWND parent)
 
 ModalDialog::Result ModalDialog::Show()
 {
-   INT_PTR result = ::DialogBoxParam(hInstance, MAKEINTRESOURCE(resourceId), parent, ModalDialog::InitialDlgProc<ModalDialog>, reinterpret_cast<LPARAM>(this));
+   INT_PTR result = ::DialogBoxParam(hInstance, MAKEINTRESOURCE(resourceId), parent, ModalDialog::InitialDlgProc, reinterpret_cast<LPARAM>(this));
    return static_cast<Result>(result);
 }
 

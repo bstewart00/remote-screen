@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "MainWindow.h"
-#include "Win32Framework/WindowBuilder.h"
+#include "Win32Framework/CustomWindowBuilder.h"
 #include "Win32Framework/Utils/StringResource.h"
 #include "Win32Framework/SplitWindow.h"
 #include "../../Resource.h"
@@ -12,7 +12,7 @@
 
 std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
 {
-   return WindowBuilder<MainWindow>(hInstance)
+   return CustomWindowBuilder<MainWindow>(hInstance)
       .ClassName(StringResource(IDC_REMOTESCREEN))
       .ClassStyle(CS_HREDRAW | CS_VREDRAW)
       .ClassMenu(IDC_REMOTESCREEN)
@@ -38,17 +38,17 @@ LRESULT CALLBACK MainWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
       return OnClose(wParam, lParam);
    }
 
-   return Window::ProcessMessage(message, wParam, lParam);
+   return CustomWindow::ProcessMessage(message, wParam, lParam);
 }
 
 void MainWindow::OnCreate()
 {
    HINSTANCE hInstance = GetInstance();
 
-   std::unique_ptr<Window> leftWin = ConfigPane::Create(hInstance, *this);
-   std::unique_ptr<Window> rightWin = ContentPane::Create(hInstance, *this);
+   std::unique_ptr<ConfigPane> configPane = ConfigPane::Create(hInstance, *this);
+   std::unique_ptr<ContentPane> contentPane = ContentPane::Create(hInstance, *this);
 
-   splitWindow = SplitWindow::Create(hInstance, *this, std::move(leftWin), std::move(rightWin), 30);
+   splitWindow = SplitWindow::Create(hInstance, *this, std::move(configPane), std::move(contentPane), splitterPercentage);
 }
 
 LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
@@ -74,7 +74,7 @@ LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)
       return 0;
    }
 
-   return Window::ProcessMessage(WM_COMMAND, wParam, lParam);
+   return CustomWindow::ProcessMessage(WM_COMMAND, wParam, lParam);
 }
 
 LRESULT MainWindow::OnClose(WPARAM wParam, LPARAM lParam)

@@ -2,32 +2,33 @@
 #ifndef SplitWindow_H
 #define SplitWindow_H
 
-#include "Window.h"
+#include "CustomWindow.h"
+#include "WindowHandle.h"
 #include "Splitter.h"
-#include "WindowBuilder.h"
+#include "CustomWindowBuilder.h"
 #include <memory>
 #include <Windows.h>
 
-class SplitWindow : public Window<>
+class SplitWindow : public CustomWindow
 {
-   friend class WindowBuilder<SplitWindow>;
+   friend class CustomWindowBuilder<SplitWindow>;
 public:
-   static std::unique_ptr<SplitWindow> Create(HINSTANCE hInstance, const Window& parent, std::unique_ptr<Window>&& left, std::unique_ptr<Window>&& right, int splitterPercentage);
+   static std::unique_ptr<SplitWindow> Create(HINSTANCE hInstance, const WindowHandle& parent, std::unique_ptr<WindowHandle>&& left, std::unique_ptr<WindowHandle>&& right, int splitterPercentage);
 
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
-   const Window& GetFirst() const
+   const WindowHandle& GetFirst() const
    {
       return *leftWin;
    }
 
-   const Window& GetSecond() const
+   const WindowHandle& GetSecond() const
    {
       return *rightWin;
    }
 
 private:
-   SplitWindow(std::unique_ptr<Window>& left, std::unique_ptr<Window>& right, int splitterPercentage) : Window(),
+   SplitWindow(std::unique_ptr<WindowHandle>& left, std::unique_ptr<WindowHandle>& right, int splitterPercentage) : CustomWindow(),
       leftWin(std::move(left)),
       rightWin(std::move(right)),
       splitRatioPercentage(splitterPercentage) {}
@@ -40,8 +41,8 @@ private:
    int CalculateSplitterPercentage(int splitterX);
    int CalculateSplitterX();
 
-   std::unique_ptr<Window> leftWin;
-   std::unique_ptr<Window> rightWin;
+   std::unique_ptr<WindowHandle> leftWin;
+   std::unique_ptr<WindowHandle> rightWin;
    std::unique_ptr<Splitter> splitter;
 
    int width;

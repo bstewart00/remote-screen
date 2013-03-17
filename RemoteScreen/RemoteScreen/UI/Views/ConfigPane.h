@@ -2,23 +2,23 @@
 #ifndef ConfigPane_H
 #define ConfigPane_H
 
-#include "Win32Framework/Window.h"
-#include "Win32Framework/WindowBuilder.h"
+#include "Win32Framework/CustomWindow.h"
+#include "Win32Framework/CustomWindowBuilder.h"
 #include "Win32Framework/ListBox.h"
 #include <memory>
 #include <Windows.h>
 #include <vector>
 
-class ConfigPane : public Window<>
+class ConfigPane : public CustomWindow
 {
-   friend class WindowBuilder<ConfigPane>;
+   friend class CustomWindowBuilder<ConfigPane>;
 public:
-   static std::unique_ptr<ConfigPane> Create(HINSTANCE hInstance, const Window& parent);
+   static std::unique_ptr<ConfigPane> Create(HINSTANCE hInstance, const CustomWindow& parent);
 
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
 private:
-   ConfigPane() : Window() {}
+   ConfigPane() : CustomWindow() {}
 
    void OnCreate();
    LRESULT OnCommand(WPARAM wParam, LPARAM lParam);

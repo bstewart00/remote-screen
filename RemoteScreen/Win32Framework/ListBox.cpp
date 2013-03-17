@@ -16,13 +16,13 @@ void ListBox::Initialize()
    ListBox::initialized = true;
 }
 
-std::unique_ptr<ListBox> ListBox::Create(HINSTANCE hInstance, const Window<>& parent)
+std::unique_ptr<ListBox> ListBox::Create(HINSTANCE hInstance, const WindowHandle& parent)
 {
    if (!initialized)
       Initialize();
 
    RECT parentClientRect = parent.GetClientRect();
-   return SystemWindowBuilder<ListBox>(hInstance)
+   return CommonControlBuilder<ListBox>(hInstance)
       .ClassName(WC_LISTBOX)
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
@@ -32,12 +32,12 @@ std::unique_ptr<ListBox> ListBox::Create(HINSTANCE hInstance, const Window<>& pa
 void ListBox::AddItem(std::string item, LPARAM data)
 {
    std::wstring text = StringConverter::ToWide(item);
-   LRESULT insertedIndex = SendMessageW(LB_ADDSTRING, NULL, reinterpret_cast<LPARAM>(text.c_str()));
+   LRESULT insertedIndex = SendMsg(LB_ADDSTRING, NULL, reinterpret_cast<LPARAM>(text.c_str()));
    if (insertedIndex == LB_ERR || insertedIndex == LB_ERRSPACE) {
       throw WindowsException("ListBox insert item failed");
    }
 
-   if (SendMessageW(LB_SETITEMDATA, insertedIndex, data) == LB_ERR) {
+   if (SendMsg(LB_SETITEMDATA, insertedIndex, data) == LB_ERR) {
       //TODO: Error
    }
 }

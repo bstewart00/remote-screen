@@ -2,21 +2,21 @@
 #ifndef ContentPane_H
 #define ContentPane_H
 
-#include "Win32Framework/Window.h"
-#include "Win32Framework/WindowBuilder.h"
+#include "Win32Framework/CustomWindow.h"
+#include "Win32Framework/CustomWindowBuilder.h"
 #include <memory>
 #include <Windows.h>
 
-class ContentPane : public Window<>
+class ContentPane : public CustomWindow
 {
-   friend class WindowBuilder<ContentPane>;
+   friend class CustomWindowBuilder<ContentPane>;
 public:
-   static std::unique_ptr<ContentPane> Create(HINSTANCE hInstance, const Window& parenti);
+   static std::unique_ptr<ContentPane> Create(HINSTANCE hInstance, const CustomWindow& parenti);
 
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
 private:
-   ContentPane() : Window() {}
+   ContentPane() : CustomWindow() {}
 
    void OnCreate();
    void OnPaint() const;

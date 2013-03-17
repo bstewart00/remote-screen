@@ -2,9 +2,9 @@
 #include "Canvas.h"
 #include "CustomMessages.h"
 
-std::unique_ptr<Splitter> Splitter::Create(HINSTANCE hInstance, const Window& parent, int splitterSize)
+std::unique_ptr<Splitter> Splitter::Create(HINSTANCE hInstance, const WindowHandle& parent, int splitterSize)
 {
-   return WindowBuilder<Splitter>(hInstance)
+   return CustomWindowBuilder<Splitter>(hInstance)
       .ClassName("Splitter")
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
@@ -38,7 +38,7 @@ LRESULT CALLBACK Splitter::ProcessMessage(UINT message, WPARAM wParam, LPARAM lP
       return 0;
    }
 
-   return Window::ProcessMessage(message, wParam, lParam);
+   return CustomWindow::ProcessMessage(message, wParam, lParam);
 }
 
 void Splitter::Size(int width, int height)
@@ -60,7 +60,7 @@ void Splitter::LButtonDown(POINTS pt)
 {
    dragStarted = true;
    
-   Window parent = GetParent();
+   WindowHandle parent = GetParent();
 
    CaptureMouse();
    // Find x offset of splitter
@@ -85,7 +85,7 @@ void Splitter::LButtonDown(POINTS pt)
 void Splitter::LButtonDrag(POINTS pt)
 {
    if (dragStarted) {
-      Window parent = GetParent();
+      WindowHandle parent = GetParent();
 
       // Erase previous divider and draw new one
       UpdateCanvas canvas(parent);
@@ -99,18 +99,18 @@ void Splitter::LButtonDrag(POINTS pt)
 void Splitter::LButtonUp(POINTS pt)
 {
    if (dragStarted) {
-      Window parent = GetParent();
+      WindowHandle parent = GetParent();
 
       dragStarted = false;
 
       ::ReleaseCapture();
-      parent.SendMessage(MSG_MOVESPLITTER, dragStart + pt.x);
+      parent.SendMsg(MSG_MOVESPLITTER, dragStart + pt.x);
    }
 }
 
 void Splitter::CaptureChanged()
 {
-   Window parent = GetParent();
+   WindowHandle parent = GetParent();
 
    // We are losing capture
    // End drag selection -- for whatever reason

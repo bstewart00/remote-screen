@@ -52,7 +52,7 @@ HBITMAP MonitorImageSource::GetImage(int width, int height)
    {
    }
 
-   // Create a compatible bitmap from the Window DC
+   // Create a compatible bitmap from the CustomWindow DC
    hbmScreen = CreateCompatibleBitmap(hdcWindow, width, height);
    if(!hbmScreen)
    {

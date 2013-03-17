@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ContentPane.h"
-#include "Win32Framework/SystemWindowBuilder.h"
+#include "Win32Framework/CommonControlBuilder.h"
 #include "../Win32Framework/Utils/StringResource.h"
 #include "../Win32Framework/Canvas.h"
 #include "../../resource.h"
@@ -8,9 +8,9 @@
 
 #include <iostream>
 
-std::unique_ptr<ContentPane> ContentPane::Create(HINSTANCE hInstance, const Window& parent)
+std::unique_ptr<ContentPane> ContentPane::Create(HINSTANCE hInstance, const CustomWindow& parent)
 {
-   return WindowBuilder<ContentPane>(hInstance)
+   return CustomWindowBuilder<ContentPane>(hInstance)
       .ClassName(StringResource(IDC_CONTENTPANE))
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
@@ -31,7 +31,7 @@ LRESULT CALLBACK ContentPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM
       OnResize();
    }
 
-   return Window::ProcessMessage(message, wParam, lParam);
+   return CustomWindow::ProcessMessage(message, wParam, lParam);
 }
 
 void ContentPane::OnCreate()

@@ -16,13 +16,13 @@ void TreeView::Initialize()
    TreeView::initialized = true;
 }
 
-std::unique_ptr<TreeView> TreeView::Create(HINSTANCE hInstance, const Window<>& parent)
+std::unique_ptr<TreeView> TreeView::Create(HINSTANCE hInstance, const WindowHandle& parent)
 {
    if (!initialized)
       Initialize();
 
    RECT parentClientRect = parent.GetClientRect();
-   return SystemWindowBuilder<TreeView>(hInstance)
+   return CommonControlBuilder<TreeView>(hInstance)
       .ClassName(WC_TREEVIEW)
       .Style(WS_CHILD | WS_VISIBLE | TVS_HASLINES)
       .Parent(parent)
@@ -46,7 +46,7 @@ void TreeView::AddItem(std::string item)
    tvins.hParent = NULL; 
    tvins.hInsertAfter = TVI_ROOT;
 
-   HTREEITEM hti = TreeView_InsertItem(hWnd, &tvins);
+   HTREEITEM hti = TreeView_InsertItem(*this, &tvins);
    if (hti == NULL) {
       throw WindowsException("TreeView insert item failed");
    }

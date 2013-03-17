@@ -2,23 +2,22 @@
 #ifndef ListBox_H
 #define ListBox_H
 
-#include "Window.h"
-#include "SystemWindow.h"
-#include "SystemWindowBuilder.h"
+#include "CustomWindow.h"
+#include "CommonControlBuilder.h"
 #include <Windows.h>
 #include <vector>
 #include <string>
 #include <memory>
 
-class ListBox : public SystemWindow
+class ListBox : public WindowHandle
 {
-   friend class SystemWindowBuilder<ListBox>;
+   friend class CommonControlBuilder<ListBox>;
 public:
-   static std::unique_ptr<ListBox> Create(HINSTANCE hInstance, const Window<>& parent);
+   static std::unique_ptr<ListBox> Create(HINSTANCE hInstance, const WindowHandle& parent);
 
    void AddItem(const std::string text, LPARAM data = 0);
 private:
-   ListBox(HWND hWnd) : SystemWindow(hWnd) {}
+   ListBox(HWND hWnd) : WindowHandle(hWnd) {}
    
    static bool initialized;
    static void Initialize();

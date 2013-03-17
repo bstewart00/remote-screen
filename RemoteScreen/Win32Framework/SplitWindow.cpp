@@ -1,11 +1,11 @@
 #include "SplitWindow.h"
 #include "Splitter.h"
-#include "WindowBuilder.h"
+#include "CustomWindowBuilder.h"
 #include "CustomMessages.h"
 
-std::unique_ptr<SplitWindow> SplitWindow::Create(HINSTANCE hInstance, const Window& parent, std::unique_ptr<Window>&& left, std::unique_ptr<Window>&& right, int splitterPercentage)
+std::unique_ptr<SplitWindow> SplitWindow::Create(HINSTANCE hInstance, const WindowHandle& parent, std::unique_ptr<WindowHandle>&& left, std::unique_ptr<WindowHandle>&& right, int splitterPercentage)
 {
-   return WindowBuilder<SplitWindow>(hInstance)
+   return CustomWindowBuilder<SplitWindow>(hInstance)
       .ClassName("SplitWindow")
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
@@ -30,14 +30,14 @@ LRESULT CALLBACK SplitWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM
       break;
    }
 
-   return Window::ProcessMessage(message, wParam, lParam);
+   return CustomWindow::ProcessMessage(message, wParam, lParam);
 }
 
 void SplitWindow::OnCreate()
 {
    leftWin->SetParent(*this);
    rightWin->SetParent(*this);
-   splitter = Splitter::Create(GetInstance(), *this);
+   splitter = Splitter::Create(this->GetInstance(), *this);
 }
 
 LRESULT SplitWindow::OnCommand(WPARAM wParam, LPARAM lParam)
@@ -49,7 +49,7 @@ LRESULT SplitWindow::OnCommand(WPARAM wParam, LPARAM lParam)
       MoveSplitter(wParam);
       return 0;
    }
-   GetParent().SendMessageW(WM_COMMAND, wParam, lParam);
+   GetParent().SendMsg(WM_COMMAND, wParam, lParam);
    return 0;
 }
 

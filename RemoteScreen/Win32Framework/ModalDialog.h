@@ -2,7 +2,8 @@
 #ifndef ModalDialog_H
 #define ModalDialog_H
 
-#include "Window.h"
+#include "WindowHandle.h"
+#include "CustomWindow.h"
 #include "Observable.h"
 #include <Windows.h>
 
@@ -13,7 +14,7 @@ public:
    virtual void OnCancelClicked() = 0;
 };
 
-class ModalDialog : public Window<INT_PTR>, public Observable<ModalDialogListener>
+class ModalDialog : public WindowHandle, public Observable<ModalDialogListener>
 {
 public:
    enum class Result
@@ -27,16 +28,12 @@ public:
 
    INT_PTR CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
-   template<class TWindow>
    static INT_PTR CALLBACK InitialDlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
       if (msg == WM_INITDIALOG) {
-         TWindow* window = reinterpret_cast<TWindow*>(lParam);
-         window->hWnd = hWnd;
-         window->SetLongPtr<TWindow*>(window, DWLP_USER);
-         window->SetLongPtr<DLGPROC>(Window::BoundWndProc<TWindow, DWLP_USER>, DWLP_DLGPROC);
-
-         return window->OnInit(wParam, lParam);
+         ModalDialog* dialog = reinterpret_cast<ModalDialog*>(lParam);
+         dialog->Initialize(hWnd);
+         return dialog->OnInit(wParam, lParam);
       }
       return FALSE;
    }
@@ -45,6 +42,21 @@ protected:
    virtual INT_PTR OnCommand(WPARAM wParam, LPARAM lParam);
    virtual INT_PTR OnInit(WPARAM wParam, LPARAM lParam);
 private:
+   void Initialize(HWND hWnd)
+   {
+      this->hWnd = hWnd;
+      this->SetLongPtr(this, DWLP_USER);
+      this->SetLongPtr(ModalDialog::BoundDlgProc, DWLP_DLGPROC);
+   }
+
+   static INT_PTR CALLBACK BoundDlgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+   {
+      ModalDialog* w = WindowHandle::GetLongPtr<ModalDialog*>(hWnd, DWLP_USER);
+      assert(w);
+      return w->ProcessMessage(msg, wParam, lParam);
+   }
+
+
    HINSTANCE hInstance;
    int resourceId;
    HWND parent;

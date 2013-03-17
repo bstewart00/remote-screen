@@ -2,15 +2,15 @@
 #include "ConfigPane.h"
 #include "../Win32Framework/Utils/StringResource.h"
 #include "../../resource.h"
-#include "Win32Framework/SystemWindowBuilder.h"
+#include "Win32Framework/CommonControlBuilder.h"
 #include <boost/format.hpp>
 #include <CommCtrl.h>
 #include <iostream>
 #include <array>
 
-std::unique_ptr<ConfigPane> ConfigPane::Create(HINSTANCE hInstance, const Window& parent)
+std::unique_ptr<ConfigPane> ConfigPane::Create(HINSTANCE hInstance, const CustomWindow& parent)
 {
-   return WindowBuilder<ConfigPane>(hInstance)
+   return CustomWindowBuilder<ConfigPane>(hInstance)
       .ClassName(StringResource(IDC_CONFIGPANE))
       .Style(WS_CHILD | WS_VISIBLE)
       .Parent(parent)
@@ -31,14 +31,14 @@ LRESULT CALLBACK ConfigPane::ProcessMessage(UINT message, WPARAM wParam, LPARAM 
       return OnCommand(wParam, lParam);
    }
 
-   return Window::ProcessMessage(message, wParam, lParam);
+   return CustomWindow::ProcessMessage(message, wParam, lParam);
 }
 
 void ConfigPane::OnCreate()
 {
    HINSTANCE hInstance = GetInstance();
 
-   monitorList = SystemWindowBuilder<ListBox>(hInstance)
+   monitorList = CommonControlBuilder<ListBox>(hInstance)
       .ClassName(WC_LISTBOX)
       .Id(monitorListId)
       .Parent(*this)
@@ -56,7 +56,7 @@ LRESULT ConfigPane::OnCommand(WPARAM wParam, LPARAM lParam)
    switch (notificationCode) {
    case LBN_SELCHANGE:
       if (controlId == monitorListId)
-     OnMonitorListSelectionChanged();
+         OnMonitorListSelectionChanged();
       break;
    }
    return 0;
@@ -64,11 +64,11 @@ LRESULT ConfigPane::OnCommand(WPARAM wParam, LPARAM lParam)
 
 void ConfigPane::OnMonitorListSelectionChanged() const
 {
-   LRESULT selectedItemIndex = monitorList->SendMessage(LB_GETCURSEL);
+   LRESULT selectedItemIndex = monitorList->SendMsg(LB_GETCURSEL);
    if (selectedItemIndex != LB_ERR) {
 
       std::array<wchar_t, 255> buf;
-      LRESULT selectedItem = monitorList->SendMessage(LB_GETTEXT, selectedItemIndex, reinterpret_cast<LPARAM>(buf.data()));
+      LRESULT selectedItem = monitorList->SendMsg(LB_GETTEXT, selectedItemIndex, reinterpret_cast<LPARAM>(buf.data()));
       if (selectedItem != LB_ERR) {
          std::cout << StringConverter::ToUtf8(std::wstring(buf.data())) << std::endl;
       }
