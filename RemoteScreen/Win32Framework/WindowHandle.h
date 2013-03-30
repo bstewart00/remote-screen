@@ -2,7 +2,7 @@
 #ifndef WindowHandle_H
 #define WindowHandle_H
 
-#include "Utils/StringConverter.h"
+#include "Common/StringConverter.h"
 #include "WindowsException.h"
 #include "DeviceContext.h"
 #include <Windows.h>
@@ -86,7 +86,7 @@ namespace Win32
 
       void SetString(std::string text) const
       {
-         std::wstring wideText = StringConverter::ToWide(text);
+         std::wstring wideText = Common::StringConverter::ToWide(text);
          SendMsg(WM_SETTEXT, 0, reinterpret_cast<LPARAM>(wideText.c_str()));
       }
 

@@ -104,6 +104,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.vcxproj">
+      <Project>{f73f8a82-7803-44f8-a3a8-2ff7e2d5ade5}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\RemoteScreen\RemoteScreen.vcxproj">
       <Project>{db74f3f9-5a2f-478c-ae11-f591efcc0d51}</Project>
     </ProjectReference>

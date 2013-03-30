@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "ContentPane.h"
 #include "Win32Framework/Controls/CommonControlBuilder.h"
-#include "../Win32Framework/Utils/StringResource.h"
-#include "../Win32Framework/Canvas.h"
+#include "Win32Framework/Utils/StringResource.h"
+#include "Win32Framework/Canvas.h"
 #include "../../resource.h"
 #include "../../Imaging/MonitorImageSource.h"
 

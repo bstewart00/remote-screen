@@ -5,7 +5,7 @@
 #include "Win32Framework/Windows/Window.h"
 #include "Win32Framework/Windows/WindowBuilder.h"
 #include "Win32Framework/Controls/ListBox.h"
-#include "Win32Framework/Observable.h"
+#include "Common/Observable.h"
 #include <memory>
 #include <Windows.h>
 #include <vector>

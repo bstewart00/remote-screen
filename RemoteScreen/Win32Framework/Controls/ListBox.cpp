@@ -1,5 +1,5 @@
 #include "ListBox.h"
-#include "../Utils/StringConverter.h"
+#include "Common/StringConverter.h"
 #include "../WindowsException.h"
 #include <CommCtrl.h>
 
@@ -32,7 +32,7 @@ namespace Win32
 
    void ListBox::AddItem(std::string item, LPARAM data)
    {
-      std::wstring text = StringConverter::ToWide(item);
+      std::wstring text = Common::StringConverter::ToWide(item);
       LRESULT insertedIndex = SendMsg(LB_ADDSTRING, NULL, reinterpret_cast<LPARAM>(text.c_str()));
       if (insertedIndex == LB_ERR || insertedIndex == LB_ERRSPACE) {
          throw WindowsException("ListBox insert item failed");

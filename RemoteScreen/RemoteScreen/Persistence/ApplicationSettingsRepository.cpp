@@ -2,7 +2,7 @@
 #include "../resource.h"
 #include "Win32Framework/Utils/StringResource.h"
 #include "ApplicationSettingsRepository.h"
-#include "Win32Framework/Utils/StringConverter.h"
+#include "Common/StringConverter.h"
 #include <ShlObj.h>
 #include <iostream>
 #include <sstream>
@@ -15,7 +15,7 @@ void ApplicationSettingsRepository::InitializeAppDataFolder()
    if (result == E_FAIL)
       throw std::runtime_error("Failed to get Roaming AppData directory.");
 
-   appDataPath = Win32::StringConverter::ToUtf8(path);
+   appDataPath = Common::StringConverter::ToUtf8(path);
    appDataPath /= Win32::StringResource(AppDataFolderName).str();
 
    ::CoTaskMemFree(path);
@@ -53,5 +53,5 @@ void ApplicationSettingsRepository::Save(const ApplicationSettings& settings)
    stream << settings.someSetting();
 
    boost::filesystem::path settingsPath = SettingsFilePath();
-   ::WritePrivateProfileString(L"SomeSetting", L"test", Win32::StringConverter::ToWide(stream.str()).c_str(), settingsPath.c_str());
+   ::WritePrivateProfileString(L"SomeSetting", L"test", Common::StringConverter::ToWide(stream.str()).c_str(), settingsPath.c_str());
 }

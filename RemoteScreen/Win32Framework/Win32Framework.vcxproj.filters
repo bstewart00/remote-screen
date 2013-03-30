@@ -21,9 +21,6 @@
     <ClInclude Include="CustomMessages.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utils\StringConverter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Utils\StringResource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -37,9 +34,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CanvasTools.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Observable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DeviceContext.h">
@@ -77,9 +71,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Utils\StringConverter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Utils\StringResource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

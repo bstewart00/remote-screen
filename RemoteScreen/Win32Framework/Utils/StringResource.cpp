@@ -1,5 +1,5 @@
 #include "StringResource.h"
-#include "StringConverter.h"
+#include "Common/StringConverter.h"
 
 namespace Win32
 {
@@ -9,7 +9,7 @@ namespace Win32
 
       if (!::LoadString (hInstance, resId, buffer, MAX_LENGTH + 1))
          throw WindowsException("Failed to load string");
-      buf = StringConverter::ToUtf8(buffer);
+      buf = Common::StringConverter::ToUtf8(buffer);
    }
    HINSTANCE StringResource::hInstance = nullptr;
 

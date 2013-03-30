@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ConfigPane.h"
-#include "../Win32Framework/Utils/StringResource.h"
+#include "Win32Framework/Utils/StringResource.h"
 #include "../../resource.h"
 #include "Win32Framework/Controls/CommonControlBuilder.h"
 #include <boost/format.hpp>
@@ -70,7 +70,7 @@ void ConfigPane::OnMonitorSelected() const
       std::array<wchar_t, 255> buf;
       LRESULT selectedItem = monitorList->SendMsg(LB_GETTEXT, selectedItemIndex, reinterpret_cast<LPARAM>(buf.data()));
       if (selectedItem != LB_ERR) {
-         std::cout << Win32::StringConverter::ToUtf8(std::wstring(buf.data())) << std::endl;
+         std::cout << Common::StringConverter::ToUtf8(std::wstring(buf.data())) << std::endl;
       }
 
       NotifyListeners(&ConfigPaneListener::OnMonitorSelected);
@@ -95,7 +95,7 @@ void ConfigPane::AddTreeViewItems()
       info.cbSize = sizeof(MONITORINFOEX);
       ::GetMonitorInfoW(monitor, &info);
 
-      std::string text = boost::str(boost::format("Monitor %1%") % Win32::StringConverter::ToUtf8(info.szDevice));
+      std::string text = boost::str(boost::format("Monitor %1%") % Common::StringConverter::ToUtf8(info.szDevice));
       monitorList->AddItem(text);
    }
 }

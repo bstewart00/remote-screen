@@ -2,7 +2,7 @@
 #ifndef MainWindow_H
 #define MainWindow_H
 
-#include "Win32Framework/Observable.h"
+#include "Common/Observable.h"
 #include "Win32Framework/Windows/Window.h"
 #include "Win32Framework/Windows/SplitWindow.h"
 #include "Win32Framework/Windows/WindowBuilder.h"

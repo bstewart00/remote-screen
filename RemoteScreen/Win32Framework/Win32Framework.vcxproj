@@ -92,13 +92,11 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Dialogs\ModalDialog.h" />
-    <ClInclude Include="Observable.h" />
     <ClInclude Include="Windows\Splitter.h" />
     <ClInclude Include="Windows\SplitWindow.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Controls\CommonControlBuilder.h" />
     <ClInclude Include="Controls\TreeView.h" />
-    <ClInclude Include="Utils\StringConverter.h" />
     <ClInclude Include="Utils\StringResource.h" />
     <ClInclude Include="Utils\WindowsDeleters.h" />
     <ClInclude Include="Windows\Window.h" />
@@ -122,9 +120,13 @@
     <ClCompile Include="Windows\Splitter.cpp" />
     <ClCompile Include="Windows\SplitWindow.cpp" />
     <ClCompile Include="Controls\TreeView.cpp" />
-    <ClCompile Include="Utils\StringConverter.cpp" />
     <ClCompile Include="Utils\StringResource.cpp" />
     <ClCompile Include="WindowsException.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.vcxproj">
+      <Project>{f73f8a82-7803-44f8-a3a8-2ff7e2d5ade5}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

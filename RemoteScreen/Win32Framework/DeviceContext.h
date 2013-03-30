@@ -3,7 +3,7 @@
 #define DeviceContext_H
 
 #include "WindowsException.h"
-#include "Utils/StringConverter.h"
+#include "Common/StringConverter.h"
 #include <Windows.h>
 #include <string>
 
@@ -35,7 +35,7 @@ namespace Win32
    private:
       HDC CreateFromSingleDevice(const char* deviceName)
       {
-         std::wstring wideName = StringConverter::ToWide(deviceName);
+         std::wstring wideName = Common::StringConverter::ToWide(deviceName);
          HDC result = ::CreateDCW(wideName.c_str(), NULL, NULL, NULL);
          return result;
       }

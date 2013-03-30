@@ -230,6 +230,9 @@
     <Image Include="RemoteScreen.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.vcxproj">
+      <Project>{f73f8a82-7803-44f8-a3a8-2ff7e2d5ade5}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Win32Framework\Win32Framework.vcxproj">
       <Project>{195b869f-2812-4f79-a06d-3e69db7c95c0}</Project>
     </ProjectReference>

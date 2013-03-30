@@ -4,7 +4,7 @@
 
 #include "WindowBuilder.h"
 #include "../WindowHandle.h"
-#include "../Utils/StringConverter.h"
+#include "Common/StringConverter.h"
 #include "../WindowsException.h"
 #include <Windows.h>
 

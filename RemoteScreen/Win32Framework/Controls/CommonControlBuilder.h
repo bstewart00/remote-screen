@@ -2,7 +2,7 @@
 #ifndef SystemWindowBuilder_H
 #define SystemWindowBuilder_H
 
-#include "../Utils/StringConverter.h"
+#include "Common/StringConverter.h"
 #include "../WindowsException.h"
 #include <string>
 #include <memory>
@@ -35,7 +35,7 @@ namespace Win32
 
       CommonControlBuilder<TWindow>& ClassName(const wchar_t* systemClassName)
       {
-         className = StringConverter::ToUtf8(systemClassName);
+         className = Common::StringConverter::ToUtf8(systemClassName);
          return *this;
       }
 
@@ -89,8 +89,8 @@ namespace Win32
       {
          HWND hWnd = ::CreateWindowEx(
             0,
-            StringConverter::ToWide(className).c_str(),
-            StringConverter::ToWide(title).c_str(),
+            Common::StringConverter::ToWide(className).c_str(),
+            Common::StringConverter::ToWide(title).c_str(),
             windowStyle,
             x, y, width, height,
             parent, menu, hInstance,

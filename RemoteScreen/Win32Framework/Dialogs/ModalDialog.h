@@ -3,7 +3,7 @@
 #define ModalDialog_H
 
 #include "../WindowHandle.h"
-#include "../Observable.h"
+#include "Common/Observable.h"
 #include <Windows.h>
 
 namespace Win32

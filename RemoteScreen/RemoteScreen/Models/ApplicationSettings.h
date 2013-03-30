@@ -2,7 +2,7 @@
 #ifndef ApplicationSettings_H
 #define ApplicationSettings_H
 
-#include "Win32Framework/Observable.h"
+#include "Common/Observable.h"
 
 class ApplicationSettingsListener
 {

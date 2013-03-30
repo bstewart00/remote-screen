@@ -3,7 +3,7 @@
 #define APPLICATION_H
 
 #include "Persistence\ApplicationSettingsRepository.h"
-#include "Win32Framework/Utils/StringConverter.h"
+#include "Common/StringConverter.h"
 #include <Windows.h>
 #include <memory>
 
@@ -15,7 +15,7 @@ public:
 
    HACCEL LoadAccelerators(std::string tableName) const
    {
-      return ::LoadAccelerators(hInstance, Win32::StringConverter::ToWide(tableName).c_str());
+      return ::LoadAccelerators(hInstance, Common::StringConverter::ToWide(tableName).c_str());
    }
 
 private:

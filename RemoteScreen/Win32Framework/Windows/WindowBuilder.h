@@ -5,7 +5,7 @@
 #include "Window.h"
 #include "../Controls/CommonControlBuilder.h"
 #include "../WindowProcedures.h"
-#include "../Utils/StringConverter.h"
+#include "Common/StringConverter.h"
 #include <memory>
 #include <Windows.h>
 
@@ -131,7 +131,7 @@ namespace Win32
 
       WindowBuilder<TWindow>& Register()
       {
-         std::wstring wideName = StringConverter::ToWide(className);
+         std::wstring wideName = Common::StringConverter::ToWide(className);
          wndClass.lpszClassName = wideName.c_str();
          ATOM registeredClass = ::RegisterClassEx(&wndClass);
          if(registeredClass == 0) {

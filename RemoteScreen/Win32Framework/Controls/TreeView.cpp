@@ -1,5 +1,5 @@
 #include "TreeView.h"
-#include "../Utils/StringConverter.h"
+#include "Common/StringConverter.h"
 #include "../WindowsException.h"
 
 #include <CommCtrl.h>
@@ -39,7 +39,7 @@ namespace Win32
       tvi.mask = TVIF_TEXT; 
       tvi.cChildren = 0;
 
-      std::wstring text = StringConverter::ToWide(item);
+      std::wstring text = Common::StringConverter::ToWide(item);
 
       tvi.pszText = const_cast<wchar_t*>(text.c_str());
       tvi.cchTextMax = text.length();
