@@ -16,7 +16,7 @@ public:
    virtual void OnMonitorSelected() = 0;
 };
 
-class ConfigPane : public Win32::Window, public Win32::Observable<ConfigPaneListener>
+class ConfigPane : public Win32::Window, public Common::Observable<ConfigPaneListener>
 {
    friend class Win32::WindowBuilder<ConfigPane>;
 public:

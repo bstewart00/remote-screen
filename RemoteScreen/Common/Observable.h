@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <functional>
 
-namespace Win32
+namespace Common
 {
    template<typename TListener>
    class Observable

@@ -26,7 +26,7 @@ public:
    virtual void OnCreated() = 0;
 };
 
-class MainWindow : public Win32::Window, public Win32::Observable<MainWindowListener>, private ConfigPaneListener
+class MainWindow : public Win32::Window, public Common::Observable<MainWindowListener>, private ConfigPaneListener
 {
    friend class Win32::WindowBuilder<MainWindow>;
 public:

@@ -15,7 +15,7 @@ namespace Win32
       virtual void OnCancelClicked() = 0;
    };
 
-   class ModalDialog : public WindowHandle, public Observable<ModalDialogListener>
+   class ModalDialog : public WindowHandle, public Common::Observable<ModalDialogListener>
    {
    public:
       enum class Result
