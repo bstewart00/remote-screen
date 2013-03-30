@@ -23,6 +23,8 @@ std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
       .Create();
 }
 
+//TODO: Alternate constructor taking a reference as a parameter, so the main window can be created on the stack
+
 LRESULT CALLBACK MainWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
 {
    switch (message) {

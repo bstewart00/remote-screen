@@ -43,7 +43,22 @@ void MainPresenter::OnClose()
 
 void MainPresenter::OnCreated()
 {
+	// Ask view to create config pane
+	// Create config pane presenter as private unique ptr member
 
+	// Ask view to create content pane
+	// Create content pane presenter as private unique ptr member
+
+	// Bind content pane as listener to view
+	// This feels wrong. The presenter is supposed to drive the view.
+	/*
+	ContentPane triggers MonitorChanged
+	ContentPanePresenter listens to it, it may reject the event, but it notifies the parent
+	MainWindowPresenter::MonitorChanged
+	The main window presenter responds to this by getting the new monitor from the config pane, and triggering an event on the
+	ContentPanePresenter -> DisplayMonitor(monitor)
+
+	*/
 }
 
 void MainPresenter::ConfirmExit() const
