@@ -141,6 +141,11 @@ namespace Win32
          return *this;
       }
 
+      void CreateOnStack(TWindow& window)
+      {
+         CreateWindowHandle(&window);
+      }
+
       std::unique_ptr<TWindow> Create()
       {
          return Create(new TWindow());

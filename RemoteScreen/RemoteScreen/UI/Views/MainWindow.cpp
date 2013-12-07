@@ -10,9 +10,9 @@
 #include "ConfigPane.h"
 #include "ContentPane.h"
 
-std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
+void MainWindow::Create(HINSTANCE hInstance, MainWindow& result)
 {
-   return Win32::WindowBuilder<MainWindow>(hInstance)
+   Win32::WindowBuilder<MainWindow>(hInstance)
       .ClassName(Win32::StringResource(IDC_REMOTESCREEN))
       .ClassStyle(CS_HREDRAW | CS_VREDRAW)
       .ClassMenu(IDC_REMOTESCREEN)
@@ -20,7 +20,7 @@ std::unique_ptr<MainWindow> MainWindow::Create(HINSTANCE hInstance)
       .Icon(IDI_REMOTESCREEN)
       .Title(Win32::StringResource(IDS_APP_TITLE))
       .Register()
-      .Create();
+      .CreateOnStack(result);
 }
 
 //TODO: Alternate constructor taking a reference as a parameter, so the main window can be created on the stack

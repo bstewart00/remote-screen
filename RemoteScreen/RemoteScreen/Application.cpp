@@ -19,9 +19,10 @@ int Application::Run()
    ApplicationSettingsRepository settingsRepository;
 
    ApplicationSettings settings = settingsRepository.Get();
-   std::unique_ptr<MainWindow> view = MainWindow::Create(hInstance);
-   MainPresenter presenter(*view, settings, hInstance);
-   view->Show(nCmdShow);
+   MainWindow view;
+   MainWindow::Create(hInstance, view);
+   MainPresenter presenter(view, settings, hInstance);
+   view.Show(nCmdShow);
 
    HACCEL hAccelTable = LoadAccelerators(Win32::StringResource(IDC_REMOTESCREEN));
    MSG msg;
