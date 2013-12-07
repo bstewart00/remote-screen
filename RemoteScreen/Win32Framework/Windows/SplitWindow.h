@@ -18,12 +18,12 @@ namespace Win32
 
       LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
-      const Window& GetFirst() const
+      Window& GetFirst() const
       {
          return *leftWin;
       }
 
-      const Window& GetSecond() const
+      Window& GetSecond() const
       {
          return *rightWin;
       }

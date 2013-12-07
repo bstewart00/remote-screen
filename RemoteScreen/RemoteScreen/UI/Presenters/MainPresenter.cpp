@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <iostream>
 #include "MainPresenter.h"
 #include "../../Resource.h"
 #include "../Views/ApplicationSettingsDialog.h"
@@ -7,9 +8,16 @@
 #include "../../Models/ApplicationSettings.h"
 
 MainPresenter::MainPresenter(MainWindow& view, ApplicationSettings& settings, HINSTANCE hInstance)
-   : view(view), settings(settings), hInstance(hInstance)
+   : view(view), settings(settings), hInstance(hInstance), configPanePresenter(eventHub), contentPanePresenter(eventHub)
 {
    view.AddListener(this);
+
+   configPanePresenter.SetView(&view.GetConfigPane());
+   contentPanePresenter.SetView(&view.GetContentPane());
+
+   // Compose ConfigPanePresenter, ContentPanePresenter here
+   // ConfigPanePresenter.SetView(view.GetConfigPane());
+   // ContentPanePresenter.SetView(view.GetConfigPane());
 }
 
 void MainPresenter::OnAbout()
@@ -41,8 +49,7 @@ void MainPresenter::OnClose()
    ConfirmExit();
 }
 
-void MainPresenter::OnCreated()
-{
+
 	// Ask view to create config pane
 	// Create config pane presenter as private unique ptr member
 
@@ -59,7 +66,6 @@ void MainPresenter::OnCreated()
 	ContentPanePresenter -> DisplayMonitor(monitor)
 
 	*/
-}
 
 void MainPresenter::ConfirmExit() const
 {

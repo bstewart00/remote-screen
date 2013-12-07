@@ -45,7 +45,6 @@ void MainWindow::OnCreate()
 {
    HINSTANCE hInstance = GetInstance();
    splitWindow = Win32::SplitWindow::Create(hInstance, *this, ConfigPane::Create(hInstance, *this), ContentPane::Create(hInstance, *this), splitterPercentage);
-   NotifyListeners(&MainWindowListener::OnCreated);
 }
 
 LRESULT MainWindow::OnCommand(WPARAM wParam, LPARAM lParam)

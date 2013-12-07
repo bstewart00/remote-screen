@@ -70,10 +70,8 @@ void ConfigPane::OnMonitorSelected() const
       std::array<wchar_t, 255> buf;
       LRESULT selectedItem = monitorList->SendMsg(LB_GETTEXT, selectedItemIndex, reinterpret_cast<LPARAM>(buf.data()));
       if (selectedItem != LB_ERR) {
-         std::cout << Common::StringConverter::ToUtf8(std::wstring(buf.data())) << std::endl;
+         NotifyListeners(&ConfigPaneListener::OnMonitorSelected);
       }
-
-      NotifyListeners(&ConfigPaneListener::OnMonitorSelected);
    }
 }
 

@@ -23,7 +23,6 @@ public:
    virtual void OnSettings() = 0;
    virtual void OnExit() = 0;
    virtual void OnClose() = 0;
-   virtual void OnCreated() = 0;
 };
 
 class MainWindow : public Win32::Window, public Common::Observable<MainWindowListener>, private ConfigPaneListener
@@ -37,14 +36,14 @@ public:
    Win32::ModalDialog CreateAboutDialog() const;
    ApplicationSettingsDialog CreateApplicationSettingsDialog() const;
 
-   const ConfigPane& GetConfigPane() const
+   ConfigPane& GetConfigPane() const
    {
-      return dynamic_cast<const ConfigPane&>(splitWindow->GetFirst());
+      return dynamic_cast<ConfigPane&>(splitWindow->GetFirst());
    }
 
-   const ContentPane& GetContentPane() const
+   ContentPane& GetContentPane() const
    {
-      return dynamic_cast<const ContentPane&>(splitWindow->GetSecond());
+      return dynamic_cast<ContentPane&>(splitWindow->GetSecond());
    }
 private:
    static const int splitterPercentage = 30;

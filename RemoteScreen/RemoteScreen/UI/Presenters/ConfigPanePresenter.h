@@ -3,14 +3,19 @@
 #define ConfigPanePresenter_H
 
 #include "../Views/ConfigPane.h"
+#include "EventHub.h"
 
-class ConfigPanePresenter : private ConfigPaneListener
+class ConfigPanePresenter :  private ConfigPaneListener
 {
 public:
-   ConfigPanePresenter();
+   ConfigPanePresenter(EventHub& eventHub);
+   void SetView(ConfigPane* view);
 
 private:
    void OnMonitorSelected();
+
+   ConfigPane* view;
+   EventHub& eventHub;
 };
 
 #endif

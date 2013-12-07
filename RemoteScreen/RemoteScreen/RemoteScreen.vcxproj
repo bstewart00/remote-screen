@@ -139,6 +139,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="UI\Presenters\ConfigPanePresenter.h" />
+    <ClInclude Include="UI\Presenters\ContentPanePresenter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="UI\Presenters\EventHub.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="UI\Presenters\MainPresenter.h">
       <SubType>
       </SubType>
@@ -192,6 +201,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="UI\Presenters\ApplicationSettingsDialogPresenter.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="UI\Presenters\ConfigPanePresenter.cpp" />
+    <ClCompile Include="UI\Presenters\ContentPanePresenter.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="UI\Presenters\EventHub.cpp">
       <SubType>
       </SubType>
     </ClCompile>
