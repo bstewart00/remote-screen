@@ -141,7 +141,7 @@ namespace Win32
          return *this;
       }
 
-      void CreateOnStack(TWindow& window)
+      void Initialize(TWindow& window)
       {
          CreateWindowHandle(&window);
       }

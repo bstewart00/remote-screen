@@ -10,7 +10,7 @@
 #include "ConfigPane.h"
 #include "ContentPane.h"
 
-void MainWindow::Create(HINSTANCE hInstance, MainWindow& result)
+MainWindow::MainWindow(HINSTANCE hInstance) : Window()
 {
    Win32::WindowBuilder<MainWindow>(hInstance)
       .ClassName(Win32::StringResource(IDC_REMOTESCREEN))
@@ -20,10 +20,8 @@ void MainWindow::Create(HINSTANCE hInstance, MainWindow& result)
       .Icon(IDI_REMOTESCREEN)
       .Title(Win32::StringResource(IDS_APP_TITLE))
       .Register()
-      .CreateOnStack(result);
+      .Initialize(*this);
 }
-
-//TODO: Alternate constructor taking a reference as a parameter, so the main window can be created on the stack
 
 LRESULT CALLBACK MainWindow::ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam)
 {

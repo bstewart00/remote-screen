@@ -30,14 +30,7 @@ class MainWindow : public Win32::Window, public Common::Observable<MainWindowLis
 {
    friend class Win32::WindowBuilder<MainWindow>;
 public:
-   static void Create(HINSTANCE hInstance, MainWindow& result);
-   MainWindow() : Window() {}
-
-   MainWindow & operator=(MainWindow &&o)
-   {
-      splitWindow = std::move(o.splitWindow);
-      return *this;
-   }
+   MainWindow(HINSTANCE hInstance);
 
    LRESULT CALLBACK ProcessMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -55,10 +48,7 @@ public:
    }
 private:
    static const int splitterPercentage = 30;
-   MainWindow(const MainWindow &) 
-   {
-   
-   }
+   MainWindow(const MainWindow &);
    MainWindow& operator=(const MainWindow &);
 
    void OnCreate();

@@ -19,8 +19,7 @@ int Application::Run()
    ApplicationSettingsRepository settingsRepository;
 
    ApplicationSettings settings = settingsRepository.Get();
-   MainWindow view;
-   MainWindow::Create(hInstance, view);
+   MainWindow view(hInstance);
    MainPresenter presenter(view, settings, hInstance);
    view.Show(nCmdShow);
 
