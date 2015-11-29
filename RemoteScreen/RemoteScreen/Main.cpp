@@ -38,7 +38,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
       Application app(hInstance, nCmdShow);
       return app.Run();
    } catch (Win32::WindowsException e) {
-      boost::format test = boost::format("Error: %1 Win32 Error %2: %3") % e.GetMessage() % e.GetErrorCode() % e.GetFormattedMessage();
+	   boost::format test = boost::format("Error: %1 Win32 Error %2: %3") % e.GetMessage() % e.GetErrorCode() % Common::StringConverter::ToUtf8(e.GetFormattedMessage().get());
       std::wstring message = Common::StringConverter::ToWide(test.str());
       ::MessageBox (0, message.c_str(), L"Exception", MB_ICONEXCLAMATION | MB_OK);
    } catch(std::runtime_error e) {
